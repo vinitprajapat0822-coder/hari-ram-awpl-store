@@ -1,12 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import type { CSSProperties } from "react";
-
-type TickerMotion = {
-  duration: number;
-  direction: "normal" | "reverse";
-};
+import { useEffect, useRef } from "react";
 
 const tickerItems = [
   "🌱 Everyday wellness & care",
@@ -16,16 +10,20 @@ const tickerItems = [
 ];
 
 export default function VelocityTicker() {
-  const [motionStyle, setMotionStyle] = useState<TickerMotion>({
-    duration: 27,
-    direction: "normal",
-  });
+  const trackRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
     let lastTimestamp = performance.now();
     let frameId = 0;
     let resetTimer = 0;
+
+    const setTickerMotion = (duration: number, direction: "normal" | "reverse") => {
+      const track = trackRef.current;
+      if (!track) return;
+      track.style.setProperty("--ticker-duration", duration + "s");
+      track.style.setProperty("--ticker-direction", direction);
+    };
 
     const updateFromScroll = () => {
       if (frameId !== 0) return;
@@ -39,10 +37,7 @@ export default function VelocityTicker() {
         const duration = Math.max(10, Math.min(29, 29 - velocity * 8));
 
         if (delta !== 0) {
-          setMotionStyle({
-            duration,
-            direction: delta > 0 ? "normal" : "reverse",
-          });
+          setTickerMotion(duration, delta > 0 ? "normal" : "reverse");
         }
 
         lastScrollY = currentY;
@@ -51,7 +46,7 @@ export default function VelocityTicker() {
 
         window.clearTimeout(resetTimer);
         resetTimer = window.setTimeout(() => {
-          setMotionStyle({ duration: 27, direction: "normal" });
+          setTickerMotion(27, "normal");
         }, 420);
       });
     };
@@ -64,14 +59,16 @@ export default function VelocityTicker() {
     };
   }, []);
 
-  const style = {
-    "--ticker-duration": motionStyle.duration + "s",
-    "--ticker-direction": motionStyle.direction,
-  } as CSSProperties;
-
   return (
     <div className="velocity-ticker" role="group" aria-label="Store information">
-      <div className="velocity-ticker__track" style={style}>
+      <div
+        ref={trackRef}
+        className="velocity-ticker__track"
+        style={{
+          "--ticker-duration": "27s",
+          "--ticker-direction": "normal",
+        } as React.CSSProperties}
+      >
         <div className="velocity-ticker__group">
           {tickerItems.map((item) => <span key={item}>{item}</span>)}
         </div>
