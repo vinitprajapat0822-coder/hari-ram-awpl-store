@@ -184,7 +184,7 @@ test("product card opens a dedicated product detail page", async ({ page }) => {
   await expect(page.getByText("No verified reviews yet")).toBeVisible();
   await expect(page.getByText("Added date", { exact: true })).toBeVisible();
   await expect(page.getByText("Not recorded").first()).toBeVisible();
-  await expect(page.getByRole("button", { name: "Add to cart" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Add to cart", exact: true })).toBeVisible();
 });
 
 test("product card image lookup is concurrency limited", async ({ page }) => {
