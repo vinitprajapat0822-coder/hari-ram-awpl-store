@@ -40,7 +40,7 @@ export default function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <GlassCard className="p-4 flex flex-col h-full">
+    <GlassCard role="group" aria-label={`Product ${product.name}`} className="p-4 flex flex-col h-full">
       <div className="aspect-square rounded-xl bg-gradient-to-br from-cyan-500/10 to-blue-600/5 mb-4 flex items-center justify-center relative overflow-hidden">
         {product.image && product.imageStatus === "VERIFIED" ? (
           <Image
