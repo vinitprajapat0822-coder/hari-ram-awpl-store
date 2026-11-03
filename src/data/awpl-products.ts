@@ -10,7 +10,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2099,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -41,7 +40,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2099,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -72,7 +70,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 559,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -103,7 +100,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2559,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -134,7 +130,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2559,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -165,7 +160,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2559,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -196,7 +190,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2559,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -227,7 +220,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2559,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -258,7 +250,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2295,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -289,7 +280,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2295,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -320,7 +310,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2295,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -351,7 +340,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2295,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -382,7 +370,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 2295,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -413,7 +400,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 155,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -444,7 +430,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 258,
     "packSize": "75 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -475,7 +460,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 245,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -506,7 +490,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 531,
     "packSize": "500 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -537,7 +520,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 197,
     "packSize": "250 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -568,7 +550,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 234,
     "packSize": "375 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -599,7 +580,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 261,
     "packSize": "375 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -630,7 +610,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 216,
     "packSize": "375 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -661,7 +640,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 216,
     "packSize": "375 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -692,7 +670,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 384,
     "packSize": "375 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -723,7 +700,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 216,
     "packSize": "375 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -754,7 +730,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 133,
     "packSize": "500 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -785,7 +760,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 271,
     "packSize": "1000 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -816,7 +790,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 198,
     "packSize": "1000 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -847,7 +820,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 133,
     "packSize": "500 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -878,7 +850,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 125,
     "packSize": "500 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -909,7 +880,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 266,
     "packSize": "1000 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -940,7 +910,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 120,
     "packSize": "3 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -971,7 +940,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 129,
     "packSize": "3 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1002,7 +970,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 325,
     "packSize": "200 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1033,7 +1000,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 699,
     "packSize": "2 LTR",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1065,7 +1031,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 1743,
     "packSize": "5 LTR",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1096,7 +1061,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 139,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1127,7 +1091,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 147,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1158,7 +1121,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 161,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1189,7 +1151,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 153,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1220,7 +1181,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 167,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1251,7 +1211,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 139,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1282,7 +1241,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 125,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1313,7 +1271,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 77,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1344,7 +1301,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 69,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1375,7 +1331,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 55,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1406,7 +1361,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 167,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1437,7 +1391,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 111,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1468,7 +1421,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 60,
     "packSize": "25 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1499,7 +1451,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 88,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1530,7 +1481,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 105,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1561,7 +1511,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 335,
     "packSize": "500 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1592,7 +1541,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 76,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1623,7 +1571,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 399,
     "packSize": "1 LTR",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1654,7 +1601,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 232,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1685,7 +1631,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 1679,
     "packSize": "1 NUMBER",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1716,7 +1661,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 1329,
     "packSize": "30 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1747,7 +1691,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 909,
     "packSize": "4 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1778,7 +1721,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 1049,
     "packSize": "30 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1809,7 +1751,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 559,
     "packSize": "4 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1840,7 +1781,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 1245,
     "packSize": "15 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1871,7 +1811,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 979,
     "packSize": "9 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1902,7 +1841,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 909,
     "packSize": "3 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1933,7 +1871,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 279,
     "packSize": "1 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1964,7 +1901,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 979,
     "packSize": "3 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -1995,7 +1931,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 867,
     "packSize": "3 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2026,7 +1961,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 349,
     "packSize": "0 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2057,7 +1991,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 699,
     "packSize": "5 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2088,7 +2021,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 699,
     "packSize": "3 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2119,7 +2051,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 517,
     "packSize": "3 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2150,7 +2081,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 406,
     "packSize": "4 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2181,7 +2111,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 1399,
     "packSize": "30 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2212,7 +2141,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 979,
     "packSize": "1 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2243,7 +2171,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 1399,
     "packSize": "25 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2274,7 +2201,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 391,
     "packSize": "2 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2305,7 +2231,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 141,
     "packSize": "5 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2336,7 +2261,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 629,
     "packSize": "4 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2367,7 +2291,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 419,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2398,7 +2321,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 357,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2429,7 +2351,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 357,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2460,7 +2381,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 371,
     "packSize": "300 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2491,7 +2411,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 371,
     "packSize": "300 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2522,7 +2441,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 371,
     "packSize": "300 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2553,7 +2471,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 770,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2584,7 +2501,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 770,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2615,7 +2531,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 699,
     "packSize": "15 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2646,7 +2561,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 629,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2677,7 +2591,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 699,
     "packSize": "30 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2708,7 +2621,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 749,
     "packSize": "30 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2739,7 +2651,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 699,
     "packSize": "30 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2770,7 +2681,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 769,
     "packSize": "30 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2801,7 +2711,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 699,
     "packSize": "30 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2832,7 +2741,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 315,
     "packSize": "20 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2863,7 +2771,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 315,
     "packSize": "20 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2894,7 +2801,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 315,
     "packSize": "20 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2925,7 +2831,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 315,
     "packSize": "20 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2956,7 +2861,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 315,
     "packSize": "20 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -2987,7 +2891,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 175,
     "packSize": "250 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3018,7 +2921,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 405,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3049,7 +2951,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 388,
     "packSize": "1000 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3080,7 +2981,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 769,
     "packSize": "20 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3111,7 +3011,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 1073,
     "packSize": "75 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3142,7 +3041,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 1073,
     "packSize": "75 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3173,7 +3071,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 406,
     "packSize": "150 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3204,7 +3101,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 406,
     "packSize": "150 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3235,7 +3131,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 229,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3266,7 +3161,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 363,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3298,7 +3192,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 111,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3330,7 +3223,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 105,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3362,7 +3254,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 154,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3394,7 +3285,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 314,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3426,7 +3316,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 115,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3458,7 +3347,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 328,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3490,7 +3378,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 111,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3522,7 +3409,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 358,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3554,7 +3440,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 123,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3586,7 +3471,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 310,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3618,7 +3502,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 377,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3650,7 +3533,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 148,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3682,7 +3564,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 136,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3714,7 +3595,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 372,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3746,7 +3626,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 258,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3778,7 +3657,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 279,
     "packSize": "50 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3810,7 +3688,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 335,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3842,7 +3719,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 237,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3874,7 +3750,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 69,
     "packSize": "10 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3906,7 +3781,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 433,
     "packSize": "200 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3938,7 +3812,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 337,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3970,7 +3843,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 335,
     "packSize": "50 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -4002,7 +3874,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 251,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -4034,7 +3905,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 321,
     "packSize": "250 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -4066,7 +3936,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 357,
     "packSize": "250 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -4098,7 +3967,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 156,
     "packSize": "100 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -4130,7 +3998,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 123,
     "packSize": "75 GM",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -4162,7 +4029,6 @@ export const awplProducts: ProductMasterRecord[] = [
     "subcategory": null,
     "mrp": 224,
     "packSize": "100 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -4187,14 +4053,13 @@ export const awplProducts: ProductMasterRecord[] = [
   },
   {
     "id": "awpl-sniss-herbal-hairdoc-oil-200-ml",
-    "name": "HAIRDOC OIL",
+    "name": "HAIRDOC OIL 200 ML",
     "nameHi": null,
     "brand": null,
     "category": "sniss-herbal",
     "subcategory": null,
     "mrp": 431,
     "packSize": "200 ML",
-    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
