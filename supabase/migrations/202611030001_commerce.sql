@@ -268,7 +268,7 @@ begin
  if length(trim(coalesce(p_customer_name,'')))<2 then raise exception 'CUSTOMER_NAME_REQUIRED'; end if;
  if p_customer_phone !~ '^[6-9][0-9]{9}$' then raise exception 'VALID_INDIAN_PHONE_REQUIRED'; end if;
  if length(trim(coalesce(p_delivery_address,'')))<8 then raise exception 'DELIVERY_ADDRESS_REQUIRED'; end if;
- if jsonb_typeof(p_items)<>'array' or jsonb_array_length(p_items)=0 then raise exception 'CART_EMPTY'; end if;
+ if p_items is null or jsonb_typeof(p_items) is distinct from 'array' or jsonb_array_length(p_items)=0 then raise exception 'CART_EMPTY'; end if;
  insert into public.orders(customer_id,customer_name,customer_phone,delivery_address)
  values(v_user,trim(p_customer_name),p_customer_phone,trim(p_delivery_address)) returning * into v_order;
  for v_item in select value from jsonb_array_elements(p_items) loop
@@ -294,6 +294,7 @@ begin
  if not found then raise exception 'ORDER_NOT_FOUND'; end if;
  case p_action
   when 'CONFIRM_AVAILABILITY' then
+   if v_order.status<>'ORDER_PLACED' then raise exception 'INVALID_ORDER_TRANSITION'; end if;
    update public.orders set availability_confirmed=true,owner_message=nullif(trim(p_message),''),updated_at=now()
    where id=p_order_id returning * into v_order; v_next:=v_order.status;
   when 'ACCEPT_ORDER' then
@@ -305,6 +306,7 @@ begin
   when 'OUT_FOR_DELIVERY' then v_next:='OUT_FOR_DELIVERY';
   when 'MARK_DELIVERED' then v_next:='DELIVERED';
   when 'DELIVERY_DELAYED' then
+   if v_order.status in ('DELIVERED','CANCELLED') then raise exception 'INVALID_ORDER_TRANSITION'; end if;
    if p_eta_start is null or p_eta_end is null or p_eta_end<p_eta_start then raise exception 'VALID_REVISED_ETA_REQUIRED'; end if;
    update public.orders set eta_start=p_eta_start,eta_end=p_eta_end,
     delay_notice=coalesce(nullif(trim(p_message),''),'Delivery schedule revised by the store.'),
