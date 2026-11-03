@@ -30,11 +30,12 @@ export default function Navbar() {
   const updateMagneticDock = (event: PointerEvent<HTMLElement>) => {
     const dock = dockRef.current;
     if (!dock) return;
+    const dockBounds = dock.getBoundingClientRect();
 
     dock.querySelectorAll<HTMLElement>(".mobile-dock__item").forEach((item) => {
-      const bounds = item.getBoundingClientRect();
-      const dx = event.clientX - (bounds.left + bounds.width / 2);
-      const dy = event.clientY - (bounds.top + bounds.height / 2);
+      // offsetLeft/offsetTop stay tied to the untransformed layout, preventing feedback drift.
+      const dx = event.clientX - (dockBounds.left + dock.clientLeft + item.offsetLeft + item.offsetWidth / 2);
+      const dy = event.clientY - (dockBounds.top + dock.clientTop + item.offsetTop + item.offsetHeight / 2);
       const distance = Math.hypot(dx, dy);
       const intensity = Math.max(0, 1 - distance / 118);
       const pullX = distance > 0 ? (dx / distance) * 4.5 * intensity : 0;
