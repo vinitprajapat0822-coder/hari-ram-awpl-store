@@ -161,7 +161,7 @@ export const catalogueCollectionCoverage = [
   { slug: "sniss-cosmetic", selectorEntries: 88, capturedRows: 21, coverage: "PARTIAL" },
   { slug: "sniss-elite", selectorEntries: 24, capturedRows: 24, coverage: "COMPLETE" },
   { slug: "sniss-fragrances", selectorEntries: 4, capturedRows: 4, coverage: "COMPLETE" },
-  { slug: "sniss-herbal", selectorEntries: 35, capturedRows: 30, coverage: "PARTIAL" },
+  { slug: "sniss-herbal", selectorEntries: 35, capturedRows: 31, coverage: "PARTIAL" },
   { slug: "veterinary", selectorEntries: 2, capturedRows: 0, coverage: "HELD_FOR_REVIEW" },
   { slug: "wellness", selectorEntries: 48, capturedRows: 0, coverage: "HELD_FOR_REVIEW" },
   { slug: "wellroot", selectorEntries: 47, capturedRows: 0, coverage: "HELD_FOR_REVIEW" },
@@ -170,10 +170,10 @@ export const catalogueCollectionCoverage = [
 export const catalogueDataStatus = {
   capturedAt: "2026-11-03",
   selectorEntryCountObserved: 374,
-  rawListingRowsCaptured: 134,
-  parentProductsAfterVariantGrouping: 126,
+  rawListingRowsCaptured: 135,
+  individualProductRecordsAfterVariantSplit: 135,
   completeCategories: 5,
   partialCategories: 6,
   heldCategories: 4,
-  note: "Selector counts are not unique parent-product counts. Partial categories must not be labelled complete. Product types with unresolved medical, animal-health, agricultural-input or unclear classification are held out of the orderable storefront pending an appropriate review.",
+  note: "Selector counts are not unique product counts. Pack sizes and apparel size/colour options are separate product records, never grouped into variant selectors. Partial categories must not be labelled complete. Product types with unresolved medical, animal-health, agricultural-input or unclear classification are held out of the orderable storefront pending an appropriate review.",
 } as const;
