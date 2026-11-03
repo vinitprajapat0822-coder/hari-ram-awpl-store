@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { getSupabaseBrowserClient } from "@/lib/supabase";
 import { Star } from "lucide-react";
 
@@ -16,7 +17,7 @@ export default function ProductReviews({productId}:{productId:string}){
   {reviews.length>0&&<div className="text-right"><p className="flex items-center justify-end gap-1 text-sm font-extrabold text-amber-200"><Star size={15} fill="currentColor"/> {average.toFixed(1)} / 5</p><p className="text-[10px] text-white/40">{reviews.length} verified review{reviews.length===1?"":"s"}</p></div>}</div>
   {loading?<p className="mt-4 text-xs text-white/40">Loading verified reviews…</p>:reviews.length===0?<div className="glass-card mt-4 rounded-2xl p-5 text-xs text-white/45">No published verified reviews yet.</div>:<div className="mt-4 grid gap-3 sm:grid-cols-2">{reviews.map(review=><article key={review.id} className="glass-card rounded-2xl p-4"><div className="flex items-center justify-between"><span className="text-sm tracking-wide text-amber-200">{"★".repeat(Math.max(0,Math.min(5,review.rating)))}</span><span className="text-[9px] text-teal-100/60">Verified purchase</span></div>
   {[["Product quality",review.product_quality],["Packaging",review.packaging_experience],["Delivery",review.delivery_experience]].filter(([,value])=>Boolean(value)).map(([label,value])=><p key={String(label)} className="mt-2 text-[11px] leading-5 text-white/65"><strong className="text-white/80">{label}:</strong> {value}</p>)}
-  {(review.review_images??[]).length>0&&<div className="mt-3 grid grid-cols-4 gap-2">{review.review_images.map((image,index)=>{const {data}=getSupabaseBrowserClient().storage.from("review-photos").getPublicUrl(image.storage_path);return <a key={image.storage_path} href={data.publicUrl} target="_blank" rel="noreferrer" className="block aspect-square overflow-hidden rounded-xl border border-white/10"><img src={data.publicUrl} alt={"Customer review photo "+(index+1)} loading="lazy" className="h-full w-full object-cover"/></a>;})}</div>}
+  {(review.review_images??[]).length>0&&<div className="mt-3 grid grid-cols-4 gap-2">{review.review_images.map((image,index)=>{const {data}=getSupabaseBrowserClient().storage.from("review-photos").getPublicUrl(image.storage_path);return <a key={image.storage_path} href={data.publicUrl} target="_blank" rel="noreferrer" className="block aspect-square overflow-hidden rounded-xl border border-white/10"><Image src={data.publicUrl} alt={"Customer review photo "+(index+1)} width={320} height={320} sizes="25vw" unoptimized className="h-full w-full object-cover"/></a>;})}</div>}
   <p className="mt-3 text-[9px] text-white/30">{new Date(review.created_at).toLocaleDateString("en-IN")}</p></article>)}</div>}
  </section>;
 }
