@@ -42,6 +42,8 @@ function displayDate(value: string | null | undefined): string {
 export default function ProductDetailClient({ product }: Props) {
   const addToCart = useStore((state) => state.addToCart);
   const [added, setAdded] = useState(false);
+  const [reviewRating, setReviewRating] = useState(0);
+  const [reviewComment, setReviewComment] = useState("");
 
   const canOrder = product.status === "VERIFIED";
   const hasDiscount = typeof product.sellingPrice === "number"
@@ -66,6 +68,18 @@ export default function ProductDetailClient({ product }: Props) {
     "Listed MRP: " + formatPrice(product.mrp),
     "Please confirm current selling price, available stock and delivery.",
   ].join("\n");
+
+  const reviewMessage = [
+    "Hello Hari Ram Store,",
+    "I want to share feedback for:",
+    "Product: " + product.name,
+    "Rating: " + reviewRating + "/5",
+    "Comment: " + reviewComment.trim(),
+    "Please review this feedback before publishing it.",
+  ].join("\n");
+  const reviewUrl = reviewRating > 0 && reviewComment.trim()
+    ? getWhatsAppUrl(reviewMessage)
+    : null;
 
   const sellerContactUrl = getWhatsAppUrl(enquiryMessage);
   const verifiedDate = displayDate(product.lastVerifiedAt);
@@ -297,6 +311,51 @@ export default function ProductDetailClient({ product }: Props) {
                 View official product source <ExternalLink size={12} aria-hidden="true" />
               </a>
             )}
+            <div className="mt-5 border-t border-white/[0.08] pt-5">
+              <h3 className="text-xs font-extrabold text-white">Share feedback with the store</h3>
+              <div className="mt-3 flex items-center gap-1.5" role="group" aria-label="Choose product rating">
+                {[1, 2, 3, 4, 5].map((value) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => setReviewRating(value)}
+                    aria-label={"Rate " + value + " stars"}
+                    aria-pressed={reviewRating === value}
+                    className="grid h-10 w-10 place-items-center rounded-xl border border-white/[0.08] bg-white/[0.025] text-amber-200 transition-colors hover:bg-amber-200/[0.08]"
+                  >
+                    <Star size={18} fill={reviewRating >= value ? "currentColor" : "none"} aria-hidden="true" />
+                  </button>
+                ))}
+                <span className="ml-2 text-[10px] text-white/40">
+                  {reviewRating > 0 ? reviewRating + " / 5 selected" : "Select a rating"}
+                </span>
+              </div>
+              <label htmlFor="product-review-comment" className="mt-3 block text-[10px] font-bold uppercase tracking-[0.13em] text-white/45">
+                Your comment
+              </label>
+              <textarea
+                id="product-review-comment"
+                value={reviewComment}
+                onChange={(event) => setReviewComment(event.target.value)}
+                rows={3}
+                maxLength={1000}
+                placeholder="Share your experience with this product…"
+                className="mt-2 min-h-24 w-full resize-y rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2.5 text-xs leading-6 text-white outline-none placeholder:text-white/30 focus:border-teal-100/35"
+              />
+              <button
+                type="button"
+                disabled={!reviewUrl}
+                onClick={() => {
+                  if (reviewUrl) window.open(reviewUrl, "_blank", "noopener,noreferrer");
+                }}
+                className="btn-cyan mt-3 flex min-h-11 w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold disabled:cursor-not-allowed disabled:opacity-35"
+              >
+                <MessageCircle size={15} aria-hidden="true" /> Send feedback via WhatsApp
+              </button>
+              <p className="mt-2 text-[10px] leading-5 text-white/35">
+                Feedback is sent privately to the store. It will not appear as a public review until it is checked and published.
+              </p>
+            </div>
             <div className="mt-4 flex items-center gap-2 border-t border-white/[0.08] pt-4 text-[10px] text-white/35">
               <CalendarDays size={13} aria-hidden="true" />
               Catalogue data last checked: {verifiedDate}
