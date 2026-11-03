@@ -25,6 +25,14 @@ The current imported subset is not the complete AWPL product catalogue. See [cat
 
 Stock, current pack-label MRP and delivery must be confirmed before accepting any real order. The prototype does not process payments or confirm inventory.
 
+## Deployment (GitHub Pages only)
+
+This project is configured for GitHub Pages static hosting. Push the reviewed production branch `main` to trigger `.github/workflows/deploy-pages.yml`.
+
+Live URL: https://vinitprajapat0822-coder.github.io/hari-ram-awpl-store/ (available after the Pages workflow succeeds).
+
+No Vercel service or account is used.
+
 ## Local development
 
 ```bash
