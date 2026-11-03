@@ -19,11 +19,13 @@ test.afterEach(async () => {
   expect(serverErrors, "HTTP 5xx responses").toEqual([]);
 });
 
-test("home page shows the category catalogue and image placeholders", async ({ page }) => {
+test("home page shows the category catalogue and resilient product artwork", async ({ page }) => {
   await page.goto("./");
   await expect(page.getByRole("heading", { name: "HARI RAM" })).toBeVisible();
   await expect(page.getByText("135 products", { exact: true })).toBeVisible();
-  await expect(page.getByText("Image pending").first()).toBeVisible();
+  await page.getByTestId("product-grid").scrollIntoViewIfNeeded();
+  await expect(page.getByTestId("product-artwork").first()).toBeVisible();
+  await expect(page.getByText("Image pending")).toHaveCount(0);
   await expect(page.getByRole("button", { name: "Agriculture", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Wellroot", exact: true })).toBeVisible();
 });
@@ -33,9 +35,31 @@ test("mobile navigation stays visible and exposes all primary routes", async ({ 
   await page.goto("./");
   const dock = page.getByRole("navigation", { name: "Mobile navigation" });
   await expect(dock).toBeVisible();
-  await expect(dock.getByRole("link", { name: "Explore" })).toBeVisible();
+  await expect(dock.getByRole("link", { name: "Home" })).toBeVisible();
+  await expect(dock.getByRole("link", { name: "Catalogue" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Cart" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Profile" })).toBeVisible();
+});
+
+
+test("catalogue grid uses two mobile columns and four desktop columns", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("./");
+  const grid = page.getByTestId("product-grid");
+  await expect(grid).toBeVisible();
+  const mobileColumns = await grid.evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(" ").length);
+  expect(mobileColumns).toBe(2);
+
+  await page.setViewportSize({ width: 1280, height: 900 });
+  const desktopColumns = await grid.evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(" ").length);
+  expect(desktopColumns).toBe(4);
+});
+
+test("promo carousel exposes working highlight controls", async ({ page }) => {
+  await page.goto("./");
+  await expect(page.getByRole("region", { name: "Store highlights" })).toBeVisible();
+  await page.getByRole("button", { name: "Next highlight" }).first().click();
+  await expect(page.getByText("Find your range,", { exact: true })).toBeVisible();
 });
 
 test("search filters the catalogue and can be cleared", async ({ page }) => {
