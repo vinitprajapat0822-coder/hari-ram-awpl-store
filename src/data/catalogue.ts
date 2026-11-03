@@ -27,18 +27,6 @@ export const catalogueCategories = [
 export type CatalogueCategorySlug =
   (typeof catalogueCategories)[number]["slug"];
 
-export type ProductVariant = {
-  id: string;
-  label: string;
-  size?: string | null;
-  packSize?: string | null;
-  quantity?: string | null;
-  colour?: string | null;
-  shade?: string | null;
-  flavour?: string | null;
-  barcode?: string | null;
-};
-
 export type ProductImageStatus =
   | "MISSING"
   | "UPLOADED_UNVERIFIED"
@@ -60,7 +48,6 @@ export type ProductMasterRecord = {
   /** MRP only. Keep unresolved values null; never guess a price. */
   mrp: number | null;
   packSize?: string | null;
-  variants: ProductVariant[];
 
   /** Descriptions must be sourced and reviewed before publication. */
   description?: string | null;
