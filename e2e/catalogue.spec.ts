@@ -161,7 +161,7 @@ test("product card opens a dedicated product detail page", async ({ page }) => {
   await page.goto("./");
   const product = page.getByRole("group", { name: "Product ASCLEPIUS WOMEN SAREE CRAPE", exact: true });
   await expect(product).toBeVisible();
-  await product.getByRole("link", { name: "View details for ASCLEPIUS WOMEN SAREE CRAPE" }).click();
+  await product.getByRole("link", { name: /ASCLEPIUS WOMEN SAREE CRAPE/ }).click();
 
   await expect(page.getByRole("heading", { name: "ASCLEPIUS WOMEN SAREE CRAPE", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Product information" })).toBeVisible();
@@ -199,7 +199,7 @@ test("product card image lookup is concurrency limited", async ({ page }) => {
 test("product feedback form requires a rating and comment", async ({ page }) => {
   await page.goto("./");
   const product = page.getByRole("group", { name: "Product ASCLEPIUS WOMEN SAREE CRAPE", exact: true });
-  await product.getByRole("link", { name: "View details for ASCLEPIUS WOMEN SAREE CRAPE" }).click();
+  await product.getByRole("link", { name: /ASCLEPIUS WOMEN SAREE CRAPE/ }).click();
 
   const sendFeedback = page.getByRole("button", { name: "Send feedback via WhatsApp" });
   await expect(sendFeedback).toBeDisabled();
