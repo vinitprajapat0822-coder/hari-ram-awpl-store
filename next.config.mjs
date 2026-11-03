@@ -4,7 +4,18 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "awpl-kycdocs.s3.ap-south-1.amazonaws.com",
+        pathname: "/upload1/product/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.asclepiuswellness.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "asclepiuswellness.com",
+        pathname: "/**",
       },
     ],
   },
