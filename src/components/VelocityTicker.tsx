@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { CSSProperties } from "react";
 
 const tickerItems = [
   "🌱 Everyday wellness & care",
@@ -67,7 +68,7 @@ export default function VelocityTicker() {
         style={{
           "--ticker-duration": "27s",
           "--ticker-direction": "normal",
-        } as React.CSSProperties}
+        } as CSSProperties}
       >
         <div className="velocity-ticker__group">
           {tickerItems.map((item) => <span key={item}>{item}</span>)}
