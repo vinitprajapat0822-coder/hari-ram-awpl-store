@@ -29,7 +29,7 @@ test.afterEach(async () => {
 test("home page shows the category catalogue and image placeholders", async ({ page }) => {
   await page.goto("./");
   await expect(page.getByRole("heading", { name: "HARI RAM" })).toBeVisible();
-  await expect(page.getByText("126 products", { exact: true })).toBeVisible();
+  await expect(page.getByText("135 products", { exact: true })).toBeVisible();
   await expect(page.getByText("Image pending").first()).toBeVisible();
   await expect(page.getByRole("button", { name: "Agriculture", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Wellroot", exact: true })).toBeVisible();
@@ -47,7 +47,7 @@ test("search filters the catalogue and can be cleared", async ({ page }) => {
 
   await page.getByRole("button", { name: "Clear search" }).click();
   await expect(search).toHaveValue("");
-  await expect(page.getByText("126 products", { exact: true })).toBeVisible();
+  await expect(page.getByText("135 products", { exact: true })).toBeVisible();
 });
 
 test("category filters only show matching products", async ({ page }) => {
@@ -68,23 +68,36 @@ test("held category filters do not show unreviewed items as orderable", async ({
   ).toBeVisible();
 });
 
-test("apparel variant is preserved in cart and after reload", async ({ page }) => {
+test("apparel colour and size SKUs are separate product cards", async ({ page }) => {
   await page.goto("./");
   await page.getByRole("button", { name: "Apparels", exact: true }).click();
 
-  const product = page.getByRole("group", { name: "Product ASCLEPIUS T SHIRT" });
-  await product.getByLabel("Select size / colour").selectOption({ label: "OLIVE (S)" });
-  await product.getByRole("button", { name: "Add ASCLEPIUS T SHIRT to cart" }).click();
+  const olive = page.getByRole("group", {
+    name: "Product ASCLEPIUS T SHIRT - OLIVE (S)",
+  });
+  const blue = page.getByRole("group", {
+    name: "Product ASCLEPIUS T SHIRT - LIGHT BLUE (S)",
+  });
+
+  await expect(olive).toBeVisible();
+  await expect(blue).toBeVisible();
+  await expect(olive.getByLabel("Select size / colour")).toHaveCount(0);
+  await olive.getByRole("button", {
+    name: "Add ASCLEPIUS T SHIRT - OLIVE (S) to cart",
+  }).click();
 
   await page.goto("cart/");
   await expect(page.getByRole("heading", { name: "Your Cart" })).toBeVisible();
-  await expect(page.getByText("ASCLEPIUS T SHIRT", { exact: true })).toBeVisible();
-  await expect(page.getByText("OLIVE (S)", { exact: true })).toBeVisible();
+  await expect(
+    page.getByText("ASCLEPIUS T SHIRT - OLIVE (S)", { exact: true })
+  ).toBeVisible();
+  await expect(page.getByText("1 NUMBER", { exact: true })).toBeVisible();
   await expect(page.getByText("₹2,559", { exact: true }).first()).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText("OLIVE (S)", { exact: true })).toBeVisible();
-  await expect(page.getByText("₹2,559", { exact: true }).first()).toBeVisible();
+  await expect(
+    page.getByText("ASCLEPIUS T SHIRT - OLIVE (S)", { exact: true })
+  ).toBeVisible();
 });
 
 test("conflicting MRP product is blocked from cart", async ({ page }) => {
