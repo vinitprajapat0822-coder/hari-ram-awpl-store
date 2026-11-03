@@ -194,3 +194,16 @@ test("product card image lookup is concurrency limited", async ({ page }) => {
   await page.waitForTimeout(700);
   expect(peakRequests).toBeLessThanOrEqual(2);
 });
+
+
+test("product feedback form requires a rating and comment", async ({ page }) => {
+  await page.goto("./");
+  const product = page.getByRole("group", { name: "Product ASCLEPIUS WOMEN SAREE CRAPE", exact: true });
+  await product.getByRole("link", { name: "View details for ASCLEPIUS WOMEN SAREE CRAPE" }).click();
+
+  const sendFeedback = page.getByRole("button", { name: "Send feedback via WhatsApp" });
+  await expect(sendFeedback).toBeDisabled();
+  await page.getByRole("button", { name: "Rate 5 stars" }).click();
+  await page.getByLabel("Your comment").fill("The product details were helpful.");
+  await expect(sendFeedback).toBeEnabled();
+});
