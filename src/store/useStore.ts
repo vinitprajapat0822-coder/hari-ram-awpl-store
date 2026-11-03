@@ -72,7 +72,7 @@ export const useStore = create<StoreState>()(
       setUser: (user) => set({ user }),
 
       getCartTotal: () =>
-        get().cart.reduce((sum, item) => sum + item.product.mrp * item.quantity, 0),
+        get().cart.reduce((sum, item) => sum + (item.product.sellingPrice ?? item.product.mrp) * item.quantity, 0),
 
       getCartCount: () =>
         get().cart.reduce((sum, item) => sum + item.quantity, 0),
@@ -140,14 +140,18 @@ export function generateWhatsAppMessage(
   lines.push("");
 
   cart.forEach((item, index) => {
-    const lineTotal = item.product.mrp * item.quantity;
-    lines.push(
-      `${index + 1}. ${item.product.name} (${item.product.qty}) × ${item.quantity} = ₹${lineTotal.toLocaleString("en-IN")}`
-    );
+    const mrpLine = item.product.mrp * item.quantity;
+    const sellingLine = (item.product.sellingPrice ?? item.product.mrp) * item.quantity;
+    const sellingLabel = item.product.sellingPrice == null ? "To be confirmed by store" : `₹${sellingLine.toLocaleString("en-IN")}`;
+    lines.push(`${index + 1}. ${item.product.name} (${item.product.qty}) × ${item.quantity}`);
+    lines.push(`   MRP: ₹${mrpLine.toLocaleString("en-IN")} | SP: ${sellingLabel}`);
   });
 
   lines.push("");
-  lines.push(`*Total (MRP):* ₹${total.toLocaleString("en-IN")}`);
+  const mrpTotal = cart.reduce((sum, item) => sum + item.product.mrp * item.quantity, 0);
+  lines.push(`*Total MRP:* ₹${mrpTotal.toLocaleString("en-IN")}`);
+  lines.push(`*Estimated selling total:* ₹${total.toLocaleString("en-IN")}`);
+  lines.push("SP is subject to owner confirmation where not listed.");
   lines.push("");
   lines.push("*Customer Details*");
   lines.push(`Name: ${user.name || "Not provided"}`);
