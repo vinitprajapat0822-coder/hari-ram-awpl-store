@@ -42,10 +42,11 @@ function ProfileContent() {
 
         <GlassCard className="p-5 space-y-4">
           <div>
-            <label className="block text-sm text-white/70 mb-1.5">
+            <label htmlFor="profile-name" className="block text-sm text-white/70 mb-1.5">
               Full Name *
             </label>
             <input
+              id="profile-name"
               type="text"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -55,10 +56,11 @@ function ProfileContent() {
           </div>
 
           <div>
-            <label className="block text-sm text-white/70 mb-1.5">
+            <label htmlFor="profile-phone" className="block text-sm text-white/70 mb-1.5">
               Mobile Number *
             </label>
             <input
+              id="profile-phone"
               type="tel"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -68,10 +70,11 @@ function ProfileContent() {
           </div>
 
           <div>
-            <label className="block text-sm text-white/70 mb-1.5">
+            <label htmlFor="profile-address" className="block text-sm text-white/70 mb-1.5">
               Delivery Address *
             </label>
             <textarea
+              id="profile-address"
               value={form.address}
               onChange={(e) => setForm({ ...form, address: e.target.value })}
               placeholder="Full address with landmark & pincode"
