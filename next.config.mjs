@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // GitHub Pages project-site deployment (https://<owner>.github.io/<repo>/).
-  output: "export",
+  // Keep dynamic product routes available to the Playwright dev server.
+  // Production and GitHub Pages builds remain fully static exports.
+  output: process.env.NODE_ENV === "development" ? undefined : "export",
   trailingSlash: true,
   basePath: "/hari-ram-awpl-store",
   images: {
