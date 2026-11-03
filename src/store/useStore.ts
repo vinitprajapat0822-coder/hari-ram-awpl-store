@@ -2,7 +2,8 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Product, products } from "@/data/products";
+import { products } from "@/data/products";
+import type { Product } from "@/data/products";
 import type { ProductVariant } from "@/data/catalogue";
 
 export type CartItem = {
