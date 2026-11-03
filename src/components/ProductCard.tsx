@@ -69,7 +69,7 @@ export default function ProductCard({ product }: Props) {
         className="product-card__details block min-w-0 flex-1 rounded-xl outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-200"
       >
         <div onPointerMove={handlePointerMove} onPointerDown={handlePointerDown}>
-          <ProductArtwork product={product} />
+          <ProductArtwork product={product} showAttribution={false} />
         </div>
 
         <div className="flex min-w-0 flex-col px-0.5 pb-2">
