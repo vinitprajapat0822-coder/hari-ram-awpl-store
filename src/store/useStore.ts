@@ -103,6 +103,7 @@ export const useStore = create<StoreState>()(
     {
       name: "hari-ram-awpl-store",
       version: 2,
+      skipHydration: true,
       migrate: (persistedState) => {
         const saved = persistedState as {
           cart?: Array<{
