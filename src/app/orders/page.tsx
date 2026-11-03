@@ -15,6 +15,27 @@ const steps = ["ORDER_PLACED","ORDER_ACCEPTED","PACKED","SHIPPED","IN_TRANSIT","
 const labels:Record<string,string> = { ORDER_PLACED:"Order placed",ORDER_ACCEPTED:"Order accepted",PACKED:"Packed",SHIPPED:"Shipped",IN_TRANSIT:"In transit",OUT_FOR_DELIVERY:"Out for delivery",DELIVERED:"Delivered" };
 const dateTime=(value:string|null)=>value?new Date(value).toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"}):"Not set";
 
+async function compressReviewPhoto(file: File): Promise<Blob> {
+  if (file.size > 15 * 1024 * 1024) throw new Error("Each selected photo must be 15 MB or smaller before compression.");
+  try {
+    const bitmap = await createImageBitmap(file);
+    const scale = Math.min(1, 1600 / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+    canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+    const context = canvas.getContext("2d");
+    if (!context) throw new Error("Image compression is unavailable in this browser.");
+    context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    bitmap.close();
+    const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error("Photo compression failed.")), "image/webp", 0.82));
+    if (blob.size > 5 * 1024 * 1024) throw new Error("Compressed photo is still larger than 5 MB. Choose a smaller image.");
+    return blob;
+  } catch (caught) {
+    if (caught instanceof Error && (caught.message.includes("15 MB") || caught.message.includes("5 MB"))) throw caught;
+    if (file.size <= 5 * 1024 * 1024) return file;
+    throw new Error("This photo could not be compressed. Choose a smaller JPG, PNG or WebP image.");
+  }
+}
 function ReviewForm({orderId,productId,onDone}:{orderId:string;productId:string;onDone:()=>void}) {
   const [rating,setRating]=useState(5),[quality,setQuality]=useState(5),[packaging,setPackaging]=useState(5),[delivery,setDelivery]=useState(5);
   const [qualityText,setQualityText]=useState(""),[packagingText,setPackagingText]=useState(""),[deliveryText,setDeliveryText]=useState("");
@@ -27,7 +48,7 @@ function ReviewForm({orderId,productId,onDone}:{orderId:string;productId:string;
       const {data:{user},error:authError}=await supabase.auth.getUser();
       if(authError||!user) throw new Error("Sign in to submit a verified-purchase review.");
       if(photos.length>4) throw new Error("Maximum 4 photos per review.");
-      if(photos.some(file=>file.size>5*1024*1024||!["image/jpeg","image/png","image/webp"].includes(file.type))) throw new Error("Use JPG, PNG or WebP images up to 5 MB each.");
+      if(photos.some(file=>!["image/jpeg","image/png","image/webp"].includes(file.type))) throw new Error("Use JPG, PNG or WebP images.");
       const {data:reviewId,error:reviewError}=await supabase.rpc("submit_store_review",{
         p_order_id:orderId,p_product_id:productId,p_rating:rating,p_quality_rating:quality,p_packaging_rating:packaging,p_delivery_rating:delivery,
         p_product_quality:qualityText,p_packaging_experience:packagingText,p_delivery_experience:deliveryText
@@ -35,9 +56,9 @@ function ReviewForm({orderId,productId,onDone}:{orderId:string;productId:string;
       if(reviewError) throw reviewError;
       const uploaded:string[]=[];
       for(const file of photos){
-        const ext=file.type==="image/png"?"png":file.type==="image/webp"?"webp":"jpg";
-        const path=user.id+"/"+orderId+"/"+crypto.randomUUID()+"."+ext;
-        const {error:uploadError}=await supabase.storage.from("review-photos").upload(path,file,{contentType:file.type,upsert:false});
+        const blob=await compressReviewPhoto(file);
+        const path=user.id+"/"+orderId+"/"+crypto.randomUUID()+".webp";
+        const {error:uploadError}=await supabase.storage.from("review-photos").upload(path,blob,{contentType:"image/webp",upsert:false});
         if(uploadError) throw uploadError;
         uploaded.push(path);
       }
@@ -56,7 +77,7 @@ function ReviewForm({orderId,productId,onDone}:{orderId:string;productId:string;
     <label className="mt-3 block text-[10px] font-semibold text-white/50">Product quality experience<textarea value={qualityText} onChange={e=>setQualityText(e.target.value)} maxLength={1500} rows={2} className="mt-1 w-full rounded-xl border border-white/10 bg-white/[0.04] p-2 text-xs text-white" /></label>
     <label className="mt-3 block text-[10px] font-semibold text-white/50">Packaging experience<textarea value={packagingText} onChange={e=>setPackagingText(e.target.value)} maxLength={1500} rows={2} className="mt-1 w-full rounded-xl border border-white/10 bg-white/[0.04] p-2 text-xs text-white" /></label>
     <label className="mt-3 block text-[10px] font-semibold text-white/50">Delivery experience<textarea value={deliveryText} onChange={e=>setDeliveryText(e.target.value)} maxLength={1500} rows={2} className="mt-1 w-full rounded-xl border border-white/10 bg-white/[0.04] p-2 text-xs text-white" /></label>
-    <label className="mt-3 block text-[10px] font-semibold text-white/50">Photos (up to 4, 5 MB each)<input type="file" accept="image/jpeg,image/png,image/webp" capture="environment" multiple onChange={e=>setPhotos(Array.from(e.target.files??[]).slice(0,4))} className="mt-2 block w-full text-xs text-white/60" /></label>
+    <label className="mt-3 block text-[10px] font-semibold text-white/50">Photos (up to 4; automatically compressed to WebP)<input type="file" accept="image/jpeg,image/png,image/webp" capture="environment" multiple onChange={e=>setPhotos(Array.from(e.target.files??[]).slice(0,4))} className="mt-2 block w-full text-xs text-white/60" /></label>
     {error&&<p role="alert" className="mt-3 text-xs text-rose-200">{error}</p>}
     <button type="button" disabled={busy} onClick={submit} className="btn-cyan mt-3 min-h-10 w-full rounded-xl text-xs font-bold disabled:opacity-50">{busy?"Submitting…":"Submit verified review"}</button>
   </div>;
