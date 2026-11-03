@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import ProductCard from "@/components/ProductCard";
+import ProductReviews from "@/components/ProductReviews";
 import ProductArtwork from "@/components/ProductArtwork";
 import GlassCard from "@/components/GlassCard";
 import type { Product } from "@/data/products";
@@ -370,6 +371,7 @@ export default function ProductDetailClient({ product }: Props) {
             </div>
           </GlassCard>
         </div>
+        <ProductReviews productId={product.id} />
         {relatedProducts.length > 0 && (
           <section className="mt-8" aria-labelledby="related-products-heading">
             <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
