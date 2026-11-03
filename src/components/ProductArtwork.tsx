@@ -136,7 +136,6 @@ export default function ProductArtwork({ product }: { product: Product }) {
       ref={setContainer}
       className="product-media product-artwork mb-3"
       data-testid="product-artwork"
-      aria-label={"Artwork for " + product.name}
     >
       <div className="product-artwork__fallback" data-testid="product-artwork-fallback" aria-hidden="true">
         <span className="product-artwork__monogram">{initials}</span>
