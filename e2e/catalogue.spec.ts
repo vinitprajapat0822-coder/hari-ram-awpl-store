@@ -155,3 +155,42 @@ test("home, cart and profile pass WCAG accessibility scan", async ({ page }) => 
     ).toEqual([]);
   }
 });
+
+
+test("product card opens a dedicated product detail page", async ({ page }) => {
+  await page.goto("./");
+  const product = page.getByRole("group", { name: "Product ASCLEPIUS WOMEN SAREE CRAPE", exact: true });
+  await expect(product).toBeVisible();
+  await product.getByRole("link", { name: "View details for ASCLEPIUS WOMEN SAREE CRAPE" }).click();
+
+  await expect(page.getByRole("heading", { name: "ASCLEPIUS WOMEN SAREE CRAPE", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Product information" })).toBeVisible();
+  await expect(page.getByText("Hari Ram AWPL Store", { exact: true })).toBeVisible();
+  await expect(page.getByText("Live stock count not synced")).toBeVisible();
+  await expect(page.getByText("No verified reviews yet")).toBeVisible();
+  await expect(page.getByText("Added date", { exact: true })).toBeVisible();
+  await expect(page.getByText("Not recorded").first()).toBeVisible();
+  await expect(page.getByRole("button", { name: "Add to cart" })).toBeVisible();
+});
+
+test("product card image lookup is concurrency limited", async ({ page }) => {
+  let activeRequests = 0;
+  let peakRequests = 0;
+
+  await page.route("https://api.openverse.org/v1/images/**", async (route) => {
+    activeRequests += 1;
+    peakRequests = Math.max(peakRequests, activeRequests);
+    await new Promise((resolve) => setTimeout(resolve, 60));
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ results: [] }),
+    });
+    activeRequests -= 1;
+  });
+
+  await page.goto("./");
+  await page.getByTestId("product-grid").scrollIntoViewIfNeeded();
+  await page.waitForTimeout(700);
+  expect(peakRequests).toBeLessThanOrEqual(2);
+});
