@@ -116,18 +116,16 @@ export const useStore = create<StoreState>()(
 
         const cart: CartItem[] = (saved.cart ?? []).flatMap((savedItem) => {
           const productId = savedItem.product?.id;
-          const product = productId ? currentProducts.get(productId) : undefined;
-          if (!product || product.status !== "VERIFIED") return [];
-
-          const variant = savedItem.variant?.id
-            ? product.variants.find((item) => item.id === savedItem.variant?.id)
+          const variantId = savedItem.variant?.id;
+          const product = productId
+            ? (variantId
+                ? currentProducts.get(`${productId}-${variantId}`)
+                : undefined) ?? currentProducts.get(productId)
             : undefined;
-
-          if (product.variants.length > 0 && !variant) return [];
+          if (!product || product.status !== "VERIFIED") return [];
 
           return [{
             product,
-            ...(variant ? { variant } : {}),
             quantity:
               typeof savedItem.quantity === "number" && savedItem.quantity > 0
                 ? Math.floor(savedItem.quantity)
