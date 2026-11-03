@@ -3,11 +3,11 @@
 import { useStore } from "@/store/useStore";
 import Navbar from "@/components/Navbar";
 import GlassCard from "@/components/GlassCard";
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Save, Check } from "lucide-react";
 
-export default function ProfilePage() {
+function ProfileContent() {
   const { user, setUser } = useStore();
   const [form, setForm] = useState(user);
   const [saved, setSaved] = useState(false);
@@ -42,10 +42,11 @@ export default function ProfilePage() {
 
         <GlassCard className="p-5 space-y-4">
           <div>
-            <label className="block text-sm text-white/70 mb-1.5">
+            <label htmlFor="profile-name" className="block text-sm text-white/70 mb-1.5">
               Full Name *
             </label>
             <input
+              id="profile-name"
               type="text"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -55,10 +56,11 @@ export default function ProfilePage() {
           </div>
 
           <div>
-            <label className="block text-sm text-white/70 mb-1.5">
+            <label htmlFor="profile-phone" className="block text-sm text-white/70 mb-1.5">
               Mobile Number *
             </label>
             <input
+              id="profile-phone"
               type="tel"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -68,10 +70,11 @@ export default function ProfilePage() {
           </div>
 
           <div>
-            <label className="block text-sm text-white/70 mb-1.5">
+            <label htmlFor="profile-address" className="block text-sm text-white/70 mb-1.5">
               Delivery Address *
             </label>
             <textarea
+              id="profile-address"
               value={form.address}
               onChange={(e) => setForm({ ...form, address: e.target.value })}
               placeholder="Full address with landmark & pincode"
@@ -104,5 +107,23 @@ export default function ProfilePage() {
         )}
       </div>
     </main>
+  );
+}
+
+
+export default function ProfilePage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen pb-24">
+          <Navbar />
+          <div className="max-w-md mx-auto px-4 pt-6 text-sm text-white/50">
+            Loading profile…
+          </div>
+        </main>
+      }
+    >
+      <ProfileContent />
+    </Suspense>
   );
 }

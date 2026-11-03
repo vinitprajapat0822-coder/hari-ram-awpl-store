@@ -5,7 +5,7 @@ import { products, categories } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -14,16 +14,16 @@ export default function HomePage() {
   const filtered = useMemo(() => {
     let list = products;
     if (activeCategory !== "All") {
-      list = list.filter((p) => p.category === activeCategory);
+      list = list.filter((product) => product.category === activeCategory);
     }
-    if (search.trim()) {
-      const q = search.toLowerCase();
-      list = list.filter(
-        (p) =>
-          p.name.toLowerCase().includes(q) ||
-          p.nameHi.includes(q) ||
-          p.description.toLowerCase().includes(q) ||
-          p.category.toLowerCase().includes(q)
+
+    const query = search.trim().toLowerCase();
+    if (query) {
+      list = list.filter((product) =>
+        product.name.toLowerCase().includes(query) ||
+        (product.nameHi ?? "").toLowerCase().includes(query) ||
+        (product.description ?? "").toLowerCase().includes(query) ||
+        product.category.toLowerCase().includes(query)
       );
     }
     return list;
@@ -47,7 +47,7 @@ export default function HomePage() {
             AWPL STORE
           </p>
           <p className="text-white/50 text-sm max-w-md mx-auto">
-            Premium Ayurvedic & Wellness Products · Order on WhatsApp
+            Explore products across the AWPL category catalogue.
           </p>
         </motion.div>
       </section>
@@ -58,26 +58,38 @@ export default function HomePage() {
           <input
             type="text"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(event) => setSearch(event.target.value)}
             placeholder="Search products..."
-            className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-400/40 transition-colors"
+            aria-label="Search products"
+            className="w-full pl-11 pr-11 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-400/40 transition-colors"
           />
+          {search && (
+            <button
+              type="button"
+              onClick={() => setSearch("")}
+              aria-label="Clear search"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-white/50 hover:text-white"
+            >
+              <X size={16} />
+            </button>
+          )}
         </div>
       </section>
 
       <section className="px-4 max-w-6xl mx-auto mb-5">
         <div className="flex gap-2 overflow-x-auto pb-1">
-          {categories.map((cat) => (
+          {categories.map((category) => (
             <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              aria-pressed={activeCategory === category}
               className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                activeCategory === cat
+                activeCategory === category
                   ? "bg-cyan-500 text-black shadow-lg shadow-cyan-500/25"
                   : "bg-white/5 text-white/70 hover:bg-white/10 border border-white/10"
               }`}
             >
-              {cat}
+              {category}
             </button>
           ))}
         </div>
@@ -92,15 +104,17 @@ export default function HomePage() {
 
       <section className="px-4 max-w-6xl mx-auto">
         {filtered.length === 0 ? (
-          <div className="text-center py-16 text-white/40">No products found</div>
+          <div className="text-center py-16 text-white/40">
+            No verified catalogue items are available in this category yet.
+          </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-            {filtered.map((product, i) => (
+            {filtered.map((product, index) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: Math.min(i * 0.03, 0.4) }}
+                transition={{ delay: Math.min(index * 0.01, 0.25) }}
               >
                 <ProductCard product={product} />
               </motion.div>
