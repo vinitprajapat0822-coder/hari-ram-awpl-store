@@ -16,6 +16,8 @@ export default function CartPage() {
   const { cart, user, updateQuantity, removeFromCart, clearCart, getCartTotal } = useStore();
   const total = getCartTotal();
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const [databasePrices, setDatabasePrices] = useState<Record<string, number | null>>({});
+  const productIds = cart.map((item) => item.product.id).join("|");
   const sellingPriceTotal = cart.reduce((sum, item) => {
     const databasePrice = databasePrices[item.product.id];
     const productPrice = databasePrice !== undefined ? databasePrice : item.product.sellingPrice;
@@ -31,9 +33,6 @@ export default function CartPage() {
   const router = useRouter();
   const [checkoutBusy, setCheckoutBusy] = useState(false);
   const [checkoutError, setCheckoutError] = useState("");
-  const [databasePrices, setDatabasePrices] = useState<Record<string, number | null>>({});
-  const productIds = cart.map((item) => item.product.id).join("|");
-
   useEffect(() => {
     const client = getSupabaseClient();
     if (!client || !productIds) {
