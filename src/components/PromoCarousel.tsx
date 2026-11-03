@@ -77,7 +77,7 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
         <div className="max-w-2xl">
           <div className="flex items-center justify-between gap-3">
             <span className="hero-eyebrow">{activeSlide.eyebrow}</span>
-            <span className="hero-carousel__counter" aria-label={"Slide " + (activeIndex + 1) + " of " + slides.length}>
+            <span className="hero-carousel__counter">
               {String(activeIndex + 1).padStart(2, "0")} <span>/</span> {String(slides.length).padStart(2, "0")}
             </span>
           </div>
@@ -144,7 +144,7 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
         </div>
       </div>
 
-      <div className="hero-carousel__mobile-controls md:hidden">
+      <div className="hero-carousel__mobile-controls md:hidden" role="group" aria-label="Mobile carousel controls">
         <button type="button" onClick={() => showSlide(activeIndex - 1)} aria-label="Previous highlight">
           <ArrowLeft size={16} aria-hidden="true" />
         </button>
