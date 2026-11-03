@@ -150,29 +150,30 @@ export const catalogueCategoryFilters = [
  * "captured" counts extracted listing rows, not unique parent-product cards.
  */
 export const catalogueCollectionCoverage = [
-  { slug: "agriculture", selectorEntries: 4, capturedRows: 4, coverage: "COMPLETE" },
+  { slug: "agriculture", selectorEntries: 4, capturedRows: 0, coverage: "HELD_FOR_REVIEW" },
   { slug: "apparels", selectorEntries: 62, capturedRows: 13, coverage: "PARTIAL" },
-  { slug: "baby-care", selectorEntries: 4, capturedRows: 4, coverage: "COMPLETE" },
+  { slug: "baby-care", selectorEntries: 4, capturedRows: 3, coverage: "PARTIAL" },
   { slug: "food", selectorEntries: 2, capturedRows: 2, coverage: "COMPLETE" },
   { slug: "home-care", selectorEntries: 15, capturedRows: 15, coverage: "COMPLETE" },
   { slug: "jeeveda", selectorEntries: 36, capturedRows: 20, coverage: "PARTIAL" },
   { slug: "oral-care", selectorEntries: 1, capturedRows: 1, coverage: "COMPLETE" },
-  { slug: "others", selectorEntries: 2, capturedRows: 2, coverage: "COMPLETE" },
+  { slug: "others", selectorEntries: 2, capturedRows: 1, coverage: "PARTIAL" },
   { slug: "sniss-cosmetic", selectorEntries: 88, capturedRows: 21, coverage: "PARTIAL" },
   { slug: "sniss-elite", selectorEntries: 24, capturedRows: 24, coverage: "COMPLETE" },
   { slug: "sniss-fragrances", selectorEntries: 4, capturedRows: 4, coverage: "COMPLETE" },
-  { slug: "sniss-herbal", selectorEntries: 35, capturedRows: 33, coverage: "PARTIAL" },
-  { slug: "veterinary", selectorEntries: 2, capturedRows: 2, coverage: "COMPLETE" },
-  { slug: "wellness", selectorEntries: 48, capturedRows: 48, coverage: "COMPLETE" },
-  { slug: "wellroot", selectorEntries: 47, capturedRows: 12, coverage: "PARTIAL" },
+  { slug: "sniss-herbal", selectorEntries: 35, capturedRows: 30, coverage: "PARTIAL" },
+  { slug: "veterinary", selectorEntries: 2, capturedRows: 0, coverage: "HELD_FOR_REVIEW" },
+  { slug: "wellness", selectorEntries: 48, capturedRows: 0, coverage: "HELD_FOR_REVIEW" },
+  { slug: "wellroot", selectorEntries: 47, capturedRows: 0, coverage: "HELD_FOR_REVIEW" },
 ] as const;
 
 export const catalogueDataStatus = {
   capturedAt: "2026-11-03",
   selectorEntryCountObserved: 374,
-  rawListingRowsCaptured: 205,
-  parentProductsAfterVariantGrouping: 197,
-  completeCategories: 10,
-  partialCategories: 5,
-  note: "Selector counts are not unique parent-product counts. Partial categories must not be labelled complete.",
+  rawListingRowsCaptured: 134,
+  parentProductsAfterVariantGrouping: 126,
+  completeCategories: 5,
+  partialCategories: 6,
+  heldCategories: 4,
+  note: "Selector counts are not unique parent-product counts. Partial categories must not be labelled complete. Product types with unresolved medical, animal-health, agricultural-input or unclear classification are held out of the orderable storefront pending an appropriate review.",
 } as const;
