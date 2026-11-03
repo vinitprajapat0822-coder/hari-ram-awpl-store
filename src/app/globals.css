@@ -504,7 +504,7 @@ button, a { touch-action: manipulation; }
 /* Product catalogue performance: keep the liquid-glass identity with less mobile paint work. */
 .product-card {
   content-visibility: auto;
-  contain-intrinsic-size: auto 430px;
+  contain-intrinsic-size: auto 480px;
   transform: translateZ(0);
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
@@ -513,6 +513,7 @@ button, a { touch-action: manipulation; }
 .product-card__details:focus-visible { border-radius: 14px; }
 @media (max-width: 767px) {
   .product-card {
+    contain-intrinsic-size: auto 380px;
     -webkit-backdrop-filter: blur(12px) saturate(1.1);
     backdrop-filter: blur(12px) saturate(1.1);
     box-shadow: 0 12px 28px -22px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.12);
