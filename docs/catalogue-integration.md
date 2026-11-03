@@ -3,19 +3,19 @@
 ## Current implementation
 
 - 15 AWPL category filters are available.
-- 126 parent-product records are wired to the storefront.
-- The 13 apparel listing rows that could be read from the official page are grouped into 5 parent products with selectable colour/size variants.
+- 135 individual product records are wired to the storefront.
+- The captured apparel listing rows are separate product records (for example, each shirt colour/size is its own SKU).
 - Product records use MRP only. DP and SP are not part of the product type, catalogue data or cart calculations.
 - Product descriptions and ingredient claims are left blank unless separately verified.
-- Product image URLs are null and the UI reserves a square image area with an "Image pending" placeholder.
-- Cart lines preserve the selected variant, and WhatsApp order text includes the variant label.
+- Official AWPL image URLs are enabled for 30 exact product matches; unresolved products retain the square "Image pending" placeholder.
+- Cart lines are SKU-specific and WhatsApp order text includes the product's pack size.
 - Existing persisted cart data is migrated to the current catalogue and stale/unsupported products are dropped.
 
 ## Source coverage
 
 The AWPL selector showed 374 category entries in the latest indexed view checked on 2026-11-03. Those entries are not guaranteed to represent 374 unique parent products.
 
-The current imported data covers 134 source listing rows, grouped into 126 parent-product records. Categories with partial extraction remain visibly flagged in `catalogueCollectionCoverage`. Incomplete categories are not padded with invented products.
+The current imported data contains 135 individual product records. The set remains partial against the 374-entry category selector. Categories with partial extraction remain visibly flagged in `catalogueCollectionCoverage`. Incomplete categories are not padded with invented products.
 
 Categories marked HELD_FOR_REVIEW have category filters but no orderable product records. Product lines whose intended use/classification or required label information was not sufficiently established are intentionally not imported into the storefront.
 
@@ -29,17 +29,11 @@ The AWPL page snippets do not expose a formal page-update timestamp. The date in
 
 ## Images
 
-No images were supplied. Every imported record begins with:
+No images were supplied. Images are mapped to exact official AWPL product-image links where the product name and image alt text match. Current verified coverage is 30 of 135 records. The remaining 105 records retain placeholders until their exact official image links are identified. Do not reuse a related product's image.
 
-```ts
-image: { url: null, status: "MISSING" }
-```
+## Product SKU rules
 
-Only authentic company-provided or otherwise verified images should replace the placeholder.
-
-## Product family / variant rules
-
-Size and colour combinations that clearly belong to the same apparel parent item are stored as child variants. Do not infer additional sizes, shades, quantities or flavours from the category count.
+Never group different pack sizes, sizes, colours or shades under one product selector. Each official listing SKU is its own product record, card and cart line. For example, 100 ML and 200 ML packs remain separate records even when the base product name is the same. Only create a new SKU when the official listing or product page confirms it; do not infer additional sizes or variants.
 
 ## Data still required
 
