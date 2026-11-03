@@ -551,6 +551,9 @@ button, a { touch-action: manipulation; }
 }
 
 /* Proximity-based magnetic motion for the mobile navigation dock. */
+.mobile-dock {
+  position: relative;
+}
 .mobile-dock__item {
   min-width: 0;
   transform: translate3d(var(--dock-x, 0px), var(--dock-y, 0px), 0) scale(var(--dock-scale, 1));
