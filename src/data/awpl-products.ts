@@ -2294,8 +2294,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T27911_714131.jpg",
+      "status": "VERIFIED",
+      "altText": "CHARCOAL FACE WASH"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2306,8 +2307,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2324,8 +2325,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28011_503369.jpg",
+      "status": "VERIFIED",
+      "altText": "VITAMIN C FACE WASH"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2336,8 +2338,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2354,8 +2356,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28111_982416.jpg",
+      "status": "VERIFIED",
+      "altText": "HYDRATING FACE WASH"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2366,8 +2369,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2384,8 +2387,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28211_045696.jpg",
+      "status": "VERIFIED",
+      "altText": "ALOEVERA CUCUMBER GEL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2396,8 +2400,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2414,8 +2418,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28311_456748.jpg",
+      "status": "VERIFIED",
+      "altText": "ALOEVERA TURMERIC GEL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2426,8 +2431,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2444,8 +2449,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28411_374297.jpg",
+      "status": "VERIFIED",
+      "altText": "ALOEVERA PINK GEL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2456,8 +2462,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2474,8 +2480,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28511_818334.jpg",
+      "status": "VERIFIED",
+      "altText": "HYALURONIC ACID FACE MOISTURIZER"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2486,8 +2493,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2504,8 +2511,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28611_574415.jpg",
+      "status": "VERIFIED",
+      "altText": "24K GOLD FACE MOISTURIZER"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2516,8 +2524,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2534,8 +2542,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28711_985351.jpg",
+      "status": "VERIFIED",
+      "altText": "UNDER EYE CREAM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2546,8 +2555,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2564,8 +2573,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28811_670815.jpg",
+      "status": "VERIFIED",
+      "altText": "VITAMIN C FACE TONER"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2576,8 +2586,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2594,8 +2604,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28911_247730.jpg",
+      "status": "VERIFIED",
+      "altText": "HYALURONIC ACID WITH SNAIL MU"
     },
     "availability": "UNKNOWN",
     "status": "MISSING_DATA",
@@ -2606,8 +2617,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "The official indexed listing contains a quantity/title anomaly. Confirm the exact pack label before making this record orderable."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2624,8 +2635,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29011_784635.jpg",
+      "status": "VERIFIED",
+      "altText": "VITAMIN C FACE SERUM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2636,8 +2648,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2654,8 +2666,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29111_895776.jpg",
+      "status": "VERIFIED",
+      "altText": "NIACINAMIDE FACE SERUM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2666,8 +2679,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2684,8 +2697,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29211_318004.jpg",
+      "status": "VERIFIED",
+      "altText": "24K GOLD FACE SERUM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2696,8 +2710,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2714,8 +2728,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29311_376341.jpg",
+      "status": "VERIFIED",
+      "altText": "HAIR GROWTH SERUM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2726,8 +2741,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2744,8 +2759,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29411_175761.jpg",
+      "status": "VERIFIED",
+      "altText": "SALICYLIC ACID FACE SHEET MASK"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2756,8 +2772,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2774,8 +2790,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29511_356907.jpg",
+      "status": "VERIFIED",
+      "altText": "AHA + BHA FACE SHEET MASK"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2786,8 +2803,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2804,8 +2821,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29611_980912.jpg",
+      "status": "VERIFIED",
+      "altText": "KOJIC ACID FACE SHEET MASK"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2816,8 +2834,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2834,8 +2852,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29711_240207.jpg",
+      "status": "VERIFIED",
+      "altText": "COLLAGEN + PEPTIDE FACE SHEET"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2846,8 +2865,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2864,8 +2883,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29811_161425.jpg",
+      "status": "VERIFIED",
+      "altText": "DE-TAN FACIAL SHEET MASK"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2876,8 +2896,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2894,8 +2914,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T17411_751431.jpg",
+      "status": "VERIFIED",
+      "altText": "HANDWASH"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2906,8 +2927,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2954,8 +2975,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T17511_640592.jpg",
+      "status": "VERIFIED",
+      "altText": "HANDWASH REFILLING"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2966,8 +2988,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -2984,8 +3006,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T30011_959155.jpg",
+      "status": "VERIFIED",
+      "altText": "LAVENDER SUNSREEN STICKBROAD SPECTURM SPF50 PA++++"
     },
     "availability": "UNKNOWN",
     "status": "MISSING_DATA",
@@ -2996,8 +3019,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "The official indexed listing contains a quantity/title anomaly. Confirm the exact pack label before making this record orderable."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-elite/sunscreen-spf50-pa-gel/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
