@@ -5,22 +5,22 @@ A Next.js storefront prototype with a Liquid Glass interface and a category-wise
 ## Catalogue
 
 - 15 AWPL category filters.
-- 126 source-backed parent-product records currently imported.
+- 135 individual product records currently imported, including separate pack-size and apparel SKU entries.
 - MRP only; DP and SP are not stored or displayed.
-- Verified size/colour variants are grouped under parent products.
-- Official image URLs are supported without storing image files in this repository. Only exact verified matches are enabled; unmatched products retain placeholders. Two exact official AWPL image URLs are currently verified; the remaining 124 imported products still need exact asset mapping.
+- No size, colour or pack-size variant selector is used; each captured SKU is a separate product card and cart line.
+- Official image URLs are supported without storing image files in this repository. Only exact verified matches are enabled; unmatched products retain placeholders. 30 exact official AWPL image URLs are currently verified; the remaining 105 imported products still need exact asset mapping.
 - Records with conflicting prices or incomplete source data are blocked from cart.
 - Agriculture, Veterinary, Wellness and Wellroot categories remain held for classification review.
-- Category-selector counts are listing-entry counts, not unique parent-product totals. Several categories are only partially collected.
+- Category-selector counts are listing-entry counts, not necessarily unique products. Several categories are only partially collected.
 
 The current imported subset is not the complete AWPL product catalogue. See [catalogue integration notes](docs/catalogue-integration.md) and [QA plan](docs/qa-test-plan.md).
 
 ## Store flows
 
 - Search and category filtering.
-- Variant-aware cart with MRP totals.
+- SKU-specific cart with MRP totals.
 - Local customer profile.
-- WhatsApp order-enquiry message with customer-selected variants.
+- WhatsApp order-enquiry message with each product's exact pack size.
 - Cart migration from the previous persisted store version.
 
 Stock, current pack-label MRP and delivery must be confirmed before accepting any real order. The prototype does not process payments or confirm inventory.
