@@ -1,46 +1,46 @@
-# AWPL catalogue integration notes
+# AWPL catalogue integration
 
-## What is integrated
+## Current implementation
 
-- The 15 AWPL category names and the category-selector counts supplied in the project brief.
-- A canonical future product record type with **MRP only**.
-- A parent-product / variant structure for pack size, quantity, colour, shade and flavour.
-- Separate image URL and image verification status fields. New products start with a missing image slot.
-- Separate source, price-evidence, last-verified and availability fields.
-- The existing storefront category filters now use all 15 category names.
+- 15 AWPL category filters are available.
+- 126 parent-product records are wired to the storefront.
+- The 13 apparel listing rows that could be read from the official page are grouped into 5 parent products with selectable colour/size variants.
+- Product records use MRP only. DP and SP are not part of the product type, catalogue data or cart calculations.
+- Product descriptions and ingredient claims are left blank unless separately verified.
+- Product image URLs are null and the UI reserves a square image area with an "Image pending" placeholder.
+- Cart lines preserve the selected variant, and WhatsApp order text includes the variant label.
+- Existing persisted cart data is migrated to the current catalogue and stale/unsupported products are dropped.
 
-## Count reconciliation
+## Source coverage
 
-The user-provided selector snapshot totals 367 entries. A newer indexed view of the AWPL selector observed on 2026-11-03 showed 374 entries:
-- SNISS Cosmetic: 84 -> 88
-- SNISS Herbal: 34 -> 35
-- Wellroot: 45 -> 47
+The AWPL selector showed 374 category entries in the latest indexed view checked on 2026-11-03. Those entries are not guaranteed to represent 374 unique parent products.
 
-The later view has not been fetched directly and is marked NEEDS_DIRECT_CONFIRMATION in `src/data/catalogue.ts`. Neither snapshot is a count of unique parent products. Do not create empty/fake product cards to make the storefront reach either total.
+The current imported data covers 134 source listing rows, grouped into 126 parent-product records. Categories with partial extraction remain visibly flagged in `catalogueCollectionCoverage`. Incomplete categories are not padded with invented products.
 
-## Current product-data boundary
+Categories marked HELD_FOR_REVIEW have category filters but no orderable product records. Product lines whose intended use/classification or required label information was not sufficiently established are intentionally not imported into the storefront.
 
-The current `src/data/products.ts` still contains 12 legacy seed records. They are not the complete catalogue and are not converted into the new master model in this change. The supplied catalogue analysis Markdown file was not available in the project files, and category totals do not contain enough information to populate product names, variants, source evidence or MRP.
+## Price and data statuses
 
-The new `ProductMasterRecord` is the target model for verified records. It intentionally has no DP or SP fields. Product records should only be imported when their identity, category and MRP evidence are available. Price conflicts remain `PRICE_REVIEW_REQUIRED`; incomplete records remain `MISSING_DATA`.
+- `VERIFIED`: the name, listed MRP and pack information were transcribed from an AWPL official category listing.
+- `PRICE_REVIEW_REQUIRED`: an AWPL listing price conflicts with the February 2026 catalogue data supplied in the project brief. The card is visible but cannot be added to cart.
+- `MISSING_DATA`: the official listing contains a title or pack-size anomaly. The card is visible for review but cannot be added to cart.
 
-## Image handling
+The AWPL page snippets do not expose a formal page-update timestamp. The date in `checkedAt` is the date the indexed official listing was inspected; it is not a claim that the company issued a fresh price circular that day. Confirm current MRP on the labelled pack or current company-issued price list before accepting orders.
 
-No image files were supplied. The existing product-card image area remains a placeholder. New master records should use:
+## Images
+
+No images were supplied. Every imported record begins with:
 
 ```ts
-image: {
-  url: null,
-  status: "MISSING",
-}
+image: { url: null, status: "MISSING" }
 ```
 
-Replace the placeholder only after an authentic company-provided or otherwise verified product image is uploaded.
+Only authentic company-provided or otherwise verified images should replace the placeholder.
 
-## Parent and variant rules
+## Product family / variant rules
 
-A product family is one parent record. Size, pack size, quantity, colour, shade and flavour are child variants. Do not create separate parent cards when the only difference is a verified variant. Do not infer variants.
+Size and colour combinations that clearly belong to the same apparel parent item are stored as child variants. Do not infer additional sizes, shades, quantities or flavours from the category count.
 
-## Next data dependency
+## Data still required
 
-The full SKU-level product list (names, categories, variant labels and current MRP evidence) is still required before the actual products can be populated. Until then, category totals remain reference metadata only.
+The project file `Asclepius_Wellness_Product_Catalog_Analysis.md` was not available in the Library at the time of this work. The full SKU-level list is still needed to reconcile the partial categories and to validate the remaining source rows against the company's original product master.
