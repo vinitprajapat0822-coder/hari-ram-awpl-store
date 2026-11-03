@@ -372,7 +372,7 @@ drop policy if exists review_photo_public_read on storage.objects;
 create policy review_photo_public_read on storage.objects for select to anon,authenticated
 using(bucket_id='review-photos' and exists(
  select 1 from public.review_images ri join public.reviews r on r.id=ri.review_id
- where ri.storage_path=name and r.is_verified_purchase=true and r.is_published=true
+ where ri.storage_path=name and ((r.is_verified_purchase=true and r.is_published=true) or public.is_store_owner())
 ));
 drop policy if exists review_photo_customer_upload on storage.objects;
 create policy review_photo_customer_upload on storage.objects for insert to authenticated with check(
