@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useStore, generateWhatsAppMessage, getWhatsAppUrl } from "@/store/useStore";
+import { getSupabaseBrowserClient } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import GlassCard from "@/components/GlassCard";
@@ -14,15 +16,41 @@ export default function CartPage() {
   const total = getCartTotal();
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const router = useRouter();
+  const [checkoutBusy, setCheckoutBusy] = useState(false);
+  const [checkoutError, setCheckoutError] = useState("");
+  const mrpTotal = cart.reduce((sum, item) => sum + item.product.mrp * item.quantity, 0);
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (cart.length === 0) return;
     if (!user.name.trim() || !user.phone.trim() || !user.address.trim()) {
       router.push("/profile?from=checkout");
       return;
     }
-    const message = generateWhatsAppMessage(cart, user, total);
-    window.open(getWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+    setCheckoutBusy(true);
+    setCheckoutError("");
+    try {
+      const supabase = getSupabaseBrowserClient();
+      const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
+      if (authError) throw authError;
+      if (!authUser) {
+        router.push("/orders?checkout=1");
+        return;
+      }
+      const { data: order, error: orderError } = await supabase.rpc("create_store_order", {
+        p_items: cart.map((item) => ({ product_id: item.product.id, quantity: item.quantity })),
+        p_customer_name: user.name.trim(),
+        p_customer_phone: user.phone.replace(/\\D/g, "").replace(/^91(?=[6-9]\\d{9}$)/, ""),
+        p_delivery_address: user.address.trim(),
+      });
+      if (orderError) throw orderError;
+      const orderCode = typeof order === "object" && order !== null && "order_code" in order ? String(order.order_code) : "created";
+      const message = generateWhatsAppMessage(cart, user, total) + `\\n\\n*Order ID:* ${orderCode}`;
+      window.location.assign(getWhatsAppUrl(message));
+    } catch (caught) {
+      setCheckoutError(caught instanceof Error ? caught.message : "Order could not be created. Please try again.");
+    } finally {
+      setCheckoutBusy(false);
+    }
   };
 
   return (
@@ -68,7 +96,7 @@ export default function CartPage() {
                       <p className="mb-1 text-[9px] font-bold uppercase tracking-[0.15em] text-teal-200/65">{item.product.category}</p>
                       <h2 className="line-clamp-2 text-sm font-bold leading-snug text-white">{item.product.name}</h2>
                       <p className="mt-1 text-[11px] text-white/45">{item.product.qty}</p>
-                      <p className="mt-2 text-sm font-extrabold text-teal-100">{formatPrice(item.product.mrp * item.quantity)}</p>
+                      <p className="mt-2 text-xs font-bold text-white/70">MRP: {formatPrice(item.product.mrp * item.quantity)}</p><p className="mt-1 text-xs font-extrabold text-teal-100">SP: {item.product.sellingPrice == null ? "Confirm with store" : formatPrice(item.product.sellingPrice * item.quantity)}</p>
                     </div>
                     <div className="flex shrink-0 flex-col items-end justify-between">
                       <button type="button" onClick={() => removeFromCart(item.product.id)} aria-label={"Remove " + item.product.name + " from cart"} className="grid h-8 w-8 place-items-center rounded-xl text-white/35 transition-colors hover:bg-rose-400/10 hover:text-rose-300">
@@ -92,18 +120,20 @@ export default function CartPage() {
             <GlassCard className="rounded-[24px] p-5 md:sticky md:top-24">
               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-teal-200/65">Order summary</p>
               <div className="mt-4 flex items-center justify-between text-sm text-white/55"><span>Items</span><span>{itemCount}</span></div>
-              <div className="mt-3 flex items-center justify-between text-sm text-white/55"><span>Subtotal (MRP)</span><span>{formatPrice(total)}</span></div>
+              <div className="mt-3 flex items-center justify-between text-sm text-white/55"><span>Subtotal (MRP)</span><span>{formatPrice(mrpTotal)}</span></div>
+              <div className="mt-3 flex items-center justify-between text-sm text-white/55"><span>Estimated SP total</span><span>{formatPrice(total)}</span></div>
               <div className="my-4 border-t border-white/10" />
               <div className="flex items-end justify-between gap-3">
-                <span className="text-sm font-semibold text-white">Total (MRP)</span>
+                <span className="text-sm font-semibold text-white">Estimated total</span>
                 <span className="text-xl font-black tracking-tight text-teal-100">{formatPrice(total)}</span>
               </div>
-              <button type="button" onClick={handleCheckout} className="btn-cyan mt-5 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm">
-                <MessageCircle size={18} aria-hidden="true" /> Continue on WhatsApp
+              {checkoutError && <p role="alert" className="mt-3 text-[11px] leading-5 text-rose-200">{checkoutError}</p>}
+              <button type="button" disabled={checkoutBusy} onClick={handleCheckout} className="btn-cyan mt-5 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm disabled:opacity-50">
+                <MessageCircle size={18} aria-hidden="true" /> {checkoutBusy ? "Creating order…" : "Place order on WhatsApp"}
               </button>
               <p className="mt-3 flex items-start gap-2 text-[10px] leading-5 text-white/40">
                 <CheckCircle2 size={13} className="mt-0.5 shrink-0 text-teal-200/70" aria-hidden="true" />
-                Stock, availability and final MRP will be confirmed before the order is accepted.
+                Your order is saved first. The owner confirms availability and any unlisted selling price before acceptance.
               </p>
             </GlassCard>
           </div>
