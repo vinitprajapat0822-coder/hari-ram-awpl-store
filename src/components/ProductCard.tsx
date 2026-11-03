@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { memo, useState } from "react";
 import type { PointerEvent } from "react";
 import type { Product } from "@/data/products";
 import { useStore } from "@/store/useStore";
@@ -14,7 +14,7 @@ type Props = {
   index?: number;
 };
 
-export default function ProductCard({ product }: Props) {
+function ProductCard({ product }: Props) {
   const addToCart = useStore((state) => state.addToCart);
   const [added, setAdded] = useState(false);
   const inCart = useStore((state) => state.cart.some((item) => item.product.id === product.id));
@@ -134,3 +134,6 @@ export default function ProductCard({ product }: Props) {
     </article>
   );
 }
+
+// Avoid rerendering all catalogue cards for unrelated parent updates (e.g. search placeholder animation).
+export default memo(ProductCard);
