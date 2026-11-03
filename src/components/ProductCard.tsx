@@ -78,7 +78,7 @@ export default function ProductCard({ product }: { product: Product }) {
             type="button"
             whileTap={canOrder ? { scale: 0.97 } : undefined}
             onClick={handleAdd}
-            aria-label={canOrder ? "Add " + product.name + " to cart" : reviewLabel}
+            aria-label={canOrder ? (added ? "Added to cart" : inCart ? "Add another" : "Add to cart") + " — Add " + product.name + " to cart" : reviewLabel}
             disabled={!canOrder}
             className={
               "flex min-h-10 w-full items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-[11px] font-extrabold transition-all sm:text-xs " +
