@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Product } from "@/data/products";
+import Image from "next/image";
+import type { Product } from "@/data/products";
 import { useStore } from "@/store/useStore";
 import { formatPrice } from "@/lib/utils";
 import GlassCard from "./GlassCard";
@@ -42,10 +43,11 @@ export default function ProductCard({ product }: { product: Product }) {
     <GlassCard className="p-4 flex flex-col h-full">
       <div className="aspect-square rounded-xl bg-gradient-to-br from-cyan-500/10 to-blue-600/5 mb-4 flex items-center justify-center relative overflow-hidden">
         {product.image && product.imageStatus === "VERIFIED" ? (
-          <img
+          <Image
             src={product.image}
             alt={product.name}
-            loading="lazy"
+            width={600}
+            height={600}
             className="w-full h-full object-contain p-3"
           />
         ) : (
@@ -107,6 +109,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <motion.button
             whileTap={canOrder ? { scale: 0.9 } : undefined}
             onClick={handleAdd}
+            aria-label={canOrder ? `Add ${product.name} to cart` : reviewLabel}
             disabled={!canOrder || (product.variants.length > 0 && !selectedVariant)}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
               added || inCart
