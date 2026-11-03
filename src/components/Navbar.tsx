@@ -1,58 +1,84 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useStore } from "@/store/useStore";
-import { ShoppingCart, User } from "lucide-react";
-import { motion } from "framer-motion";
+import { Compass, ShoppingBag, ShoppingCart, UserRound } from "lucide-react";
+
+const navigation = [
+  { href: "/", label: "Explore", icon: Compass },
+  { href: "/cart", label: "Cart", icon: ShoppingCart },
+  { href: "/profile", label: "Profile", icon: UserRound },
+];
+
+function isActive(pathname: string, href: string) {
+  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+}
 
 export default function Navbar() {
-  const cartCount = useStore((s) => s.getCartCount());
+  const pathname = usePathname();
+  const cartCount = useStore((state) => state.getCartCount());
 
   return (
-    <header className="sticky top-0 z-50 px-4 py-3">
-      <div className="max-w-6xl mx-auto flex items-center justify-between glass rounded-2xl px-4 py-2.5">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center font-bold text-black text-lg shadow-[0_2px_14px_rgba(0,240,255,0.35)] group-active:scale-95 transition-transform">
-            H
-          </div>
-          <div className="leading-tight">
-            <p className="font-bold text-white text-sm tracking-wide">
-              HARI RAM
-            </p>
-            <p className="text-[10px] text-cyan-400/85 tracking-[0.2em]">
-              AWPL STORE
-            </p>
-          </div>
-        </Link>
-
-        <div className="flex items-center gap-1.5">
-          <Link
-            href="/profile"
-            className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] transition-colors border border-transparent hover:border-white/10"
-            aria-label="Profile"
-          >
-            <User size={19} className="text-white/75" />
+    <>
+      <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5">
+        <div className="site-header__inner glass mx-auto flex max-w-6xl items-center justify-between rounded-[22px] px-3.5 sm:px-5">
+          <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Hari Ram AWPL Store home">
+            <span className="brand-mark text-lg font-black tracking-tight">H</span>
+            <span className="min-w-0 leading-tight">
+              <span className="block text-sm font-extrabold tracking-[0.13em] text-white">HARI RAM</span>
+              <span className="mt-1 block text-[9px] font-bold tracking-[0.25em] text-teal-200/80">AWPL STORE</span>
+            </span>
           </Link>
 
-          <Link href="/cart" className="relative" aria-label="Cart">
-            <motion.div
-              whileTap={{ scale: 0.9 }}
-              className="p-2.5 rounded-xl bg-cyan-500/15 border border-cyan-400/25"
-            >
-              <ShoppingCart size={19} className="text-cyan-300" />
-              {cartCount > 0 && (
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-cyan-400 text-black text-[10px] font-bold flex items-center justify-center shadow-[0_0_10px_rgba(0,240,255,0.5)]"
-                >
-                  {cartCount > 99 ? "99+" : cartCount}
-                </motion.span>
-              )}
-            </motion.div>
-          </Link>
+          <div className="hidden items-center gap-1 md:flex">
+            <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/30">Product catalogue</span>
+            <nav aria-label="Primary navigation" className="flex items-center gap-1">
+              {navigation.map((item) => {
+                const active = isActive(pathname, item.href);
+                const Icon = item.icon;
+                return (
+                  <Link key={item.href} href={item.href} className="nav-link relative text-xs font-semibold" aria-current={active ? "page" : undefined}>
+                    <Icon size={16} aria-hidden="true" />
+                    {item.label}
+                    {item.href === "/cart" && cartCount > 0 && (
+                      <span className="ml-0.5 rounded-full bg-teal-200 px-1.5 py-0.5 text-[9px] font-extrabold text-slate-950">{cartCount > 99 ? "99+" : cartCount}</span>
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <span className="hidden text-[9px] font-semibold uppercase tracking-[0.16em] text-white/35 xs:block">Everyday essentials</span>
+            <span className="relative grid h-10 w-10 place-items-center rounded-xl border border-teal-200/20 bg-teal-200/[0.08] text-teal-100">
+              <ShoppingBag size={18} aria-hidden="true" />
+              <span className="sr-only">Catalogue</span>
+            </span>
+          </div>
         </div>
+      </header>
+
+      <div className="pointer-events-none fixed inset-x-0 bottom-3 z-50 px-4 md:hidden">
+        <nav aria-label="Mobile navigation" className="mobile-dock pointer-events-auto mx-auto flex max-w-sm items-center gap-1 p-1.5">
+          {navigation.map((item) => {
+            const active = isActive(pathname, item.href);
+            const Icon = item.icon;
+            return (
+              <Link key={item.href} href={item.href} className="mobile-dock__link relative text-[10px] font-semibold" aria-current={active ? "page" : undefined}>
+                <span className="relative">
+                  <Icon size={19} strokeWidth={active ? 2.2 : 1.8} aria-hidden="true" />
+                  {item.href === "/cart" && cartCount > 0 && (
+                    <span className="absolute -right-2 -top-2 grid h-4 min-w-4 place-items-center rounded-full bg-teal-200 px-1 text-[9px] font-extrabold text-slate-950">{cartCount > 99 ? "99+" : cartCount}</span>
+                  )}
+                </span>
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
       </div>
-    </header>
+    </>
   );
 }

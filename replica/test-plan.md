@@ -1,6 +1,6 @@
 # Test plan: Hari Ram AWPL Store
 
-Build: `2959a1110336d5230b996f3932febe3ae6b76638`
+Build: current standalone-SKU storefront on main
 Date: 2026-11-03
 Environment: GitHub Actions, Next.js production build, Chromium / Playwright
 
@@ -10,78 +10,56 @@ Environment: GitHub Actions, Next.js production build, Chromium / Playwright
 
 | Case | Type | Steps | Expected | Automation / result |
 |---|---|---|---|---|
-| F01-H1 | Happy | Open `/` | Store heading, 126 parent-product cards, image placeholders and category filters are visible | E2E / PASS |
-| F01-E1 | Edge | Select a category currently held for classification review | Honest empty state; no held item is orderable | E2E / PASS |
-| F01-E2 | Edge | Open on a 390px mobile viewport and scroll the category rail | No horizontal page overflow; filters remain usable | Manual / NOT RUN |
-| F01-E3 | Edge | Open home with browser storage empty | Page loads with an empty cart and no runtime errors | Covered by E2E home load / PASS |
+| F01-H1 | Happy | Open / | Store heading, 135 independent product cards, image placeholders and category filters are visible | E2E |
+| F01-E1 | Edge | Select a category held for classification review | Honest empty state; no held item is orderable | E2E |
+| F01-E2 | Edge | Open at 390px and scroll the category rail | No page-level horizontal overflow; bottom navigation remains usable | E2E |
+| F01-E3 | Edge | Open home with empty browser storage | Page loads without hydration or runtime errors | E2E |
 
-### F02 — Product search
-
-| Case | Type | Steps | Expected | Automation / result |
-|---|---|---|---|---|
-| F02-H1 | Happy | Search for an exact imported product name | Matching product and correct result count | E2E / PASS |
-| F02-E1 | Edge | Clear a populated search query | Full category result set returns | E2E / PASS |
-| F02-E2 | Edge | Search with blank input | Full active-category result set remains visible | Manual / NOT RUN |
-| F02-E3 | Edge | Search with a very long string, emoji, accents or mixed case | No crash; safe no-results or matching state | Manual / NOT RUN |
-| F02-E4 | Edge | Search in two tabs with independent input state | No page crash or cross-tab input corruption | Manual / NOT RUN |
-
-### F03 — Category filtering
+### F02 — Product search and filters
 
 | Case | Type | Steps | Expected | Automation / result |
 |---|---|---|---|---|
-| F03-H1 | Happy | Select Home Care | Only Home Care products appear; category count is correct | E2E / PASS |
-| F03-E1 | Edge | Select Wellness, which is held for review | No product is presented as orderable | E2E / PASS |
-| F03-E2 | Edge | Change category, then use browser back | Navigation remains stable | Manual / NOT RUN |
+| F02-H1 | Happy | Search exact product name | Matching standalone product and correct result count | E2E |
+| F02-E1 | Edge | Clear a populated search query | Full active-category result set returns | E2E |
+| F02-E2 | Edge | Search by pack size | Matching pack-size listings appear | E2E candidate |
+| F02-E3 | Edge | Search with long text, emoji or mixed case | No crash; safe no-results or matching state | Manual |
 
-### F04 — Variant selection and cart
-
-| Case | Type | Steps | Expected | Automation / result |
-|---|---|---|---|---|
-| F04-H1 | Happy | Select the Olive / S T-shirt variant and add it | Cart line carries the parent product and exact selected variant | E2E / PASS |
-| F04-E1 | Edge | Reload the cart after adding the variant | Variant, quantity and MRP total remain correct | E2E / PASS |
-| F04-E2 | Edge | Change a variant after adding another variant of the same parent | Each variant remains a separate cart line | Manual / NOT RUN |
-| F04-E3 | Edge | Double-click Add quickly | Quantity changes only according to actual click count; no duplicate malformed line | Manual / NOT RUN |
-| F04-N1 | Negative | Attempt to add a product with an unknown variant ID | Store rejects the invalid variant | Store guard present; direct automated test / NOT RUN |
-
-### F05 — MRP review guard
+### F03 — Standalone SKU cart
 
 | Case | Type | Steps | Expected | Automation / result |
 |---|---|---|---|---|
-| F05-N1 | Negative | Find Jeeveda Rice Bran Oil 2 LTR with conflicting source MRP and click its action | Card states MRP under review; add action stays disabled | E2E / PASS |
-| F05-E1 | Edge | Increase quantity for an already persisted product whose status later changes to review | Stale line should be reconciled before checkout | Manual / NOT RUN |
+| F03-H1 | Happy | Add Olive / S apparel listing | Exact SKU appears as its own cart line | E2E |
+| F03-H2 | Happy | Add Hairdoc Oil 100 ML and 200 ML | Both are separate lines with their own pack sizes and MRP | E2E |
+| F03-E1 | Edge | Reload cart after adding standalone SKU | Product, quantity and MRP total persist | E2E |
+| F03-E2 | Edge | Increase/decrease quantity | Only the selected product line changes | Manual |
+| F03-N1 | Negative | Attempt to add product under MRP review | Add action stays disabled | E2E |
 
-### F06 — Customer profile
-
-| Case | Type | Steps | Expected | Automation / result |
-|---|---|---|---|---|
-| F06-H1 | Happy | Open `/profile?from=checkout` | Profile heading and correctly labelled name, phone and address fields appear | E2E / PASS |
-| F06-E1 | Edge | Submit empty or malformed contact details | Checkout should not proceed with invalid data | Manual / NOT RUN |
-| F06-E2 | Edge | Use browser back from profile to cart | Cart contents remain intact | Manual / NOT RUN |
-
-### F07 — Persisted cart and hydration
+### F04 — Customer profile and checkout
 
 | Case | Type | Steps | Expected | Automation / result |
 |---|---|---|---|---|
-| F07-H1 | Happy | Add an apparel variant, navigate to cart, reload | Persisted product and variant render without React hydration errors | E2E / PASS |
-| F07-E1 | Edge | Open a second tab after adding an item | Persisted state is consistent after rehydration | Manual / NOT RUN |
-| F07-E2 | Edge | Clear or corrupt old persisted cart data | Unsupported or invalid old rows are discarded safely | Migration guard present; browser test / NOT RUN |
+| F04-H1 | Happy | Open /profile?from=checkout | Clearly labelled name, phone and address fields appear | E2E |
+| F04-E1 | Edge | Enter invalid mobile number | Inline validation prevents saving | E2E candidate |
+| F04-E2 | Edge | Save valid details from checkout | Details persist locally and user returns to cart | Manual |
+| F04-E3 | Edge | Open WhatsApp order message | Product name, pack size, quantity and total are included | Manual |
 
-### F08 — Accessibility and runtime quality
+### F05 — Navigation and accessibility
 
 | Case | Type | Steps | Expected | Automation / result |
 |---|---|---|---|---|
-| F08-H1 | Happy | Open home, cart and profile; scan WCAG 2.1 A/AA rules | No axe violations on the tested screens | E2E / PASS |
-| F08-E1 | Edge | Exercise tested browser flows | No browser console/page errors and no HTTP 5xx responses | E2E / PASS |
-| F08-E2 | Edge | Keyboard-only navigation and screen-reader walkthrough | Focus is visible and controls have meaningful names | Manual / NOT RUN |
+| F05-H1 | Happy | Use mobile bottom navigation | Explore, Cart and Profile routes are visible and labelled | E2E |
+| F05-H2 | Happy | Open home, cart and profile | WCAG 2.1 A/AA automated scan has no violations | E2E |
+| F05-E1 | Edge | Navigate with keyboard | Focus indicator is visible and controls have meaningful names | Manual |
+| F05-E2 | Edge | Use reduced-motion preference | Motion is reduced without hiding content or controls | CSS / manual |
+| F05-E3 | Edge | Use screen reader | Navigation and cart controls expose useful accessible names | Manual |
 
 ## CI release gate
 
-Latest GitHub Actions run:
-- Run: [41580351093](https://github.com/vinitprajapat0822-coder/hari-ram-awpl-store/actions/runs/41580351093)
-- TypeScript: PASS
-- ESLint: PASS — no warnings or errors
-- Production build: PASS
-- Playwright / Chromium: 8 passed, 0 failed
-- Axe scan on home, cart and profile: PASS
+Before merging a UI change into main:
+- TypeScript typecheck passes.
+- ESLint passes without warnings or errors.
+- Production static build passes.
+- Playwright catalogue/cart/profile checks pass.
+- Axe WCAG 2.1 A/AA scan passes on home, cart and profile.
 
-The manual cases above have not been executed and are not represented as passing.
+GitHub Pages deployment is checked after the approved merge to main. Manual device, keyboard and screen-reader checks remain explicitly marked as manual until performed.
