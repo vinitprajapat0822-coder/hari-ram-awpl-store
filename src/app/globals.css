@@ -504,7 +504,7 @@ button, a { touch-action: manipulation; }
 /* Product catalogue performance: keep the liquid-glass identity with less mobile paint work. */
 .product-card {
   content-visibility: auto;
-  contain-intrinsic-size: 360px 430px;
+  contain-intrinsic-size: auto 430px;
   transform: translateZ(0);
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
