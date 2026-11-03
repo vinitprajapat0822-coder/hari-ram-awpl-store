@@ -39,12 +39,12 @@ export default function CartPage() {
       const { data: order, error: orderError } = await supabase.rpc("create_store_order", {
         p_items: cart.map((item) => ({ product_id: item.product.id, quantity: item.quantity })),
         p_customer_name: user.name.trim(),
-        p_customer_phone: user.phone.replace(/\\D/g, "").replace(/^91(?=[6-9]\\d{9}$)/, ""),
+        p_customer_phone: user.phone.replace(/\D/g, "").replace(/^91(?=[6-9]\d{9}$)/, ""),
         p_delivery_address: user.address.trim(),
       });
       if (orderError) throw orderError;
       const orderCode = typeof order === "object" && order !== null && "order_code" in order ? String(order.order_code) : "created";
-      const message = generateWhatsAppMessage(cart, user, total) + `\\n\\n*Order ID:* ${orderCode}`;
+      const message = generateWhatsAppMessage(cart, user, total) + `\n\n*Order ID:* ${orderCode}`;
       window.location.assign(getWhatsAppUrl(message));
     } catch (caught) {
       setCheckoutError(caught instanceof Error ? caught.message : "Order could not be created. Please try again.");
