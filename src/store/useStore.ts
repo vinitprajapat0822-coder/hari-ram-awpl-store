@@ -72,7 +72,7 @@ export const useStore = create<StoreState>()(
       setUser: (user) => set({ user }),
 
       getCartTotal: () =>
-        get().cart.reduce((sum, item) => sum + item.product.mrp * item.quantity, 0),
+        get().cart.reduce((sum, item) => sum + (item.product.sellingPrice ?? item.product.mrp) * item.quantity, 0),
 
       getCartCount: () =>
         get().cart.reduce((sum, item) => sum + item.quantity, 0),
@@ -135,25 +135,30 @@ export function generateWhatsAppMessage(
   total: number
 ) {
   const lines: string[] = [];
-  lines.push("*Hari Ram AWPL Store - New Order*");
+  lines.push("*HARI RAM AWPL STORE - New Order*");
+  lines.push("Store owner: Hariram Prajapat");
   lines.push("");
 
   cart.forEach((item, index) => {
-    const lineTotal = item.product.mrp * item.quantity;
-    lines.push(
-      `${index + 1}. ${item.product.name} (${item.product.qty}) × ${item.quantity} = ₹${lineTotal.toLocaleString("en-IN")}`
-    );
+    const mrpLine = item.product.mrp * item.quantity;
+    const sellingLine = (item.product.sellingPrice ?? item.product.mrp) * item.quantity;
+    const sellingLabel = item.product.sellingPrice == null ? "To be confirmed by store" : `₹${sellingLine.toLocaleString("en-IN")}`;
+    lines.push(`${index + 1}. ${item.product.name} (${item.product.qty}) × ${item.quantity}`);
+    lines.push(`   MRP: ₹${mrpLine.toLocaleString("en-IN")} | SP: ${sellingLabel}`);
   });
 
   lines.push("");
-  lines.push(`*Total (MRP):* ₹${total.toLocaleString("en-IN")}`);
+  const mrpTotal = cart.reduce((sum, item) => sum + item.product.mrp * item.quantity, 0);
+  lines.push(`*Total MRP:* ₹${mrpTotal.toLocaleString("en-IN")}`);
+  lines.push(`*Estimated selling total:* ₹${total.toLocaleString("en-IN")}`);
+  lines.push("SP is subject to owner confirmation where not listed.");
   lines.push("");
   lines.push("*Customer Details*");
   lines.push(`Name: ${user.name || "Not provided"}`);
   lines.push(`Phone: ${user.phone || "Not provided"}`);
   lines.push(`Address: ${user.address || "Not provided"}`);
   lines.push("");
-  lines.push("Please confirm stock, current MRP and delivery before accepting the order.");
+  lines.push("Please confirm the final price and delivery details before accepting the order.");
 
   return lines.join("\n");
 }

@@ -37,6 +37,7 @@ test("mobile navigation stays visible and exposes all primary routes", async ({ 
   await expect(dock).toBeVisible();
   await expect(dock.getByRole("link", { name: "Home" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Catalogue" })).toBeVisible();
+  await expect(dock.getByRole("link", { name: "About" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Cart" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Profile" })).toBeVisible();
 
@@ -150,7 +151,7 @@ test("profile route renders and has labelled customer fields", async ({ page }) 
 });
 
 test("home, cart, profile and product detail pass WCAG accessibility scan", async ({ page }) => {
-  const routes = ["./", "cart/", "profile/", "product/awpl-apparels-asclepius-women-saree-crape/"];
+  const routes = ["./", "about/", "cart/", "profile/", "product/awpl-apparels-asclepius-women-saree-crape/"];
   for (const route of routes) {
     await page.goto(route);
     await page.waitForTimeout(700);
@@ -176,12 +177,14 @@ test("product card opens a dedicated product detail page", async ({ page }) => {
 
   await expect(page.getByRole("heading", { name: "ASCLEPIUS WOMEN SAREE CRAPE", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Product information" })).toBeVisible();
-  await expect(page.getByText("Hari Ram AWPL Store", { exact: true })).toBeVisible();
-  await expect(page.getByText("Live stock count not synced")).toBeVisible();
+  await expect(page.getByText("Hariram Prajapat", { exact: true })).toBeVisible();
+  await expect(page.getByText("Owner · Hari Ram AWPL Store", { exact: true })).toBeVisible();
+  await expect(page.getByText("Live stock count not synced")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "You may also like" })).toBeVisible();
   await expect(page.getByText("No verified reviews yet")).toBeVisible();
   await expect(page.getByText("Added date", { exact: true })).toBeVisible();
   await expect(page.getByText("Not recorded").first()).toBeVisible();
-  await expect(page.getByRole("button", { name: "Add to cart" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Add to cart", exact: true })).toBeVisible();
 });
 
 test("product card image lookup is concurrency limited", async ({ page }) => {
@@ -217,4 +220,12 @@ test("product feedback form requires a rating and comment", async ({ page }) => 
   await page.getByRole("button", { name: "Rate 5 stars" }).click();
   await page.getByLabel("Your comment").fill("The product details were helpful.");
   await expect(sendFeedback).toBeEnabled();
+});
+
+test("About page presents the store owner and direct contact channels", async ({ page }) => {
+  await page.goto("about/");
+  await expect(page.getByRole("heading", { name: "AWPL STORE" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Hariram Prajapat" })).toBeVisible();
+  await expect(page.getByRole("link", { name: /WhatsApp · 9799133838/ })).toHaveAttribute("href", /wa\.me\/919799133838/);
+  await expect(page.getByRole("link", { name: /@hariramprajapat97/ })).toHaveAttribute("href", /instagram\.com\/hariramprajapat97/);
 });
