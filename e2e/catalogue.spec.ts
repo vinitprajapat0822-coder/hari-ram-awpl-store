@@ -35,7 +35,8 @@ test("mobile navigation stays visible and exposes all primary routes", async ({ 
   await page.goto("./");
   const dock = page.getByRole("navigation", { name: "Mobile navigation" });
   await expect(dock).toBeVisible();
-  await expect(dock.getByRole("link", { name: "Explore" })).toBeVisible();
+  await expect(dock.getByRole("link", { name: "Home" })).toBeVisible();
+  await expect(dock.getByRole("link", { name: "Catalogue" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Cart" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Profile" })).toBeVisible();
 });
