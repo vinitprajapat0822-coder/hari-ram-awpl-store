@@ -6,11 +6,11 @@ import StoreHydration from "@/components/StoreHydration";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Hari Ram AWPL Store | Premium Ayurvedic & Wellness",
-  description: "Hari Ram AWPL Store - Premium Ayurvedic, Wellness & Personal Care products. Order directly on WhatsApp.",
+  title: "Hari Ram AWPL Store | AWPL Category Catalogue",
+  description: "Browse AWPL category listings with MRP references, product variants and image placeholders. Send an order enquiry on WhatsApp.",
   openGraph: {
     title: "Hari Ram AWPL Store",
-    description: "Premium Ayurvedic & Wellness Products",
+    description: "AWPL category catalogue with MRP references and product variants.",
   },
 };
 
