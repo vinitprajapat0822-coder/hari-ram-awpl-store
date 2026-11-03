@@ -95,51 +95,15 @@ export const awplProducts: ProductMasterRecord[] = [
     "lastVerifiedAt": "2026-11-03"
   },
   {
-    "id": "awpl-apparels-asclepius-t-shirt",
-    "name": "ASCLEPIUS T SHIRT",
+    "id": "awpl-apparels-asclepius-t-shirt-olive-s",
+    "name": "ASCLEPIUS T SHIRT - OLIVE (S)",
     "nameHi": null,
     "brand": null,
     "category": "apparels",
     "subcategory": null,
     "mrp": 2559,
     "packSize": "1 NUMBER",
-    "variants": [
-      {
-        "id": "olive-s",
-        "label": "OLIVE (S)",
-        "size": "S",
-        "colour": "OLIVE",
-        "packSize": "1 NUMBER"
-      },
-      {
-        "id": "light-blue-s",
-        "label": "LIGHT BLUE (S)",
-        "size": "S",
-        "colour": "LIGHT BLUE",
-        "packSize": "1 NUMBER"
-      },
-      {
-        "id": "teal-s",
-        "label": "TEAL (S)",
-        "size": "S",
-        "colour": "TEAL",
-        "packSize": "1 NUMBER"
-      },
-      {
-        "id": "black-s",
-        "label": "BLACK (S)",
-        "size": "S",
-        "colour": "BLACK",
-        "packSize": "1 NUMBER"
-      },
-      {
-        "id": "ivory-s",
-        "label": "IVORY (S)",
-        "size": "S",
-        "colour": "IVORY",
-        "packSize": "1 NUMBER"
-      }
-    ],
+    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -162,51 +126,263 @@ export const awplProducts: ProductMasterRecord[] = [
     "lastVerifiedAt": "2026-11-03"
   },
   {
-    "id": "awpl-apparels-asclepius-women-t-shirt",
-    "name": "ASCLEPIUS WOMEN T-SHIRT",
+    "id": "awpl-apparels-asclepius-t-shirt-light-blue-s",
+    "name": "ASCLEPIUS T SHIRT - LIGHT BLUE (S)",
+    "nameHi": null,
+    "brand": null,
+    "category": "apparels",
+    "subcategory": null,
+    "mrp": 2559,
+    "packSize": "1 NUMBER",
+    "variants": [],
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official category listing (indexed source snapshot)",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03",
+      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03"
+    },
+    "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-apparels-asclepius-t-shirt-teal-s",
+    "name": "ASCLEPIUS T SHIRT - TEAL (S)",
+    "nameHi": null,
+    "brand": null,
+    "category": "apparels",
+    "subcategory": null,
+    "mrp": 2559,
+    "packSize": "1 NUMBER",
+    "variants": [],
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official category listing (indexed source snapshot)",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03",
+      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03"
+    },
+    "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-apparels-asclepius-t-shirt-black-s",
+    "name": "ASCLEPIUS T SHIRT - BLACK (S)",
+    "nameHi": null,
+    "brand": null,
+    "category": "apparels",
+    "subcategory": null,
+    "mrp": 2559,
+    "packSize": "1 NUMBER",
+    "variants": [],
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official category listing (indexed source snapshot)",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03",
+      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03"
+    },
+    "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-apparels-asclepius-t-shirt-ivory-s",
+    "name": "ASCLEPIUS T SHIRT - IVORY (S)",
+    "nameHi": null,
+    "brand": null,
+    "category": "apparels",
+    "subcategory": null,
+    "mrp": 2559,
+    "packSize": "1 NUMBER",
+    "variants": [],
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official category listing (indexed source snapshot)",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03",
+      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03"
+    },
+    "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-apparels-asclepius-women-t-shirt-ivory-xs",
+    "name": "ASCLEPIUS WOMEN T-SHIRT - IVORY (XS)",
     "nameHi": null,
     "brand": null,
     "category": "apparels",
     "subcategory": null,
     "mrp": 2295,
     "packSize": "1 NUMBER",
-    "variants": [
-      {
-        "id": "ivory-xs",
-        "label": "IVORY (XS)",
-        "size": "XS",
-        "colour": "IVORY",
-        "packSize": "1 NUMBER"
-      },
-      {
-        "id": "light-blue-xs",
-        "label": "LIGHT BLUE (XS)",
-        "size": "XS",
-        "colour": "LIGHT BLUE",
-        "packSize": "1 NUMBER"
-      },
-      {
-        "id": "teal-l",
-        "label": "TEAL (L)",
-        "size": "L",
-        "colour": "TEAL",
-        "packSize": "1 NUMBER"
-      },
-      {
-        "id": "black-xs",
-        "label": "BLACK (XS)",
-        "size": "XS",
-        "colour": "BLACK",
-        "packSize": "1 NUMBER"
-      },
-      {
-        "id": "olive-xs",
-        "label": "OLIVE (XS)",
-        "size": "XS",
-        "colour": "OLIVE",
-        "packSize": "1 NUMBER"
-      }
-    ],
+    "variants": [],
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official category listing (indexed source snapshot)",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03",
+      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03"
+    },
+    "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-apparels-asclepius-women-t-shirt-light-blue-xs",
+    "name": "ASCLEPIUS WOMEN T-SHIRT - LIGHT BLUE (XS)",
+    "nameHi": null,
+    "brand": null,
+    "category": "apparels",
+    "subcategory": null,
+    "mrp": 2295,
+    "packSize": "1 NUMBER",
+    "variants": [],
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official category listing (indexed source snapshot)",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03",
+      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03"
+    },
+    "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-apparels-asclepius-women-t-shirt-teal-l",
+    "name": "ASCLEPIUS WOMEN T-SHIRT - TEAL (L)",
+    "nameHi": null,
+    "brand": null,
+    "category": "apparels",
+    "subcategory": null,
+    "mrp": 2295,
+    "packSize": "1 NUMBER",
+    "variants": [],
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official category listing (indexed source snapshot)",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03",
+      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03"
+    },
+    "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-apparels-asclepius-women-t-shirt-black-xs",
+    "name": "ASCLEPIUS WOMEN T-SHIRT - BLACK (XS)",
+    "nameHi": null,
+    "brand": null,
+    "category": "apparels",
+    "subcategory": null,
+    "mrp": 2295,
+    "packSize": "1 NUMBER",
+    "variants": [],
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official category listing (indexed source snapshot)",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03",
+      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/apparels/",
+      "checkedAt": "2026-11-03"
+    },
+    "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-apparels-asclepius-women-t-shirt-olive-xs",
+    "name": "ASCLEPIUS WOMEN T-SHIRT - OLIVE (XS)",
+    "nameHi": null,
+    "brand": null,
+    "category": "apparels",
+    "subcategory": null,
+    "mrp": 2295,
+    "packSize": "1 NUMBER",
+    "variants": [],
     "description": null,
     "ingredients": null,
     "image": {
@@ -3063,9 +3239,8 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51411_042878.jpg",
-      "status": "VERIFIED",
-      "altText": "HAIRDOC OIL"
+      "url": null,
+      "status": "MISSING"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3095,8 +3270,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T35911_600144.jpg",
+      "status": "VERIFIED",
+      "altText": "HAIR SHINE OINT - CONDITIONER"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3107,8 +3283,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3126,8 +3302,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T36311_622886.jpg",
+      "status": "VERIFIED",
+      "altText": "ALMOND OLIVE HAIR OIL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3138,8 +3315,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3157,8 +3334,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T36411_785974.jpg",
+      "status": "VERIFIED",
+      "altText": "AMLA HAIR OIL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3169,8 +3347,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3188,8 +3366,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T36511_855352.jpg",
+      "status": "VERIFIED",
+      "altText": "AYUCOCO HAIR OIL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3200,8 +3379,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3219,8 +3398,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T34611_512890.jpeg",
+      "status": "VERIFIED",
+      "altText": "ALOEVERA CUCUMBER CREAM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3231,8 +3411,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3250,8 +3430,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T36611_933896.jpg",
+      "status": "VERIFIED",
+      "altText": "COOL OIL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3262,8 +3443,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3281,8 +3462,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T34711_407525.jpg",
+      "status": "VERIFIED",
+      "altText": "FACE SCRUB CREAM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3293,8 +3475,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3312,8 +3494,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T36711_712007.jpeg",
+      "status": "VERIFIED",
+      "altText": "DAILY CARE SHAMPOO"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3324,8 +3507,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3343,8 +3526,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T34811_653617.jpg",
+      "status": "VERIFIED",
+      "altText": "DAY CREAM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3355,8 +3539,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3374,8 +3558,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T36811_997809.jpg",
+      "status": "VERIFIED",
+      "altText": "ULTRA SMOOTHING SHAMPOO"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3386,8 +3571,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3405,8 +3590,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T34911_578627.jpg",
+      "status": "VERIFIED",
+      "altText": "V SPLASH"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3417,8 +3603,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3436,8 +3622,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T35011_852379.jpg",
+      "status": "VERIFIED",
+      "altText": "NIGHT CREAM WOMENS"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3448,8 +3635,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3467,8 +3654,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T36911_943238.jpg",
+      "status": "VERIFIED",
+      "altText": "DAMAGE REPAIR SHAMPOO"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3479,8 +3667,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3498,8 +3686,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T37011_903292.jpg",
+      "status": "VERIFIED",
+      "altText": "ROOT & SHINE SHAMPOO"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3510,8 +3699,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3529,8 +3718,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T35111_178499.jpeg",
+      "status": "VERIFIED",
+      "altText": "ALL DAY GLOW CREAM FOR WOMEN"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3541,8 +3731,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3560,8 +3750,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T35211_026549.jpg",
+      "status": "VERIFIED",
+      "altText": "MOISTURISING CREAM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3572,8 +3763,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3591,8 +3782,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T36211_446334.jpg",
+      "status": "VERIFIED",
+      "altText": "ULTRA SMOOTHING SERUM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3603,8 +3795,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3622,8 +3814,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T35311_953694.jpg",
+      "status": "VERIFIED",
+      "altText": "HERBAL FACE WASH"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3634,8 +3827,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3653,8 +3846,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T35411_446426.jpg",
+      "status": "VERIFIED",
+      "altText": "STRAWBERRY FACE WASH"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3665,8 +3859,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3684,8 +3878,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T35611_773222.jpg",
+      "status": "VERIFIED",
+      "altText": "LIP BALM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3696,8 +3891,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3715,8 +3910,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T35711_578145.jpg",
+      "status": "VERIFIED",
+      "altText": "BODY LOTION"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3727,8 +3923,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3746,8 +3942,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T35811_936157.jpg",
+      "status": "VERIFIED",
+      "altText": "ALOEVERA SAFFRON OINT GEL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3758,8 +3955,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3777,8 +3974,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T36011_993079.jpg",
+      "status": "VERIFIED",
+      "altText": "FACE PACK CREAM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3789,8 +3987,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3808,8 +4006,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T37211_890672.jpg",
+      "status": "VERIFIED",
+      "altText": "PEEL OFF FACE MASK"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3820,8 +4019,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3839,8 +4038,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T37311_745262.jpg",
+      "status": "VERIFIED",
+      "altText": "ALOEVERA ORANGE SHOWER GEL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3851,8 +4051,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3870,8 +4070,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T36111_493236.jpg",
+      "status": "VERIFIED",
+      "altText": "ALOEVERA SHOWER GEL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3882,8 +4083,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3901,8 +4102,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T37711_813597.jpg",
+      "status": "VERIFIED",
+      "altText": "TALCUM POWDER"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3913,8 +4115,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3932,8 +4134,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T38811_316464.jpg",
+      "status": "VERIFIED",
+      "altText": "SHAVING CREAM FOR MEN"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3944,8 +4147,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
@@ -3976,7 +4179,39 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "Official AWPL product detail page",
+      "sourceLabel": "Official AWPL product detail page related-product image",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
+      "checkedAt": "2026-11-03"
+    },
+    "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-sniss-herbal-hairdoc-oil-200-ml",
+    "name": "HAIRDOC OIL",
+    "nameHi": null,
+    "brand": null,
+    "category": "sniss-herbal",
+    "subcategory": null,
+    "mrp": 431,
+    "packSize": "200 ML",
+    "variants": [],
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51411_042878.jpg",
+      "status": "VERIFIED",
+      "altText": "HAIRDOC OIL 200 ML"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "Official AWPL product detail page related-product listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
+      "checkedAt": "2026-11-03",
+      "reviewNote": "MRP and 200 ML pack are transcribed from the official Hairdoc Oil related-product listing."
+    },
+    "productSource": {
+      "sourceLabel": "Official AWPL product detail page related-product image",
       "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
