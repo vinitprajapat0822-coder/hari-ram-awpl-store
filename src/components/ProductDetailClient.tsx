@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
+import ProductCard from "@/components/ProductCard";
 import ProductArtwork from "@/components/ProductArtwork";
 import GlassCard from "@/components/GlassCard";
 import type { Product } from "@/data/products";
+import { products } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
 import { getWhatsAppUrl, useStore } from "@/store/useStore";
 import {
@@ -52,25 +54,17 @@ export default function ProductDetailClient({ product }: Props) {
     && product.sellingPrice < product.mrp;
   const shownPrice = hasDiscount ? product.sellingPrice as number : product.mrp;
 
-  const stockLabel = product.availability === "AVAILABLE"
-    ? "Marked available · reconfirm before dispatch"
-    : product.availability === "UNAVAILABLE"
-      ? "Currently marked unavailable"
-      : product.availability === "REVIEW_REQUIRED"
-        ? "Availability under review"
-        : "Live stock count not synced";
-
   const enquiryMessage = [
-    "Hello Hari Ram Store,",
+    "Hello Hariram Prajapat,\nHari Ram AWPL Store",
     "I want to enquire about this product:",
     "Product: " + product.name,
     "Pack size: " + (product.qty || "Not listed"),
     "Listed MRP: " + formatPrice(product.mrp),
-    "Please confirm current selling price, available stock and delivery.",
+    "Please confirm the final selling price and delivery details.",
   ].join("\n");
 
   const reviewMessage = [
-    "Hello Hari Ram Store,",
+    "Hello Hariram Prajapat,\nHari Ram AWPL Store",
     "I want to share feedback for:",
     "Product: " + product.name,
     "Rating: " + reviewRating + "/5",
@@ -86,6 +80,31 @@ export default function ProductDetailClient({ product }: Props) {
   const officialSource = product.productSource?.sourceUrl
     || product.priceEvidence?.sourceUrl
     || null;
+
+  const recommendationCategories: Record<string, string[]> = {
+    "SNISS Cosmetic": ["SNISS Elite", "SNISS Herbal", "SNISS Fragrances"],
+    "SNISS Elite": ["SNISS Cosmetic", "SNISS Herbal", "SNISS Fragrances"],
+    "SNISS Herbal": ["SNISS Elite", "SNISS Cosmetic", "SNISS Fragrances"],
+    "SNISS Fragrances": ["SNISS Elite", "SNISS Cosmetic"],
+    "Jeeveda": ["Food"],
+    "Food": ["Jeeveda"],
+    "Baby Care": ["SNISS Herbal", "SNISS Elite"],
+    "Oral Care": ["SNISS Herbal", "SNISS Elite"],
+    "Apparels": ["Others"],
+    "Others": ["Apparels", "Home Care"],
+    "Home Care": ["Others"],
+  };
+  const relatedProducts = [
+    product.category,
+    ...(recommendationCategories[product.category] ?? []),
+  ]
+    .flatMap((category) =>
+      products.filter((item) => item.id !== product.id && item.category === category)
+    )
+    .filter((item, index, list) =>
+      list.findIndex((candidate) => candidate.id === item.id) === index
+    )
+    .slice(0, 4);
 
   const handleAddToCart = () => {
     if (!canOrder) return;
@@ -243,26 +262,15 @@ export default function ProductDetailClient({ product }: Props) {
             <GlassCard className="rounded-[25px] p-5 sm:p-6">
               <div className="mb-3 flex items-center gap-2">
                 <Store size={17} className="text-teal-100/75" aria-hidden="true" />
-                <h2 className="text-sm font-extrabold text-white">Seller & stock</h2>
+                <h2 className="text-sm font-extrabold text-white">Seller & support</h2>
               </div>
               <div className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4">
-                <p className="text-sm font-bold text-white">Hari Ram AWPL Store</p>
-                <p className="mt-1 text-[11px] text-white/45">Store owner name is not listed in the product catalogue.</p>
+                <p className="text-sm font-bold text-white">Hariram Prajapat</p>
+                <p className="mt-1 text-[11px] text-white/45">Owner · Hari Ram AWPL Store</p>
                 <a href={sellerContactUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-teal-100 hover:text-white">
                   Contact seller on WhatsApp <ExternalLink size={13} aria-hidden="true" />
                 </a>
               </div>
-
-              <dl className="mt-3 grid grid-cols-2 gap-3">
-                <div className="detail-fact">
-                  <dt>Stock status</dt>
-                  <dd>{stockLabel}</dd>
-                </div>
-                <div className="detail-fact">
-                  <dt>Units remaining</dt>
-                  <dd>Not provided by store</dd>
-                </div>
-              </dl>
             </GlassCard>
           </div>
         </div>
@@ -362,6 +370,35 @@ export default function ProductDetailClient({ product }: Props) {
             </div>
           </GlassCard>
         </div>
+        {relatedProducts.length > 0 && (
+          <section className="mt-8" aria-labelledby="related-products-heading">
+            <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-teal-200/60">
+                  Explore more
+                </p>
+                <h2
+                  id="related-products-heading"
+                  className="mt-1 text-xl font-extrabold tracking-tight text-white"
+                >
+                  You may also like
+                </h2>
+              </div>
+              <Link
+                href="/#catalogue"
+                className="text-[11px] font-bold text-teal-100/75 transition-colors hover:text-white"
+              >
+                View full catalogue
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+              {relatedProducts.map((item, index) => (
+                <ProductCard key={item.id} product={item} index={index} />
+              ))}
+            </div>
+          </section>
+        )}
+
       </div>
     </main>
   );
