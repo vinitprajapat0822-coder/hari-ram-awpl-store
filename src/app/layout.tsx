@@ -5,8 +5,12 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Hari Ram AWPL Store",
-  description: "Premium Ayurvedic & Wellness Products - Order on WhatsApp",
+  title: "Hari Ram AWPL Store | Premium Ayurvedic & Wellness",
+  description: "Hari Ram AWPL Store - Premium Ayurvedic, Wellness & Personal Care products. Order directly on WhatsApp.",
+  openGraph: {
+    title: "Hari Ram AWPL Store",
+    description: "Premium Ayurvedic & Wellness Products",
+  },
 };
 
 export default function RootLayout({
