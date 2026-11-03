@@ -164,14 +164,14 @@ export const catalogueCollectionCoverage = [
   { slug: "sniss-herbal", selectorEntries: 35, capturedRows: 33, coverage: "PARTIAL" },
   { slug: "veterinary", selectorEntries: 2, capturedRows: 2, coverage: "COMPLETE" },
   { slug: "wellness", selectorEntries: 48, capturedRows: 48, coverage: "COMPLETE" },
-  { slug: "wellroot", selectorEntries: 47, capturedRows: 13, coverage: "PARTIAL" },
+  { slug: "wellroot", selectorEntries: 47, capturedRows: 12, coverage: "PARTIAL" },
 ] as const;
 
 export const catalogueDataStatus = {
   capturedAt: "2026-11-03",
   selectorEntryCountObserved: 374,
-  rawListingRowsCaptured: 206,
-  parentProductsAfterVariantGrouping: 198,
+  rawListingRowsCaptured: 205,
+  parentProductsAfterVariantGrouping: 197,
   completeCategories: 10,
   partialCategories: 5,
   note: "Selector counts are not unique parent-product counts. Partial categories must not be labelled complete.",
