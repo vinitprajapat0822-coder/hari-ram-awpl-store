@@ -12,6 +12,7 @@ export type Product = {
   category: string;
   description?: string | null;
   mrp: number;
+  sellingPrice?: number | null;
   qty: string;
   image: string | null;
   imageStatus: ProductImageStatus;
@@ -24,9 +25,8 @@ const categoryNameBySlug = new Map(
 
 /**
  * Storefront-safe view of the MRP-only master catalogue.
+ * Discounted selling prices are optional and are shown only after verification.
  * Records without MRP are not orderable and are omitted from the grid.
- * Review-status records remain visible for transparency but cannot be added
- * to the cart until their source data is resolved.
  */
 export const products: Product[] = awplProducts.flatMap((record) => {
   if (record.mrp === null) return [];
@@ -40,6 +40,7 @@ export const products: Product[] = awplProducts.flatMap((record) => {
     category,
     description: record.description,
     mrp: record.mrp,
+    sellingPrice: null,
     qty: record.packSize ?? "",
     image: record.image.url,
     imageStatus: record.image.status,
