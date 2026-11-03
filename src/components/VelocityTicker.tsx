@@ -70,7 +70,7 @@ export default function VelocityTicker() {
   } as CSSProperties;
 
   return (
-    <div className="velocity-ticker" aria-label="Store information">
+    <div className="velocity-ticker" role="group" aria-label="Store information">
       <div className="velocity-ticker__track" style={style}>
         <div className="velocity-ticker__group">
           {tickerItems.map((item) => <span key={item}>{item}</span>)}
