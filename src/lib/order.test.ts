@@ -70,9 +70,13 @@ test("WhatsApp message includes a product line and an order-request label", () =
     }
   );
 
+  const formattedAmount = (product.mrp * 2).toLocaleString("en-IN", {
+    maximumFractionDigits: 0,
+  });
+
   assert.ok(message.includes("Order Request"));
   assert.ok(message.includes(product.name));
-  assert.ok(message.includes(String(product.mrp * 2)));
+  assert.ok(message.includes(formattedAmount));
   assert.ok(message.includes("confirm product availability"));
 });
 
