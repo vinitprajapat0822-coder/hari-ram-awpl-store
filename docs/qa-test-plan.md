@@ -9,8 +9,8 @@ Scope: Hari Ram AWPL Store on branch `catalogue/category-master-foundation`.
 | F01 | Browse catalogue | Home title, current product count, image placeholders, all category filters visible |
 | F02 | Search | Exact product search, result count, clear-search action |
 | F03 | Category navigation | Category filter isolation, held category empty-state |
-| F04 | Product variant selection | Apparel colour/size selection and variant-specific cart line |
-| F05 | Cart | MRP total, variant label, local persistence after reload |
+| F04 | Standalone SKU products | Each apparel colour/size and pack size is a separate card and cart line; no variant selector |
+| F05 | Cart | MRP total, SKU name and pack size, local persistence after reload |
 | F06 | Price review | Conflicting MRP item is visibly flagged and cannot be added |
 | F07 | Customer profile | Profile route, visible fields, accessible labels |
 | F08 | Accessibility/runtime | WCAG 2.1 A/AA axe scan on home/cart/profile; browser errors and HTTP 5xx fail tests |
@@ -20,7 +20,8 @@ Scope: Hari Ram AWPL Store on branch `catalogue/category-master-foundation`.
 - Search empty value and clearing: F02.
 - Search for a single exact SKU phrase: F02.
 - Category with products vs held category: F03.
-- Apparel product with multiple child variants: F04.
+- Apparel colour/size SKUs render as separate products with no selector: F04.
+- Same base product with different pack sizes (e.g. Hairdoc Oil 100 ML / 200 ML) remains separate: F04.
 - Cart refresh and persisted local state: F05.
 - Product requiring price review: F06.
 - Direct load of profile with the checkout query parameter: F07.
