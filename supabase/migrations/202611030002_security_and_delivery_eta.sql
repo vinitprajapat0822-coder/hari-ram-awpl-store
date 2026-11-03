@@ -45,9 +45,10 @@ begin
      or length(trim(coalesce(p_address, ''))) < 8 then
     raise exception 'Customer name, mobile and delivery address are required';
   end if;
-  if p_items is null or jsonb_typeof(p_items) is distinct from 'array'
-     or jsonb_array_length(p_items) < 1
-     or jsonb_array_length(p_items) > 30 then
+  if p_items is null or jsonb_typeof(p_items) is distinct from 'array' then
+    raise exception 'Order items must be a JSON array';
+  end if;
+  if jsonb_array_length(p_items) < 1 or jsonb_array_length(p_items) > 30 then
     raise exception 'Order must contain between 1 and 30 distinct products';
   end if;
   if exists (

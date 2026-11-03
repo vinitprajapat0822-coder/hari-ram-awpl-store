@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
@@ -17,6 +19,8 @@ type PendingReview = {
   packaging_note: string;
   delivery_note: string;
   created_at: string;
+  review_images?: Array<{ storage_path: string }>;
+  photoUrls: string[];
 };
 
 type AdminProduct = {
@@ -73,13 +77,25 @@ export default function AdminPage() {
 
     const [orderResult, reviewResult, productResult] = await Promise.all([
       client.from("orders").select("*,order_items(*),order_updates(*)").order("created_at", { ascending: false }).limit(100),
-      client.from("reviews").select("id,product_id,rating,quality_note,packaging_note,delivery_note,created_at").eq("status", "PENDING").order("created_at", { ascending: true }).limit(100),
+      client.from("reviews").select("id,product_id,rating,quality_note,packaging_note,delivery_note,created_at,review_images(storage_path)").eq("status", "PENDING").order("created_at", { ascending: true }).limit(100),
       client.from("store_products").select("id,name,category,mrp,dp,selling_price,catalogue_status,availability").order("name").limit(200),
     ]);
     if (orderResult.error) setError(orderResult.error.message);
     else setOrders((orderResult.data ?? []) as unknown as StoreOrder[]);
     if (reviewResult.error) setError(reviewResult.error.message);
-    else setReviews((reviewResult.data ?? []) as PendingReview[]);
+    else {
+      const pending = (reviewResult.data ?? []) as Array<Omit<PendingReview, "photoUrls">>;
+      const pendingWithPhotos = await Promise.all(pending.map(async (review) => {
+        const urls = await Promise.all((review.review_images ?? []).map(async (photo) => {
+          const { data: signed, error: signedError } = await client.storage
+            .from("review-images")
+            .createSignedUrl(photo.storage_path, 60 * 60);
+          return !signedError ? signed?.signedUrl ?? null : null;
+        }));
+        return { ...review, photoUrls: urls.filter((url): url is string => Boolean(url)) };
+      }));
+      setReviews(pendingWithPhotos);
+    }
     if (productResult.error) setError(productResult.error.message);
     else setProducts((productResult.data ?? []) as AdminProduct[]);
     setChecking(false);
@@ -308,6 +324,13 @@ export default function AdminPage() {
                         <p><strong className="text-white/75">Packaging:</strong> {review.packaging_note}</p>
                         <p><strong className="text-white/75">Delivery:</strong> {review.delivery_note}</p>
                       </div>
+                      {review.photoUrls.length > 0 && (
+                        <div className="mt-3 grid max-w-xs grid-cols-3 gap-2">
+                          {review.photoUrls.map((url) => (
+                            <img key={url} src={url} alt="Customer review photo awaiting moderation" loading="lazy" decoding="async" className="aspect-square w-full rounded-lg border border-white/10 object-cover" />
+                          ))}
+                        </div>
+                      )}
                       <div className="mt-3 flex gap-2">
                         <button type="button" onClick={() => void moderateReview(review.id, true)} className="rounded-xl border border-teal-100/20 bg-teal-100/[0.07] px-3 py-2 text-[10px] font-bold text-teal-100">Approve & publish</button>
                         <button type="button" onClick={() => void moderateReview(review.id, false)} className="rounded-xl border border-rose-200/20 bg-rose-200/[0.05] px-3 py-2 text-[10px] font-bold text-rose-100">Reject</button>

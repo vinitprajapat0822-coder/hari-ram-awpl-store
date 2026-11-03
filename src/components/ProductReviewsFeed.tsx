@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { getSupabaseClient } from "@/lib/supabase";
@@ -111,7 +113,6 @@ export default function ProductReviewsFeed({
               {review.photoUrls.length > 0 && (
                 <div className="mt-3 grid grid-cols-3 gap-2">
                   {review.photoUrls.map((url) => (
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img key={url} src={url} alt="Customer review photo" loading="lazy" decoding="async" className="aspect-square w-full rounded-xl border border-white/10 object-cover" />
                   ))}
                 </div>
