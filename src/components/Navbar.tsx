@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { PointerEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useStore } from "@/store/useStore";
@@ -24,6 +25,35 @@ export default function Navbar() {
   const pathname = usePathname();
   const cartCount = useStore((state) => state.getCartCount());
   const [activeHash, setActiveHash] = useState("");
+  const dockRef = useRef<HTMLElement | null>(null);
+
+  const updateMagneticDock = (event: PointerEvent<HTMLElement>) => {
+    const dock = dockRef.current;
+    if (!dock) return;
+    const dockBounds = dock.getBoundingClientRect();
+
+    dock.querySelectorAll<HTMLElement>(".mobile-dock__item").forEach((item) => {
+      // offsetLeft/offsetTop stay tied to the untransformed layout, preventing feedback drift.
+      const dx = event.clientX - (dockBounds.left + dock.clientLeft + item.offsetLeft + item.offsetWidth / 2);
+      const dy = event.clientY - (dockBounds.top + dock.clientTop + item.offsetTop + item.offsetHeight / 2);
+      const distance = Math.hypot(dx, dy);
+      const intensity = Math.max(0, 1 - distance / 118);
+      const pullX = distance > 0 ? (dx / distance) * 4.5 * intensity : 0;
+      const pullY = (distance > 0 ? (dy / distance) * 1.8 : 0) * intensity - 7 * intensity;
+
+      item.style.setProperty("--dock-x", pullX.toFixed(2) + "px");
+      item.style.setProperty("--dock-y", pullY.toFixed(2) + "px");
+      item.style.setProperty("--dock-scale", (1 + intensity * 0.18).toFixed(3));
+    });
+  };
+
+  const resetMagneticDock = () => {
+    dockRef.current?.querySelectorAll<HTMLElement>(".mobile-dock__item").forEach((item) => {
+      item.style.setProperty("--dock-x", "0px");
+      item.style.setProperty("--dock-y", "0px");
+      item.style.setProperty("--dock-scale", "1");
+    });
+  };
 
   useEffect(() => {
     const syncHash = () => setActiveHash(window.location.hash);
@@ -88,18 +118,21 @@ export default function Navbar() {
       </header>
 
       <div className="pointer-events-none fixed inset-x-0 bottom-3 z-50 px-4 md:hidden">
-        <nav aria-label="Mobile navigation" className="mobile-dock pointer-events-auto mx-auto flex max-w-sm items-center gap-1 p-1.5">
+        <nav
+          ref={dockRef}
+          aria-label="Mobile navigation"
+          className="mobile-dock pointer-events-auto mx-auto flex max-w-sm items-center gap-1 p-1.5"
+          onPointerMove={updateMagneticDock}
+          onPointerDown={updateMagneticDock}
+          onPointerUp={resetMagneticDock}
+          onPointerCancel={resetMagneticDock}
+          onPointerLeave={resetMagneticDock}
+        >
           {navigation.map((item) => {
             const active = isActive(pathname, item.href, activeHash);
             const Icon = item.icon;
             return (
-              <motion.div
-                key={item.href}
-                className="min-w-0 flex-1"
-                whileHover={{ y: -3, scale: 1.045 }}
-                whileTap={{ scale: 0.91 }}
-                transition={{ type: "spring", stiffness: 460, damping: 25, mass: 0.55 }}
-              >
+              <div key={item.href} className="mobile-dock__item min-w-0 flex-1">
                 <Link
                   href={item.href}
                   onClick={() => handleNavigation(item.href)}
@@ -117,7 +150,7 @@ export default function Navbar() {
                   {item.label}
                   {active && <motion.span layoutId="mobile-dock-active" className="mobile-dock__indicator" aria-hidden="true" />}
                 </Link>
-              </motion.div>
+              </div>
             );
           })}
         </nav>

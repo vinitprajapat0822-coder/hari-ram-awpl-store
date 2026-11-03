@@ -39,6 +39,17 @@ test("mobile navigation stays visible and exposes all primary routes", async ({ 
   await expect(dock.getByRole("link", { name: "Catalogue" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Cart" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Profile" })).toBeVisible();
+
+  const firstDockItem = dock.locator(".mobile-dock__item").first();
+  const bounds = await firstDockItem.boundingBox();
+  expect(bounds).not.toBeNull();
+  if (!bounds) throw new Error("The first mobile dock item has no layout box.");
+
+  await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+  await expect.poll(() => firstDockItem.evaluate((element) => element.style.getPropertyValue("--dock-scale"))).toBe("1.180");
+
+  await page.mouse.move(1, 1);
+  await expect.poll(() => firstDockItem.evaluate((element) => element.style.getPropertyValue("--dock-scale"))).toBe("1");
 });
 
 
