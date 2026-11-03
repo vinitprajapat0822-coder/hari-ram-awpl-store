@@ -118,7 +118,7 @@ export const latestObservedSelectorSnapshot = {
   totalListedEntries: 374,
   observationStatus: "NEEDS_DIRECT_CONFIRMATION",
   observedVia: "indexed official AWPL Wellness listing",
-  sourceUrl: "https://www.www.asclepiuswellness.com/product/wellness/",
+  sourceUrl: "https://www.asclepiuswellness.com/product/wellness/",
   categoryCounts: {
     agriculture: 4,
     apparels: 62,
