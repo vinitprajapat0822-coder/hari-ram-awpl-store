@@ -366,10 +366,14 @@ grant execute on function public.submit_store_review(uuid,text,smallint,smallint
 grant execute on function public.moderate_store_review(uuid,boolean,text) to authenticated;
 
 insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types)
-values('review-photos','review-photos',true,5242880,array['image/jpeg','image/png','image/webp'])
-on conflict(id) do update set public=true,file_size_limit=5242880,allowed_mime_types=array['image/jpeg','image/png','image/webp'];
+values('review-photos','review-photos',false,5242880,array['image/jpeg','image/png','image/webp'])
+on conflict(id) do update set public=false,file_size_limit=5242880,allowed_mime_types=array['image/jpeg','image/png','image/webp'];
 drop policy if exists review_photo_public_read on storage.objects;
-create policy review_photo_public_read on storage.objects for select to anon,authenticated using(bucket_id='review-photos');
+create policy review_photo_public_read on storage.objects for select to anon,authenticated
+using(bucket_id='review-photos' and exists(
+ select 1 from public.review_images ri join public.reviews r on r.id=ri.review_id
+ where ri.storage_path=name and r.is_verified_purchase=true and r.is_published=true
+));
 drop policy if exists review_photo_customer_upload on storage.objects;
 create policy review_photo_customer_upload on storage.objects for insert to authenticated with check(
  bucket_id='review-photos' and (storage.foldername(name))[1]=auth.uid()::text and
