@@ -55,7 +55,7 @@ export default function ProductDetailClient({ product }: Props) {
   const shownPrice = hasDiscount ? product.sellingPrice as number : product.mrp;
 
   const enquiryMessage = [
-    "Hello Hari Ram Store,",
+    "Hello Hariram Prajapat,\nHari Ram AWPL Store",
     "I want to enquire about this product:",
     "Product: " + product.name,
     "Pack size: " + (product.qty || "Not listed"),
@@ -64,7 +64,7 @@ export default function ProductDetailClient({ product }: Props) {
   ].join("\n");
 
   const reviewMessage = [
-    "Hello Hari Ram Store,",
+    "Hello Hariram Prajapat,\nHari Ram AWPL Store",
     "I want to share feedback for:",
     "Product: " + product.name,
     "Rating: " + reviewRating + "/5",
