@@ -205,15 +205,6 @@ export default function ProductDetailClient({ product }: Props) {
               </h1>
               {product.nameHi && <p className="mt-2 text-sm text-white/55">{product.nameHi}</p>}
 
-              <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px] text-white/45">
-                <span className="inline-flex items-center gap-1.5">
-                  <Star size={14} className="text-white/35" aria-hidden="true" />
-                  No verified ratings yet
-                </span>
-                <span aria-hidden="true">·</span>
-                <span>No customer reviews published</span>
-              </div>
-
               <div className="my-5 rounded-2xl border border-white/[0.09] bg-white/[0.035] p-4">
                 <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-white/40">Price information</p>
                 <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
