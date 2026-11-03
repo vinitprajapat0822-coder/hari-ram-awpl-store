@@ -2,7 +2,14 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Product } from "@/data/products";
+import type { Product } from "@/data/products";
+import {
+  getCartItemCount,
+  getCartSubtotal,
+  generateWhatsAppMessage as buildWhatsAppMessage,
+  getWhatsAppUrl as buildWhatsAppUrl,
+  normalizeQuantity,
+} from "@/lib/order";
 
 export type CartItem = {
   product: Product;
@@ -27,52 +34,83 @@ type StoreState = {
   getCartCount: () => number;
 };
 
+const emptyUser: UserDetails = {
+  name: "",
+  phone: "",
+  address: "",
+};
+
 export const useStore = create<StoreState>()(
   persist(
     (set, get) => ({
       cart: [],
-      user: { name: "", phone: "", address: "" },
+      user: emptyUser,
 
       addToCart: (product) => {
-        const existing = get().cart.find((i) => i.product.id === product.id);
-        if (existing) {
-          set({
-            cart: get().cart.map((i) =>
-              i.product.id === product.id
-                ? { ...i, quantity: i.quantity + 1 }
-                : i
-            ),
-          });
-        } else {
-          set({ cart: [...get().cart, { product, quantity: 1 }] });
-        }
+        if (!product.id) return;
+
+        set((state) => {
+          const existing = state.cart.find(
+            (item) => item.product.id === product.id
+          );
+
+          if (existing) {
+            return {
+              cart: state.cart.map((item) =>
+                item.product.id === product.id
+                  ? {
+                      ...item,
+                      product,
+                      quantity: normalizeQuantity(item.quantity) + 1,
+                    }
+                  : item
+              ),
+            };
+          }
+
+          return {
+            cart: [...state.cart, { product, quantity: 1 }],
+          };
+        });
       },
 
       removeFromCart: (productId) => {
-        set({ cart: get().cart.filter((i) => i.product.id !== productId) });
+        set((state) => ({
+          cart: state.cart.filter((item) => item.product.id !== productId),
+        }));
       },
 
       updateQuantity: (productId, quantity) => {
-        if (quantity <= 0) {
+        const normalized = normalizeQuantity(quantity);
+
+        if (normalized === 0) {
           get().removeFromCart(productId);
           return;
         }
-        set({
-          cart: get().cart.map((i) =>
-            i.product.id === productId ? { ...i, quantity } : i
+
+        set((state) => ({
+          cart: state.cart.map((item) =>
+            item.product.id === productId
+              ? { ...item, quantity: normalized }
+              : item
           ),
-        });
+        }));
       },
 
       clearCart: () => set({ cart: [] }),
 
-      setUser: (user) => set({ user }),
+      setUser: (user) =>
+        set({
+          user: {
+            name: user.name.trim(),
+            phone: user.phone.trim(),
+            address: user.address.trim(),
+          },
+        }),
 
-      getCartTotal: () =>
-        get().cart.reduce((sum, i) => sum + i.product.mrp * i.quantity, 0),
+      getCartTotal: () => getCartSubtotal(get().cart),
 
-      getCartCount: () =>
-        get().cart.reduce((sum, i) => sum + i.quantity, 0),
+      getCartCount: () => getCartItemCount(get().cart),
     }),
     {
       name: "hari-ram-awpl-store",
@@ -86,36 +124,11 @@ export const useStore = create<StoreState>()(
 
 export function generateWhatsAppMessage(
   cart: CartItem[],
-  user: UserDetails,
-  total: number
-) {
-  const lines: string[] = [];
-  lines.push("*Hari Ram AWPL Store - New Order*");
-  lines.push("");
-
-  cart.forEach((item, idx) => {
-    const lineTotal = item.product.mrp * item.quantity;
-    lines.push(
-      `${idx + 1}. ${item.product.name} × ${item.quantity} = ₹${lineTotal.toLocaleString("en-IN")}`
-    );
-  });
-
-  lines.push("");
-  lines.push(`*Subtotal:* ₹${total.toLocaleString("en-IN")}`);
-  lines.push(`*Total:* ₹${total.toLocaleString("en-IN")}`);
-  lines.push("");
-  lines.push(`*Customer Details*`);
-  lines.push(`Name: ${user.name || "Not provided"}`);
-  lines.push(`Phone: ${user.phone || "Not provided"}`);
-  lines.push(`Address: ${user.address || "Not provided"}`);
-  lines.push("");
-  lines.push("Please confirm stock & delivery.");
-
-  return lines.join("\n");
+  user: UserDetails
+): string {
+  return buildWhatsAppMessage(cart, user);
 }
 
-export function getWhatsAppUrl(message: string) {
-  const phone = "919799133838";
-  const encoded = encodeURIComponent(message);
-  return `https://wa.me/${phone}?text=${encoded}`;
+export function getWhatsAppUrl(message: string): string {
+  return buildWhatsAppUrl(message);
 }

@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { useStore } from "@/store/useStore";
 import { ShoppingCart, User } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function Navbar() {
-  const cartCount = useStore((s) => s.getCartCount());
+  const cartCount = useStore((state) => state.getCartCount());
 
   return (
     <header className="sticky top-0 z-50 px-4 py-3">
@@ -45,6 +45,7 @@ export default function Navbar() {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-cyan-400 text-black text-[10px] font-bold flex items-center justify-center shadow-[0_0_10px_rgba(0,240,255,0.5)]"
+                  aria-label={cartCount + " items in cart"}
                 >
                   {cartCount > 99 ? "99+" : cartCount}
                 </motion.span>

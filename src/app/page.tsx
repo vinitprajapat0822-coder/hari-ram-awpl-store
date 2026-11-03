@@ -4,8 +4,8 @@ import { useState, useMemo } from "react";
 import { products, categories } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
-import { motion } from "framer-motion";
-import { Search } from "lucide-react";
+import { motion } from "motion/react";
+import { Search, X } from "lucide-react";
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -13,19 +13,22 @@ export default function HomePage() {
 
   const filtered = useMemo(() => {
     let list = products;
+
     if (activeCategory !== "All") {
-      list = list.filter((p) => p.category === activeCategory);
+      list = list.filter((product) => product.category === activeCategory);
     }
-    if (search.trim()) {
-      const q = search.toLowerCase();
+
+    const query = search.trim().toLocaleLowerCase("en-IN");
+    if (query) {
       list = list.filter(
-        (p) =>
-          p.name.toLowerCase().includes(q) ||
-          p.nameHi.includes(q) ||
-          p.description.toLowerCase().includes(q) ||
-          p.category.toLowerCase().includes(q)
+        (product) =>
+          product.name.toLocaleLowerCase("en-IN").includes(query) ||
+          product.nameHi.includes(query) ||
+          product.description.toLocaleLowerCase("en-IN").includes(query) ||
+          product.category.toLocaleLowerCase("en-IN").includes(query)
       );
     }
+
     return list;
   }, [activeCategory, search]);
 
@@ -52,55 +55,84 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      <section className="px-4 max-w-6xl mx-auto mb-4">
+      <section className="px-4 max-w-6xl mx-auto mb-4" role="search">
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" size={18} />
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search products..."
-            className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-400/40 transition-colors"
+          <label className="sr-only" htmlFor="product-search">
+            Search products
+          </label>
+          <Search
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40"
+            size={18}
+            aria-hidden="true"
           />
+          <input
+            id="product-search"
+            type="search"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Search products..."
+            autoComplete="off"
+            className="input-glass w-full pl-11 pr-12 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none transition-colors"
+          />
+          {search && (
+            <button
+              type="button"
+              onClick={() => setSearch("")}
+              aria-label="Clear product search"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-lg text-white/50 hover:text-white hover:bg-white/10"
+            >
+              <X size={16} />
+            </button>
+          )}
         </div>
       </section>
 
       <section className="px-4 max-w-6xl mx-auto mb-5">
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {categories.map((cat) => (
+        <div
+          className="flex gap-2 overflow-x-auto pb-1 no-scrollbar"
+          aria-label="Product categories"
+        >
+          {categories.map((category) => (
             <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                activeCategory === cat
-                  ? "bg-cyan-500 text-black shadow-lg shadow-cyan-500/25"
-                  : "bg-white/5 text-white/70 hover:bg-white/10 border border-white/10"
+              key={category}
+              type="button"
+              onClick={() => setActiveCategory(category)}
+              aria-pressed={activeCategory === category}
+              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${activeCategory === category
+                ? "bg-cyan-500 text-black shadow-lg shadow-cyan-500/25"
+                : "bg-white/5 text-white/70 hover:bg-white/10 border border-white/10"
               }`}
             >
-              {cat}
+              {category}
             </button>
           ))}
         </div>
       </section>
 
       <section className="px-4 max-w-6xl mx-auto mb-3">
-        <p className="text-white/40 text-sm">
+        <p
+          className="text-white/40 text-sm"
+          aria-live="polite"
+          aria-atomic="true"
+        >
           {filtered.length} product{filtered.length !== 1 ? "s" : ""}
-          {activeCategory !== "All" ? ` in ${activeCategory}` : ""}
+          {activeCategory !== "All" ? " in " + activeCategory : ""}
         </p>
       </section>
 
       <section className="px-4 max-w-6xl mx-auto">
         {filtered.length === 0 ? (
-          <div className="text-center py-16 text-white/40">No products found</div>
+          <div className="text-center py-16 text-white/40" role="status">
+            No products found. Try a different search.
+          </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-            {filtered.map((product, i) => (
+            {filtered.map((product, index) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: Math.min(i * 0.03, 0.4) }}
+                transition={{ delay: Math.min(index * 0.02, 0.25) }}
               >
                 <ProductCard product={product} />
               </motion.div>
