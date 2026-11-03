@@ -23,7 +23,7 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5">
         <div className="site-header__inner glass mx-auto flex max-w-6xl items-center justify-between rounded-[22px] px-3.5 sm:px-5">
-          <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Hari Ram AWPL Store home">
+          <Link href="/" className="flex min-w-0 items-center gap-3">
             <span className="brand-mark text-lg font-black tracking-tight">H</span>
             <span className="min-w-0 leading-tight">
               <span className="block text-sm font-extrabold tracking-[0.13em] text-white">HARI RAM</span>
