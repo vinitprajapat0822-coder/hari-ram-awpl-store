@@ -151,7 +151,7 @@ test("profile route renders and has labelled customer fields", async ({ page }) 
 });
 
 test("home, cart, profile and product detail pass WCAG accessibility scan", async ({ page }) => {
-  const routes = ["./", "about/", "cart/", "profile/", "product/awpl-apparels-asclepius-women-saree-crape/"];
+  const routes = ["./", "about/", "cart/", "profile/", "account/", "orders/", "admin/", "product/awpl-apparels-asclepius-women-saree-crape/"];
   for (const route of routes) {
     await page.goto(route);
     await page.waitForTimeout(700);
@@ -210,16 +210,14 @@ test("product card image lookup is concurrency limited", async ({ page }) => {
 });
 
 
-test("product feedback form requires a rating and comment", async ({ page }) => {
+test("product reviews show only approved purchase-verified submissions", async ({ page }) => {
   await page.goto("./");
   const product = page.getByRole("group", { name: "Product ASCLEPIUS WOMEN SAREE CRAPE", exact: true });
   await product.getByRole("link", { name: /ASCLEPIUS WOMEN SAREE CRAPE/ }).click();
 
-  const sendFeedback = page.getByRole("button", { name: "Send feedback via WhatsApp" });
-  await expect(sendFeedback).toBeDisabled();
-  await page.getByRole("button", { name: "Rate 5 stars" }).click();
-  await page.getByLabel("Your comment").fill("The product details were helpful.");
-  await expect(sendFeedback).toBeEnabled();
+  await expect(page.getByRole("heading", { name: "Customer ratings & reviews" })).toBeVisible();
+  await expect(page.getByText("No verified reviews yet")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Send feedback via WhatsApp" })).toHaveCount(0);
 });
 
 test("About page presents the store owner and direct contact channels", async ({ page }) => {
@@ -228,4 +226,17 @@ test("About page presents the store owner and direct contact channels", async ({
   await expect(page.getByRole("heading", { name: "Hariram Prajapat" })).toBeVisible();
   await expect(page.getByRole("link", { name: /WhatsApp · 9799133838/ })).toHaveAttribute("href", /wa\.me\/919799133838/);
   await expect(page.getByRole("link", { name: /@hariramprajapat97/ })).toHaveAttribute("href", /instagram\.com\/hariramprajapat97/);
+});
+
+
+test("account, order centre and protected admin routes render without a configured backend", async ({ page }) => {
+  await page.goto("account/");
+  await expect(page.getByRole("heading", { name: "Sign in or create account" })).toBeVisible();
+
+  await page.goto("orders/");
+  await expect(page.getByRole("heading", { name: "My Orders" })).toBeVisible();
+
+  await page.goto("admin/");
+  await expect(page.getByRole("heading", { name: "Owner Dashboard" })).toBeVisible();
+  await expect(page.getByText("Access denied")).toBeVisible();
 });

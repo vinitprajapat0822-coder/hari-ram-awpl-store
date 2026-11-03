@@ -1,18 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import ProductCard from "@/components/ProductCard";
 import ProductArtwork from "@/components/ProductArtwork";
+import ProductReviewsFeed from "@/components/ProductReviewsFeed";
 import GlassCard from "@/components/GlassCard";
 import type { Product } from "@/data/products";
 import { products } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
 import { getWhatsAppUrl, useStore } from "@/store/useStore";
+import { getSupabaseClient } from "@/lib/supabase";
 import {
   ArrowLeft,
-  CalendarDays,
   Check,
   CircleHelp,
   ExternalLink,
@@ -20,7 +21,6 @@ import {
   Package,
   ShieldCheck,
   ShoppingBag,
-  Star,
   Store,
   Tag,
 } from "lucide-react";
@@ -44,15 +44,29 @@ function displayDate(value: string | null | undefined): string {
 export default function ProductDetailClient({ product }: Props) {
   const addToCart = useStore((state) => state.addToCart);
   const [added, setAdded] = useState(false);
-  const [reviewRating, setReviewRating] = useState(0);
-  const [reviewComment, setReviewComment] = useState("");
+  const [storeSellingPrice, setStoreSellingPrice] = useState<number | null>(product.sellingPrice ?? null);
+
+  useEffect(() => {
+    const client = getSupabaseClient();
+    if (!client) return undefined;
+    let active = true;
+    void client.from("store_products").select("selling_price").eq("id", product.id).maybeSingle()
+      .then(({ data, error }) => {
+        if (!active || error) return;
+        const value = data?.selling_price === null || data?.selling_price === undefined
+          ? null
+          : Number(data.selling_price);
+        setStoreSellingPrice(value !== null && Number.isFinite(value) && value >= 0 ? value : null);
+      });
+    return () => { active = false; };
+  }, [product.id]);
 
   const canOrder = product.status === "VERIFIED";
-  const hasDiscount = typeof product.sellingPrice === "number"
-    && Number.isFinite(product.sellingPrice)
-    && product.sellingPrice >= 0
-    && product.sellingPrice < product.mrp;
-  const shownPrice = hasDiscount ? product.sellingPrice as number : product.mrp;
+  const hasSellingPrice = typeof storeSellingPrice === "number"
+    && Number.isFinite(storeSellingPrice)
+    && storeSellingPrice >= 0;
+  const hasDiscount = hasSellingPrice && (storeSellingPrice as number) < product.mrp;
+  const shownPrice = hasSellingPrice ? storeSellingPrice as number : product.mrp;
 
   const enquiryMessage = [
     "Hello Hariram Prajapat,\nHari Ram AWPL Store",
@@ -62,18 +76,6 @@ export default function ProductDetailClient({ product }: Props) {
     "Listed MRP: " + formatPrice(product.mrp),
     "Please confirm the final selling price and delivery details.",
   ].join("\n");
-
-  const reviewMessage = [
-    "Hello Hariram Prajapat,\nHari Ram AWPL Store",
-    "I want to share feedback for:",
-    "Product: " + product.name,
-    "Rating: " + reviewRating + "/5",
-    "Comment: " + reviewComment.trim(),
-    "Please review this feedback before publishing it.",
-  ].join("\n");
-  const reviewUrl = reviewRating > 0 && reviewComment.trim()
-    ? getWhatsAppUrl(reviewMessage)
-    : null;
 
   const sellerContactUrl = getWhatsAppUrl(enquiryMessage);
   const verifiedDate = displayDate(product.lastVerifiedAt);
@@ -217,7 +219,7 @@ export default function ProductDetailClient({ product }: Props) {
                 <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <span className="text-2xl font-black tracking-tight text-white">{formatPrice(shownPrice)}</span>
                   <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/40">
-                    {hasDiscount ? "Current selling price" : "Listed MRP"}
+                    {hasSellingPrice ? "Current selling price" : "Listed MRP"}
                   </span>
                   {hasDiscount && (
                     <>
@@ -228,7 +230,7 @@ export default function ProductDetailClient({ product }: Props) {
                     </>
                   )}
                 </div>
-                {!hasDiscount && (
+                {!hasSellingPrice && (
                   <p className="mt-2 text-[11px] leading-5 text-white/45">
                     Current selling price or offer is not published in the verified catalogue. Confirm with the store before ordering.
                   </p>
@@ -298,76 +300,7 @@ export default function ProductDetailClient({ product }: Props) {
           </GlassCard>
 
           <GlassCard className="rounded-[25px] p-5 sm:p-6">
-            <div className="mb-3 flex items-center gap-2">
-              <Star size={17} className="text-teal-100/75" aria-hidden="true" />
-              <h2 className="text-sm font-extrabold text-white">Customer ratings & reviews</h2>
-            </div>
-            <div className="rounded-2xl border border-dashed border-white/[0.12] bg-white/[0.025] px-4 py-7 text-center">
-              <Star size={24} className="mx-auto text-white/25" aria-hidden="true" />
-              <p className="mt-3 text-sm font-bold text-white">No verified reviews yet</p>
-              <p className="mx-auto mt-1 max-w-sm text-xs leading-5 text-white/40">
-                Customer ratings and comments have not been supplied for this product. No sample reviews or star scores are displayed.
-              </p>
-            </div>
-            {officialSource && (
-              <a
-                href={officialSource}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-teal-100/80 hover:text-white"
-              >
-                View official product source <ExternalLink size={12} aria-hidden="true" />
-              </a>
-            )}
-            <div className="mt-5 border-t border-white/[0.08] pt-5">
-              <h3 className="text-xs font-extrabold text-white">Share feedback with the store</h3>
-              <div className="mt-3 flex items-center gap-1.5" role="group" aria-label="Choose product rating">
-                {[1, 2, 3, 4, 5].map((value) => (
-                  <button
-                    key={value}
-                    type="button"
-                    onClick={() => setReviewRating(value)}
-                    aria-label={"Rate " + value + " stars"}
-                    aria-pressed={reviewRating === value}
-                    className="grid h-10 w-10 place-items-center rounded-xl border border-white/[0.08] bg-white/[0.025] text-amber-200 transition-colors hover:bg-amber-200/[0.08]"
-                  >
-                    <Star size={18} fill={reviewRating >= value ? "currentColor" : "none"} aria-hidden="true" />
-                  </button>
-                ))}
-                <span className="ml-2 text-[10px] text-white/40">
-                  {reviewRating > 0 ? reviewRating + " / 5 selected" : "Select a rating"}
-                </span>
-              </div>
-              <label htmlFor="product-review-comment" className="mt-3 block text-[10px] font-bold uppercase tracking-[0.13em] text-white/45">
-                Your comment
-              </label>
-              <textarea
-                id="product-review-comment"
-                value={reviewComment}
-                onChange={(event) => setReviewComment(event.target.value)}
-                rows={3}
-                maxLength={1000}
-                placeholder="Share your experience with this product…"
-                className="mt-2 min-h-24 w-full resize-y rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2.5 text-xs leading-6 text-white outline-none placeholder:text-white/30 focus:border-teal-100/35"
-              />
-              <button
-                type="button"
-                disabled={!reviewUrl}
-                onClick={() => {
-                  if (reviewUrl) window.open(reviewUrl, "_blank", "noopener,noreferrer");
-                }}
-                className="btn-cyan mt-3 flex min-h-11 w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold disabled:cursor-not-allowed disabled:opacity-35"
-              >
-                <MessageCircle size={15} aria-hidden="true" /> Send feedback via WhatsApp
-              </button>
-              <p className="mt-2 text-[10px] leading-5 text-white/35">
-                Feedback is sent privately to the store. It will not appear as a public review until it is checked and published.
-              </p>
-            </div>
-            <div className="mt-4 flex items-center gap-2 border-t border-white/[0.08] pt-4 text-[10px] text-white/35">
-              <CalendarDays size={13} aria-hidden="true" />
-              Catalogue data last checked: {verifiedDate}
-            </div>
+            <ProductReviewsFeed productId={product.id} officialSource={officialSource} />
           </GlassCard>
         </div>
         {relatedProducts.length > 0 && (

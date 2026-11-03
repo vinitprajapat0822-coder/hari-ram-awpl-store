@@ -1,65 +1,41 @@
-# Test plan: Hari Ram AWPL Store
+# Commerce and order system test plan
 
-Build: current standalone-SKU storefront on main
-Date: 2026-11-03
-Environment: GitHub Actions, Next.js production build, Chromium / Playwright
+Baseline: PR #7 head, Next.js static export, Chromium / Playwright.
 
-## Flows and test cases
+## Catalogue and existing storefront
+- Preserve 135 distinct SKU records, including price-review and missing-data restrictions.
+- Verify category filtering, product image fallback, existing calm teal theme and responsive navigation.
+- Verify MRP is sourced from the catalogue and an unknown selling price remains unlisted.
 
-### F01 — Catalogue home and category catalogue
+## Customer identity and checkout
+- Customer can create an account and sign in through Supabase Auth.
+- Invalid or unauthenticated tracked-order creation is rejected.
+- A multi-item cart creates one order and one order_items row per distinct SKU.
+- Order number is returned only after the database transaction succeeds.
+- If the Supabase public configuration is absent, WhatsApp checkout is explicitly labelled enquiry-only and must not claim tracking exists.
 
-| Case | Type | Steps | Expected | Automation / result |
-|---|---|---|---|---|
-| F01-H1 | Happy | Open / | Store heading, 135 independent product cards, image placeholders and category filters are visible | E2E |
-| F01-E1 | Edge | Select a category held for classification review | Honest empty state; no held item is orderable | E2E |
-| F01-E2 | Edge | Open at 390px and scroll the category rail | No page-level horizontal overflow; bottom navigation remains usable | E2E |
-| F01-E3 | Edge | Open home with empty browser storage | Page loads without hydration or runtime errors | E2E |
+## Customer order history
+- A signed-in customer can read only their own orders through RLS.
+- Orders display item snapshots, MRP subtotal and current owner-updated status.
+- Realtime order and order-update events refresh the customer order list.
+- Delivery delay history displays revised date, time window and owner message.
 
-### F02 — Product search and filters
+## Owner security and operations
+- An authenticated user not present in store_admins receives Access denied.
+- Owner access is checked using authenticated user UUID, never display name.
+- Availability must be confirmed before accepting an order.
+- Order state transitions are sequential and invalid transitions are rejected by the database RPC.
+- The owner can set an initial ETA, add a revised ETA/delay notice, and update product availability.
+- Only the owner can moderate reviews or update product availability.
 
-| Case | Type | Steps | Expected | Automation / result |
-|---|---|---|---|---|
-| F02-H1 | Happy | Search exact product name | Matching standalone product and correct result count | E2E |
-| F02-E1 | Edge | Clear a populated search query | Full active-category result set returns | E2E |
-| F02-E2 | Edge | Search by pack size | Matching pack-size listings appear | E2E candidate |
-| F02-E3 | Edge | Search with long text, emoji or mixed case | No crash; safe no-results or matching state | Manual |
+## Purchase-verified reviews
+- Review creation is rejected unless the signed-in customer owns a delivered order item.
+- One review per order item is enforced by a unique database constraint.
+- Public feeds return APPROVED reviews only.
+- Customer images are compressed to WebP, limited to three images, and stored in a private bucket.
+- Public signed image URLs are available only for approved reviews.
 
-### F03 — Standalone SKU cart
-
-| Case | Type | Steps | Expected | Automation / result |
-|---|---|---|---|---|
-| F03-H1 | Happy | Add Olive / S apparel listing | Exact SKU appears as its own cart line | E2E |
-| F03-H2 | Happy | Add Hairdoc Oil 100 ML and 200 ML | Both are separate lines with their own pack sizes and MRP | E2E |
-| F03-E1 | Edge | Reload cart after adding standalone SKU | Product, quantity and MRP total persist | E2E |
-| F03-E2 | Edge | Increase/decrease quantity | Only the selected product line changes | Manual |
-| F03-N1 | Negative | Attempt to add product under MRP review | Add action stays disabled | E2E |
-
-### F04 — Customer profile and checkout
-
-| Case | Type | Steps | Expected | Automation / result |
-|---|---|---|---|---|
-| F04-H1 | Happy | Open /profile?from=checkout | Clearly labelled name, phone and address fields appear | E2E |
-| F04-E1 | Edge | Enter invalid mobile number | Inline validation prevents saving | E2E candidate |
-| F04-E2 | Edge | Save valid details from checkout | Details persist locally and user returns to cart | Manual |
-| F04-E3 | Edge | Open WhatsApp order message | Product name, pack size, quantity and total are included | Manual |
-
-### F05 — Navigation and accessibility
-
-| Case | Type | Steps | Expected | Automation / result |
-|---|---|---|---|---|
-| F05-H1 | Happy | Use mobile bottom navigation | Explore, Cart and Profile routes are visible and labelled | E2E |
-| F05-H2 | Happy | Open home, cart and profile | WCAG 2.1 A/AA automated scan has no violations | E2E |
-| F05-E1 | Edge | Navigate with keyboard | Focus indicator is visible and controls have meaningful names | Manual |
-| F05-E2 | Edge | Use reduced-motion preference | Motion is reduced without hiding content or controls | CSS / manual |
-| F05-E3 | Edge | Use screen reader | Navigation and cart controls expose useful accessible names | Manual |
-
-## CI release gate
-
-Before merging a UI change into main:
-- TypeScript typecheck passes.
-- ESLint passes without warnings or errors.
-- Production static build passes.
-- Playwright catalogue/cart/profile checks pass.
-- Axe WCAG 2.1 A/AA scan passes on home, cart and profile.
-
-GitHub Pages deployment is checked after the approved merge to main. Manual device, keyboard and screen-reader checks remain explicitly marked as manual until performed.
+## Release gates
+- TypeScript, ESLint, production static export, Playwright and axe WCAG 2.1 A/AA.
+- Physical-device camera and screen-reader verification remain manual acceptance checks.
+- GitHub Pages deployment is considered complete only after its deployment workflow succeeds on main.

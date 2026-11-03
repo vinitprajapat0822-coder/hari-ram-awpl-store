@@ -1,28 +1,98 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useStore, generateWhatsAppMessage, getWhatsAppUrl } from "@/store/useStore";
 import { formatPrice } from "@/lib/utils";
+import { createStoreOrder } from "@/lib/commerce";
+import { getSupabaseClient } from "@/lib/supabase";
 import Navbar from "@/components/Navbar";
 import GlassCard from "@/components/GlassCard";
-import { ArrowLeft, CheckCircle2, Minus, Plus, ShoppingCart, Trash2, MessageCircle, Image as ImageIcon } from "lucide-react";
+import ProductArtwork from "@/components/ProductArtwork";
+import { ArrowLeft, CheckCircle2, Minus, Plus, ShoppingCart, Trash2, MessageCircle } from "lucide-react";
 
 export default function CartPage() {
-  const { cart, user, updateQuantity, removeFromCart, getCartTotal } = useStore();
+  const { cart, user, updateQuantity, removeFromCart, clearCart, getCartTotal } = useStore();
   const total = getCartTotal();
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const sellingPriceTotal = cart.reduce((sum, item) => {
+    const databasePrice = databasePrices[item.product.id];
+    const productPrice = databasePrice !== undefined ? databasePrice : item.product.sellingPrice;
+    return typeof productPrice === "number" && Number.isFinite(productPrice) && productPrice >= 0
+      ? sum + productPrice * item.quantity
+      : sum;
+  }, 0);
+  const hasCompleteSellingPrices = cart.length > 0 && cart.every((item) => {
+    const databasePrice = databasePrices[item.product.id];
+    const productPrice = databasePrice !== undefined ? databasePrice : item.product.sellingPrice;
+    return typeof productPrice === "number" && Number.isFinite(productPrice) && productPrice >= 0;
+  });
   const router = useRouter();
+  const [checkoutBusy, setCheckoutBusy] = useState(false);
+  const [checkoutError, setCheckoutError] = useState("");
+  const [databasePrices, setDatabasePrices] = useState<Record<string, number | null>>({});
+  const productIds = cart.map((item) => item.product.id).join("|");
 
-  const handleCheckout = () => {
-    if (cart.length === 0) return;
+  useEffect(() => {
+    const client = getSupabaseClient();
+    if (!client || !productIds) {
+      setDatabasePrices({});
+      return undefined;
+    }
+    let active = true;
+    const ids = productIds.split("|");
+    void client.from("store_products").select("id,selling_price").in("id", ids).then(({ data, error }) => {
+      if (!active || error || !Array.isArray(data)) return;
+      const next: Record<string, number | null> = {};
+      data.forEach((row) => {
+        const value = row.selling_price === null ? null : Number(row.selling_price);
+        next[row.id] = value !== null && Number.isFinite(value) && value >= 0 ? value : null;
+      });
+      setDatabasePrices(next);
+    });
+    return () => { active = false; };
+  }, [productIds]);
+  const [checkoutNotice, setCheckoutNotice] = useState("");
+
+  const handleCheckout = async () => {
+    if (cart.length === 0 || checkoutBusy) return;
+    setCheckoutError("");
+    setCheckoutNotice("");
     if (!user.name.trim() || !user.phone.trim() || !user.address.trim()) {
       router.push("/profile?from=checkout");
       return;
     }
-    const message = generateWhatsAppMessage(cart, user, total);
-    window.open(getWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+
+    const client = getSupabaseClient();
+    if (!client) {
+      const message = generateWhatsAppMessage(cart, user, total)
+        + "\n\nTracking: WhatsApp enquiry only. No online order record has been created.";
+      window.open(getWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+      setCheckoutNotice("WhatsApp enquiry opened. Online tracking is not configured for this deployment.");
+      return;
+    }
+
+    setCheckoutBusy(true);
+    try {
+      const { data: sessionData, error: sessionError } = await client.auth.getSession();
+      if (sessionError) throw sessionError;
+      if (!sessionData.session?.user?.id) {
+        router.push("/account?next=%2Fcart");
+        return;
+      }
+
+      const created = await createStoreOrder(cart, user);
+      const message = generateWhatsAppMessage(cart, user, total)
+        + "\n\n*Tracked order reference:* " + created.order_number
+        + "\nYour order record is available in My Orders.";
+      clearCart();
+      window.location.assign(getWhatsAppUrl(message));
+    } catch (error) {
+      setCheckoutError(error instanceof Error ? error.message : "Order creation failed. Please retry.");
+    } finally {
+      setCheckoutBusy(false);
+    }
   };
 
   return (
@@ -54,57 +124,68 @@ export default function CartPage() {
         ) : (
           <div className="grid items-start gap-5 md:grid-cols-[1fr_290px]">
             <div className="space-y-3">
-              {cart.map((item) => (
-                <GlassCard key={item.product.id} className="rounded-[22px] p-3.5 sm:p-4">
-                  <div className="flex gap-3.5">
-                    <div className="product-media h-[76px] w-[76px] shrink-0 rounded-2xl sm:h-[88px] sm:w-[88px]">
-                      {item.product.image && item.product.imageStatus === "VERIFIED" ? (
-                        <Image src={item.product.image} alt={item.product.name} width={176} height={176} sizes="88px" className="h-full w-full object-contain p-2" />
-                      ) : (
-                        <ImageIcon size={23} className="text-teal-100/40" aria-hidden="true" />
-                      )}
-                    </div>
-                    <div className="min-w-0 flex-1 py-0.5">
-                      <p className="mb-1 text-[9px] font-bold uppercase tracking-[0.15em] text-teal-200/65">{item.product.category}</p>
-                      <h2 className="line-clamp-2 text-sm font-bold leading-snug text-white">{item.product.name}</h2>
-                      <p className="mt-1 text-[11px] text-white/45">{item.product.qty}</p>
-                      <p className="mt-2 text-sm font-extrabold text-teal-100">{formatPrice(item.product.mrp * item.quantity)}</p>
-                    </div>
-                    <div className="flex shrink-0 flex-col items-end justify-between">
-                      <button type="button" onClick={() => removeFromCart(item.product.id)} aria-label={"Remove " + item.product.name + " from cart"} className="grid h-8 w-8 place-items-center rounded-xl text-white/35 transition-colors hover:bg-rose-400/10 hover:text-rose-300">
-                        <Trash2 size={15} aria-hidden="true" />
-                      </button>
-                      <div className="flex items-center gap-1 rounded-xl border border-white/[0.08] bg-white/[0.045] p-1">
-                        <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity - 1)} aria-label={"Decrease " + item.product.name + " quantity"} className="grid h-7 w-7 place-items-center rounded-lg text-white/65 transition-colors hover:bg-white/10 hover:text-white">
-                          <Minus size={13} aria-hidden="true" />
+              {cart.map((item) => {
+                const databasePrice = databasePrices[item.product.id];
+                const staticPrice = item.product.sellingPrice;
+                const sellingPrice = databasePrice !== undefined
+                  ? databasePrice
+                  : typeof staticPrice === "number" && Number.isFinite(staticPrice) && staticPrice >= 0
+                    ? staticPrice
+                    : null;
+                return (
+                  <GlassCard key={item.product.id} className="rounded-[22px] p-3.5 sm:p-4">
+                    <div className="flex gap-3.5">
+                      <div className="w-[76px] shrink-0 sm:w-[88px]">
+                        <ProductArtwork product={item.product} showAttribution={false} />
+                      </div>
+                      <div className="min-w-0 flex-1 py-0.5">
+                        <p className="mb-1 text-[9px] font-bold uppercase tracking-[0.15em] text-teal-200/65">{item.product.category}</p>
+                        <h2 className="line-clamp-2 text-sm font-bold leading-snug text-white">{item.product.name}</h2>
+                        <p className="mt-1 text-[11px] text-white/45">{item.product.qty}</p>
+                        <p className="mt-2 text-[10px] text-white/55">MRP: {formatPrice(item.product.mrp)} / unit</p>
+                        <p className="mt-0.5 text-[10px] text-teal-100/70">SP: {sellingPrice === null ? "Confirm with store" : formatPrice(sellingPrice) + " / unit"}</p>
+                        <p className="mt-1 text-sm font-extrabold text-teal-100">Line MRP: {formatPrice(item.product.mrp * item.quantity)}</p>
+                      </div>
+                      <div className="flex shrink-0 flex-col items-end justify-between">
+                        <button type="button" onClick={() => removeFromCart(item.product.id)} aria-label={"Remove " + item.product.name + " from cart"} className="grid h-8 w-8 place-items-center rounded-xl text-white/35 transition-colors hover:bg-rose-400/10 hover:text-rose-300">
+                          <Trash2 size={15} aria-hidden="true" />
                         </button>
-                        <span className="min-w-5 text-center text-xs font-bold text-white" aria-live="polite">{item.quantity}</span>
-                        <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity + 1)} aria-label={"Increase " + item.product.name + " quantity"} className="grid h-7 w-7 place-items-center rounded-lg text-white/65 transition-colors hover:bg-white/10 hover:text-white">
-                          <Plus size={13} aria-hidden="true" />
-                        </button>
+                        <div className="flex items-center gap-1 rounded-xl border border-white/[0.08] bg-white/[0.045] p-1">
+                          <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity - 1)} aria-label={"Decrease " + item.product.name + " quantity"} className="grid h-7 w-7 place-items-center rounded-lg text-white/65 transition-colors hover:bg-white/10 hover:text-white">
+                            <Minus size={13} aria-hidden="true" />
+                          </button>
+                          <span className="min-w-5 text-center text-xs font-bold text-white" aria-live="polite">{item.quantity}</span>
+                          <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity + 1)} aria-label={"Increase " + item.product.name + " quantity"} className="grid h-7 w-7 place-items-center rounded-lg text-white/65 transition-colors hover:bg-white/10 hover:text-white">
+                            <Plus size={13} aria-hidden="true" />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </GlassCard>
-              ))}
+                  </GlassCard>
+                );
+              })}
             </div>
 
             <GlassCard className="rounded-[24px] p-5 md:sticky md:top-24">
               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-teal-200/65">Order summary</p>
               <div className="mt-4 flex items-center justify-between text-sm text-white/55"><span>Items</span><span>{itemCount}</span></div>
               <div className="mt-3 flex items-center justify-between text-sm text-white/55"><span>Subtotal (MRP)</span><span>{formatPrice(total)}</span></div>
+              <div className="mt-2 flex items-center justify-between text-sm text-white/55"><span>Subtotal (SP)</span><span>{hasCompleteSellingPrices ? formatPrice(sellingPriceTotal) : "Confirm with store"}</span></div>
               <div className="my-4 border-t border-white/10" />
               <div className="flex items-end justify-between gap-3">
                 <span className="text-sm font-semibold text-white">Total (MRP)</span>
                 <span className="text-xl font-black tracking-tight text-teal-100">{formatPrice(total)}</span>
               </div>
-              <button type="button" onClick={handleCheckout} className="btn-cyan mt-5 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm">
-                <MessageCircle size={18} aria-hidden="true" /> Continue on WhatsApp
+              {checkoutError && <p role="alert" className="mt-4 rounded-xl border border-rose-200/20 bg-rose-200/[0.06] p-3 text-[10px] leading-5 text-rose-100">{checkoutError}</p>}
+              {checkoutNotice && <p role="status" className="mt-4 rounded-xl border border-amber-100/15 bg-amber-100/[0.05] p-3 text-[10px] leading-5 text-amber-100/80">{checkoutNotice}</p>}
+              <button type="button" onClick={() => void handleCheckout()} disabled={checkoutBusy} className="btn-cyan mt-5 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm disabled:opacity-40">
+                <MessageCircle size={18} aria-hidden="true" /> {checkoutBusy ? "Creating tracked order…" : "Continue on WhatsApp"}
               </button>
               <p className="mt-3 flex items-start gap-2 text-[10px] leading-5 text-white/40">
                 <CheckCircle2 size={13} className="mt-0.5 shrink-0 text-teal-200/70" aria-hidden="true" />
-                Stock, availability and final MRP will be confirmed before the order is accepted.
+                Listed MRP is recorded now. Selling price, availability and delivery are confirmed by the owner before acceptance.
               </p>
+              <Link href="/orders" className="mt-3 block text-center text-[10px] font-bold text-teal-100/70 hover:text-teal-50">View My Orders</Link>
             </GlassCard>
           </div>
         )}

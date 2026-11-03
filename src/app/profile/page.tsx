@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useStore } from "@/store/useStore";
 import Navbar from "@/components/Navbar";
 import GlassCard from "@/components/GlassCard";
+import { getSupabaseClient } from "@/lib/supabase";
 import { ArrowLeft, Check, MapPin, Phone, Save, UserRound } from "lucide-react";
 
 function ProfileContent() {
@@ -19,7 +20,7 @@ function ProfileContent() {
 
   useEffect(() => { setForm(user); }, [user]);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const digits = form.phone.replace(/\D/g, "");
     const phone = digits.length === 12 && digits.startsWith("91") ? digits.slice(2) : digits;
 
@@ -33,7 +34,29 @@ function ProfileContent() {
     }
 
     setError("");
-    setUser({ name: form.name.trim(), phone, address: form.address.trim() });
+    const nextUser = { name: form.name.trim(), phone, address: form.address.trim() };
+    const client = getSupabaseClient();
+    if (client) {
+      const { data: sessionData, error: sessionError } = await client.auth.getSession();
+      if (sessionError) {
+        setError(sessionError.message);
+        return;
+      }
+      const userId = sessionData.session?.user?.id;
+      if (userId) {
+        const { error: profileError } = await client.from("profiles").upsert({
+          full_name: nextUser.name,
+          phone: nextUser.phone,
+          delivery_address: nextUser.address,
+          updated_at: new Date().toISOString(),
+        }, { onConflict: "id" });
+        if (profileError) {
+          setError(profileError.message);
+          return;
+        }
+      }
+    }
+    setUser(nextUser);
     setSaved(true);
     window.setTimeout(() => setSaved(false), 1500);
     if (fromCheckout) window.setTimeout(() => router.push("/cart"), 800);
@@ -90,13 +113,17 @@ function ProfileContent() {
 
           {error && <p role="alert" className="mt-4 rounded-xl border border-rose-300/20 bg-rose-300/[0.06] px-3.5 py-3 text-xs leading-5 text-rose-200">{error}</p>}
 
-          <button type="button" onClick={handleSave} disabled={!form.name.trim() || !form.phone.trim() || !form.address.trim()} className="btn-cyan mt-5 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-35">
+          <button type="button" onClick={() => void handleSave()} disabled={!form.name.trim() || !form.phone.trim() || !form.address.trim()} className="btn-cyan mt-5 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-35">
             {saved ? <><Check size={17} aria-hidden="true" /> Details saved</> : <><Save size={17} aria-hidden="true" /> Save details</>}
           </button>
         </GlassCard>
 
-        <p className="mx-auto mt-4 max-w-md text-center text-[10px] leading-5 text-white/30">
-          Your profile is stored locally in this browser. It is shared only when you open the WhatsApp order message.
+        <div className="mt-4 flex flex-wrap justify-center gap-4 text-[11px] font-semibold">
+          <Link href="/account?next=%2Fprofile" className="text-teal-100/75 hover:text-white">Customer account / Sign in</Link>
+          <Link href="/orders" className="text-teal-100/75 hover:text-white">My Orders</Link>
+        </div>
+        <p className="mx-auto mt-3 max-w-md text-center text-[10px] leading-5 text-white/30">
+          Details are kept on this device and synchronised to your customer profile when you are signed in. A WhatsApp enquiry alone does not create an online tracking record.
         </p>
         {fromCheckout && <p className="mt-4 text-center text-xs font-medium text-teal-100/75">After saving, you will return to your cart.</p>}
       </div>
