@@ -100,6 +100,26 @@ test("apparel colour and size SKUs are separate product cards", async ({ page })
   ).toBeVisible();
 });
 
+test("different Hairdoc Oil pack sizes remain separate cart products", async ({ page }) => {
+  await page.goto("./");
+  await page.getByRole("button", { name: "SNISS Herbal", exact: true }).click();
+
+  const hundredMl = page.getByRole("group", { name: "Product HAIRDOC OIL" });
+  const twoHundredMl = page.getByRole("group", { name: "Product HAIRDOC OIL 200 ML" });
+
+  await expect(hundredMl).toBeVisible();
+  await expect(twoHundredMl).toBeVisible();
+  await hundredMl.getByRole("button", { name: "Add HAIRDOC OIL to cart" }).click();
+  await twoHundredMl.getByRole("button", { name: "Add HAIRDOC OIL 200 ML to cart" }).click();
+
+  await page.goto("cart/");
+  await expect(page.getByText("HAIRDOC OIL", { exact: true })).toBeVisible();
+  await expect(page.getByText("100 ML", { exact: true })).toBeVisible();
+  await expect(page.getByText("HAIRDOC OIL 200 ML", { exact: true })).toBeVisible();
+  await expect(page.getByText("200 ML", { exact: true })).toBeVisible();
+  await expect(page.getByText("₹660", { exact: true }).first()).toBeVisible();
+});
+
 test("conflicting MRP product is blocked from cart", async ({ page }) => {
   await page.goto("./");
   await page.getByRole("button", { name: "Jeeveda", exact: true }).click();
