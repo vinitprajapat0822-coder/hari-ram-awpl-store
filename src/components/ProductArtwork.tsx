@@ -38,7 +38,9 @@ function buildImageQuery(product: Product): string {
   return (title + " " + category).slice(0, 180);
 }
 
-export default function ProductArtwork({ product }: { product: Product }) {
+type Props = { product: Product; showAttribution?: boolean };
+
+export default function ProductArtwork({ product, showAttribution = true }: Props) {
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
   const [officialBroken, setOfficialBroken] = useState(false);
@@ -141,7 +143,7 @@ export default function ProductArtwork({ product }: { product: Product }) {
             onError={() => setStockBroken(true)}
           />
           <span className="product-artwork__source">Illustrative visual</span>
-          {stockImage.foreign_landing_url && (
+          {showAttribution && stockImage.foreign_landing_url && (
             <a
               className="product-artwork__attribution"
               href={stockImage.foreign_landing_url}
