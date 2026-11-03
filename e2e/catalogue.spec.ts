@@ -40,7 +40,7 @@ test("mobile navigation stays visible and exposes all primary routes", async ({ 
 
 test("search filters the catalogue and can be cleared", async ({ page }) => {
   await page.goto("./");
-  const search = page.getByRole("textbox", { name: "Search products" });
+  const search = page.getByRole("searchbox", { name: "Search products" });
   await search.fill("JEEVEDA CHHOLE CHANA MASALA");
   await expect(page.getByRole("group", { name: "Product JEEVEDA CHHOLE CHANA MASALA" })).toBeVisible();
   await expect(page.getByText("1 product", { exact: true })).toBeVisible();
