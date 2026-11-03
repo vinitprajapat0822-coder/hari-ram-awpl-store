@@ -1,43 +1,33 @@
-# Deployment readiness
+# GitHub Pages deployment
 
-Date: 2026-11-03
 Repository: `vinitprajapat0822-coder/hari-ram-awpl-store`
-Branch: `catalogue/category-master-foundation`
+Production branch: `main`
+Hosting: GitHub Pages only (no Vercel).
 
-## Deployment target
+## Build configuration
 
-Recommended host: Vercel (Next.js native build and GitHub pull-request previews).
+- Next.js static export: `output: "export"`
+- Project-site base path: `/hari-ram-awpl-store`
+- Static output directory: `out/`
+- Remote AWPL product images: direct HTTPS URLs from the official AWPL image host; Next Image optimization is disabled for static hosting.
+- GitHub Actions workflow: `.github/workflows/deploy-pages.yml`
 
-## Repository preflight
+## Deployment flow
 
-- [x] TypeScript check passed on the latest catalogue implementation.
-- [x] ESLint passed with no warnings or errors.
-- [x] Production build passed.
-- [x] Playwright Chromium suite passed 8/8 on the previous code checkpoint.
-- [ ] Re-run full CI after the current official-image host restriction and image URL changes.
-- [ ] Reconcile the remaining official product image URLs.
-- [ ] Complete mobile physical-device, keyboard-only, screen-reader and multi-tab manual checks.
-- [ ] Confirm privacy policy, terms, data processor disclosure and customer-data handling before any public commercial use.
-- [ ] Verify the store's operator/reseller authorization and product-price/inventory process before accepting real orders.
+A push to `main` or manual workflow dispatch builds the static site, uploads `out/` as a Pages artifact, and deploys it using GitHub Pages Actions. The production URL is:
 
-## Host connection (blocked pending account connection)
+`https://vinitprajapat0822-coder.github.io/hari-ram-awpl-store/`
 
-Vercel account/project connection is not configured in this repository. The Vercel integration was not connected, so no deployment or preview URL has been created from this session.
+The first workflow run must finish successfully before the URL is considered live. Repository Pages settings must permit GitHub Actions as the build/deployment source.
 
-After the repository owner connects the GitHub repository to a Vercel project:
-1. Set framework preset to Next.js.
-2. Build command: `npm run build`.
-3. Install command: `npm install`.
-4. Root directory: repository root.
-5. Enable preview deployments for pull requests.
-6. Keep production deployment branch set to `main`; do not merge this draft PR until review is complete.
+## Quality gates
 
-## Current release state
+The catalogue quality workflow runs TypeScript, ESLint, Next.js static build and Playwright browser/accessibility tests. Browser tests use the same project base path.
 
-- Live production deployment: NOT DEPLOYED.
-- Preview URL: NOT AVAILABLE.
-- Main branch: unchanged.
-- Draft PR #1: open for review.
-- No domain, payment processor, live API keys or production credentials configured.
+## Catalogue/image limitations
 
-This file is a preflight record, not a claim that the site is live.
+The catalogue currently contains 126 parent products grouped from 134 captured listing rows. This is not the complete AWPL selector catalogue. Only exact verified official image URL matches are displayed; unresolved products retain the placeholder. Do not fabricate image filenames or reuse another product's image.
+
+## Release safety
+
+No Vercel project, token or integration is used. Do not claim a successful production deployment until the GitHub Pages deployment workflow reports success.
