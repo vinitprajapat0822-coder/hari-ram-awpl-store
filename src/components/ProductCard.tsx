@@ -65,7 +65,6 @@ export default function ProductCard({ product }: Props) {
     >
       <Link
         href={"/product/" + encodeURIComponent(product.id) + "/"}
-        aria-label={"View details for " + product.name}
         className="product-card__details block min-w-0 flex-1 rounded-xl outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-200"
       >
         <div onPointerMove={handlePointerMove} onPointerDown={handlePointerDown}>
