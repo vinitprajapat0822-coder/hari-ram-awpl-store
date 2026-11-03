@@ -3063,8 +3063,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51411_042878.jpg",
+      "status": "VERIFIED",
+      "altText": "HAIRDOC OIL"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3075,8 +3076,8 @@ export const awplProducts: ProductMasterRecord[] = [
       "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
     },
     "productSource": {
-      "sourceLabel": "AWPL official category listing",
-      "sourceUrl": "https://terms.asclepiuswellness.com/product/sniss-herbal/",
+      "sourceLabel": "Official AWPL product detail page",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/hairdoc-oil/",
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
