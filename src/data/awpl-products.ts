@@ -1026,12 +1026,13 @@ export const awplProducts: ProductMasterRecord[] = [
       "status": "MISSING"
     },
     "availability": "UNKNOWN",
-    "status": "VERIFIED",
+    "status": "PRICE_REVIEW_REQUIRED",
     "priceEvidence": {
       "sourceLabel": "AWPL official category listing (indexed source snapshot)",
       "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
       "checkedAt": "2026-11-03",
-      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+      "reviewNote": "Official AWPL category listing shows ₹699. The user-provided February 2026 catalogue shows ₹605 for the same 2 LTR pack. Confirm against the current labelled pack or latest company price list before this product becomes orderable.",
+      "previousMrp": 605
     },
     "productSource": {
       "sourceLabel": "AWPL official category listing",
