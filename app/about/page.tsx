@@ -31,7 +31,7 @@ export default function AboutPage() {
               AWPL STORE
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-white/55 sm:text-base">
-              A simple, direct way to explore the Asclepius Wellness / AWPL product catalogue
+              A simple, direct way to explore selected AWPL everyday product categories
               and contact the store for order enquiries.
             </p>
           </div>
@@ -45,8 +45,8 @@ export default function AboutPage() {
             </div>
             <p className="text-sm leading-8 text-white/65">
               Hari Ram AWPL Store, Hariram Prajapat द्वारा संचालित एक independent product
-              store है। यहाँ Asclepius Wellness / AWPL के उपलब्ध catalogue में wellness,
-              juices और ras, personal care, home care, spices तथा everyday products देखे
+              store है। यहाँ AWPL catalogue में personal care, home care, cosmetics,
+              spices, apparel तथा everyday products देखे
               जा सकते हैं। हर listing में उपलब्ध product name, pack size और catalogue MRP
               दिखाने का प्रयास किया गया है। Final selling price, current availability और
               delivery की जानकारी WhatsApp पर सीधे confirm की जाती है। Product के ingredients
@@ -60,7 +60,7 @@ export default function AboutPage() {
               </h3>
               <p className="mt-2 text-xs leading-7 text-white/50">
                 Hari Ram AWPL Store is an independent product store managed by Hariram
-                Prajapat. Browse available Asclepius Wellness / AWPL catalogue items and
+                Prajapat. Browse available personal care, home care, cosmetics, apparel and everyday catalogue items and
                 contact us directly on WhatsApp to confirm product details, final pricing
                 and delivery.
               </p>
