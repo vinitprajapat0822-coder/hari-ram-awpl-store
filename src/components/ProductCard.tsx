@@ -50,7 +50,8 @@ export default function ProductCard({ product, index = 0 }: Props) {
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     handlePointerMove(event);
-    const element = event.currentTarget;
+    const element = event.currentTarget.querySelector<HTMLElement>(".product-media");
+    if (!element) return;
     element.classList.remove("is-rippling");
     void element.offsetWidth;
     element.classList.add("is-rippling");
