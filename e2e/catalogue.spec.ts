@@ -138,8 +138,8 @@ test("profile route renders and has labelled customer fields", async ({ page }) 
   await expect(page.getByLabel("Delivery Address *")).toBeVisible();
 });
 
-test("home, cart and profile pass WCAG accessibility scan", async ({ page }) => {
-  const routes = ["./", "cart/", "profile/"];
+test("home, cart, profile and product detail pass WCAG accessibility scan", async ({ page }) => {
+  const routes = ["./", "cart/", "profile/", "product/awpl-apparels-asclepius-women-saree-crape/"];
   for (const route of routes) {
     await page.goto(route);
     await page.waitForTimeout(700);
@@ -154,4 +154,56 @@ test("home, cart and profile pass WCAG accessibility scan", async ({ page }) => 
       })))
     ).toEqual([]);
   }
+});
+
+
+test("product card opens a dedicated product detail page", async ({ page }) => {
+  await page.goto("./");
+  const product = page.getByRole("group", { name: "Product ASCLEPIUS WOMEN SAREE CRAPE", exact: true });
+  await expect(product).toBeVisible();
+  await product.getByRole("link", { name: /ASCLEPIUS WOMEN SAREE CRAPE/ }).click();
+
+  await expect(page.getByRole("heading", { name: "ASCLEPIUS WOMEN SAREE CRAPE", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Product information" })).toBeVisible();
+  await expect(page.getByText("Hari Ram AWPL Store", { exact: true })).toBeVisible();
+  await expect(page.getByText("Live stock count not synced")).toBeVisible();
+  await expect(page.getByText("No verified reviews yet")).toBeVisible();
+  await expect(page.getByText("Added date", { exact: true })).toBeVisible();
+  await expect(page.getByText("Not recorded").first()).toBeVisible();
+  await expect(page.getByRole("button", { name: "Add to cart" })).toBeVisible();
+});
+
+test("product card image lookup is concurrency limited", async ({ page }) => {
+  let activeRequests = 0;
+  let peakRequests = 0;
+
+  await page.route("https://api.openverse.org/v1/images/**", async (route) => {
+    activeRequests += 1;
+    peakRequests = Math.max(peakRequests, activeRequests);
+    await new Promise((resolve) => setTimeout(resolve, 60));
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ results: [] }),
+    });
+    activeRequests -= 1;
+  });
+
+  await page.goto("./");
+  await page.getByTestId("product-grid").scrollIntoViewIfNeeded();
+  await page.waitForTimeout(700);
+  expect(peakRequests).toBeLessThanOrEqual(2);
+});
+
+
+test("product feedback form requires a rating and comment", async ({ page }) => {
+  await page.goto("./");
+  const product = page.getByRole("group", { name: "Product ASCLEPIUS WOMEN SAREE CRAPE", exact: true });
+  await product.getByRole("link", { name: /ASCLEPIUS WOMEN SAREE CRAPE/ }).click();
+
+  const sendFeedback = page.getByRole("button", { name: "Send feedback via WhatsApp" });
+  await expect(sendFeedback).toBeDisabled();
+  await page.getByRole("button", { name: "Rate 5 stars" }).click();
+  await page.getByLabel("Your comment").fill("The product details were helpful.");
+  await expect(sendFeedback).toBeEnabled();
 });

@@ -3,19 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import type { Product } from "@/data/products";
-
-type OpenverseImage = {
-  thumbnail?: string;
-  url?: string;
-  title?: string;
-  creator?: string;
-  license?: string;
-  foreign_landing_url?: string;
-};
-
-type OpenverseResponse = {
-  results?: OpenverseImage[];
-};
+import { findOpenverseImage, type OpenverseImage } from "@/lib/product-image-search";
 
 const categorySearchTerms: Record<string, string> = {
   agriculture: "agriculture plants farm produce",
@@ -29,21 +17,9 @@ const categorySearchTerms: Record<string, string> = {
   "sniss elite": "skincare beauty cosmetics",
   "sniss fragrances": "perfume fragrance bottle",
   "sniss herbal": "herbal skincare aloe vera",
-  "sniss health": "wellness care products",
-  "sniss personal care": "personal care toiletries",
-  "veterinary": "veterinary animal care",
-  "wellroot": "herbal wellness plants",
+  veterinary: "veterinary animal care",
+  wellroot: "herbal wellness plants",
 };
-
-function safeHttpsUrl(value: unknown): string | null {
-  if (typeof value !== "string" || value.length === 0) return null;
-  try {
-    const parsed = new URL(value);
-    return parsed.protocol === "https:" ? parsed.toString() : null;
-  } catch {
-    return null;
-  }
-}
 
 function initialsFor(name: string): string {
   const words = name.trim().split(/\s+/).filter(Boolean);
@@ -58,10 +34,13 @@ function buildImageQuery(product: Product): string {
     .replace(/[()[\]_-]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+
   return (title + " " + category).slice(0, 180);
 }
 
-export default function ProductArtwork({ product }: { product: Product }) {
+type Props = { product: Product; showAttribution?: boolean };
+
+export default function ProductArtwork({ product, showAttribution = true }: Props) {
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
   const [officialBroken, setOfficialBroken] = useState(false);
@@ -83,7 +62,7 @@ export default function ProductArtwork({ product }: { product: Product }) {
           observer.disconnect();
         }
       },
-      { rootMargin: "180px 0px" }
+      { rootMargin: "70px 0px" }
     );
 
     observer.observe(container);
@@ -91,44 +70,40 @@ export default function ProductArtwork({ product }: { product: Product }) {
   }, [container, visible]);
 
   useEffect(() => {
-    const hasOfficialImage = Boolean(product.image) && product.imageStatus === "VERIFIED" && !officialBroken;
+    const hasOfficialImage = Boolean(product.image)
+      && product.imageStatus === "VERIFIED"
+      && !officialBroken;
+
     if (!visible || hasOfficialImage || stockImage || stockBroken) return undefined;
 
-    const controller = new AbortController();
-    const query = buildImageQuery(product);
-    const requestUrl = "https://api.openverse.org/v1/images/?q="
-      + encodeURIComponent(query)
-      + "&category=photograph&license_type=commercial&size=medium&page_size=4";
-
-    fetch(requestUrl, { signal: controller.signal })
-      .then((response) => {
-        if (!response.ok) throw new Error("Image search unavailable");
-        return response.json() as Promise<OpenverseResponse>;
-      })
-      .then((payload) => {
-        const result = Array.isArray(payload.results)
-          ? payload.results.find((item) => safeHttpsUrl(item.thumbnail) !== null)
-          : undefined;
-
-        if (result) {
-          setStockImage({
-            ...result,
-            thumbnail: safeHttpsUrl(result.thumbnail) ?? undefined,
-            foreign_landing_url: safeHttpsUrl(result.foreign_landing_url) ?? undefined,
-          });
-        } else {
-          setStockBroken(true);
-        }
-      })
-      .catch(() => {
-        if (!controller.signal.aborted) setStockBroken(true);
+    let active = true;
+    const timerId = window.setTimeout(() => {
+      findOpenverseImage(buildImageQuery(product)).then((result) => {
+        if (!active) return;
+        if (result) setStockImage(result);
+        else setStockBroken(true);
       });
+    }, 240);
 
-    return () => controller.abort();
-  }, [officialBroken, product, stockBroken, stockImage, visible]);
+    return () => {
+      active = false;
+      window.clearTimeout(timerId);
+    };
+  }, [
+    officialBroken,
+    product.category,
+    product.id,
+    product.image,
+    product.imageStatus,
+    product.name,
+    stockBroken,
+    stockImage,
+    visible,
+  ]);
 
-  const hasOfficialImage = Boolean(product.image) && product.imageStatus === "VERIFIED" && !officialBroken;
-  const stockUrl = safeHttpsUrl(stockImage?.thumbnail);
+  const hasOfficialImage = Boolean(product.image)
+    && product.imageStatus === "VERIFIED"
+    && !officialBroken;
   const initials = initialsFor(product.name);
 
   return (
@@ -155,11 +130,11 @@ export default function ProductArtwork({ product }: { product: Product }) {
         />
       )}
 
-      {!hasOfficialImage && stockUrl && !stockBroken && (
+      {!hasOfficialImage && stockImage && !stockBroken && (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={stockUrl}
+            src={stockImage.thumbnail}
             alt={"Illustrative stock photo related to " + product.name + "; not official product packaging"}
             className={"product-artwork__image product-artwork__stock" + (stockLoaded ? " is-loaded" : "")}
             loading="lazy"
@@ -168,7 +143,7 @@ export default function ProductArtwork({ product }: { product: Product }) {
             onError={() => setStockBroken(true)}
           />
           <span className="product-artwork__source">Illustrative visual</span>
-          {stockImage?.foreign_landing_url && (
+          {showAttribution && stockImage.foreign_landing_url && (
             <a
               className="product-artwork__attribution"
               href={stockImage.foreign_landing_url}
