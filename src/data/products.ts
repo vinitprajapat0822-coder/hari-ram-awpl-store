@@ -1,3 +1,5 @@
+import { catalogueCategoryFilters } from "./catalogue";
+
 export type Product = {
   id: string;
   name: string;
@@ -27,15 +29,4 @@ export const products: Product[] = [
   { id: "kids-protein", name: "Kids Protein", nameHi: "किड्स प्रोटीन", category: "Baby Care", description: "Physical, mental, intellectual development + muscles", mrp: 1618, dp: 1156, sp: 1, qty: "200 GM" },
 ];
 
-export const categories = [
-  "All",
-  "Wellness",
-  "Wellroot",
-  "Baby Care",
-  "Food",
-  "Home Care",
-  "SNISS Herbal",
-  "SNISS Elite",
-  "Spices",
-  "Other",
-];
+export const categories = [...catalogueCategoryFilters];
