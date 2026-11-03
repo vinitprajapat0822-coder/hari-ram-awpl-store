@@ -22,8 +22,7 @@ export default function CartPage() {
     }
 
     const message = generateWhatsAppMessage(cart, user, total);
-    const url = getWhatsAppUrl(message);
-    window.open(url, "_blank");
+    window.open(getWhatsAppUrl(message), "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -45,60 +44,75 @@ export default function CartPage() {
           </GlassCard>
         ) : (
           <div className="space-y-4">
-            {cart.map((item) => (
-              <GlassCard key={item.product.id} className="p-4">
-                <div className="flex gap-4">
-                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/10 flex items-center justify-center text-xl font-bold text-cyan-400/50 shrink-0">
-                    {item.product.name.charAt(0)}
-                  </div>
+            {cart.map((item) => {
+              const variantId = item.variant?.id;
+              const lineKey = `${item.product.id}:${variantId ?? "default"}`;
 
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-white truncate">
-                      {item.product.name}
-                    </h3>
-                    <p className="text-sm text-white/50">{item.product.qty}</p>
-                    <p className="text-cyan-400 font-semibold mt-1">
-                      {formatPrice(item.product.mrp * item.quantity)}
-                    </p>
-                  </div>
+              return (
+                <GlassCard key={lineKey} className="p-4">
+                  <div className="flex gap-4">
+                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/10 flex items-center justify-center text-xl font-bold text-cyan-400/50 shrink-0">
+                      {item.product.name.charAt(0)}
+                    </div>
 
-                  <div className="flex flex-col items-end gap-2">
-                    <button
-                      onClick={() => removeFromCart(item.product.id)}
-                      className="p-1.5 text-white/40 hover:text-red-400 transition-colors"
-                    >
-                      <Trash2 size={16} />
-                    </button>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium text-white">
+                        {item.product.name}
+                      </h3>
+                      {item.variant && (
+                        <p className="text-xs text-cyan-300/80 mt-0.5">
+                          {item.variant.label}
+                        </p>
+                      )}
+                      <p className="text-sm text-white/50">
+                        {item.variant?.packSize || item.product.qty}
+                      </p>
+                      <p className="text-cyan-400 font-semibold mt-1">
+                        {formatPrice(item.product.mrp * item.quantity)}
+                      </p>
+                    </div>
 
-                    <div className="flex items-center gap-2 bg-white/5 rounded-lg px-1">
+                    <div className="flex flex-col items-end gap-2">
                       <button
-                        onClick={() =>
-                          updateQuantity(item.product.id, item.quantity - 1)
-                        }
-                        className="p-1.5 text-white/70 hover:text-white"
+                        onClick={() => removeFromCart(item.product.id, variantId)}
+                        aria-label={`Remove ${item.product.name} from cart`}
+                        className="p-1.5 text-white/40 hover:text-red-400 transition-colors"
                       >
-                        <Minus size={14} />
+                        <Trash2 size={16} />
                       </button>
-                      <span className="w-6 text-center text-sm font-medium">
-                        {item.quantity}
-                      </span>
-                      <button
-                        onClick={() =>
-                          updateQuantity(item.product.id, item.quantity + 1)
-                        }
-                        className="p-1.5 text-white/70 hover:text-white"
-                      >
-                        <Plus size={14} />
-                      </button>
+
+                      <div className="flex items-center gap-2 bg-white/5 rounded-lg px-1">
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.product.id, item.quantity - 1, variantId)
+                          }
+                          aria-label="Decrease quantity"
+                          className="p-1.5 text-white/70 hover:text-white"
+                        >
+                          <Minus size={14} />
+                        </button>
+                        <span className="w-6 text-center text-sm font-medium">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.product.id, item.quantity + 1, variantId)
+                          }
+                          aria-label="Increase quantity"
+                          className="p-1.5 text-white/70 hover:text-white"
+                        >
+                          <Plus size={14} />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </GlassCard>
-            ))}
+                </GlassCard>
+              );
+            })}
 
             <GlassCard className="p-5 mt-6">
               <div className="flex justify-between text-lg font-semibold mb-4">
-                <span>Total</span>
+                <span>Total (MRP)</span>
                 <span className="text-cyan-400">{formatPrice(total)}</span>
               </div>
 
@@ -107,11 +121,11 @@ export default function CartPage() {
                 className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-bold text-lg shadow-lg shadow-cyan-500/30 active:scale-[0.98] transition-transform"
               >
                 <MessageCircle size={22} />
-                Order on WhatsApp
+                Order details on WhatsApp
               </button>
 
               <p className="text-center text-xs text-white/40 mt-3">
-                You will be redirected to WhatsApp with your order details
+                Stock, availability and final MRP must be confirmed before an order is accepted.
               </p>
             </GlassCard>
           </div>
