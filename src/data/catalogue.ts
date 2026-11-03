@@ -30,6 +30,7 @@ export type CatalogueCategorySlug =
 export type ProductVariant = {
   id: string;
   label: string;
+  size?: string | null;
   packSize?: string | null;
   quantity?: string | null;
   colour?: string | null;
@@ -142,3 +143,36 @@ export const catalogueCategoryFilters = [
   "All",
   ...catalogueCategories.map((category) => category.name),
 ] as const;
+
+
+/**
+ * Product rows captured from official AWPL category-listing page snapshots.
+ * "captured" counts extracted listing rows, not unique parent-product cards.
+ */
+export const catalogueCollectionCoverage = [
+  { slug: "agriculture", selectorEntries: 4, capturedRows: 4, coverage: "COMPLETE" },
+  { slug: "apparels", selectorEntries: 62, capturedRows: 13, coverage: "PARTIAL" },
+  { slug: "baby-care", selectorEntries: 4, capturedRows: 4, coverage: "COMPLETE" },
+  { slug: "food", selectorEntries: 2, capturedRows: 2, coverage: "COMPLETE" },
+  { slug: "home-care", selectorEntries: 15, capturedRows: 15, coverage: "COMPLETE" },
+  { slug: "jeeveda", selectorEntries: 36, capturedRows: 20, coverage: "PARTIAL" },
+  { slug: "oral-care", selectorEntries: 1, capturedRows: 1, coverage: "COMPLETE" },
+  { slug: "others", selectorEntries: 2, capturedRows: 2, coverage: "COMPLETE" },
+  { slug: "sniss-cosmetic", selectorEntries: 88, capturedRows: 21, coverage: "PARTIAL" },
+  { slug: "sniss-elite", selectorEntries: 24, capturedRows: 24, coverage: "COMPLETE" },
+  { slug: "sniss-fragrances", selectorEntries: 4, capturedRows: 4, coverage: "COMPLETE" },
+  { slug: "sniss-herbal", selectorEntries: 35, capturedRows: 33, coverage: "PARTIAL" },
+  { slug: "veterinary", selectorEntries: 2, capturedRows: 2, coverage: "COMPLETE" },
+  { slug: "wellness", selectorEntries: 48, capturedRows: 48, coverage: "COMPLETE" },
+  { slug: "wellroot", selectorEntries: 47, capturedRows: 13, coverage: "PARTIAL" },
+] as const;
+
+export const catalogueDataStatus = {
+  capturedAt: "2026-11-03",
+  selectorEntryCountObserved: 374,
+  rawListingRowsCaptured: 206,
+  parentProductsAfterVariantGrouping: 198,
+  completeCategories: 10,
+  partialCategories: 5,
+  note: "Selector counts are not unique parent-product counts. Partial categories must not be labelled complete.",
+} as const;
