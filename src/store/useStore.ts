@@ -4,11 +4,9 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { products } from "@/data/products";
 import type { Product } from "@/data/products";
-import type { ProductVariant } from "@/data/catalogue";
 
 export type CartItem = {
   product: Product;
-  variant?: ProductVariant;
   quantity: number;
 };
 
@@ -21,9 +19,9 @@ export type UserDetails = {
 type StoreState = {
   cart: CartItem[];
   user: UserDetails;
-  addToCart: (product: Product, variant?: ProductVariant) => void;
-  removeFromCart: (productId: string, variantId?: string) => void;
-  updateQuantity: (productId: string, quantity: number, variantId?: string) => void;
+  addToCart: (product: Product) => void;
+  removeFromCart: (productId: string) => void;
+  updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   setUser: (user: UserDetails) => void;
   getCartTotal: () => number;
@@ -32,61 +30,40 @@ type StoreState = {
 
 const currentProducts = new Map(products.map((product) => [product.id, product]));
 
-function isSameCartLine(item: CartItem, productId: string, variantId?: string) {
-  return (
-    item.product.id === productId &&
-    (item.variant?.id ?? null) === (variantId ?? null)
-  );
-}
-
 export const useStore = create<StoreState>()(
   persist(
     (set, get) => ({
       cart: [],
       user: { name: "", phone: "", address: "" },
 
-      addToCart: (product, variant) => {
+      addToCart: (product) => {
         if (product.status !== "VERIFIED") return;
-        if (product.variants.length > 0 && !variant) return;
-        if (variant && !product.variants.some((item) => item.id === variant.id)) return;
-
-        const existing = get().cart.find((item) =>
-          isSameCartLine(item, product.id, variant?.id)
-        );
-
+        const existing = get().cart.find((item) => item.product.id === product.id);
         if (existing) {
           set({
             cart: get().cart.map((item) =>
-              isSameCartLine(item, product.id, variant?.id)
+              item.product.id === product.id
                 ? { ...item, quantity: item.quantity + 1 }
                 : item
             ),
           });
         } else {
-          set({
-            cart: [...get().cart, { product, variant, quantity: 1 }],
-          });
+          set({ cart: [...get().cart, { product, quantity: 1 }] });
         }
       },
 
-      removeFromCart: (productId, variantId) => {
-        set({
-          cart: get().cart.filter(
-            (item) => !isSameCartLine(item, productId, variantId)
-          ),
-        });
+      removeFromCart: (productId) => {
+        set({ cart: get().cart.filter((item) => item.product.id !== productId) });
       },
 
-      updateQuantity: (productId, quantity, variantId) => {
+      updateQuantity: (productId, quantity) => {
         if (quantity <= 0) {
-          get().removeFromCart(productId, variantId);
+          get().removeFromCart(productId);
           return;
         }
         set({
           cart: get().cart.map((item) =>
-            isSameCartLine(item, productId, variantId)
-              ? { ...item, quantity }
-              : item
+            item.product.id === productId ? { ...item, quantity } : item
           ),
         });
       },
@@ -102,7 +79,7 @@ export const useStore = create<StoreState>()(
     }),
     {
       name: "hari-ram-awpl-store",
-      version: 2,
+      version: 3,
       skipHydration: true,
       migrate: (persistedState) => {
         const saved = persistedState as {
@@ -117,15 +94,16 @@ export const useStore = create<StoreState>()(
         const cart: CartItem[] = (saved.cart ?? []).flatMap((savedItem) => {
           const productId = savedItem.product?.id;
           const variantId = savedItem.variant?.id;
-          const product = productId
+          const standaloneProduct = productId
             ? (variantId
                 ? currentProducts.get(`${productId}-${variantId}`)
                 : undefined) ?? currentProducts.get(productId)
             : undefined;
-          if (!product || product.status !== "VERIFIED") return [];
+
+          if (!standaloneProduct || standaloneProduct.status !== "VERIFIED") return [];
 
           return [{
-            product,
+            product: standaloneProduct,
             quantity:
               typeof savedItem.quantity === "number" && savedItem.quantity > 0
                 ? Math.floor(savedItem.quantity)
@@ -161,10 +139,9 @@ export function generateWhatsAppMessage(
   lines.push("");
 
   cart.forEach((item, index) => {
-    const variantText = item.variant ? ` — ${item.variant.label}` : "";
     const lineTotal = item.product.mrp * item.quantity;
     lines.push(
-      `${index + 1}. ${item.product.name}${variantText} × ${item.quantity} = ₹${lineTotal.toLocaleString("en-IN")}`
+      `${index + 1}. ${item.product.name} (${item.product.qty}) × ${item.quantity} = ₹${lineTotal.toLocaleString("en-IN")}`
     );
   });
 
