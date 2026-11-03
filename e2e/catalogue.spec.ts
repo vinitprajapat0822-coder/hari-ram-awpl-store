@@ -80,11 +80,11 @@ test("apparel variant is preserved in cart and after reload", async ({ page }) =
   await expect(page.getByRole("heading", { name: "Your Cart" })).toBeVisible();
   await expect(page.getByText("ASCLEPIUS T SHIRT", { exact: true })).toBeVisible();
   await expect(page.getByText("OLIVE (S)", { exact: true })).toBeVisible();
-  await expect(page.getByText("₹2,559", { exact: true })).toBeVisible();
+  await expect(page.getByText("₹2,559", { exact: true }).first()).toBeVisible();
 
   await page.reload();
   await expect(page.getByText("OLIVE (S)", { exact: true })).toBeVisible();
-  await expect(page.getByText("₹2,559", { exact: true })).toBeVisible();
+  await expect(page.getByText("₹2,559", { exact: true }).first()).toBeVisible();
 });
 
 test("conflicting MRP product is blocked from cart", async ({ page }) => {
@@ -111,6 +111,7 @@ test("home, cart and profile pass WCAG accessibility scan", async ({ page }) => 
 
   for (const route of routes) {
     await page.goto(route);
+    await page.waitForTimeout(700); // let Framer Motion entrance transitions settle before axe evaluates contrast
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
       .analyze();
