@@ -27,7 +27,7 @@ test.afterEach(async () => {
 });
 
 test("home page shows the category catalogue and image placeholders", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("./");
   await expect(page.getByRole("heading", { name: "HARI RAM" })).toBeVisible();
   await expect(page.getByText("126 products", { exact: true })).toBeVisible();
   await expect(page.getByText("Image pending").first()).toBeVisible();
@@ -36,7 +36,7 @@ test("home page shows the category catalogue and image placeholders", async ({ p
 });
 
 test("search filters the catalogue and can be cleared", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("./");
   const search = page.getByRole("textbox", { name: "Search products" });
 
   await search.fill("JEEVEDA CHHOLE CHANA MASALA");
@@ -51,7 +51,7 @@ test("search filters the catalogue and can be cleared", async ({ page }) => {
 });
 
 test("category filters only show matching products", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("./");
   await page.getByRole("button", { name: "Home Care", exact: true }).click();
 
   await expect(page.getByText("15 products in Home Care", { exact: true })).toBeVisible();
@@ -60,7 +60,7 @@ test("category filters only show matching products", async ({ page }) => {
 });
 
 test("held category filters do not show unreviewed items as orderable", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("./");
   await page.getByRole("button", { name: "Wellness", exact: true }).click();
 
   await expect(
@@ -69,14 +69,14 @@ test("held category filters do not show unreviewed items as orderable", async ({
 });
 
 test("apparel variant is preserved in cart and after reload", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("./");
   await page.getByRole("button", { name: "Apparels", exact: true }).click();
 
   const product = page.getByRole("group", { name: "Product ASCLEPIUS T SHIRT" });
   await product.getByLabel("Select size / colour").selectOption({ label: "OLIVE (S)" });
   await product.getByRole("button", { name: "Add ASCLEPIUS T SHIRT to cart" }).click();
 
-  await page.goto("/cart");
+  await page.goto("cart/");
   await expect(page.getByRole("heading", { name: "Your Cart" })).toBeVisible();
   await expect(page.getByText("ASCLEPIUS T SHIRT", { exact: true })).toBeVisible();
   await expect(page.getByText("OLIVE (S)", { exact: true })).toBeVisible();
@@ -88,7 +88,7 @@ test("apparel variant is preserved in cart and after reload", async ({ page }) =
 });
 
 test("conflicting MRP product is blocked from cart", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("./");
   await page.getByRole("button", { name: "Jeeveda", exact: true }).click();
 
   const product = page.getByRole("group", {
@@ -99,7 +99,7 @@ test("conflicting MRP product is blocked from cart", async ({ page }) => {
 });
 
 test("profile route renders and has labelled customer fields", async ({ page }) => {
-  await page.goto("/profile?from=checkout");
+  await page.goto("profile/?from=checkout");
   await expect(page.getByRole("heading", { name: "Your Details" })).toBeVisible();
   await expect(page.getByLabel("Full Name *")).toBeVisible();
   await expect(page.getByLabel("Mobile Number *")).toBeVisible();
@@ -107,7 +107,7 @@ test("profile route renders and has labelled customer fields", async ({ page }) 
 });
 
 test("home, cart and profile pass WCAG accessibility scan", async ({ page }) => {
-  const routes = ["/", "/cart", "/profile"];
+  const routes = ["./", "cart/", "profile/"];
 
   for (const route of routes) {
     await page.goto(route);
