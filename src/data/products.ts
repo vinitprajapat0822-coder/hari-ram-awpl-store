@@ -3,7 +3,6 @@ import { catalogueCategories, catalogueCategoryFilters } from "./catalogue";
 import type {
   ProductImageStatus,
   ProductMasterStatus,
-  ProductVariant,
 } from "./catalogue";
 
 export type Product = {
@@ -16,7 +15,6 @@ export type Product = {
   qty: string;
   image: string | null;
   imageStatus: ProductImageStatus;
-  variants: ProductVariant[];
   status: ProductMasterStatus;
 };
 
@@ -45,7 +43,6 @@ export const products: Product[] = awplProducts.flatMap((record) => {
     qty: record.packSize ?? "",
     image: record.image.url,
     imageStatus: record.image.status,
-    variants: record.variants,
     status: record.status,
   }];
 });
