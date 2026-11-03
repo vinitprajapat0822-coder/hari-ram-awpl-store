@@ -12,20 +12,9 @@ import { motion } from "framer-motion";
 export default function ProductCard({ product }: { product: Product }) {
   const addToCart = useStore((state) => state.addToCart);
   const [added, setAdded] = useState(false);
-  const [selectedVariantId, setSelectedVariantId] = useState(
-    product.variants[0]?.id ?? ""
-  );
-
-  const selectedVariant = product.variants.find(
-    (variant) => variant.id === selectedVariantId
-  );
 
   const inCart = useStore((state) =>
-    state.cart.some(
-      (item) =>
-        item.product.id === product.id &&
-        (item.variant?.id ?? null) === (selectedVariant?.id ?? null)
-    )
+    state.cart.some((item) => item.product.id === product.id)
   );
 
   const canOrder = product.status === "VERIFIED";
@@ -33,8 +22,8 @@ export default function ProductCard({ product }: { product: Product }) {
     product.status === "PRICE_REVIEW_REQUIRED" ? "MRP review" : "Details review";
 
   const handleAdd = () => {
-    if (!canOrder || (product.variants.length > 0 && !selectedVariant)) return;
-    addToCart(product, selectedVariant);
+    if (!canOrder) return;
+    addToCart(product);
     setAdded(true);
     setTimeout(() => setAdded(false), 1200);
   };
@@ -75,25 +64,6 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.description || "Product details will be added after source verification."}
         </p>
 
-        {product.variants.length > 0 && (
-          <label className="block mb-3">
-            <span className="block text-[11px] text-white/50 mb-1">
-              Select size / colour
-            </span>
-            <select
-              value={selectedVariantId}
-              onChange={(event) => setSelectedVariantId(event.target.value)}
-              className="w-full rounded-xl bg-slate-950/70 border border-white/10 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400/50"
-            >
-              {product.variants.map((variant) => (
-                <option key={variant.id} value={variant.id} className="bg-slate-950">
-                  {variant.label}
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
-
         <div className="mt-auto flex items-center justify-between gap-2">
           <div>
             {product.status === "PRICE_REVIEW_REQUIRED" ? (
@@ -110,7 +80,7 @@ export default function ProductCard({ product }: { product: Product }) {
             whileTap={canOrder ? { scale: 0.9 } : undefined}
             onClick={handleAdd}
             aria-label={canOrder ? `Add ${product.name} to cart` : reviewLabel}
-            disabled={!canOrder || (product.variants.length > 0 && !selectedVariant)}
+            disabled={!canOrder}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
               added || inCart
                 ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/40"
