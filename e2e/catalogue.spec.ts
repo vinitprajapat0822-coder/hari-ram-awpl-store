@@ -138,8 +138,8 @@ test("profile route renders and has labelled customer fields", async ({ page }) 
   await expect(page.getByLabel("Delivery Address *")).toBeVisible();
 });
 
-test("home, cart and profile pass WCAG accessibility scan", async ({ page }) => {
-  const routes = ["./", "cart/", "profile/"];
+test("home, cart, profile and product detail pass WCAG accessibility scan", async ({ page }) => {
+  const routes = ["./", "cart/", "profile/", "product/awpl-apparels-asclepius-women-saree-crape/"];
   for (const route of routes) {
     await page.goto(route);
     await page.waitForTimeout(700);
