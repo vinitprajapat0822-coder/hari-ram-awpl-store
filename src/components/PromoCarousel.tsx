@@ -121,11 +121,11 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
             <span className="hero-orbit__tag hero-orbit__tag--bottom">Home & living</span>
             <span className="hero-orbit__tag hero-orbit__tag--right">Wellness</span>
           </div>
-          <div className="hero-carousel__controls" aria-label="Carousel controls">
+          <div className="hero-carousel__controls" role="group" aria-label="Carousel controls">
             <button type="button" onClick={() => showSlide(activeIndex - 1)} aria-label="Previous highlight">
               <ArrowLeft size={16} aria-hidden="true" />
             </button>
-            <div className="hero-carousel__dots" aria-label="Choose highlight">
+            <div className="hero-carousel__dots" role="group" aria-label="Choose highlight">
               {slides.map((slide, index) => (
                 <button
                   key={slide.eyebrow}
@@ -148,7 +148,7 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
         <button type="button" onClick={() => showSlide(activeIndex - 1)} aria-label="Previous highlight">
           <ArrowLeft size={16} aria-hidden="true" />
         </button>
-        <div className="hero-carousel__dots" aria-label="Choose highlight">
+        <div className="hero-carousel__dots" role="group" aria-label="Choose highlight">
           {slides.map((slide, index) => (
             <button
               key={slide.eyebrow}
