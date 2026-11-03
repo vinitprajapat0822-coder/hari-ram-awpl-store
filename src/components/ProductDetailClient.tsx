@@ -255,7 +255,7 @@ export default function ProductDetailClient({ product }: Props) {
                 </a>
               </div>
               <p className="mt-3 text-[10px] leading-5 text-white/35">
-                The listed MRP is catalogue information. Final selling price, stock and delivery are confirmed by the store.
+                The listed MRP is catalogue information. Final selling price and delivery are confirmed by the store.
               </p>
             </GlassCard>
 
