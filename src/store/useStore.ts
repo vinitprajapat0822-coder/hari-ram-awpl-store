@@ -135,7 +135,8 @@ export function generateWhatsAppMessage(
   total: number
 ) {
   const lines: string[] = [];
-  lines.push("*Hari Ram AWPL Store - New Order*");
+  lines.push("*HARI RAM AWPL STORE - New Order*");
+  lines.push("Store owner: Hariram Prajapat");
   lines.push("");
 
   cart.forEach((item, index) => {
@@ -153,7 +154,7 @@ export function generateWhatsAppMessage(
   lines.push(`Phone: ${user.phone || "Not provided"}`);
   lines.push(`Address: ${user.address || "Not provided"}`);
   lines.push("");
-  lines.push("Please confirm stock, current MRP and delivery before accepting the order.");
+  lines.push("Please confirm the final price and delivery details before accepting the order.");
 
   return lines.join("\n");
 }
