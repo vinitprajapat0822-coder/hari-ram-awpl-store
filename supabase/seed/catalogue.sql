@@ -43,7 +43,7 @@ values
   ('awpl-jeeveda-jeeveda-chhole-chana-masala', 'JEEVEDA CHHOLE CHANA MASALA', 'jeeveda', '100 GM', 139, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3241_507729.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-chicken-masala', 'JEEVEDA CHICKEN MASALA', 'jeeveda', '100 GM', 147, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3251_493990.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-dal-makhani-masala', 'JEEVEDA DAL MAKHANI MASALA', 'jeeveda', '100 GM', 161, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3261_035630.jpg', 'VERIFIED'),
-  ('awpl-jeeveda-jeeveda-fish-masala', 'JEEVEDA FISH MASALA', 'jeeveda', '100 GM', 153, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-fish-masala', 'JEEVEDA FISH MASALA', 'jeeveda', '100 GM', 153, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T32711_393974.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-garam-masala', 'JEEVEDA GARAM MASALA', 'jeeveda', '100 GM', 167, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3281_133004.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-kitchen-king-masala', 'JEEVEDA KITCHEN KING MASALA', 'jeeveda', '100 GM', 139, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T32911_651975.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-mutton-masala', 'JEEVEDA MUTTON MASALA', 'jeeveda', '100 GM', 125, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
