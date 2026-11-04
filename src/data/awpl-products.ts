@@ -1439,8 +1439,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T37933_660794.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Bay Leaf pack, 25 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1469,8 +1470,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3801_205672.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Kasoori Methi Fenugreek Leaves pack, 50 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1529,8 +1531,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T27011_932914.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Turmeric Powder pack, 500 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1559,8 +1562,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4861_637514.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Coriander Powder pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
