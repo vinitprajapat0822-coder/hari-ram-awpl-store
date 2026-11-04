@@ -277,7 +277,7 @@ export default function AdminPage() {
                             {(order.order_items ?? []).map((item) => (
                               <div key={item.id} className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-3">
                                 <p className="text-xs font-semibold text-white">{item.product_name}</p>
-                                <p className="mt-1 text-[10px] text-white/40">{item.pack_size} · Qty {item.quantity} · MRP ₹{Number(item.mrp).toLocaleString("en-IN")}</p>
+                                <p className="mt-1 text-[10px] text-white/40">{item.pack_size} · {locale==="hi" ? "मात्रा" : "Qty"} {item.quantity} · MRP ₹{Number(item.mrp).toLocaleString("en-IN")}</p>
                               </div>
                             ))}
                           </div>
@@ -335,7 +335,7 @@ export default function AdminPage() {
                       {review.photoUrls.length > 0 && (
                         <div className="mt-3 grid max-w-xs grid-cols-3 gap-2">
                           {review.photoUrls.map((url) => (
-                            <img key={url} src={url} alt="Customer review photo awaiting moderation" loading="lazy" decoding="async" className="aspect-square w-full rounded-lg border border-white/10 object-cover" />
+                            <img key={url} src={url} alt={copy.reviewModeration} loading="lazy" decoding="async" className="aspect-square w-full rounded-lg border border-white/10 object-cover" />
                           ))}
                         </div>
                       )}
