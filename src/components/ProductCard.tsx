@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { memo, useState } from "react";
-import type { PointerEvent } from "react";
+import type { CSSProperties, PointerEvent } from "react";
 import type { Product } from "@/data/products";
 import { useStore } from "@/store/useStore";
 import { formatPrice } from "@/lib/utils";
@@ -15,7 +15,7 @@ type Props = {
   index?: number;
 };
 
-function ProductCard({ product }: Props) {
+function ProductCard({ product, index = 0 }: Props) {
   const addToCart = useStore((state) => state.addToCart);
   const { t, categoryLabel, productName } = useLanguage();
   const displayName = productName(product);
@@ -50,6 +50,20 @@ function ProductCard({ product }: Props) {
     event.currentTarget.style.setProperty("--ripple-y", y + "%");
   };
 
+  const handleCardPointerMove = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse") return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / Math.max(bounds.width, 1);
+    const y = (event.clientY - bounds.top) / Math.max(bounds.height, 1);
+    event.currentTarget.style.setProperty("--card-tilt-x", ((0.5 - y) * 3.2).toFixed(2) + "deg");
+    event.currentTarget.style.setProperty("--card-tilt-y", ((x - 0.5) * 3.8).toFixed(2) + "deg");
+  };
+
+  const handleCardPointerLeave = (event: PointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty("--card-tilt-x", "0deg");
+    event.currentTarget.style.setProperty("--card-tilt-y", "0deg");
+  };
+
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     handlePointerMove(event);
     const element = event.currentTarget.querySelector<HTMLElement>(".product-media");
@@ -65,6 +79,9 @@ function ProductCard({ product }: Props) {
       role="group"
       aria-label={"Product " + product.name}
       className="glass-card product-card flex h-full flex-col rounded-[21px] p-2.5 sm:p-3.5"
+      onPointerMove={handleCardPointerMove}
+      onPointerLeave={handleCardPointerLeave}
+      style={{ animationDelay: `${Math.min(index, 8) * 34}ms` } as CSSProperties}
     >
       <Link
         href={"/product/" + encodeURIComponent(product.id) + "/"}

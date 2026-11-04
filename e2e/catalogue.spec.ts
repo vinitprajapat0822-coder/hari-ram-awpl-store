@@ -253,3 +253,15 @@ test("Hindi and English switcher translates catalogue labels and persists the ch
   await expect(page.getByRole("heading", { name: "Product catalogue" })).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
 });
+
+
+test("cart drawer opens for a selected item and updates quantity", async ({ page }) => {
+  await page.goto("./");
+  await page.getByRole("button", { name: /Add to cart — Add .* to cart/ }).first().click();
+  await page.getByRole("button", { name: "Open cart" }).click();
+  const drawer = page.getByRole("dialog");
+  await expect(drawer).toBeVisible();
+  await expect(drawer.getByRole("heading", { name: "Your Cart" })).toBeVisible();
+  await drawer.getByRole("button", { name: "Increase quantity" }).click();
+  await expect(drawer.getByText("2", { exact: true })).toBeVisible();
+});

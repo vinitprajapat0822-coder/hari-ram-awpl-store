@@ -42,7 +42,7 @@ export default function CartDrawer() {
       <button
         ref={triggerRef}
         type="button"
-        className="cart-drawer-trigger"
+        className="relative grid h-9 w-9 place-items-center rounded-xl border border-white/[0.09] bg-white/[0.035] text-white/80 transition hover:border-teal-200/25 hover:bg-teal-200/[0.07] active:scale-95"
         onClick={() => setOpen(true)}
         aria-label={t("openCart")}
         aria-haspopup="dialog"
@@ -52,7 +52,7 @@ export default function CartDrawer() {
         <ShoppingCart size={17} aria-hidden="true" />
         <span className="sr-only">{t("openCart")}</span>
         {count > 0 && (
-          <span className="cart-drawer-trigger__count" aria-hidden="true">
+          <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-teal-200 px-1 text-[9px] font-extrabold text-slate-950" aria-hidden="true">
             {count > 99 ? "99+" : count}
           </span>
         )}
