@@ -78,7 +78,7 @@ const dictionaries = {
     exploreCatalogue:"Explore catalogue", storeHighlights:"Store highlights", previousHighlight:"Previous highlight", nextHighlight:"Next highlight", chooseHighlight:"Choose highlight",
     dailyCare:"Daily care", homeAndLiving:"Home & living", wellness:"Wellness",
     productPrefix:"Product", addProductVerb:"Add", toCart:"to cart",
-    viewReviewPhoto:"View review photo", closePhoto:"Close photo", reviewPhotoAlt:"Customer-submitted product photo", perUnit:"per unit", trackedOrderReference:"Tracked order reference", orderRecordAvailable:"Your order record is available in My Orders.", orderCreationFailed:"Order creation failed. Please retry.", removeProduct:"Remove", decreaseProductQuantity:"Decrease", increaseProductQuantity:"Increase",
+    viewReviewPhoto:"View review photo", closePhoto:"Close photo", reviewPhotoAlt:"Customer-submitted product photo", perUnit:"per unit", trackedOrderReference:"Tracked order reference", orderRecordAvailable:"Your order record is available in My Orders.", orderCreationFailed:"Order creation failed. Please retry.", removeProduct:"Remove", fromCart:"from cart", decreaseProductQuantity:"Decrease", increaseProductQuantity:"Increase",
 
   },
   hi: {
@@ -156,7 +156,7 @@ const dictionaries = {
     exploreCatalogue:"उत्पाद सूची देखें", storeHighlights:"स्टोर की खास बातें", previousHighlight:"पिछली जानकारी", nextHighlight:"अगली जानकारी", chooseHighlight:"जानकारी चुनें",
     dailyCare:"रोज़मर्रा की देखभाल", homeAndLiving:"घर और रोज़मर्रा का सामान", wellness:"वेलनेस",
     productPrefix:"उत्पाद", addProductVerb:"जोड़ें", toCart:"कार्ट में",
-    viewReviewPhoto:"समीक्षा की तस्वीर देखें", closePhoto:"तस्वीर बंद करें", reviewPhotoAlt:"ग्राहक द्वारा भेजी गई उत्पाद की तस्वीर", perUnit:"प्रति इकाई", trackedOrderReference:"ऑर्डर संदर्भ संख्या", orderRecordAvailable:"आपके ऑर्डर की जानकारी मेरे ऑर्डर में उपलब्ध है।", orderCreationFailed:"ऑर्डर नहीं बन पाया। कृपया दोबारा कोशिश करें।", removeProduct:"हटाएँ", decreaseProductQuantity:"मात्रा घटाएँ", increaseProductQuantity:"मात्रा बढ़ाएँ",
+    viewReviewPhoto:"समीक्षा की तस्वीर देखें", closePhoto:"तस्वीर बंद करें", reviewPhotoAlt:"ग्राहक द्वारा भेजी गई उत्पाद की तस्वीर", perUnit:"प्रति इकाई", trackedOrderReference:"ऑर्डर संदर्भ संख्या", orderRecordAvailable:"आपके ऑर्डर की जानकारी मेरे ऑर्डर में उपलब्ध है।", orderCreationFailed:"ऑर्डर नहीं बन पाया। कृपया दोबारा कोशिश करें।", removeProduct:"हटाएँ", fromCart:"कार्ट से", decreaseProductQuantity:"मात्रा घटाएँ", increaseProductQuantity:"मात्रा बढ़ाएँ",
 
   },
 } as const;
