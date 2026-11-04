@@ -70,7 +70,7 @@ values
   ('awpl-sniss-cosmetic-eyeliner-holographic-peacock-green-halo', 'EYELINER HOLOGRAPHIC - PEACOCK GREEN HALO', 'sniss-cosmetic', '1 ML', 279, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
   ('awpl-sniss-cosmetic-eyeliner-metallic-rose-gold', 'EYELINER METALLIC - ROSE GOLD', 'sniss-cosmetic', '3 ML', 979, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
   ('awpl-sniss-cosmetic-matt-eye-liner-black', 'MATT EYE LINER BLACK', 'sniss-cosmetic', '3 ML', 867, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
-  ('awpl-sniss-cosmetic-kajal-retractable', 'KAJAL RETRACTABLE', 'sniss-cosmetic', '0 GM', 349, null, 'MISSING_DATA', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-sniss-cosmetic-kajal-retractable', 'KAJAL RETRACTABLE', 'sniss-cosmetic', '0 GM', 349, null, 'MISSING_DATA', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4282_660264.jpg', 'VERIFIED'),
   ('awpl-sniss-cosmetic-flick-lift-mascara', 'FLICK&LIFT MASCARA', 'sniss-cosmetic', '5 ML', 699, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T42911_957021.jpg', 'VERIFIED'),
   ('awpl-sniss-cosmetic-all-day-luxe-cream-lipstick-dusky-rose', 'ALL DAY LUXE CREAM LIPSTICK - DUSKY ROSE', 'sniss-cosmetic', '3 GM', 699, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
   ('awpl-sniss-cosmetic-luxe-matte-liquid-lipstick-fine-wine', 'LUXE MATTE LIQUID LIPSTICK - FINE WINE', 'sniss-cosmetic', '3 ML', 517, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4421_090556.jpg', 'VERIFIED'),
