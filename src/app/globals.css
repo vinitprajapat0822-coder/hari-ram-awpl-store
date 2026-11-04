@@ -4,7 +4,7 @@
 
 :root {
   color-scheme: dark;
-  --midnight: #050911;
+  --midnight: #0b0f19;
   --glass-border: rgba(195, 226, 245, 0.13);
   --accent: #66ead7;
   --accent-bright: #8ef8e8;
@@ -18,10 +18,10 @@ body {
   overflow-x: hidden;
   color: #f5fbff;
   background:
-    radial-gradient(ellipse 70% 42% at 50% -16%, rgba(58,205,190,.16), transparent 72%),
-    radial-gradient(ellipse 42% 34% at 100% 42%, rgba(89,124,219,.10), transparent 72%),
-    radial-gradient(ellipse 42% 30% at 0% 82%, rgba(28,151,140,.08), transparent 72%),
-    linear-gradient(180deg, #050911 0%, #091321 48%, #050911 100%);
+    radial-gradient(ellipse 72% 44% at 50% -16%, rgba(34,211,238,.14), transparent 72%),
+    radial-gradient(ellipse 46% 36% at 100% 42%, rgba(139,92,246,.13), transparent 72%),
+    radial-gradient(ellipse 44% 32% at 0% 82%, rgba(103,232,249,.075), transparent 72%),
+    linear-gradient(180deg, #0b0f19 0%, #101827 48%, #0b0f19 100%);
   background-attachment: fixed;
   font-feature-settings: "ss01" on, "cv11" on;
 }
