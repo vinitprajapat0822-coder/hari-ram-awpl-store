@@ -77,7 +77,7 @@ function ProductCard({ product, index = 0 }: Props) {
   return (
     <article
       role="group"
-      aria-label={"Product " + product.name}
+      aria-label={t("productPrefix") + " " + displayName}
       className="glass-card product-card flex h-full flex-col rounded-[21px] p-2.5 sm:p-3.5"
       onPointerMove={handleCardPointerMove}
       onPointerLeave={handleCardPointerLeave}
@@ -128,7 +128,7 @@ function ProductCard({ product, index = 0 }: Props) {
         onClick={handleAdd}
         aria-label={
           canOrder
-            ? (added ? "Added to cart" : inCart ? "Add another" : "Add to cart") + " — Add " + product.name + " to cart"
+            ? (added ? t("addedToCart") : inCart ? t("addAnother") : t("addToCart")) + " — " + t("addProductVerb") + " " + displayName + " " + t("toCart")
             : reviewLabel
         }
         disabled={!canOrder}
