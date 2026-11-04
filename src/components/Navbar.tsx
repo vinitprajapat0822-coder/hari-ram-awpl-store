@@ -8,6 +8,7 @@ import { useStore } from "@/store/useStore";
 import { Home, Info, LayoutGrid, Search, ShoppingCart, UserRound } from "lucide-react";
 import { motion } from "framer-motion";
 import LanguageToggle from "@/components/LanguageToggle";
+import CartDrawer from "@/components/CartDrawer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const navigation = [
@@ -111,6 +112,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <LanguageToggle />
+            <CartDrawer />
             <Link
               href="/#catalogue"
               onClick={() => handleNavigation("/#catalogue")}
