@@ -564,8 +564,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T20511_934836.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Fresh Lime Bar product pack image; shown unit is 125 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -594,8 +595,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T20611_940204.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Mysore Sandal Bar product pack image; shown unit is 125 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -624,8 +626,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T24133_707974.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Neem Tulsi Bar product pack image"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -654,8 +657,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23622_495567.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Beauty Cream Bar product pack image"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -684,8 +688,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23722_989465.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Goat Milk Bar product pack image"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -714,8 +719,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23522_889140.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Glycerin and Natural Oil Bar product pack image"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1296,8 +1302,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://img500.exportersindia.com/product_images/bc-500/2025/5/14178652/50gm-asclepius-jeeveda-nigella-seeds-1748601210-8101540.jpeg",
+      "status": "VERIFIED",
+      "altText": "Third-party listing image of exact Asclepius Jeeveda Nigella Seeds 50 g pack"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1725,8 +1732,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T39633_845124.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Lift and Sculpt Concealer product family image; catalogued shade is Ivory Play"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1786,8 +1794,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T40244_868418.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Color Drew Moist Stick Blush product family image; catalogued variant is Flirty"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
