@@ -1,4 +1,4 @@
--- One-time snapshot seed from src/data/awpl-products.ts (135 unique catalogue IDs).
+-- One-time snapshot seed from src/data/awpl-products.ts (148 unique catalogue IDs).
 -- Existing owner-managed availability and selling-price values are not overwritten.
 insert into public.store_products (
   id, name, category, pack_size, mrp, selling_price,
@@ -58,6 +58,16 @@ values
   ('awpl-jeeveda-turmeric-powder-500-gm', 'TURMERIC POWDER - 500 GM', 'jeeveda', '500 GM', 335, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T27011_932914.jpg', 'VERIFIED'),
   ('awpl-jeeveda-coriander-powder-100-gm', 'CORIANDER POWDER - 100 GM', 'jeeveda', '100 GM', 76, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4861_637514.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-rice-bran-oil-1-ltr', 'JEEVEDA RICE BRAN OIL (1 LTR)', 'jeeveda', '1 LTR', 399, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-pav-bhaji-masala', 'JEEVEDA PAV BHAJI MASALA', 'jeeveda', '100 GM', 139, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-rajma-masala', 'JEEVEDA RAJMA MASALA', 'jeeveda', '100 GM', 139, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-shahi-paneer-masala', 'JEEVEDA SHAHI PANEER MASALA', 'jeeveda', '100 GM', 153, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-sambhar-masala', 'JEEVEDA SAMBHAR MASALA', 'jeeveda', '100 GM', 137, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-tandoori-chicken-masala', 'JEEVEDA TANDOORI CHICKEN MASALA', 'jeeveda', '100 GM', 139, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-carom-seeds-ajwain', 'JEEVEDA CAROM SEEDS AJWAIN', 'jeeveda', '50 GM', 83, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-black-pepper-kali-mirchi', 'JEEVEDA BLACK PEPPER-KALI MIRCHI', 'jeeveda', '50 GM', 139, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-black-cardamom-badi-elaic', 'JEEVEDA BLACK CARDAMOM-BADI ELAIC', 'jeeveda', '50 GM', 321, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-green-cardamom-choti-elai', 'JEEVEDA GREEN CARDAMOM CHOTI ELAI', 'jeeveda', '25 GM', 251, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-cumin-seeds-jeera', 'JEEVEDA CUMIN SEEDS JEERA', 'jeeveda', '100 GM', 125, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING')
   ('awpl-oral-care-dentodoc-cream', 'DENTODOC CREAM', 'oral-care', '100 GM', 232, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T501.jpeg', 'VERIFIED'),
   ('awpl-others-back-pack', 'BACK PACK', 'others', '1 NUMBER', 1679, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3011_293368.jpg', 'VERIFIED'),
   ('awpl-sniss-cosmetic-prep-it-primer', 'PREP-IT PRIMER', 'sniss-cosmetic', '30 ML', 1329, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3951_975071.jpg', 'VERIFIED'),
@@ -139,7 +149,10 @@ values
   ('awpl-sniss-herbal-talcum-powder', 'TALCUM POWDER', 'sniss-herbal', '100 GM', 156, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T37711_813597.jpg', 'VERIFIED'),
   ('awpl-sniss-herbal-shaving-cream-for-men', 'SHAVING CREAM FOR MEN', 'sniss-herbal', '75 GM', 123, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T38811_316464.jpg', 'VERIFIED'),
   ('awpl-sniss-herbal-hair-cleanser-shampoo', 'HAIR CLEANSER - SHAMPOO', 'sniss-herbal', '100 ML', 224, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51311_348887.jpg', 'VERIFIED'),
-  ('awpl-sniss-herbal-hairdoc-oil-200-ml', 'HAIRDOC OIL 200 ML', 'sniss-herbal', '200 ML', 431, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51411_042878.jpg', 'VERIFIED')
+  ('awpl-sniss-herbal-hairdoc-oil-200-ml', 'HAIRDOC OIL 200 ML', 'sniss-herbal', '200 ML', 431, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51411_042878.jpg', 'VERIFIED'),
+  ('awpl-sniss-herbal-heal-doc-cream', 'HEAL DOC CREAM', 'sniss-herbal', '50 GM', 327, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-sniss-herbal-mosquito-repellent-cream', 'MOSQUITO REPELLENT CREAM', 'sniss-herbal', '100 GM', 181, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-sniss-herbal-b-ton-oint', 'B-TON OINT', 'sniss-herbal', '100 GM', 808, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING')
 on conflict (id) do nothing;
 
 -- Refresh the verified AWPL MRP without overwriting owner-managed selling_price or availability.
