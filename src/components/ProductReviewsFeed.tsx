@@ -96,7 +96,23 @@ export default function ProductReviewsFeed({
       </div>
 
       {loading ? (
-        <p className="rounded-xl bg-white/[0.025] px-4 py-5 text-center text-xs text-white/45">{t("loadingReviews")}</p>
+        <div role="status" aria-label={t("loadingReviews")} className="space-y-3">
+          <span className="sr-only">{t("loadingReviews")}</span>
+          {[0, 1].map((item) => (
+            <div key={item} className="animate-pulse rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4">
+              <div className="flex items-center justify-between">
+                <span className="h-3 w-24 rounded-full bg-white/10" />
+                <span className="h-3 w-20 rounded-full bg-white/10" />
+              </div>
+              <span className="mt-3 block h-2.5 w-28 rounded-full bg-white/[0.07]" />
+              <div className="mt-4 grid grid-cols-3 gap-2">
+                <span className="aspect-square rounded-xl bg-white/[0.07]" />
+                <span className="aspect-square rounded-xl bg-white/[0.07]" />
+                <span className="aspect-square rounded-xl bg-white/[0.07]" />
+              </div>
+            </div>
+          ))}
+        </div>
       ) : reviews.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-white/[0.12] bg-white/[0.025] px-4 py-7 text-center">
           <Star size={24} className="mx-auto text-white/25" aria-hidden="true" />
