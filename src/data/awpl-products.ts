@@ -472,8 +472,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3751_235776.jpg",
+      "status": "VERIFIED",
+      "altText": "Primary product image linked from the official Little Pie Baby Lotion product card; official listing quantity is 100 ML"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
