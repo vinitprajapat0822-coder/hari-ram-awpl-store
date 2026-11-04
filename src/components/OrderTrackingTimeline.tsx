@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircle2, Circle, Package, Truck } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import type { StoreOrder } from "@/lib/commerce";
 import { formatDeliveryDate } from "@/lib/commerce";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -17,7 +18,9 @@ const steps = [
 
 export default function OrderTrackingTimeline({ order }: { order: StoreOrder }) {
   const { t } = useLanguage();
+  const reducedMotion = useReducedMotion();
   const currentIndex = steps.findIndex((step) => step.status === order.status);
+  const progress = currentIndex > 0 ? currentIndex / (steps.length - 1) : 0;
   const updates = [...(order.order_updates ?? [])].sort((a, b) =>
     a.created_at.localeCompare(b.created_at)
   );
@@ -29,7 +32,17 @@ export default function OrderTrackingTimeline({ order }: { order: StoreOrder }) 
   return (
     <section className="rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4" aria-label={t("trackingTimeline")}>
       <h3 className="text-xs font-extrabold uppercase tracking-[0.14em] text-teal-100/75">{t("trackingTimeline")}</h3>
-      <ol className="mt-4 space-y-3">
+      <div className="relative mt-4">
+        <div className="absolute bottom-3 left-[13px] top-3 w-px bg-white/[0.09]" aria-hidden="true" />
+        <motion.div
+          className="absolute left-[13px] top-3 z-[1] w-px origin-top bg-gradient-to-b from-cyan-200 via-teal-200 to-violet-300 shadow-[0_0_12px_rgba(103,232,249,.35)]"
+          style={{ height: "calc(100% - 1.5rem)", scaleY: progress }}
+          initial={reducedMotion ? false : { scaleY: 0 }}
+          animate={{ scaleY: progress }}
+          transition={{ duration: reducedMotion ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
+          aria-hidden="true"
+        />
+      <ol className="relative space-y-3">
         {steps.map((step, index) => {
           const complete = currentIndex >= index;
           const active = currentIndex === index;
@@ -54,6 +67,7 @@ export default function OrderTrackingTimeline({ order }: { order: StoreOrder }) 
           );
         })}
       </ol>
+      </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-white/[0.08] pt-3 text-[11px]">
         <span className="text-white/45">{t("expectedDelivery")}</span>
