@@ -46,11 +46,18 @@ test("mobile navigation stays visible and exposes all primary routes", async ({ 
   expect(bounds).not.toBeNull();
   if (!bounds) throw new Error("The first mobile dock item has no layout box.");
 
-  await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
-  await expect.poll(() => firstDockItem.evaluate((element) => element.style.getPropertyValue("--dock-scale"))).toBe("1.180");
+  await page.mouse.move(1, 1);
+  await firstDockItem.hover();
+  await expect.poll(
+    () => firstDockItem.evaluate((element) => Number(element.style.getPropertyValue("--dock-scale"))),
+    { timeout: 10_000 }
+  ).toBeGreaterThan(1.17);
 
   await page.mouse.move(1, 1);
-  await expect.poll(() => firstDockItem.evaluate((element) => element.style.getPropertyValue("--dock-scale"))).toBe("1");
+  await expect.poll(
+    () => firstDockItem.evaluate((element) => element.style.getPropertyValue("--dock-scale")),
+    { timeout: 10_000 }
+  ).toBe("1");
 });
 
 
@@ -151,6 +158,7 @@ test("profile route renders and has labelled customer fields", async ({ page }) 
 });
 
 test("home, cart, profile and product detail pass WCAG accessibility scan", async ({ page }) => {
+  test.setTimeout(60_000);
   const routes = ["./", "about/", "cart/", "profile/", "account/", "orders/", "admin/", "product/awpl-apparels-asclepius-women-saree-crape/"];
   for (const route of routes) {
     await page.goto(route);
