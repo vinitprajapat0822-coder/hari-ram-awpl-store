@@ -103,8 +103,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T69911_636984.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius olive polo shirt, men's small"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -163,8 +164,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T20911_854480.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius teal polo shirt, men's small"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -193,8 +195,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T20833_329896.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius black polo shirt, men's small"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -253,8 +256,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T7141_606306.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius ivory women's polo shirt, XS"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -313,8 +317,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T72811_607357.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius teal women's polo shirt, L"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -343,8 +348,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T7321_542789.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius black women's polo shirt, XS"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -373,8 +379,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T73811_234219.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius olive women's polo shirt, XS"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
