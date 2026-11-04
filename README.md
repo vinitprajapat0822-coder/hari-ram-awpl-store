@@ -8,7 +8,7 @@ A Next.js storefront prototype with a Liquid Glass interface and a category-wise
 - 135 individual product records currently imported, including separate pack-size and apparel SKU entries.
 - MRP only; DP and SP are not stored or displayed.
 - No size, colour or pack-size variant selector is used; each captured SKU is a separate product card and cart line.
-- Official image URLs are supported without storing image files in this repository. Only exact verified matches are enabled; unmatched products retain placeholders. 53 exact official AWPL image URLs are currently verified; the remaining 82 imported products still need exact asset mapping.
+- Official image URLs are supported without storing image files in this repository. Only exact verified matches are enabled; unmatched products retain placeholders. 113 exact official AWPL image URLs are currently verified; the remaining 22 imported products still need exact asset mapping.
 - Records with conflicting prices or incomplete source data are blocked from cart.
 - Agriculture, Veterinary, Wellness and Wellroot categories remain held for classification review.
 - Category-selector counts are listing-entry counts, not necessarily unique products. Several categories are only partially collected.
