@@ -1011,8 +1011,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T16144_062207.jpeg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Rice Bran Oil container, 2 L"
     },
     "availability": "UNKNOWN",
     "status": "PRICE_REVIEW_REQUIRED",
