@@ -1180,8 +1180,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T32711_393974.jpg",
+      "status": "VERIFIED",
+      "altText": "Official JEEVEDA Fish Masala product image; official page lists the pack as 100 GM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
