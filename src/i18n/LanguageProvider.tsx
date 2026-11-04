@@ -6,6 +6,7 @@ export type Locale = "en" | "hi";
 const dictionaries = {
   en: {
     home:"Home", catalogue:"Catalogue", about:"About", cart:"Cart", profile:"Profile",
+    imageOfficial:"Official product image", imageFallback:"Illustrative image / artwork fallback", pack:"Pack", notListed:"Not listed",
     primaryNavigation:"Primary navigation", mobileNavigation:"Mobile navigation",
     productCatalogue:"Product catalogue", search:"Search", searchCatalogue:"Search catalogue",
     switchToHindi:"Switch language to Hindi", switchToEnglish:"Switch language to English",
@@ -73,6 +74,7 @@ const dictionaries = {
   },
   hi: {
     home:"होम", catalogue:"उत्पाद सूची", about:"हमारे बारे में", cart:"कार्ट", profile:"प्रोफ़ाइल",
+    imageOfficial:"कंपनी की उत्पाद तस्वीर", imageFallback:"उदाहरण के लिए बनाई गई तस्वीर", pack:"पैक", notListed:"उल्लेख नहीं है",
     primaryNavigation:"मुख्य नेविगेशन", mobileNavigation:"मोबाइल नेविगेशन",
     productCatalogue:"उत्पाद सूची", search:"खोजें", searchCatalogue:"उत्पाद खोजें",
     switchToHindi:"भाषा हिन्दी में बदलें", switchToEnglish:"भाषा अंग्रेज़ी में बदलें",

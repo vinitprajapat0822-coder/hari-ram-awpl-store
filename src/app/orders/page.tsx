@@ -10,8 +10,10 @@ import OrderReviewForm from "@/components/OrderReviewForm";
 import { getSupabaseClient } from "@/lib/supabase";
 import { formatOrderDate, type StoreOrder } from "@/lib/commerce";
 import { ArrowLeft, PackageCheck, RefreshCw } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export default function OrdersPage() {
+  const { t } = useLanguage();
   const [orders, setOrders] = useState<StoreOrder[]>([]);
   const [loading, setLoading] = useState(true);
   const [configured, setConfigured] = useState(false);
@@ -86,38 +88,38 @@ export default function OrdersPage() {
       <Navbar />
       <div className="mx-auto max-w-4xl px-4 pt-7 sm:px-6 sm:pt-9">
         <Link href="/profile" className="mb-5 inline-flex items-center gap-2 text-xs font-semibold text-white/45 hover:text-teal-100">
-          <ArrowLeft size={15} aria-hidden="true" /> Back to profile
+          <ArrowLeft size={15} aria-hidden="true" /> {t("backToProfile")}
         </Link>
         <div className="mb-6 flex items-end justify-between gap-3">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-teal-200/65">Order centre</p>
-            <h1 className="mt-1 text-2xl font-black text-white sm:text-3xl">My Orders</h1>
-            <p className="mt-1 text-xs text-white/40">Order history and owner-updated delivery progress.</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-teal-200/65">{t("orderCentre")}</p>
+            <h1 className="mt-1 text-2xl font-black text-white sm:text-3xl">{t("myOrders")}</h1>
+            <p className="mt-1 text-xs text-white/40">{t("orderHistory")}</p>
           </div>
-          <button type="button" onClick={() => { setLoading(true); void loadOrders(); }} aria-label="Refresh orders" className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 text-teal-100/70">
+          <button type="button" onClick={() => { setLoading(true); void loadOrders(); }} aria-label={t("refreshOrders")} className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 text-teal-100/70">
             <RefreshCw size={16} aria-hidden="true" />
           </button>
         </div>
 
         {!configured ? (
           <GlassCard className="rounded-2xl p-5 text-sm leading-6 text-white/55">
-            Online order tracking is not configured on this deployment yet. Orders placed through WhatsApp are enquiries and do not create a tracking record.
+            {t("trackingNotConfigured")}
           </GlassCard>
         ) : !signedIn ? (
           <GlassCard className="rounded-2xl p-5">
-            <p className="text-sm font-semibold text-white">Sign in to view your orders.</p>
-            <Link href="/account?next=%2Forders" className="hero-cta mt-4 inline-flex">Customer sign in</Link>
+            <p className="text-sm font-semibold text-white">{t("signInToOrders")}</p>
+            <Link href="/account?next=%2Forders" className="hero-cta mt-4 inline-flex">{t("customerSignIn")}</Link>
           </GlassCard>
         ) : loading ? (
-          <p className="py-8 text-center text-sm text-white/45">Loading your orders…</p>
+          <p className="py-8 text-center text-sm text-white/45">{t("loadingOrders")}</p>
         ) : error ? (
           <p role="alert" className="rounded-xl border border-rose-200/20 bg-rose-200/[0.06] p-4 text-xs text-rose-100">{error}</p>
         ) : orders.length === 0 ? (
           <GlassCard className="rounded-2xl px-5 py-12 text-center">
             <PackageCheck size={30} className="mx-auto text-teal-100/60" aria-hidden="true" />
-            <h2 className="mt-4 text-base font-bold text-white">No tracked orders yet</h2>
-            <p className="mt-2 text-xs text-white/45">A tracked order will appear here after you place it while signed in.</p>
-            <Link href="/" className="hero-cta mt-5 inline-flex">Browse catalogue</Link>
+            <h2 className="mt-4 text-base font-bold text-white">{t("noTrackedOrders")}</h2>
+            <p className="mt-2 text-xs text-white/45">{t("trackedOrderHint")}</p>
+            <Link href="/" className="hero-cta mt-5 inline-flex">{t("browseCatalogue")}</Link>
           </GlassCard>
         ) : (
           <div className="space-y-4">
@@ -132,7 +134,7 @@ export default function OrdersPage() {
                 </div>
                 <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_1fr]">
                   <div>
-                    <h3 className="text-xs font-bold text-white/75">Items ordered</h3>
+                    <h3 className="text-xs font-bold text-white/75">{t("itemsOrdered")}</h3>
                     <div className="mt-2 space-y-2">
                       {(order.order_items ?? []).map((item) => {
                         const existingReview = item.reviews?.[0];
@@ -142,10 +144,10 @@ export default function OrdersPage() {
                               <p className="text-xs font-semibold text-white">{item.product_name}</p>
                               <span className="text-[10px] text-white/45">× {item.quantity}</span>
                             </div>
-                            <p className="mt-1 text-[10px] text-white/40">{item.pack_size || "Pack not listed"} · MRP ₹{Number(item.mrp).toLocaleString("en-IN")}</p>
+                            <p className="mt-1 text-[10px] text-white/40">{item.pack_size || t("packNotListed")} · MRP ₹{Number(item.mrp).toLocaleString("en-IN")}</p>
                             {order.status === "DELIVERED" && existingReview ? (
                               <p className="mt-3 text-[10px] font-semibold text-teal-100/70">
-                                {existingReview.status === "APPROVED" ? "Your review is published." : "Your review is awaiting owner moderation."}
+                                {existingReview.status === "APPROVED" ? t("reviewPublished") : t("reviewModeration")}
                               </p>
                             ) : order.status === "DELIVERED" ? (
                               <OrderReviewForm orderItemId={item.id} productName={item.product_name} onSubmitted={() => { void loadOrders(); }} />
@@ -155,7 +157,7 @@ export default function OrdersPage() {
                       })}
                     </div>
                     <div className="mt-3 flex justify-between border-t border-white/[0.08] pt-3 text-xs">
-                      <span className="text-white/45">Order MRP total</span>
+                      <span className="text-white/45">{t("orderMrpTotal")}</span>
                       <strong className="text-teal-100">₹{Number(order.subtotal_mrp).toLocaleString("en-IN")}</strong>
                     </div>
                     {order.final_total !== null && (

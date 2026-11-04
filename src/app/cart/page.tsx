@@ -68,7 +68,7 @@ export default function CartPage() {
     const client = getSupabaseClient();
     if (!client) {
       const message = generateWhatsAppMessage(cart, user, total, locale)
-        + locale === "hi" ? "\n\nट्रैकिंग: केवल WhatsApp पूछताछ। ऑनलाइन ऑर्डर रिकॉर्ड नहीं बना है।" : "\n\nTracking: WhatsApp enquiry only. No online order record has been created.";
+        + (locale === "hi" ? "\n\nट्रैकिंग: केवल WhatsApp पूछताछ। ऑनलाइन ऑर्डर रिकॉर्ड नहीं बना है।" : "\n\nTracking: WhatsApp enquiry only. No online order record has been created.");
       window.open(getWhatsAppUrl(message), "_blank", "noopener,noreferrer");
       setCheckoutNotice(t("whatsappOpened"));
       return;
