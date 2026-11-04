@@ -129,7 +129,7 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
             <span className="hero-orbit__tag hero-orbit__tag--bottom">{t("homeAndLiving")}</span>
             <span className="hero-orbit__tag hero-orbit__tag--right">{t("wellness")}</span>
           </div>
-          <div className="hero-carousel__controls" role="group" aria-label="Carousel controls">
+          <div className="hero-carousel__controls" role="group" aria-label={t("carouselControls")}>
             <button type="button" onClick={() => showSlide(activeIndex - 1)} aria-label={t("previousHighlight")}>
               <ArrowLeft size={16} aria-hidden="true" />
             </button>
@@ -139,7 +139,7 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
                   key={slide.eyebrow}
                   type="button"
                   onClick={() => showSlide(index)}
-                  aria-label={"Show highlight " + (index + 1)}
+                  aria-label={t("showHighlight") + " " + (index + 1)}
                   aria-current={activeIndex === index ? "true" : undefined}
                   className={activeIndex === index ? "is-active" : ""}
                 />
@@ -152,23 +152,23 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
         </div>
       </div>
 
-      <div className="hero-carousel__mobile-controls md:hidden" role="group" aria-label="Mobile carousel controls">
-        <button type="button" onClick={() => showSlide(activeIndex - 1)} aria-label="Previous highlight">
+      <div className="hero-carousel__mobile-controls md:hidden" role="group" aria-label={t("mobileCarouselControls")}>
+        <button type="button" onClick={() => showSlide(activeIndex - 1)} aria-label={t("previousHighlight")}>
           <ArrowLeft size={16} aria-hidden="true" />
         </button>
-        <div className="hero-carousel__dots" role="group" aria-label="Choose highlight">
+        <div className="hero-carousel__dots" role="group" aria-label={t("chooseHighlight")}>
           {slides.map((slide, index) => (
             <button
               key={slide.eyebrow}
               type="button"
               onClick={() => showSlide(index)}
-              aria-label={"Show highlight " + (index + 1)}
+              aria-label={t("showHighlight") + " " + (index + 1)}
               aria-current={activeIndex === index ? "true" : undefined}
               className={activeIndex === index ? "is-active" : ""}
             />
           ))}
         </div>
-        <button type="button" onClick={() => showSlide(activeIndex + 1)} aria-label="Next highlight">
+        <button type="button" onClick={() => showSlide(activeIndex + 1)} aria-label={t("nextHighlight")}>
           <ArrowRight size={16} aria-hidden="true" />
         </button>
       </div>
