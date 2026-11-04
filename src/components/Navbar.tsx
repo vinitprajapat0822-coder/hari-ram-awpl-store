@@ -83,7 +83,7 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden items-center gap-1 md:flex">
-            <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/30">Product catalogue</span>
+            <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/30">{t("productCatalogue")}</span>
             <nav aria-label={t("primaryNavigation")} className="flex items-center gap-1">
               {navigation.map((item) => {
                 const active = isActive(pathname, item.href, activeHash);
@@ -154,7 +154,7 @@ export default function Navbar() {
                       </span>
                     )}
                   </span>
-                  {item.label}
+                  {t(item.key)}
                   {active && <motion.span layoutId="mobile-dock-active" className="mobile-dock__indicator" aria-hidden="true" />}
                 </Link>
               </div>

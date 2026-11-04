@@ -16,7 +16,7 @@ export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
   const searchPlaceholder = useSearchMorphPlaceholder();
-  const { locale, t } = useLanguage();
+  const { locale, t, categoryLabel } = useLanguage();
 
   const filtered = useMemo(() => {
     let list = products;
@@ -89,7 +89,7 @@ export default function HomePage() {
 
         <div className="mb-4 flex min-h-8 items-center justify-between gap-3">
           <p className="text-xs font-medium text-white/45" aria-live="polite">
-            {filtered.length} {locale === "hi" ? t("products") : filtered.length === 1 ? t("product") : t("products")}{activeCategory !== "All" ? " · " + activeCategory : ""}
+            {filtered.length} {locale === "hi" ? t("products") : filtered.length === 1 ? t("product") : t("products")}{activeCategory !== "All" ? " · " + categoryLabel(activeCategory) : ""}
           </p>
           {(search || activeCategory !== "All") && (
             <button
@@ -135,7 +135,7 @@ export default function HomePage() {
         )}
 
         <p className="mx-auto mt-8 max-w-2xl pb-2 text-center text-[10px] leading-5 text-white/30">
-          Displayed MRP and availability are subject to confirmation before an order is accepted.
+          {t("displayedMrpNotice")}
         </p>
       </section>
     </main>

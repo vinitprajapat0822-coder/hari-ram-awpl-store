@@ -143,9 +143,9 @@ export default function CartPage() {
                         <p className="mb-1 text-[9px] font-bold uppercase tracking-[0.15em] text-teal-200/65">{categoryLabel(item.product.category)}</p>
                         <h2 className="line-clamp-2 text-sm font-bold leading-snug text-white">{productName(item.product)}</h2>
                         <p className="mt-1 text-[11px] text-white/45">{item.product.qty}</p>
-                        <p className="mt-2 text-[10px] text-white/55">MRP: {formatPrice(item.product.mrp)} / unit</p>
-                        <p className="mt-0.5 text-[10px] text-teal-100/70">SP: {sellingPrice === null ? t("confirmWithStore") : formatPrice(sellingPrice) + " / unit"}</p>
-                        <p className="mt-1 text-sm font-extrabold text-teal-100">Line MRP: {formatPrice(item.product.mrp * item.quantity)}</p>
+                        <p className="mt-2 text-[10px] text-white/55">{t("mrpPerUnit")}: {formatPrice(item.product.mrp)} / unit</p>
+                        <p className="mt-0.5 text-[10px] text-teal-100/70">{t("spPerUnit")}: {sellingPrice === null ? t("confirmWithStore") : formatPrice(sellingPrice) + " / unit"}</p>
+                        <p className="mt-1 text-sm font-extrabold text-teal-100">{t("lineMrp")}: {formatPrice(item.product.mrp * item.quantity)}</p>
                       </div>
                       <div className="flex shrink-0 flex-col items-end justify-between">
                         <button type="button" onClick={() => removeFromCart(item.product.id)} aria-label={"Remove " + item.product.name + " from cart"} className="grid h-8 w-8 place-items-center rounded-xl text-white/35 transition-colors hover:bg-rose-400/10 hover:text-rose-300">
@@ -169,7 +169,7 @@ export default function CartPage() {
 
             <GlassCard className="rounded-[24px] p-5 md:sticky md:top-24">
               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-teal-200/65">{t("orderSummary")}</p>
-              <div className="mt-4 flex items-center justify-between text-sm text-white/55"><span>Items</span><span>{itemCount}</span></div>
+              <div className="mt-4 flex items-center justify-between text-sm text-white/55"><span>{t("items")}</span><span>{itemCount}</span></div>
               <div className="mt-3 flex items-center justify-between text-sm text-white/55"><span>{t("subtotalMrp")}</span><span>{formatPrice(total)}</span></div>
               <div className="mt-2 flex items-center justify-between text-sm text-white/55"><span>{t("subtotalSp")}</span><span>{hasCompleteSellingPrices ? formatPrice(sellingPriceTotal) : t("confirmWithStore")}</span></div>
               <div className="my-4 border-t border-white/10" />
