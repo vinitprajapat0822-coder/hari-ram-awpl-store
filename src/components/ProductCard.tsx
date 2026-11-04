@@ -38,6 +38,7 @@ function ProductCard({ product, index = 0 }: Props) {
   const handleAdd = () => {
     if (!canOrder) return;
     addToCart(product);
+    if (typeof navigator !== "undefined") navigator.vibrate?.(10);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1100);
   };
