@@ -36,8 +36,8 @@ type AdminProduct = {
 };
 
 const adminCopy = {
- en:{back:"{copy.back}",private:"{copy.private}",title:"{copy.title}",subtitle:"{copy.subtitle}",refresh:"{copy.refresh}",checking:"{copy.checking}",denied:"{copy.denied}",deniedBody:"{copy.deniedBody}",signIn:"{copy.signIn}",dbError:"{copy.dbError}",orderUpdated:"{copy.orderUpdated}",etaSaved:"{copy.etaSaved}",reviewPublished:"{copy.reviewPublished}",review{copy.reject}ed:"{copy.review{copy.reject}ed}",pricesSaved:"{copy.pricesSaved}",priceFailed:"{copy.priceFailed}",availabilityUpdated:"{copy.availabilityUpdated}",allOrders:"{copy.allOrders}",newOrders:"{copy.newOrders}",inProgress:"{copy.inProgress}",pendingReviews:"{copy.pendingReviews}",orderManagement:"{copy.orderManagement}",noOrders:"{copy.noOrders}",items:"Items",address:"Delivery address",mrpTotal:"MRP total",confirmAvailability:"{copy.confirmAvailability}",deliverySlot:"{copy.deliverySlot}",ownerReason:"{copy.ownerReason}",setSlot:"{copy.setSlot}",saveDelay:"{copy.saveDelay}",reviewModeration:"{copy.reviewModeration}",noReviews:"{copy.noReviews}",quality:"Quality",packaging:"Packaging",delivery:"Delivery",approve:"{copy.approve}",reject:"{copy.reject}",productAvailability:"{copy.productAvailability}",notListed:"{copy.notListed}",savePrices:"{copy.savePrices}",unknown:"Unknown",available:"Available",unavailable:"Unavailable",reviewRequired:"Review required",accept:"Accept Order",packed:"Mark Packed",shipped:"Mark Shipped",inTransit:"In Transit",outFor{copy.delivery}:"Out for Delivery",delivered:"Mark Delivered",placedStatus:"Order placed",acceptedStatus:"Order accepted",packedStatus:"Packed",shippedStatus:"Shipped",transitStatus:"In transit",outStatus:"Out for delivery",deliveredStatus:"Delivered",unknownStatus:"Unknown status",revisedDate:"Revised date",revisedStart:"Revised start time",revisedEnd:"Revised end time",delayMessage:"Delay message",dpFor:"DP for",spFor:"SP for",availabilityFor:"Availability for"},
- hi:{back:"स्टोर पर लौटें",private:"निजी नियंत्रण केंद्र",title:"मालिक का डैशबोर्ड",subtitle:"हरिराम प्रजापत · ऑर्डर, स्टॉक की पुष्टि और समीक्षाओं की जाँच",refresh:"डैशबोर्ड डेटा रीफ़्रेश करें",checking:"मालिक की अनुमति जाँची जा रही है…",denied:"पहुँच की अनुमति नहीं है",deniedBody:"इस डैशबोर्ड के लिए ऐसा साइन-इन किया हुआ user ID ज़रूरी है जिसे store_admins टेबल में स्पष्ट रूप से जोड़ा गया हो। केवल मिलता-जुलता नाम या ग्राहक खाता पर्याप्त नहीं है।",signIn:"साइन इन करें",dbError:"डेटाबेस सेवा सेट नहीं है।",orderUpdated:"ऑर्डर अपडेट हो गया है। ग्राहक की ट्रैकिंग डेटाबेस से रीफ़्रेश होगी।",etaSaved:"डिलीवरी का अनुमान सुरक्षित करके ग्राहक की टाइमलाइन में जोड़ दिया गया है।",reviewPublished:"समीक्षा प्रकाशित हो गई।",review{copy.reject}ed:"समीक्षा अस्वीकार कर दी गई।",pricesSaved:"डिस्ट्रिब्यूटर कीमत और बिक्री कीमत अलग-अलग सुरक्षित हो गई हैं।",priceFailed:"कीमत अपडेट नहीं हो सकी।",availabilityUpdated:"उत्पाद की उपलब्धता अपडेट हो गई।",allOrders:"सभी ऑर्डर",newOrders:"नए ऑर्डर",inProgress:"जारी ऑर्डर",pendingReviews:"लंबित समीक्षाएँ",orderManagement:"ऑर्डर प्रबंधन",noOrders:"अभी कोई ऑर्डर नहीं आया है।",items:"उत्पाद",address:"डिलीवरी का पता",mrpTotal:"कुल MRP",confirmAvailability:"उपलब्धता की पुष्टि करें",deliverySlot:"डिलीवरी समय / देरी अपडेट",ownerReason:"स्टोर अपडेट / कारण",setSlot:"डिलीवरी समय तय करें",saveDelay:"डिलीवरी में देरी सुरक्षित करें",reviewModeration:"समीक्षा की जाँच",noReviews:"मंज़ूरी के लिए कोई ग्राहक समीक्षा लंबित नहीं है।",quality:"गुणवत्ता",packaging:"पैकिंग",delivery:"डिलीवरी",approve:"मंज़ूर करके प्रकाशित करें",reject:"अस्वीकार करें",productAvailability:"उत्पाद की उपलब्धता",notListed:"सूची में नहीं",savePrices:"कीमत सुरक्षित करें",unknown:"अज्ञात",available:"उपलब्ध",unavailable:"उपलब्ध नहीं",reviewRequired:"जाँच ज़रूरी",accept:"ऑर्डर स्वीकार करें",packed:"पैक किया गया",shipped:"भेज दिया गया",inTransit:"रास्ते में",outFor{copy.delivery}:"डिलीवरी के लिए निकला",delivered:"डिलीवर किया गया",placedStatus:"ऑर्डर मिला",acceptedStatus:"ऑर्डर स्वीकार हुआ",packedStatus:"पैक किया गया",shippedStatus:"भेज दिया गया",transitStatus:"रास्ते में",outStatus:"डिलीवरी के लिए निकला",deliveredStatus:"डिलीवर हो गया",unknownStatus:"अज्ञात स्थिति",revisedDate:"नई तारीख",revisedStart:"शुरुआती समय",revisedEnd:"अंतिम समय",delayMessage:"देरी का संदेश",dpFor:"इस उत्पाद का DP",spFor:"इस उत्पाद का SP",availabilityFor:"इस उत्पाद की उपलब्धता"}
+ en:{back:"Back to store",private:"Private control centre",title:"Owner Dashboard",subtitle:"Hariram Prajapat · Orders, stock confirmation and review moderation",refresh:"Refresh admin data",checking:"Checking owner authorization…",denied:"Access denied",deniedBody:"This dashboard requires an authenticated user ID explicitly registered in the store_admins table. A matching display name or customer account is not sufficient.",signIn:"Sign in",dbError:"The database service is not configured.",orderUpdated:"Order updated. Customer tracking will refresh from the database.",etaSaved:"Delivery estimate saved and added to the customer timeline.",reviewPublished:"Review published.",reviewRejected:"Review rejected.",pricesSaved:"Distributor price and selling price saved separately.",priceFailed:"Price update failed.",availabilityUpdated:"Product availability updated.",allOrders:"All orders",newOrders:"New orders",inProgress:"In progress",pendingReviews:"Pending reviews",orderManagement:"Order management",noOrders:"No orders have been placed yet.",items:"Items",address:"Delivery address",mrpTotal:"MRP total",confirmAvailability:"Confirm Availability",deliverySlot:"Delivery slot / delay update",ownerReason:"Owner update / reason",setSlot:"Set delivery slot",saveDelay:"Save delivery delay",reviewModeration:"Review moderation",noReviews:"No customer reviews are waiting for approval.",quality:"Quality",packaging:"Packaging",delivery:"Delivery",approve:"Approve & publish",reject:"Reject",productAvailability:"Product availability",notListed:"not listed",savePrices:"Save prices",unknown:"Unknown",available:"Available",unavailable:"Unavailable",reviewRequired:"Review required",accept:"Accept Order",packed:"Mark Packed",shipped:"Mark Shipped",inTransit:"In Transit",outForDelivery:"Out for Delivery",delivered:"Mark Delivered",placedStatus:"Order placed",acceptedStatus:"Order accepted",packedStatus:"Packed",shippedStatus:"Shipped",transitStatus:"In transit",outStatus:"Out for delivery",deliveredStatus:"Delivered",unknownStatus:"Unknown status",revisedDate:"Revised date",revisedStart:"Revised start time",revisedEnd:"Revised end time",delayMessage:"Delay message",dpFor:"DP for",spFor:"SP for",availabilityFor:"Availability for"},
+ hi:{back:"स्टोर पर लौटें",private:"निजी नियंत्रण केंद्र",title:"मालिक का डैशबोर्ड",subtitle:"हरिराम प्रजापत · ऑर्डर, स्टॉक की पुष्टि और समीक्षाओं की जाँच",refresh:"डैशबोर्ड डेटा रीफ़्रेश करें",checking:"मालिक की अनुमति जाँची जा रही है…",denied:"पहुँच की अनुमति नहीं है",deniedBody:"इस डैशबोर्ड के लिए ऐसा साइन-इन किया हुआ user ID ज़रूरी है जिसे store_admins टेबल में स्पष्ट रूप से जोड़ा गया हो। केवल मिलता-जुलता नाम या ग्राहक खाता पर्याप्त नहीं है।",signIn:"साइन इन करें",dbError:"डेटाबेस सेवा सेट नहीं है।",orderUpdated:"ऑर्डर अपडेट हो गया है। ग्राहक की ट्रैकिंग डेटाबेस से रीफ़्रेश होगी।",etaSaved:"डिलीवरी का अनुमान सुरक्षित करके ग्राहक की टाइमलाइन में जोड़ दिया गया है।",reviewPublished:"समीक्षा प्रकाशित हो गई।",reviewRejected:"समीक्षा अस्वीकार कर दी गई।",pricesSaved:"डिस्ट्रिब्यूटर कीमत और बिक्री कीमत अलग-अलग सुरक्षित हो गई हैं।",priceFailed:"कीमत अपडेट नहीं हो सकी।",availabilityUpdated:"उत्पाद की उपलब्धता अपडेट हो गई।",allOrders:"सभी ऑर्डर",newOrders:"नए ऑर्डर",inProgress:"जारी ऑर्डर",pendingReviews:"लंबित समीक्षाएँ",orderManagement:"ऑर्डर प्रबंधन",noOrders:"अभी कोई ऑर्डर नहीं आया है।",items:"उत्पाद",address:"डिलीवरी का पता",mrpTotal:"कुल MRP",confirmAvailability:"उपलब्धता की पुष्टि करें",deliverySlot:"डिलीवरी समय / देरी अपडेट",ownerReason:"स्टोर अपडेट / कारण",setSlot:"डिलीवरी समय तय करें",saveDelay:"डिलीवरी में देरी सुरक्षित करें",reviewModeration:"समीक्षा की जाँच",noReviews:"मंज़ूरी के लिए कोई ग्राहक समीक्षा लंबित नहीं है।",quality:"गुणवत्ता",packaging:"पैकिंग",delivery:"डिलीवरी",approve:"मंज़ूर करके प्रकाशित करें",reject:"अस्वीकार करें",productAvailability:"उत्पाद की उपलब्धता",notListed:"सूची में नहीं",savePrices:"कीमत सुरक्षित करें",unknown:"अज्ञात",available:"उपलब्ध",unavailable:"उपलब्ध नहीं",reviewRequired:"जाँच ज़रूरी",accept:"ऑर्डर स्वीकार करें",packed:"पैक किया गया",shipped:"भेज दिया गया",inTransit:"रास्ते में",outForDelivery:"डिलीवरी के लिए निकला",delivered:"डिलीवर किया गया",placedStatus:"ऑर्डर मिला",acceptedStatus:"ऑर्डर स्वीकार हुआ",packedStatus:"पैक किया गया",shippedStatus:"भेज दिया गया",transitStatus:"रास्ते में",outStatus:"डिलीवरी के लिए निकला",deliveredStatus:"डिलीवर हो गया",unknownStatus:"अज्ञात स्थिति",revisedDate:"नई तारीख",revisedStart:"शुरुआती समय",revisedEnd:"अंतिम समय",delayMessage:"देरी का संदेश",dpFor:"इस उत्पाद का DP",spFor:"इस उत्पाद का SP",availabilityFor:"इस उत्पाद की उपलब्धता"}
 } as const;
 
 const transitions: Array<{ action: string; label: string; from: string; next: string }> = [
@@ -65,7 +65,7 @@ export default function AdminPage() {
   const load = useCallback(async () => {
     const client = getSupabaseClient();
     if (!client) {
-      setError("{copy.dbError}");
+      setError(copy.dbError);
       setChecking(false);
       return;
     }
@@ -133,7 +133,7 @@ export default function AdminPage() {
     });
     if (actionError) setError(actionError.message);
     else {
-      setMessage("{copy.orderUpdated}");
+      setMessage(copy.orderUpdated);
       await load();
     }
   };
@@ -151,7 +151,7 @@ export default function AdminPage() {
     });
     if (etaError) setError(etaError.message);
     else {
-      setMessage("{copy.etaSaved}");
+      setMessage(copy.etaSaved);
       await load();
     }
   };
@@ -190,10 +190,10 @@ export default function AdminPage() {
         .update({ dp, selling_price: sellingPrice, updated_at: new Date().toISOString() })
         .eq("id", product.id);
       if (priceError) throw priceError;
-      setMessage("{copy.pricesSaved}");
+      setMessage(copy.pricesSaved);
       await load();
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "{copy.priceFailed}");
+      setError(caught instanceof Error ? caught.message : copy.priceFailed);
     }
   };
 
@@ -203,7 +203,7 @@ export default function AdminPage() {
     const { error: updateError } = await client.from("store_products").update({ availability }).eq("id", productId);
     if (updateError) setError(updateError.message);
     else {
-      setMessage("{copy.availabilityUpdated}");
+      setMessage(copy.availabilityUpdated);
       await load();
     }
   };
@@ -221,7 +221,7 @@ export default function AdminPage() {
             <h1 className="mt-1 text-2xl font-black text-white sm:text-3xl">{copy.title}</h1>
             <p className="mt-1 text-xs text-white/40">{copy.subtitle}</p>
           </div>
-          <button type="button" onClick={() => { setChecking(true); void load(); }} aria-label="{copy.refresh}" className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 text-teal-100/70">
+          <button type="button" onClick={() => { setChecking(true); void load(); }} aria-label={copy.refresh} className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 text-teal-100/70">
             <RefreshCw size={16} aria-hidden="true" />
           </button>
         </div>
@@ -242,10 +242,10 @@ export default function AdminPage() {
 
             <section className="mb-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {[
-                ["{copy.allOrders}", orders.length],
-                ["{copy.newOrders}", orders.filter((order) => order.status === "ORDER_PLACED").length],
-                ["{copy.inProgress}", orders.filter((order) => order.status !== "DELIVERED").length],
-                ["{copy.pendingReviews}", reviews.length],
+                [copy.allOrders, orders.length],
+                [copy.newOrders, orders.filter((order) => order.status === "ORDER_PLACED").length],
+                [copy.inProgress, orders.filter((order) => order.status !== "DELIVERED").length],
+                [copy.pendingReviews, reviews.length],
               ].map(([label, value]) => (
                 <GlassCard key={String(label)} className="rounded-2xl p-4">
                   <p className="text-[10px] font-semibold text-white/40">{label}</p>
@@ -298,7 +298,7 @@ export default function AdminPage() {
                                 <input type="date" aria-label={copy.revisedDate + " · " + order.order_number} value={delayForms[order.id]?.date ?? ""} onChange={(event) => setDelayForms((current) => ({ ...current, [order.id]: { date: event.target.value, start: current[order.id]?.start ?? "", end: current[order.id]?.end ?? "", note: current[order.id]?.note ?? "" } }))} className="min-w-0 rounded-lg border border-white/10 bg-white/[0.05] px-2 py-2 text-[10px] text-white" />
                                 <input type="time" aria-label={copy.revisedStart + " · " + order.order_number} value={delayForms[order.id]?.start ?? ""} onChange={(event) => setDelayForms((current) => ({ ...current, [order.id]: { date: current[order.id]?.date ?? "", start: event.target.value, end: current[order.id]?.end ?? "", note: current[order.id]?.note ?? "" } }))} className="min-w-0 rounded-lg border border-white/10 bg-white/[0.05] px-2 py-2 text-[10px] text-white" />
                                 <input type="time" aria-label={copy.revisedEnd + " · " + order.order_number} value={delayForms[order.id]?.end ?? ""} onChange={(event) => setDelayForms((current) => ({ ...current, [order.id]: { date: current[order.id]?.date ?? "", start: current[order.id]?.start ?? "", end: event.target.value, note: current[order.id]?.note ?? "" } }))} className="min-w-0 rounded-lg border border-white/10 bg-white/[0.05] px-2 py-2 text-[10px] text-white" />
-                                <input type="text" aria-label={copy.delayMessage + " · " + order.order_number} placeholder="{copy.ownerReason}" value={delayForms[order.id]?.note ?? ""} onChange={(event) => setDelayForms((current) => ({ ...current, [order.id]: { date: current[order.id]?.date ?? "", start: current[order.id]?.start ?? "", end: current[order.id]?.end ?? "", note: event.target.value } }))} className="min-w-0 rounded-lg border border-white/10 bg-white/[0.05] px-2 py-2 text-[10px] text-white placeholder:text-white/30" />
+                                <input type="text" aria-label={copy.delayMessage + " · " + order.order_number} placeholder={copy.ownerReason} value={delayForms[order.id]?.note ?? ""} onChange={(event) => setDelayForms((current) => ({ ...current, [order.id]: { date: current[order.id]?.date ?? "", start: current[order.id]?.start ?? "", end: current[order.id]?.end ?? "", note: event.target.value } }))} className="min-w-0 rounded-lg border border-white/10 bg-white/[0.05] px-2 py-2 text-[10px] text-white placeholder:text-white/30" />
                               </div>
                               <div className="mt-2 flex flex-wrap gap-2">
                                 <button type="button" disabled={!delayForms[order.id]?.date} onClick={() => void saveDeliveryEta(order.id)} className="rounded-xl border border-teal-100/25 bg-teal-100/[0.08] px-3 py-2 text-[10px] font-bold text-teal-100 disabled:opacity-35">{copy.setSlot}</button>
@@ -360,7 +360,7 @@ export default function AdminPage() {
                     <div key={product.id} className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] px-4 py-3 last:border-b-0">
                       <div className="min-w-0">
                         <p className="truncate text-xs font-semibold text-white">{product.name}</p>
-                        <p className="mt-1 text-[9px] text-white/35">{categoryLabel(product.category)} · {product.catalogue_status} · MRP {product.mrp === null ? "{copy.notListed}" : "₹" + Number(product.mrp).toLocaleString("en-IN")}</p>
+                        <p className="mt-1 text-[9px] text-white/35">{categoryLabel(product.category)} · {product.catalogue_status} · MRP {product.mrp === null ? copy.notListed : "₹" + Number(product.mrp).toLocaleString("en-IN")}</p>
                         <div className="mt-2 flex flex-wrap items-center gap-2">
                           <label className="text-[9px] text-white/45">DP
                             <input type="number" min="0" step="0.01" aria-label={copy.dpFor + " " + product.name} value={priceDrafts[product.id]?.dp ?? (product.dp === null ? "" : String(product.dp))} onChange={(event) => setPriceDrafts((current) => ({ ...current, [product.id]: { dp: event.target.value, sp: current[product.id]?.sp ?? (product.selling_price === null ? "" : String(product.selling_price)) } }))} className="ml-1 w-20 rounded-md border border-white/10 bg-white/[0.05] px-2 py-1.5 text-[10px] text-white" />
