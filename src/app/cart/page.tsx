@@ -85,12 +85,12 @@ export default function CartPage() {
 
       const created = await createStoreOrder(cart, user);
       const message = generateWhatsAppMessage(cart, user, total, locale)
-        + "\n\n*Tracked order reference:* " + created.order_number
-        + "\nYour order record is available in My Orders.";
+        + (locale === "hi" ? "\n\n*" + t("trackedOrderReference") + ":* " : "\n\n*Tracked order reference:* ") + created.order_number
+        + (locale === "hi" ? "\n" + t("orderRecordAvailable") : "\nYour order record is available in My Orders.");
       clearCart();
       window.location.assign(getWhatsAppUrl(message));
     } catch (error) {
-      setCheckoutError(error instanceof Error ? error.message : "Order creation failed. Please retry.");
+      setCheckoutError(error instanceof Error ? error.message : t("orderCreationFailed"));
     } finally {
       setCheckoutBusy(false);
     }
@@ -143,20 +143,20 @@ export default function CartPage() {
                         <p className="mb-1 text-[9px] font-bold uppercase tracking-[0.15em] text-teal-200/65">{categoryLabel(item.product.category)}</p>
                         <h2 className="line-clamp-2 text-sm font-bold leading-snug text-white">{productName(item.product)}</h2>
                         <p className="mt-1 text-[11px] text-white/45">{item.product.qty}</p>
-                        <p className="mt-2 text-[10px] text-white/55">{t("mrpPerUnit")}: {formatPrice(item.product.mrp)} / unit</p>
-                        <p className="mt-0.5 text-[10px] text-teal-100/70">{t("spPerUnit")}: {sellingPrice === null ? t("confirmWithStore") : formatPrice(sellingPrice) + " / unit"}</p>
+                        <p className="mt-2 text-[10px] text-white/55">{t("mrpPerUnit")}: {formatPrice(item.product.mrp)} / {t("perUnit")}</p>
+                        <p className="mt-0.5 text-[10px] text-teal-100/70">{t("spPerUnit")}: {sellingPrice === null ? t("confirmWithStore") : formatPrice(sellingPrice) + " / " + t("perUnit")}</p>
                         <p className="mt-1 text-sm font-extrabold text-teal-100">{t("lineMrp")}: {formatPrice(item.product.mrp * item.quantity)}</p>
                       </div>
                       <div className="flex shrink-0 flex-col items-end justify-between">
-                        <button type="button" onClick={() => removeFromCart(item.product.id)} aria-label={"Remove " + item.product.name + " from cart"} className="grid h-8 w-8 place-items-center rounded-xl text-white/35 transition-colors hover:bg-rose-400/10 hover:text-rose-300">
+                        <button type="button" onClick={() => removeFromCart(item.product.id)} aria-label={t("removeProduct") + " " + productName(item.product) + " " + t("fromCart") } className="grid h-8 w-8 place-items-center rounded-xl text-white/35 transition-colors hover:bg-rose-400/10 hover:text-rose-300">
                           <Trash2 size={15} aria-hidden="true" />
                         </button>
                         <div className="flex items-center gap-1 rounded-xl border border-white/[0.08] bg-white/[0.045] p-1">
-                          <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity - 1)} aria-label={"Decrease " + item.product.name + " quantity"} className="grid h-7 w-7 place-items-center rounded-lg text-white/65 transition-colors hover:bg-white/10 hover:text-white">
+                          <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity - 1)} aria-label={t("decreaseProductQuantity") + " " + productName(item.product)} className="grid h-7 w-7 place-items-center rounded-lg text-white/65 transition-colors hover:bg-white/10 hover:text-white">
                             <Minus size={13} aria-hidden="true" />
                           </button>
                           <span className="min-w-5 text-center text-xs font-bold text-white" aria-live="polite">{item.quantity}</span>
-                          <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity + 1)} aria-label={"Increase " + item.product.name + " quantity"} className="grid h-7 w-7 place-items-center rounded-lg text-white/65 transition-colors hover:bg-white/10 hover:text-white">
+                          <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity + 1)} aria-label={t("increaseProductQuantity") + " " + productName(item.product)} className="grid h-7 w-7 place-items-center rounded-lg text-white/65 transition-colors hover:bg-white/10 hover:text-white">
                             <Plus size={13} aria-hidden="true" />
                           </button>
                         </div>
