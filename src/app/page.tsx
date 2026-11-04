@@ -89,7 +89,7 @@ export default function HomePage() {
 
         <div className="mb-4 flex min-h-8 items-center justify-between gap-3">
           <p className="text-xs font-medium text-white/45" aria-live="polite">
-            {filtered.length} {locale === "hi" ? t("products") : filtered.length === 1 ? t("product") : t("products")}{activeCategory !== "All" ? " · " + categoryLabel(activeCategory) : ""}
+            {filtered.length} {locale === "hi" ? t("products") : filtered.length === 1 ? t("product") : t("products")}{activeCategory !== "All" ? (locale === "hi" ? " · " + categoryLabel(activeCategory) : " in " + categoryLabel(activeCategory)) : ""}
           </p>
           {(search || activeCategory !== "All") && (
             <button

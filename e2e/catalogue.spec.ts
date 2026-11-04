@@ -244,12 +244,12 @@ test("account, order centre and protected admin routes render without a configur
 
 test("Hindi and English switcher translates catalogue labels and persists the choice", async ({ page }) => {
   await page.goto("./");
-  await page.getByRole("button", { name: "Switch language to Hindi" }).click();
+  await page.getByRole("button", { name: /हिन्दी.*Switch language to Hindi/ }).click();
   await expect(page.getByRole("heading", { name: "उत्पाद सूची" })).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute("lang", "hi");
   await page.reload();
   await expect(page.getByRole("heading", { name: "उत्पाद सूची" })).toBeVisible();
-  await page.getByRole("button", { name: "भाषा अंग्रेज़ी में बदलें" }).click();
+  await page.getByRole("button", { name: /EN.*भाषा अंग्रेज़ी में बदलें/ }).click();
   await expect(page.getByRole("heading", { name: "Product catalogue" })).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
 });
