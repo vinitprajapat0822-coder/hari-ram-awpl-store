@@ -20,7 +20,7 @@ values
   ('awpl-apparels-asclepius-women-t-shirt-olive-xs', 'ASCLEPIUS WOMEN T-SHIRT - OLIVE (XS)', 'apparels', '1 NUMBER', 2295, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T73811_234219.jpg', 'VERIFIED'),
   ('awpl-baby-care-little-pie-baby-shampoo', 'LITTLE PIE BABY SHAMPOO', 'baby-care', '100 ML', 155, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T37111_248371.jpg', 'VERIFIED'),
   ('awpl-baby-care-little-pie-soothing-baby-gentle-soap', 'LITTLE PIE SOOTHING BABY GENTLE SOAP', 'baby-care', '75 GM', 258, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T47844_085402.jpg', 'VERIFIED'),
-  ('awpl-baby-care-little-pie-baby-lotion', 'LITTLE PIE BABY LOTION', 'baby-care', '100 ML', 245, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-baby-care-little-pie-baby-lotion', 'LITTLE PIE BABY LOTION', 'baby-care', '100 ML', 245, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3751_235776.jpg', 'VERIFIED'),
   ('awpl-food-eco-arogyam-multiflora-honey-new', 'ECO AROGYAM MULTIFLORA HONEY (NEW)', 'food', '500 GM', 531, null, 'VERIFIED', 'UNKNOWN', 'https://asclepiuswellness.com/upload/product/_T1661.png', 'VERIFIED'),
   ('awpl-food-eco-arogyam-tea', 'ECO AROGYAM TEA', 'food', '250 GM', 197, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23211_083580.jpg', 'VERIFIED'),
   ('awpl-home-care-bathveda-fresh-lime-bar', 'BATHVEDA FRESH LIME BAR', 'home-care', '375 GM', 234, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T20511_934836.jpg', 'VERIFIED'),
