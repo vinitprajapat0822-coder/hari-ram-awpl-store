@@ -65,7 +65,7 @@ values
   ('awpl-sniss-cosmetic-ultra-smooth-foundation-for-radiant-glow-creamy-vanilla', 'ULTRA SMOOTH FOUNDATION FOR RADIANT GLOW - CREAMY VANILLA', 'sniss-cosmetic', '30 ML', 1049, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3901_327986.jpg', 'VERIFIED'),
   ('awpl-sniss-cosmetic-color-drew-blush-stick-flirty', 'COLOR DREW BLUSH STICK - FLIRTY', 'sniss-cosmetic', '4 ML', 559, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
   ('awpl-sniss-cosmetic-blurr-loose-powder-white-touch', 'BLURR LOOSE POWDER - WHITE TOUCH', 'sniss-cosmetic', '15 GM', 1245, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
-  ('awpl-sniss-cosmetic-lumitouch-compact-powder-soft-sand', 'LUMITOUCH COMPACT POWDER - SOFT SAND', 'sniss-cosmetic', '9 GM', 979, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-sniss-cosmetic-lumitouch-compact-powder-soft-sand', 'LUMITOUCH COMPACT POWDER - SOFT SAND', 'sniss-cosmetic', '9 GM', 979, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4091_962749.jpg', 'VERIFIED'),
   ('awpl-sniss-cosmetic-powder-blush-nasty', 'POWDER BLUSH - NASTY', 'sniss-cosmetic', '3 GM', 909, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
   ('awpl-sniss-cosmetic-eyeliner-holographic-peacock-green-halo', 'EYELINER HOLOGRAPHIC - PEACOCK GREEN HALO', 'sniss-cosmetic', '1 ML', 279, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
   ('awpl-sniss-cosmetic-eyeliner-metallic-rose-gold', 'EYELINER METALLIC - ROSE GOLD', 'sniss-cosmetic', '3 ML', 979, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
