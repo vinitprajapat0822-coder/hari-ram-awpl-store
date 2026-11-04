@@ -2181,8 +2181,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4601_464395.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Luxe Lips Definer in Blossom"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2242,8 +2243,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T46922_361358.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Silk Sheen Luxe Lip Gloss in Strawberry Flush"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2302,8 +2304,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T47611_494355.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Mirror Finish green color corrector concealer"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
