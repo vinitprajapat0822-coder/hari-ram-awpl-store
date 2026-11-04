@@ -107,7 +107,7 @@ export default function AdminPage() {
     if (productResult.error) setError(productResult.error.message);
     else setProducts((productResult.data ?? []) as AdminProduct[]);
     setChecking(false);
-  }, []);
+  }, [copy.dbError]);
 
   useEffect(() => { void load(); }, [load]);
 
@@ -165,7 +165,7 @@ export default function AdminPage() {
     });
     if (moderationError) setError(moderationError.message);
     else {
-      setMessage(approve ? "{copy.reviewPublished}" : "{copy.review{copy.reject}ed}");
+      setMessage(approve ? copy.reviewPublished : copy.reviewRejected);
       await load();
     }
   };
