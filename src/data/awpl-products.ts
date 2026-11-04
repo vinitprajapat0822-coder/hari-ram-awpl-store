@@ -1635,6 +1635,306 @@ export const awplProducts: ProductMasterRecord[] = [
     "lastVerifiedAt": "2026-11-03"
   },
   {
+    "id": "awpl-jeeveda-jeeveda-pav-bhaji-masala",
+    "name": "JEEVEDA PAV BHAJI MASALA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 139,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-rajma-masala",
+    "name": "JEEVEDA RAJMA MASALA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 139,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-shahi-paneer-masala",
+    "name": "JEEVEDA SHAHI PANEER MASALA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 153,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-sambhar-masala",
+    "name": "JEEVEDA SAMBHAR MASALA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 137,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-tandoori-chicken-masala",
+    "name": "JEEVEDA TANDOORI CHICKEN MASALA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 139,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-carom-seeds-ajwain",
+    "name": "JEEVEDA CAROM SEEDS AJWAIN",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 83,
+    "packSize": "50 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-black-pepper-kali-mirchi",
+    "name": "JEEVEDA BLACK PEPPER-KALI MIRCHI",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 139,
+    "packSize": "50 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-black-cardamom-badi-elaic",
+    "name": "JEEVEDA BLACK CARDAMOM-BADI ELAIC",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 321,
+    "packSize": "50 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-green-cardamom-choti-elai",
+    "name": "JEEVEDA GREEN CARDAMOM CHOTI ELAI",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 251,
+    "packSize": "25 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-cumin-seeds-jeera",
+    "name": "JEEVEDA CUMIN SEEDS JEERA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 125,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
     "id": "awpl-oral-care-dentodoc-cream",
     "name": "DENTODOC CREAM",
     "nameHi": null,
@@ -4166,5 +4466,95 @@ export const awplProducts: ProductMasterRecord[] = [
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-sniss-herbal-heal-doc-cream",
+    "name": "HEAL DOC CREAM",
+    "nameHi": null,
+    "brand": null,
+    "category": "sniss-herbal",
+    "subcategory": null,
+    "mrp": 327,
+    "packSize": "50 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official SNISS Herbal category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-sniss-herbal-mosquito-repellent-cream",
+    "name": "MOSQUITO REPELLENT CREAM",
+    "nameHi": null,
+    "brand": null,
+    "category": "sniss-herbal",
+    "subcategory": null,
+    "mrp": 181,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official SNISS Herbal category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-sniss-herbal-b-ton-oint",
+    "name": "B-TON OINT",
+    "nameHi": null,
+    "brand": null,
+    "category": "sniss-herbal",
+    "subcategory": null,
+    "mrp": 808,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official SNISS Herbal category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
   }
 ];
