@@ -1274,7 +1274,7 @@ export const awplProducts: ProductMasterRecord[] = [
     "brand": null,
     "category": "jeeveda",
     "subcategory": null,
-    "mrp": 125,
+    "mrp": 167,
     "packSize": "100 GM",
     "description": null,
     "ingredients": null,
@@ -1285,17 +1285,17 @@ export const awplProducts: ProductMasterRecord[] = [
     "availability": "UNKNOWN",
     "status": "VERIFIED",
     "priceEvidence": {
-      "sourceLabel": "AWPL official category listing (indexed source snapshot)",
+      "sourceLabel": "AWPL official Jeeveda category listing",
       "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
-      "checkedAt": "2026-11-03",
-      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+      "checkedAt": "2026-11-04",
+      "reviewNote": "Official AWPL Jeeveda listing confirms MRP ₹167 and pack size 100 GM. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
     },
     "productSource": {
       "sourceLabel": "AWPL official category listing",
       "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
       "checkedAt": "2026-11-03"
     },
-    "lastVerifiedAt": "2026-11-03"
+    "lastVerifiedAt": "2026-11-04"
   },
   {
     "id": "awpl-jeeveda-jeeveda-nigella-seeds-kalonji",
