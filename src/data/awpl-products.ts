@@ -403,8 +403,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T37111_248371.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Little Pie Baby Shampoo bottle, 100 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -493,8 +494,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://asclepiuswellness.com/upload/product/_T1661.png",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Eco Arogyam Multifloral Honey jar, 500 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -523,8 +525,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23211_083580.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Eco Arogyam Tea pack, 250 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -733,8 +736,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T2341_554620.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Limfresh Liquid Dish Wash bottle, 500 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -793,8 +797,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T2391_011688.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Toshine Detergent Powder pack, 1000 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -853,8 +858,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23311_613104.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Power Flush Toilet Cleaner bottle, 500 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -973,8 +979,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T26422_057524.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL EXE Fresh Musk Room Freshener, 200 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1604,8 +1611,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T501.jpeg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Dentodoc Dental Care Cream, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
