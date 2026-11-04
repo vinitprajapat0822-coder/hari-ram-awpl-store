@@ -260,6 +260,11 @@ test("Hindi and English switcher translates catalogue labels and persists the ch
   await expect(page.locator("html")).toHaveAttribute("lang", "hi");
   await page.reload();
   await expect(page.getByRole("heading", { name: "उत्पाद सूची" })).toBeVisible();
+  await expect(page.getByText("रोज़मर्रा की ज़रूरतें,", { exact: true })).toBeVisible();
+  const hindiSearch = page.getByRole("searchbox", { name: "उत्पाद खोजें" });
+  await hindiSearch.fill("जीवेदा छोले-चना मसाला");
+  await expect(page.getByRole("group", { name: "उत्पाद जीवेदा छोले-चना मसाला", exact: true })).toBeVisible();
+  await hindiSearch.fill("");
   await page.getByRole("button", { name: /EN.*भाषा अंग्रेज़ी में बदलें/ }).click();
   await expect(page.getByRole("heading", { name: "Product catalogue" })).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
