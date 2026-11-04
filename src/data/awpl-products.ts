@@ -434,8 +434,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T47844_085402.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Little Pie Soothing Gentle Soap pack, 75 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1654,8 +1655,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3011_293368.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius Wellness branded backpack"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
