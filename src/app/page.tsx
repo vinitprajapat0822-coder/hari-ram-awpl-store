@@ -16,7 +16,7 @@ export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
   const searchPlaceholder = useSearchMorphPlaceholder();
-  const { locale, t, categoryLabel } = useLanguage();
+  const { locale, t, categoryLabel, productName } = useLanguage();
 
   const filtered = useMemo(() => {
     let list = products;
