@@ -17,7 +17,7 @@ const steps = [
 ] as const;
 
 export default function OrderTrackingTimeline({ order }: { order: StoreOrder }) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const reducedMotion = useReducedMotion();
   const currentIndex = steps.findIndex((step) => step.status === order.status);
   const progress = currentIndex > 0 ? currentIndex / (steps.length - 1) : 0;
@@ -71,7 +71,7 @@ export default function OrderTrackingTimeline({ order }: { order: StoreOrder }) 
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-white/[0.08] pt-3 text-[11px]">
         <span className="text-white/45">{t("expectedDelivery")}</span>
-        <span className="font-semibold text-white/75">{formatDeliveryDate(order.expected_delivery_date)}</span>
+        <span className="font-semibold text-white/75">{formatDeliveryDate(order.expected_delivery_date, locale)}</span>
       </div>
       {order.expected_delivery_start && order.expected_delivery_end && (
         <p className="mt-1 text-right text-[10px] text-white/40">
@@ -90,7 +90,7 @@ export default function OrderTrackingTimeline({ order }: { order: StoreOrder }) 
           </p>
           {update.eta_date && (
             <p className="mt-1 text-[10px] font-semibold text-amber-100/80">
-              {t("revisedDelivery")}: {formatDeliveryDate(update.eta_date)}
+              {t("revisedDelivery")}: {formatDeliveryDate(update.eta_date, locale)}
               {update.eta_start && update.eta_end
                 ? " · " + update.eta_start.slice(0, 5) + "–" + update.eta_end.slice(0, 5)
                 : ""}
