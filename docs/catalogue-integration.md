@@ -29,7 +29,7 @@ The AWPL page snippets do not expose a formal page-update timestamp. The date in
 
 ## Images
 
-No images were supplied. Images are mapped to exact official AWPL product-image links where the product name and image alt text match. Current verified coverage is 115 of 135 records (85.2%). The remaining 20 records retain placeholders until their exact official image links are identified. Five additional exact official AWPL image URLs have been verified and synchronized into the TypeScript catalogue and SQL seed during the current work. Do not reuse a related product's image. Do not reuse a related product's image.
+No images were supplied. Images are mapped to exact official AWPL product-image links where the product name and image alt text match. Current verified coverage is 115 of 135 records (85.2%). The remaining 20 records retain placeholders until their exact official image links are identified. Five additional exact official AWPL image URLs have been verified and synchronized into the TypeScript catalogue and SQL seed during the current work. Do not reuse a related product's image.
 
 ## Product SKU rules
 
