@@ -1672,8 +1672,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3951_975071.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Prep-It Primer bottle, 30 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1732,8 +1733,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3901_327986.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Ultra Smooth Foundation in Creamy Vanilla, 30 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2062,8 +2064,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4421_090556.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Luxe Matte Liquid Lipstick in Fine Wine, 3 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2092,8 +2095,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T45411_803167.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Juicy Lips Vanilla Lip Balm, 4 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
