@@ -937,8 +937,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T25811_226084.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Toshine Detergent Bar wrapper, pack of 3"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -967,8 +968,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T25911_339243.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Limfresh Dish Wash Bar wrapper, pack of 3"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
