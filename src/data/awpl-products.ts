@@ -1846,8 +1846,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4091_962749.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Lumi Touch compact powder in Soft Sand, 9 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
