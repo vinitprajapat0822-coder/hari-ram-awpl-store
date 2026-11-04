@@ -109,10 +109,10 @@ export async function createStoreOrder(
   return result;
 }
 
-export function formatOrderDate(value: string): string {
+export function formatOrderDate(value: string, locale: "en" | "hi" = "en"): string {
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "Date unavailable";
-  return date.toLocaleString("en-IN", {
+  if (Number.isNaN(date.getTime())) return locale === "hi" ? "तारीख उपलब्ध नहीं" : "Date unavailable";
+  return date.toLocaleString(locale === "hi" ? "hi-IN" : "en-IN", {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -122,11 +122,11 @@ export function formatOrderDate(value: string): string {
   });
 }
 
-export function formatDeliveryDate(value: string | null): string {
-  if (!value) return "Not scheduled yet";
+export function formatDeliveryDate(value: string | null, locale: "en" | "hi" = "en"): string {
+  if (!value) return locale === "hi" ? "अभी तय नहीं" : "Not scheduled yet";
   const date = new Date(value + "T00:00:00+05:30");
-  if (Number.isNaN(date.getTime())) return "Not scheduled yet";
-  return date.toLocaleDateString("en-IN", {
+  if (Number.isNaN(date.getTime())) return locale === "hi" ? "तारीख उपलब्ध नहीं" : "Not scheduled yet";
+  return date.toLocaleDateString(locale === "hi" ? "hi-IN" : "en-IN", {
     day: "2-digit",
     month: "short",
     year: "numeric",
