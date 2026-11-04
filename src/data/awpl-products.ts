@@ -1041,8 +1041,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T16222_417330.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Rice Bran Oil container, 5 L"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1071,8 +1072,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3241_507729.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Chhole Chana Masala pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1101,8 +1103,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3251_493990.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Chicken Masala pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1131,8 +1134,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3261_035630.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Dal Makhani Masala pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1191,8 +1195,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3281_133004.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Garam Masala pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1221,8 +1226,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T32911_651975.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Kitchen King Masala pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1311,8 +1317,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3431_655289.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Fenugreek Seeds pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1401,8 +1408,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3781_305690.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Cinnamon Sticks pack, 50 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
