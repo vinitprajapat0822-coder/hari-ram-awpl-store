@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { X } from "lucide-react";
 import { Star } from "lucide-react";
@@ -22,6 +22,8 @@ export default function ProductReviewsFeed({
   const { t } = useLanguage();
   const reducedMotion = useReducedMotion();
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+  const photoTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const closePhotoRef = useRef<HTMLButtonElement | null>(null);
   const [reviews, setReviews] = useState<ReviewView[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -69,11 +71,18 @@ export default function ProductReviewsFeed({
 
   useEffect(() => {
     if (!selectedPhoto) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closePhotoRef.current?.focus();
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setSelectedPhoto(null);
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+      photoTriggerRef.current?.focus();
+    };
   }, [selectedPhoto]);
 
   const average = reviews.length > 0
@@ -147,7 +156,7 @@ export default function ProductReviewsFeed({
                     <button
                       key={url}
                       type="button"
-                      onClick={() => setSelectedPhoto(url)}
+                      onClick={(event) => { photoTriggerRef.current = event.currentTarget; setSelectedPhoto(url); }}
                       aria-label={t("viewReviewPhoto") + " " + (index + 1)}
                       className="group overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200"
                     >
@@ -186,7 +195,7 @@ export default function ProductReviewsFeed({
               exit={reducedMotion ? undefined : { opacity: 0, y: 8, scale: 0.98 }}
               transition={{ duration: reducedMotion ? 0 : 0.2 }}
             >
-              <button type="button" onClick={() => setSelectedPhoto(null)} aria-label={t("closePhoto")} className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/55 text-white backdrop-blur-md">
+              <button type="button" ref={closePhotoRef} onClick={() => setSelectedPhoto(null)} aria-label={t("closePhoto")} className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/55 text-white backdrop-blur-md">
                 <X size={17} aria-hidden="true" />
               </button>
               <img src={selectedPhoto} alt={t("reviewPhotoAlt")} className="max-h-[84dvh] w-auto max-w-full rounded-xl object-contain" />
