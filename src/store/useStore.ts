@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { products } from "@/data/products";
 import type { Product } from "@/data/products";
+import { localizedProductName } from "@/i18n/product-labels";
 
 export type CartItem = {
   product: Product;
@@ -132,28 +133,30 @@ export const useStore = create<StoreState>()(
 export function generateWhatsAppMessage(
   cart: CartItem[],
   user: UserDetails,
-  total: number
+  total: number,
+  locale: "en" | "hi" = "en"
 ) {
   const lines: string[] = [];
-  lines.push("*Hari Ram AWPL Store - New Order*");
+  lines.push(locale === "hi" ? "*HARI RAM AWPL STORE - नया ऑर्डर*" : "*HARI RAM AWPL STORE - New Order*");
+  lines.push(locale === "hi" ? "स्टोर संचालक: Hariram Prajapat" : "Store owner: Hariram Prajapat");
   lines.push("");
 
   cart.forEach((item, index) => {
     const lineTotal = item.product.mrp * item.quantity;
     lines.push(
-      `${index + 1}. ${item.product.name} (${item.product.qty}) × ${item.quantity} = ₹${lineTotal.toLocaleString("en-IN")}`
+      `${index + 1}. ${locale === "hi" ? localizedProductName(item.product.nameHi || item.product.name) : item.product.name} (${item.product.qty}) × ${item.quantity} = ₹${lineTotal.toLocaleString("en-IN")}`
     );
   });
 
   lines.push("");
-  lines.push(`*Total (MRP):* ₹${total.toLocaleString("en-IN")}`);
+  lines.push(locale === "hi" ? `*कुल सूची कीमत:* ₹${total.toLocaleString("en-IN")}` : `*Total (MRP):* ₹${total.toLocaleString("en-IN")}`);
   lines.push("");
-  lines.push("*Customer Details*");
-  lines.push(`Name: ${user.name || "Not provided"}`);
-  lines.push(`Phone: ${user.phone || "Not provided"}`);
-  lines.push(`Address: ${user.address || "Not provided"}`);
+  lines.push(locale === "hi" ? "*ग्राहक की जानकारी*" : "*Customer Details*");
+  lines.push(`${locale === "hi" ? "नाम" : "Name"}: ${user.name || (locale === "hi" ? "नहीं दिया" : "Not provided")}`);
+  lines.push(`${locale === "hi" ? "मोबाइल" : "Phone"}: ${user.phone || (locale === "hi" ? "नहीं दिया" : "Not provided")}`);
+  lines.push(`${locale === "hi" ? "पता" : "Address"}: ${user.address || (locale === "hi" ? "नहीं दिया" : "Not provided")}`);
   lines.push("");
-  lines.push("Please confirm stock, current MRP and delivery before accepting the order.");
+  lines.push(locale === "hi" ? "ऑर्डर स्वीकार करने से पहले अंतिम कीमत और डिलीवरी की पुष्टि करें।" : "Please confirm the final price and delivery details before accepting the order.");
 
   return lines.join("\n");
 }
