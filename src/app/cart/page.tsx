@@ -134,7 +134,7 @@ export default function CartPage() {
                     ? staticPrice
                     : null;
                 return (
-                  <GlassCard key={item.product.id} className="rounded-[22px] p-3.5 sm:p-4">
+                  <GlassCard key={item.product.id} data-testid={"cart-line-" + item.product.id} className="rounded-[22px] p-3.5 sm:p-4">
                     <div className="flex gap-3.5">
                       <div className="w-[76px] shrink-0 sm:w-[88px]">
                         <ProductArtwork product={item.product} showAttribution={false} />
