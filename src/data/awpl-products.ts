@@ -2982,8 +2982,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29911_455159.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Elite SPF50 PA++++ sunscreen gel, 50 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3198,8 +3199,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51411_042878.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Herbal Hair Doc Oil bottle, 200 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
