@@ -2995,8 +2995,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29911_455159.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Elite SPF50 PA++++ Sunscreen Gel tube; image label says 50 ml while category listing records 50 gm"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
