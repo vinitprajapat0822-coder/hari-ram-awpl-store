@@ -28,15 +28,17 @@ export default function HomePage() {
     if (query) {
       list = list.filter((product) =>
         product.name.toLowerCase().includes(query) ||
+        productName(product).toLowerCase().includes(query) ||
         (product.nameHi ?? "").toLowerCase().includes(query) ||
         (product.description ?? "").toLowerCase().includes(query) ||
         (product.qty ?? "").toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query)
+        product.category.toLowerCase().includes(query) ||
+        categoryLabel(product.category).toLowerCase().includes(query)
       );
     }
 
     return list;
-  }, [activeCategory, search]);
+  }, [activeCategory, search, locale, categoryLabel, productName]);
 
   const categoryCount = categories.filter((category) => category !== "All").length;
 
