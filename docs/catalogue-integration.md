@@ -7,7 +7,7 @@
 - The captured apparel listing rows are separate product records (for example, each shirt colour/size is its own SKU).
 - Product records use MRP only. DP and SP are not part of the product type, catalogue data or cart calculations.
 - Product descriptions and ingredient claims are left blank unless separately verified.
-- Official AWPL image URLs are enabled for 30 exact product matches; unresolved products retain the square "Image pending" placeholder.
+- Official AWPL image URLs are enabled for 113 exact product matches; 22 unresolved products retain the square "Image pending" placeholder.
 - Cart lines are SKU-specific and WhatsApp order text includes the product's pack size.
 - Existing persisted cart data is migrated to the current catalogue and stale/unsupported products are dropped.
 
