@@ -103,8 +103,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T69911_636984.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius olive polo shirt, men's small"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -163,8 +164,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T20911_854480.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius teal polo shirt, men's small"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -193,8 +195,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T20833_329896.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius black polo shirt, men's small"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -253,8 +256,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T7141_606306.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius ivory women's polo shirt, XS"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -313,8 +317,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T72811_607357.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius teal women's polo shirt, L"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -343,8 +348,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T7321_542789.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius black women's polo shirt, XS"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -373,8 +379,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T73811_234219.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius olive women's polo shirt, XS"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -403,8 +410,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T37111_248371.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Little Pie Baby Shampoo bottle, 100 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -433,8 +441,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T47844_085402.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Little Pie Soothing Gentle Soap pack, 75 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -463,8 +472,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3751_235776.jpg",
+      "status": "VERIFIED",
+      "altText": "Primary product image linked from the official Little Pie Baby Lotion product card; official listing quantity is 100 ML"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -493,8 +503,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://asclepiuswellness.com/upload/product/_T1661.png",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Eco Arogyam Multifloral Honey jar, 500 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -523,8 +534,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23211_083580.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Eco Arogyam Tea pack, 250 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -553,8 +565,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T20511_934836.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Fresh Lime Bar product pack image; shown unit is 125 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -583,8 +596,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T20611_940204.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Mysore Sandal Bar product pack image; shown unit is 125 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -613,8 +627,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T24133_707974.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Neem Tulsi Bar product pack image"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -643,8 +658,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23622_495567.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Beauty Cream Bar product pack image"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -673,8 +689,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23722_989465.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Goat Milk Bar product pack image"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -703,8 +720,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23522_889140.jpg",
+      "status": "VERIFIED",
+      "altText": "Official BathVeda Glycerin and Natural Oil Bar product pack image"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -733,8 +751,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T2341_554620.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Limfresh Liquid Dish Wash bottle, 500 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -763,8 +782,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23822_279313.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Toshine Liquid Wash bottle, 1000 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -793,8 +813,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T2391_011688.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Toshine Detergent Powder pack, 1000 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -823,8 +844,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T24011_932018.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Easy Sweep Rose Fragrance Surface Cleaner bottle, 500 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -853,8 +875,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23311_613104.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Power Flush Toilet Cleaner bottle, 500 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -883,8 +906,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T25233_254654.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Toshine Winterwear Liquid Wash bottle, 1000 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -913,8 +937,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T25811_226084.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Toshine Detergent Bar wrapper, pack of 3"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -943,8 +968,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T25911_339243.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Limfresh Dish Wash Bar wrapper, pack of 3"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -973,8 +999,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T26422_057524.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL EXE Fresh Musk Room Freshener, 200 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1003,8 +1030,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T16144_062207.jpeg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Rice Bran Oil container, 2 L"
     },
     "availability": "UNKNOWN",
     "status": "PRICE_REVIEW_REQUIRED",
@@ -1034,8 +1062,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T16222_417330.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Rice Bran Oil container, 5 L"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1064,8 +1093,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3241_507729.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Chhole Chana Masala pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1094,8 +1124,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3251_493990.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Chicken Masala pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1124,8 +1155,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3261_035630.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Dal Makhani Masala pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1154,8 +1186,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T32711_393974.jpg",
+      "status": "VERIFIED",
+      "altText": "Official JEEVEDA Fish Masala product image; official page lists the pack as 100 GM"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1184,8 +1217,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3281_133004.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Garam Masala pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1214,8 +1248,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T32911_651975.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Kitchen King Masala pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1239,7 +1274,7 @@ export const awplProducts: ProductMasterRecord[] = [
     "brand": null,
     "category": "jeeveda",
     "subcategory": null,
-    "mrp": 125,
+    "mrp": 167,
     "packSize": "100 GM",
     "description": null,
     "ingredients": null,
@@ -1250,17 +1285,17 @@ export const awplProducts: ProductMasterRecord[] = [
     "availability": "UNKNOWN",
     "status": "VERIFIED",
     "priceEvidence": {
-      "sourceLabel": "AWPL official category listing (indexed source snapshot)",
+      "sourceLabel": "AWPL official Jeeveda category listing",
       "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
-      "checkedAt": "2026-11-03",
-      "reviewNote": "MRP and pack details transcribed from the official AWPL category listing. No promotional or medical claims have been copied."
+      "checkedAt": "2026-11-04",
+      "reviewNote": "Official AWPL Jeeveda listing confirms MRP ₹167 and pack size 100 GM. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
     },
     "productSource": {
       "sourceLabel": "AWPL official category listing",
       "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
       "checkedAt": "2026-11-03"
     },
-    "lastVerifiedAt": "2026-11-03"
+    "lastVerifiedAt": "2026-11-04"
   },
   {
     "id": "awpl-jeeveda-jeeveda-nigella-seeds-kalonji",
@@ -1274,8 +1309,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://img500.exportersindia.com/product_images/bc-500/2025/5/14178652/50gm-asclepius-jeeveda-nigella-seeds-1748601210-8101540.jpeg",
+      "status": "VERIFIED",
+      "altText": "Third-party listing image of exact Asclepius Jeeveda Nigella Seeds 50 g pack"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1304,8 +1340,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3431_655289.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Fenugreek Seeds pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1394,8 +1431,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3781_305690.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Cinnamon Sticks pack, 50 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1424,8 +1462,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T37933_660794.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Bay Leaf pack, 25 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1454,8 +1493,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3801_205672.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Kasoori Methi Fenugreek Leaves pack, 50 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1514,8 +1554,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T27011_932914.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Turmeric Powder pack, 500 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1544,8 +1585,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4861_637514.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Jeeveda Coriander Powder pack, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1593,6 +1635,306 @@ export const awplProducts: ProductMasterRecord[] = [
     "lastVerifiedAt": "2026-11-03"
   },
   {
+    "id": "awpl-jeeveda-jeeveda-pav-bhaji-masala",
+    "name": "JEEVEDA PAV BHAJI MASALA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 139,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-rajma-masala",
+    "name": "JEEVEDA RAJMA MASALA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 139,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-shahi-paneer-masala",
+    "name": "JEEVEDA SHAHI PANEER MASALA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 153,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-sambhar-masala",
+    "name": "JEEVEDA SAMBHAR MASALA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 137,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-tandoori-chicken-masala",
+    "name": "JEEVEDA TANDOORI CHICKEN MASALA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 139,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-carom-seeds-ajwain",
+    "name": "JEEVEDA CAROM SEEDS AJWAIN",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 83,
+    "packSize": "50 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-black-pepper-kali-mirchi",
+    "name": "JEEVEDA BLACK PEPPER-KALI MIRCHI",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 139,
+    "packSize": "50 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-black-cardamom-badi-elaic",
+    "name": "JEEVEDA BLACK CARDAMOM-BADI ELAIC",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 321,
+    "packSize": "50 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-green-cardamom-choti-elai",
+    "name": "JEEVEDA GREEN CARDAMOM CHOTI ELAI",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 251,
+    "packSize": "25 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-jeeveda-jeeveda-cumin-seeds-jeera",
+    "name": "JEEVEDA CUMIN SEEDS JEERA",
+    "nameHi": null,
+    "brand": null,
+    "category": "jeeveda",
+    "subcategory": null,
+    "mrp": 125,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official Jeeveda category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/jeeveda/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
     "id": "awpl-oral-care-dentodoc-cream",
     "name": "DENTODOC CREAM",
     "nameHi": null,
@@ -1604,8 +1946,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T501.jpeg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Dentodoc Dental Care Cream, 100 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1634,8 +1977,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3011_293368.jpg",
+      "status": "VERIFIED",
+      "altText": "Official Asclepius Wellness branded backpack"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1664,8 +2008,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3951_975071.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Prep-It Primer bottle, 30 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1694,8 +2039,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T39633_845124.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Lift and Sculpt Concealer product family image; catalogued shade is Ivory Play"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1724,8 +2070,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3901_327986.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Ultra Smooth Foundation in Creamy Vanilla, 30 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1754,8 +2101,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T40244_868418.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Color Drew Moist Stick Blush product family image; catalogued variant is Flirty"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1814,8 +2162,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4091_962749.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Lumi Touch compact powder in Soft Sand, 9 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -1964,8 +2313,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4282_660264.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS retractable kajal pencil"
     },
     "availability": "UNKNOWN",
     "status": "MISSING_DATA",
@@ -1994,8 +2344,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T42911_957021.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Flick&Lift Waterproof Mascara"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2054,8 +2405,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4421_090556.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Luxe Matte Liquid Lipstick in Fine Wine, 3 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2084,8 +2436,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T45411_803167.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Juicy Lips Vanilla Lip Balm, 4 g"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2144,8 +2497,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4601_464395.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Luxe Lips Definer in Blossom"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2174,8 +2528,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T46622_464547.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Strobe Cream Dewy Glow Flamingo"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2204,8 +2559,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T46922_361358.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Silk Sheen Luxe Lip Gloss in Strawberry Flush"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2264,8 +2620,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T47611_494355.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Mirror Finish green color corrector concealer"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2945,8 +3302,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T29911_455159.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Elite SPF50 PA++++ Sunscreen Gel tube; image label says 50 ml while category listing records 50 gm"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3037,8 +3395,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T27611_046198.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS ORELLA Unisex Eau de Parfum, 75 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3067,8 +3426,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T2771_497299.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS NEBEL Unisex Eau de Parfum, 75 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3097,8 +3457,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T6701_662586.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS REVOQUE Body Deodorant Spray, 150 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3127,8 +3488,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T67111_474700.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS LONDON XI Body Deodorant Spray, 150 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -4104,5 +4466,95 @@ export const awplProducts: ProductMasterRecord[] = [
       "checkedAt": "2026-11-03"
     },
     "lastVerifiedAt": "2026-11-03"
+  },
+  {
+    "id": "awpl-sniss-herbal-heal-doc-cream",
+    "name": "HEAL DOC CREAM",
+    "nameHi": null,
+    "brand": null,
+    "category": "sniss-herbal",
+    "subcategory": null,
+    "mrp": 327,
+    "packSize": "50 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official SNISS Herbal category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-sniss-herbal-mosquito-repellent-cream",
+    "name": "MOSQUITO REPELLENT CREAM",
+    "nameHi": null,
+    "brand": null,
+    "category": "sniss-herbal",
+    "subcategory": null,
+    "mrp": 181,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official SNISS Herbal category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
+  },
+  {
+    "id": "awpl-sniss-herbal-b-ton-oint",
+    "name": "B-TON OINT",
+    "nameHi": null,
+    "brand": null,
+    "category": "sniss-herbal",
+    "subcategory": null,
+    "mrp": 808,
+    "packSize": "100 GM",
+    "description": null,
+    "ingredients": null,
+    "image": {
+      "url": null,
+      "status": "MISSING"
+    },
+    "availability": "UNKNOWN",
+    "status": "VERIFIED",
+    "priceEvidence": {
+      "sourceLabel": "AWPL official SNISS Herbal category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04",
+      "reviewNote": "MRP, product name and pack size transcribed from the official AWPL category listing. DP/SP are displayed on the source but are not stored in ProductMasterRecord."
+    },
+    "productSource": {
+      "sourceLabel": "AWPL official category listing",
+      "sourceUrl": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+      "checkedAt": "2026-11-04"
+    },
+    "lastVerifiedAt": "2026-11-04"
   }
 ];
