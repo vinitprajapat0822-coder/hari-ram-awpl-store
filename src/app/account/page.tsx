@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import GlassCard from "@/components/GlassCard";
 import { getSupabaseClient } from "@/lib/supabase";
 import { ArrowLeft, LockKeyhole, LogIn, UserPlus } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 function safeNextPath(value: string | null): string {
   if (!value || !value.startsWith("/") || value.startsWith("//")) return "/orders";
@@ -14,11 +15,12 @@ function safeNextPath(value: string | null): string {
 }
 
 function AccountContent() {
+  const { t } = useLanguage();
   const searchParams = useSearchParams();
   const router = useRouter();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, set{t("password")}] = useState("");
   const [fullName, setFullName] = useState("");
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
@@ -45,11 +47,11 @@ function AccountContent() {
     setNotice("");
     try {
       const client = getSupabaseClient();
-      if (!client) throw new Error("Account service is not configured. Contact the store owner.");
-      if (!email.trim() || password.length < 8) throw new Error("Enter an email and a password of at least 8 characters.");
+      if (!client) throw new Error(t("accountServiceUnavailable"));
+      if (!email.trim() || password.length < 8) throw new Error(t("enterEmail{t("password")}"));
 
       if (mode === "signup") {
-        if (fullName.trim().length < 2) throw new Error("Enter your full name.");
+        if (fullName.trim().length < 2) throw new Error(t("enterFullName"));
         const { data, error: authError } = await client.auth.signUp({
           email: email.trim(),
           password,
@@ -57,12 +59,12 @@ function AccountContent() {
         });
         if (authError) throw authError;
         if (!data.session) {
-          setNotice("Account created. Check your email to confirm the address, then sign in.");
+          setNotice(t("accountCreatedNotice"));
         } else {
           router.push(safeNextPath(searchParams.get("next")));
         }
       } else {
-        const { error: authError } = await client.auth.signInWithPassword({
+        const { error: authError } = await client.auth.signInWith{t("password")}({
           email: email.trim(),
           password,
         });
@@ -70,7 +72,7 @@ function AccountContent() {
         router.push(safeNextPath(searchParams.get("next")));
       }
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Account request failed.");
+      setError(caught instanceof Error ? caught.message : t("accountRequestFailed"));
     } finally {
       setBusy(false);
     }
@@ -81,7 +83,7 @@ function AccountContent() {
     if (!client) return;
     const { error: signOutError } = await client.auth.signOut();
     if (signOutError) setError(signOutError.message);
-    else setNotice("You have signed out.");
+    else setNotice(t("signedOutNotice"));
   };
 
   return (
@@ -89,7 +91,7 @@ function AccountContent() {
       <Navbar />
       <div className="mx-auto max-w-xl px-4 pt-7 sm:px-6 sm:pt-10">
         <Link href="/" className="mb-5 inline-flex items-center gap-2 text-xs font-semibold text-white/45 hover:text-teal-100">
-          <ArrowLeft size={15} aria-hidden="true" /> Back to store
+          <ArrowLeft size={15} aria-hidden="true" /> {t("backToStore")}
         </Link>
         <GlassCard className="rounded-[26px] p-5 sm:p-7">
           <div className="mb-5 flex items-center gap-3">
@@ -97,51 +99,51 @@ function AccountContent() {
               <LockKeyhole size={21} aria-hidden="true" />
             </span>
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-teal-200/65">Customer account</p>
-              <h1 className="mt-1 text-xl font-black text-white">Sign in or create account</h1>
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-teal-200/65">{t("customerAccount")}</p>
+              <h1 className="mt-1 text-xl font-black text-white">{t("accountTitle")}</h1>
             </div>
           </div>
 
           {!configured ? (
             <p className="rounded-xl border border-amber-200/20 bg-amber-200/[0.06] p-4 text-xs leading-6 text-amber-100/80">
-              Online customer accounts are not configured on this deployment yet. WhatsApp enquiry checkout remains available.
+              {t("onlineAccountsNotConfigured")}
             </p>
           ) : signedInEmail ? (
             <div className="space-y-4">
-              <p className="text-sm text-white/65">Signed in as <strong className="text-white">{signedInEmail}</strong></p>
-              <Link href="/orders" className="hero-cta flex min-h-11 items-center justify-center">Open My Orders</Link>
-              <button type="button" onClick={() => void signOut()} className="w-full rounded-xl border border-white/10 px-4 py-3 text-xs font-bold text-white/65">Sign out</button>
+              <p className="text-sm text-white/65">{t("signedInAs")} <strong className="text-white">{signedInEmail}</strong></p>
+              <Link href="/orders" className="hero-cta flex min-h-11 items-center justify-center">{t("openMyOrders")}</Link>
+              <button type="button" onClick={() => void signOut()} className="w-full rounded-xl border border-white/10 px-4 py-3 text-xs font-bold text-white/65">{t("signOut")}</button>
             </div>
           ) : (
             <>
               <div className="mb-4 grid grid-cols-2 gap-2 rounded-xl border border-white/[0.08] bg-white/[0.025] p-1">
                 <button type="button" onClick={() => setMode("signin")} aria-pressed={mode === "signin"} className={"rounded-lg px-3 py-2.5 text-xs font-bold " + (mode === "signin" ? "bg-teal-100/[0.12] text-teal-100" : "text-white/45")}>
-                  <LogIn className="mr-1 inline" size={14} aria-hidden="true" /> Sign in
+                  <LogIn className="mr-1 inline" size={14} aria-hidden="true" /> {t("signIn")}
                 </button>
                 <button type="button" onClick={() => setMode("signup")} aria-pressed={mode === "signup"} className={"rounded-lg px-3 py-2.5 text-xs font-bold " + (mode === "signup" ? "bg-teal-100/[0.12] text-teal-100" : "text-white/45")}>
-                  <UserPlus className="mr-1 inline" size={14} aria-hidden="true" /> Create account
+                  <UserPlus className="mr-1 inline" size={14} aria-hidden="true" /> {t("createAccount")}
                 </button>
               </div>
               <div className="space-y-3">
                 {mode === "signup" && (
                   <label className="block text-xs font-semibold text-white/65">
-                    Full name
+                    {t("fullName")}
                     <input value={fullName} onChange={(event) => setFullName(event.target.value)} autoComplete="name" maxLength={120} className="mt-1.5 min-h-11 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 text-sm text-white outline-none focus:border-teal-100/40" />
                   </label>
                 )}
                 <label className="block text-xs font-semibold text-white/65">
-                  Email address
+                  {t("emailAddress")}
                   <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" className="mt-1.5 min-h-11 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 text-sm text-white outline-none focus:border-teal-100/40" />
                 </label>
                 <label className="block text-xs font-semibold text-white/65">
-                  Password
-                  <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={mode === "signup" ? "new-password" : "current-password"} minLength={8} className="mt-1.5 min-h-11 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 text-sm text-white outline-none focus:border-teal-100/40" />
+                  {t("password")}
+                  <input type="password" value={password} onChange={(event) => set{t("password")}(event.target.value)} autoComplete={mode === "signup" ? "new-password" : "current-password"} minLength={8} className="mt-1.5 min-h-11 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 text-sm text-white outline-none focus:border-teal-100/40" />
                 </label>
-                <p className="text-[10px] leading-5 text-white/35">Use at least 8 characters. Your account is protected by the store database access policies.</p>
+                <p className="text-[10px] leading-5 text-white/35">{t("passwordHint")}</p>
                 {error && <p role="alert" className="rounded-xl border border-rose-200/20 bg-rose-200/[0.06] p-3 text-xs text-rose-100">{error}</p>}
                 {notice && <p role="status" className="rounded-xl border border-teal-100/15 bg-teal-100/[0.06] p-3 text-xs text-teal-100">{notice}</p>}
                 <button type="button" onClick={() => void submit()} disabled={busy} className="btn-cyan flex min-h-12 w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-extrabold disabled:opacity-40">
-                  {busy ? "Please wait…" : mode === "signin" ? "Sign in" : "Create customer account"}
+                  {busy ? t("pleaseWait") : mode === "signin" ? t("signIn") : t("createCustomerAccount")}
                 </button>
               </div>
             </>

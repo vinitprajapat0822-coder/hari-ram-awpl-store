@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Camera, ImagePlus, Star } from "lucide-react";
 import { getSupabaseClient } from "@/lib/supabase";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 async function optimizePhoto(file: File): Promise<File> {
   if (!/^image\/(jpeg|png|webp)$/i.test(file.type) || file.size > 8 * 1024 * 1024) {
@@ -40,6 +41,7 @@ export default function OrderReviewForm({
   productName: string;
   onSubmitted: () => void;
 }) {
+  const { t } = useLanguage();
   const [rating, setRating] = useState(0);
   const [quality, setQuality] = useState("");
   const [packaging, setPackaging] = useState("");
@@ -56,12 +58,12 @@ export default function OrderReviewForm({
 
   const submit = async () => {
     if (rating < 1 || !quality.trim() || !packaging.trim() || !delivery.trim()) {
-      setMessage("Choose a rating and complete all three review fields.");
+      setMessage(t("chooseRatingAndFields"));
       return;
     }
     const client = getSupabaseClient();
     if (!client) {
-      setMessage("Online reviews are not configured yet.");
+      setMessage(t("onlineReviewsUnavailable"));
       return;
     }
 
@@ -71,7 +73,7 @@ export default function OrderReviewForm({
       const { data: sessionData, error: sessionError } = await client.auth.getSession();
       if (sessionError) throw sessionError;
       const userId = sessionData.session?.user?.id;
-      if (!userId) throw new Error("Sign in to the account that placed this order.");
+      if (!userId) throw new Error(t("signInReview"));
 
       const { data, error } = await client.rpc("create_product_review", {
         p_order_item_id: orderItemId,
@@ -82,7 +84,7 @@ export default function OrderReviewForm({
       });
       if (error) throw error;
       const reviewId = typeof data === "string" ? data : "";
-      if (!reviewId) throw new Error("The review service did not return a review ID.");
+      if (!reviewId) throw new Error(t("reviewIdMissing"));
 
       let photoWarning = "";
       for (const original of photos) {
@@ -101,11 +103,11 @@ export default function OrderReviewForm({
           });
           if (linkError) throw linkError;
         } catch {
-          photoWarning = " Review submitted, but one or more photos could not be attached.";
+          photoWarning = t("photoWarning");
         }
       }
 
-      setMessage("Review submitted for owner moderation." + photoWarning);
+      setMessage(t("reviewSubmitted") + photoWarning);
       setRating(0);
       setQuality("");
       setPackaging("");
@@ -113,7 +115,7 @@ export default function OrderReviewForm({
       setPhotos([]);
       onSubmitted();
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "The review could not be submitted.");
+      setMessage(error instanceof Error ? error.message : t("reviewSubmitFailed"));
     } finally {
       setBusy(false);
     }
@@ -121,8 +123,8 @@ export default function OrderReviewForm({
 
   return (
     <div className="mt-3 rounded-2xl border border-teal-100/10 bg-teal-100/[0.025] p-4">
-      <p className="text-xs font-bold text-white">Review {productName}</p>
-      <div className="mt-3 flex items-center gap-1.5" role="group" aria-label="Product rating">
+      <p className="text-xs font-bold text-white">{t("reviewProduct")} {productName}</p>
+      <div className="mt-3 flex items-center gap-1.5" role="group" aria-label={t("rateProduct")}>
         {[1, 2, 3, 4, 5].map((value) => (
           <button key={value} type="button" onClick={() => setRating(value)} aria-label={"Rate " + value + " stars"} aria-pressed={rating === value} className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 text-amber-200">
             <Star size={17} fill={rating >= value ? "currentColor" : "none"} aria-hidden="true" />
@@ -131,32 +133,32 @@ export default function OrderReviewForm({
       </div>
       <div className="mt-3 grid gap-3">
         <label className="block text-[10px] font-bold uppercase tracking-wider text-white/45">
-          Product quality
+          {t("productQuality")}
           <textarea value={quality} onChange={(event) => setQuality(event.target.value)} maxLength={500} rows={2} className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs leading-5 text-white outline-none focus:border-teal-100/35" />
         </label>
         <label className="block text-[10px] font-bold uppercase tracking-wider text-white/45">
-          Packaging experience
+          {t("packagingExperience")}
           <textarea value={packaging} onChange={(event) => setPackaging(event.target.value)} maxLength={500} rows={2} className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs leading-5 text-white outline-none focus:border-teal-100/35" />
         </label>
         <label className="block text-[10px] font-bold uppercase tracking-wider text-white/45">
-          Delivery experience
+          {t("deliveryExperience")}
           <textarea value={delivery} onChange={(event) => setDelivery(event.target.value)} maxLength={500} rows={2} className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs leading-5 text-white outline-none focus:border-teal-100/35" />
         </label>
       </div>
       <div className="mt-3 flex flex-wrap gap-2">
         <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-[10px] font-bold text-white/65">
-          <Camera size={14} aria-hidden="true" /> Camera
+          <Camera size={14} aria-hidden="true" /> {t("camera")}
           <input type="file" accept="image/jpeg,image/png,image/webp" capture="environment" className="sr-only" onChange={(event) => addPhotos(event.currentTarget.files)} />
         </label>
         <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-[10px] font-bold text-white/65">
-          <ImagePlus size={14} aria-hidden="true" /> Gallery
+          <ImagePlus size={14} aria-hidden="true" /> {t("gallery")}
           <input type="file" accept="image/jpeg,image/png,image/webp" multiple className="sr-only" onChange={(event) => addPhotos(event.currentTarget.files)} />
         </label>
-        <span className="self-center text-[10px] text-white/35">{photos.length}/3 photos selected</span>
+        <span className="self-center text-[10px] text-white/35">{photos.length}/3 {t("photosSelected")}</span>
       </div>
       {message && <p role="status" className="mt-3 text-[10px] leading-5 text-teal-100/80">{message}</p>}
       <button type="button" onClick={() => void submit()} disabled={busy || rating < 1 || !quality.trim() || !packaging.trim() || !delivery.trim()} className="btn-cyan mt-4 flex min-h-11 w-full items-center justify-center rounded-xl px-4 py-2.5 text-xs font-extrabold disabled:cursor-not-allowed disabled:opacity-35">
-        {busy ? "Submitting…" : "Submit verified review"}
+        {busy ? t("submitting") : t("submitVerifiedReview")}
       </button>
     </div>
   );
