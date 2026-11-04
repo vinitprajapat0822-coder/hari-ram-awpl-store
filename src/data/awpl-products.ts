@@ -3049,8 +3049,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T27611_046198.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS ORELLA Unisex Eau de Parfum, 75 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3079,8 +3080,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T2771_497299.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS NEBEL Unisex Eau de Parfum, 75 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3109,8 +3111,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T6701_662586.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS REVOQUE Body Deodorant Spray, 150 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -3139,8 +3142,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T67111_474700.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS LONDON XI Body Deodorant Spray, 150 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
