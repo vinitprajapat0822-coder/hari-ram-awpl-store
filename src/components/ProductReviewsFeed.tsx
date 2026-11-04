@@ -89,7 +89,7 @@ export default function ProductReviewsFeed({
           <Star size={24} className="mx-auto text-white/25" aria-hidden="true" />
           <p className="mt-3 text-sm font-bold text-white">{t("noVerifiedReviews")}</p>
           <p className="mx-auto mt-1 max-w-sm text-xs leading-5 text-white/40">
-            {t("reviewsAfter{t("delivery")}")}
+            {t("reviewsAfterDelivery")}
           </p>
         </div>
       ) : (
