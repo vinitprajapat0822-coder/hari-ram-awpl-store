@@ -46,7 +46,7 @@ values
   ('awpl-jeeveda-jeeveda-fish-masala', 'JEEVEDA FISH MASALA', 'jeeveda', '100 GM', 153, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T32711_393974.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-garam-masala', 'JEEVEDA GARAM MASALA', 'jeeveda', '100 GM', 167, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3281_133004.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-kitchen-king-masala', 'JEEVEDA KITCHEN KING MASALA', 'jeeveda', '100 GM', 139, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T32911_651975.jpg', 'VERIFIED'),
-  ('awpl-jeeveda-jeeveda-mutton-masala', 'JEEVEDA MUTTON MASALA', 'jeeveda', '100 GM', 125, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-mutton-masala', 'JEEVEDA MUTTON MASALA', 'jeeveda', '100 GM', 167, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
   ('awpl-jeeveda-jeeveda-nigella-seeds-kalonji', 'JEEVEDA NIGELLA SEEDS - KALONJI', 'jeeveda', '50 GM', 77, null, 'VERIFIED', 'UNKNOWN', 'https://img500.exportersindia.com/product_images/bc-500/2025/5/14178652/50gm-asclepius-jeeveda-nigella-seeds-1748601210-8101540.jpeg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-fenugreek-seeds-methi-dana', 'JEEVEDA FENUGREEK SEEDS - METHI DANA', 'jeeveda', '100 GM', 69, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3431_655289.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-mustard-seeds-rai', 'JEEVEDA MUSTARD SEEDS - RAI', 'jeeveda', '100 GM', 55, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
@@ -141,3 +141,10 @@ values
   ('awpl-sniss-herbal-hair-cleanser-shampoo', 'HAIR CLEANSER - SHAMPOO', 'sniss-herbal', '100 ML', 224, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51311_348887.jpg', 'VERIFIED'),
   ('awpl-sniss-herbal-hairdoc-oil-200-ml', 'HAIRDOC OIL 200 ML', 'sniss-herbal', '200 ML', 431, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51411_042878.jpg', 'VERIFIED')
 on conflict (id) do nothing;
+
+-- Refresh the verified AWPL MRP without overwriting owner-managed selling_price or availability.
+-- Source: https://www.asclepiuswellness.com/product/jeeveda/ (checked 2026-11-04).
+update public.store_products
+set mrp = 167
+where id = 'awpl-jeeveda-jeeveda-mutton-masala'
+  and mrp is distinct from 167;
