@@ -71,6 +71,15 @@ const dictionaries = {
     reviewsAfterDelivery:"Ratings appear after a customer receives the product, submits a review and the store approves it.",
     verifiedPurchase:"Verified purchase", productQuality:"Product quality", packaging:"Packaging",
     delivery:"Delivery", officialSource:"View official product source", openCart:"Open cart", closeCart:"Close cart", emptyCart:"Your cart is empty", cartItem:"Cart item", emptyCartHint:"Add catalogue items to see them here.", viewCart:"View cart", removeFromCart:"Remove item", decreaseQuantity:"Decrease quantity", increaseQuantity:"Increase quantity", itemSubtotal:"Item subtotal", language:"Language",
+    heroSlide1Eyebrow:"HARI RAM AWPL", heroSlide1TitleA:"Everyday essentials,", heroSlide1TitleB:"beautifully organised.", heroSlide1Description:"Explore wellness, personal care, home and everyday ranges in one calm catalogue.",
+    heroSlide2Eyebrow:"A CLEARER CATALOGUE", heroSlide2TitleA:"Find your range,", heroSlide2TitleB:"without the clutter.", heroSlide2Description:"Browse categories or find the right product by name and pack size.",
+    heroSlide3Eyebrow:"SKU-FIRST SHOPPING", heroSlide3TitleA:"Every pack size,", heroSlide3TitleB:"listed separately.", heroSlide3Description:"Each captured pack size and apparel SKU has its own product card and cart line.",
+    heroItemsSuffix:"individual product listings", heroCategorySuffix:"category filters", heroSkuDetail:"Separate product listings",
+    exploreCatalogue:"Explore catalogue", storeHighlights:"Store highlights", previousHighlight:"Previous highlight", nextHighlight:"Next highlight", chooseHighlight:"Choose highlight",
+    dailyCare:"Daily care", homeAndLiving:"Home & living", wellness:"Wellness",
+    productPrefix:"Product", addProductVerb:"Add", toCart:"to cart",
+    viewReviewPhoto:"View review photo", closePhoto:"Close photo", reviewPhotoAlt:"Customer-submitted product photo",
+
   },
   hi: {
     home:"होम", catalogue:"उत्पाद सूची", about:"हमारे बारे में", cart:"कार्ट", profile:"प्रोफ़ाइल",
@@ -140,6 +149,15 @@ const dictionaries = {
     reviewsAfterDelivery:"ग्राहक को उत्पाद मिलने, समीक्षा भेजने और स्टोर की मंज़ूरी के बाद रेटिंग दिखाई जाती है।",
     verifiedPurchase:"सत्यापित खरीद", productQuality:"उत्पाद की गुणवत्ता", packaging:"पैकिंग",
     delivery:"डिलीवरी", officialSource:"कंपनी की मूल उत्पाद सूची देखें", openCart:"कार्ट खोलें", closeCart:"कार्ट बंद करें", emptyCart:"आपका कार्ट खाली है", cartItem:"कार्ट का उत्पाद", emptyCartHint:"उत्पाद सूची से सामान जोड़ें। वे यहाँ दिखाई देंगे।", viewCart:"कार्ट देखें", removeFromCart:"उत्पाद हटाएँ", decreaseQuantity:"मात्रा घटाएँ", increaseQuantity:"मात्रा बढ़ाएँ", itemSubtotal:"उत्पाद का कुल", language:"भाषा",
+    heroSlide1Eyebrow:"हरि राम AWPL स्टोर", heroSlide1TitleA:"रोज़मर्रा की ज़रूरतें,", heroSlide1TitleB:"एक ही जगह, सलीके से।", heroSlide1Description:"वेलनेस, व्यक्तिगत देखभाल, घर और रोज़मर्रा के उत्पाद एक ही सूची में देखें।",
+    heroSlide2Eyebrow:"आसान उत्पाद सूची", heroSlide2TitleA:"अपनी ज़रूरत का सामान,", heroSlide2TitleB:"बिना उलझन के खोजें।", heroSlide2Description:"श्रेणियों में देखें या नाम और पैक के आकार से सही उत्पाद खोजें।",
+    heroSlide3Eyebrow:"हर SKU अलग", heroSlide3TitleA:"हर पैक का आकार,", heroSlide3TitleB:"अलग से सूचीबद्ध।", heroSlide3Description:"हर पैक आकार और कपड़ों का हर SKU अपने अलग उत्पाद कार्ड और कार्ट में दिखता है।",
+    heroItemsSuffix:"अलग-अलग उत्पाद", heroCategorySuffix:"उत्पाद श्रेणियाँ", heroSkuDetail:"अलग-अलग उत्पाद सूची",
+    exploreCatalogue:"उत्पाद सूची देखें", storeHighlights:"स्टोर की खास बातें", previousHighlight:"पिछली जानकारी", nextHighlight:"अगली जानकारी", chooseHighlight:"जानकारी चुनें",
+    dailyCare:"रोज़मर्रा की देखभाल", homeAndLiving:"घर और रोज़मर्रा का सामान", wellness:"वेलनेस",
+    productPrefix:"उत्पाद", addProductVerb:"जोड़ें", toCart:"कार्ट में",
+    viewReviewPhoto:"समीक्षा की तस्वीर देखें", closePhoto:"तस्वीर बंद करें", reviewPhotoAlt:"ग्राहक द्वारा भेजी गई उत्पाद की तस्वीर",
+
   },
 } as const;
 
