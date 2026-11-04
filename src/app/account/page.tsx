@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
+import LanguageToggle from "@/components/LanguageToggle";
 import GlassCard from "@/components/GlassCard";
 import { getSupabaseClient } from "@/lib/supabase";
 import { ArrowLeft, LockKeyhole, LogIn, UserPlus } from "lucide-react";
@@ -93,6 +94,7 @@ function AccountContent() {
         <Link href="/" className="mb-5 inline-flex items-center gap-2 text-xs font-semibold text-white/45 hover:text-teal-100">
           <ArrowLeft size={15} aria-hidden="true" /> {t("backToStore")}
         </Link>
+        <div className="mb-3 flex justify-end"><LanguageToggle variant="segmented" /></div>
         <GlassCard className="rounded-[26px] p-5 sm:p-7">
           <div className="mb-5 flex items-center gap-3">
             <span className="grid h-12 w-12 place-items-center rounded-2xl border border-teal-100/15 bg-teal-100/[0.07] text-teal-100">
