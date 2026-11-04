@@ -782,8 +782,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T23822_279313.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Toshine Liquid Wash bottle, 1000 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -843,8 +844,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T24011_932018.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Easy Sweep Rose Fragrance Surface Cleaner bottle, 500 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -904,8 +906,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T25233_254654.jpg",
+      "status": "VERIFIED",
+      "altText": "Official AWPL Toshine Winterwear Liquid Wash bottle, 1000 ml"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
