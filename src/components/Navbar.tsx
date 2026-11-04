@@ -7,13 +7,15 @@ import { usePathname } from "next/navigation";
 import { useStore } from "@/store/useStore";
 import { Home, Info, LayoutGrid, Search, ShoppingCart, UserRound } from "lucide-react";
 import { motion } from "framer-motion";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const navigation = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/#catalogue", label: "Catalogue", icon: LayoutGrid },
-  { href: "/about", label: "About", icon: Info },
-  { href: "/cart", label: "Cart", icon: ShoppingCart },
-  { href: "/profile", label: "Profile", icon: UserRound },
+  { href: "/", label: "Home", key: "home" as const, icon: Home },
+  { href: "/#catalogue", label: "Catalogue", key: "catalogue" as const, icon: LayoutGrid },
+  { href: "/about", label: "About", key: "about" as const, icon: Info },
+  { href: "/cart", label: "Cart", key: "cart" as const, icon: ShoppingCart },
+  { href: "/profile", label: "Profile", key: "profile" as const, icon: UserRound },
 ];
 
 function isActive(pathname: string, href: string, activeHash: string) {
@@ -24,6 +26,7 @@ function isActive(pathname: string, href: string, activeHash: string) {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { t } = useLanguage();
   const cartCount = useStore((state) => state.getCartCount());
   const [activeHash, setActiveHash] = useState("");
   const dockRef = useRef<HTMLElement | null>(null);
@@ -81,7 +84,7 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-1 md:flex">
             <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/30">Product catalogue</span>
-            <nav aria-label="Primary navigation" className="flex items-center gap-1">
+            <nav aria-label={t("primaryNavigation")} className="flex items-center gap-1">
               {navigation.map((item) => {
                 const active = isActive(pathname, item.href, activeHash);
                 const Icon = item.icon;
@@ -94,7 +97,7 @@ export default function Navbar() {
                     aria-current={active ? "page" : undefined}
                   >
                     <Icon size={16} aria-hidden="true" />
-                    {item.label}
+                    {t(item.key)}
                     {item.href === "/cart" && cartCount > 0 && (
                       <span className="ml-0.5 rounded-full bg-teal-200 px-1.5 py-0.5 text-[9px] font-extrabold text-slate-950">
                         {cartCount > 99 ? "99+" : cartCount}
@@ -106,22 +109,25 @@ export default function Navbar() {
             </nav>
           </div>
 
-          <Link
-            href="/#catalogue"
-            onClick={() => handleNavigation("/#catalogue")}
-            className="header-search-link"
-            aria-label="Search catalogue"
-          >
+          <div className="flex items-center gap-2">
+            <LanguageToggle />
+            <Link
+              href="/#catalogue"
+              onClick={() => handleNavigation("/#catalogue")}
+              className="header-search-link"
+              aria-label={t("searchCatalogue")}
+            >
             <Search size={17} aria-hidden="true" />
-            <span className="hidden sm:inline">Search</span>
-          </Link>
+              <span className="hidden sm:inline">{t("search")}</span>
+            </Link>
+          </div>
         </div>
       </header>
 
       <div className="pointer-events-none fixed inset-x-0 bottom-3 z-50 px-4 md:hidden">
         <nav
           ref={dockRef}
-          aria-label="Mobile navigation"
+          aria-label={t("mobileNavigation")}
           className="mobile-dock pointer-events-auto mx-auto flex max-w-sm items-center gap-1 p-1.5"
           onPointerMove={updateMagneticDock}
           onPointerDown={updateMagneticDock}

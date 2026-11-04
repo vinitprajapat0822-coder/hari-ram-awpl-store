@@ -1,0 +1,42 @@
+const replacements:Array<[string,string]>=[
+["ASCLEPIUS WOMEN SAREE CRAPE","एस्क्लेपियस महिलाओं की क्रेप साड़ी"],["ASCLEPIUS WOMEN SUITS","एस्क्लेपियस महिलाओं के सूट"],
+["ASCLEPIUS WOMEN T-SHIRT","एस्क्लेपियस महिलाओं की टी-शर्ट"],["ASCLEPIUS T SHIRT","एस्क्लेपियस टी-शर्ट"],["ASCLEPIUS TIE","एस्क्लेपियस टाई"],
+["LITTLE PIE","लिटल पाई"],["ECO AROGYAM","ईको आरोग्यम"],["BATHVEDA","बाथवेदा"],["LIMFRESH","लिमफ्रेश"],["TOSHINE","टोशाइन"],
+["EASY SWEEP","ईज़ी स्वीप"],["POWER FLUSH","पावर फ्लश"],["JEEVEDA","जीवेदा"],["DENTODOC","डेंटोडॉक"],
+["LIGHT BLUE","हल्का नीला"],["WOMEN","महिलाओं की"],["SAREE","साड़ी"],["CRAPE","क्रेप"],["OLIVE","ऑलिव"],["TEAL","टील"],
+["BLACK","काला"],["IVORY","आइवरी"],["BABY","बेबी"],["SHAMPOO","शैम्पू"],["SOOTHING","सुकून देने वाला"],["GENTLE SOAP","मुलायम साबुन"],
+["LOTION","लोशन"],["MULTIFLORA HONEY","बहु-फूलों का शहद"],["HONEY","शहद"],["TEA","चाय"],["FRESH LIME","ताज़ा नींबू"],
+["MYSORE SANDAL","मैसूर चंदन"],["NEEM TULSI","नीम और तुलसी"],["GOAT MILK","बकरी का दूध"],["GLYCERIN NATURAL OIL","ग्लिसरीन और प्राकृतिक तेल"],
+["LIQUID DISH WASH","बर्तन धोने का लिक्विड"],["DETERGENT POWDER","कपड़े धोने का पाउडर"],["SURFACE CLEANER","सतह साफ़ करने का क्लीनर"],
+["TOILET CLEANER","टॉयलेट क्लीनर"],["WINTERWEAR","सर्दियों के कपड़ों के लिए"],["DETERGENT BAR","कपड़े धोने की टिकिया"],
+["ROOM FRESHNER","कमरे की खुशबू"],["RICE BRAN OIL","राइस ब्रान तेल"],["CHHOLE CHANA MASALA","छोले-चना मसाला"],
+["CHICKEN MASALA","चिकन मसाला"],["DAL MAKHANI MASALA","दाल मखनी मसाला"],["FISH MASALA","मछली मसाला"],["GARAM MASALA","गरम मसाला"],
+["KITCHEN KING MASALA","किचन किंग मसाला"],["MUTTON MASALA","मटन मसाला"],["NIGELLA SEEDS","कलौंजी के बीज"],
+["FENUGREEK SEEDS","मेथी दाना"],["MUSTARD SEEDS","राई"],["CLOVE","लौंग"],["CINNAMON STICKS","दालचीनी"],["BAY LEAF","तेज पत्ता"],
+["FENUGREEK LEAVES","कसूरी मेथी"],["CHILLI POWDER","मिर्च पाउडर"],["TURMERIC POWDER","हल्दी पाउडर"],["CORIANDER POWDER","धनिया पाउडर"],
+["BACK PACK","बैग"],["PREP-IT PRIMER","PREP-IT प्राइमर"],["LIFT AND SCULPT CONCEALER","लिफ्ट एंड स्कल्प्ट कंसीलर"],
+["ULTRA SMOOTH FOUNDATION","अल्ट्रा स्मूद फाउंडेशन"],["RADIANT GLOW","चमकदार निखार"],["CREAMY VANILLA","क्रीमी वनीला"],
+["COLOR DREW BLUSH STICK","कलर ड्रू ब्लश स्टिक"],["BLURR LOOSE POWDER","ब्लर लूज़ पाउडर"],["LUMITOUCH COMPACT POWDER","ल्यूमिटच कॉम्पैक्ट पाउडर"],
+["POWDER BLUSH","पाउडर ब्लश"],["EYELINER HOLOGRAPHIC","होलोग्राफिक आईलाइनर"],["PEACOCK GREEN HALO","मोरपंखी हरा"],
+["EYELINER METALLIC","मेटैलिक आईलाइनर"],["ROSE GOLD","रोज़ गोल्ड"],["MATT EYE LINER","मैट आईलाइनर"],["KAJAL RETRACTABLE","रिट्रैक्टेबल काजल"],
+["FLICK&LIFT MASCARA","फ्लिक एंड लिफ्ट मस्कारा"],["ALL DAY LUXE CREAM LIPSTICK","ऑल डे लक्स क्रीम लिपस्टिक"],["DUSKY ROSE","डस्की रोज़"],
+["LUXE MATTE LIQUID LIPSTICK","लक्स मैट लिक्विड लिपस्टिक"],["FINE WINE","फाइन वाइन"],["JUICY LIP BALM","ज्यूसी लिप बाम"],
+["SKIN TINT LUMINOUS VEIL","स्किन टिंट ल्यूमिनस वेल"],["RADIANT SAND","रेडिएंट सैंड"],["SINDOOR","सिंदूर"],
+["CHARCOAL FACE WASH","चारकोल फेस वॉश"],["VITAMIN C FACE WASH","विटामिन C फेस वॉश"],["HYDRATING FACE WASH","हाइड्रेटिंग फेस वॉश"],
+["ALOEVERA CUCUMBER GEL","एलोवेरा-ककड़ी जेल"],["ALOEVERA TURMERIC GEL","एलोवेरा-हल्दी जेल"],["ALOEVERA PINK GEL","एलोवेरा पिंक जेल"],
+["HYALURONIC ACID FACE MOISTURIZER","हायल्यूरोनिक एसिड फेस मॉइस्चराइज़र"],["24K GOLD FACE MOISTURIZER","24K गोल्ड फेस मॉइस्चराइज़र"],
+["UNDER EYE CREAM","आँखों के नीचे लगाने की क्रीम"],["VITAMIN C FACE TONER","विटामिन C फेस टोनर"],["VITAMIN C FACE SERUM","विटामिन C फेस सीरम"],
+["NIACINAMIDE FACE SERUM","नायसिनामाइड फेस सीरम"],["HAIR GROWTH SERUM","हेयर ग्रोथ सीरम"],["HANDWASH","हैंडवॉश"],
+["SUNSCREEN SPF50 PA++++ GEL","SPF50 PA++++ सनस्क्रीन जेल"],["ORELLA PERFUME","ओरेला परफ्यूम"],["NEBEL PERFUME","नेबेल परफ्यूम"],
+["HAIRDOC OIL","हेयरडॉक तेल"],["ALMOND OLIVE HAIR OIL","बादाम-ऑलिव हेयर ऑयल"],["AMLA HAIR OIL","आँवला हेयर ऑयल"],
+["AYUCOCO HAIR OIL","आयुकोको हेयर ऑयल"],["COOL OIL","कूल ऑयल"],["FACE SCRUB CREAM","फेस स्क्रब क्रीम"],
+["DAILY CARE SHAMPOO","डेली केयर शैम्पू"],["DAY CREAM","डे क्रीम"],["V SPLASH","V स्प्लैश"],["DAMAGE REPAIR SHAMPOO","डैमेज रिपेयर शैम्पू"],
+["ROOT & SHINE SHAMPOO","रूट एंड शाइन शैम्पू"],["MOISTURISING CREAM","मॉइस्चराइज़िंग क्रीम"],["ULTRA SMOOTHING SERUM","अल्ट्रा स्मूदिंग सीरम"],
+["HERBAL FACE WASH","हर्बल फेस वॉश"],["STRAWBERRY FACE WASH","स्ट्रॉबेरी फेस वॉश"],["LIP BALM","लिप बाम"],["BODY LOTION","बॉडी लोशन"],
+["FACE PACK CREAM","फेस पैक क्रीम"],["PEEL OFF FACE MASK","पील-ऑफ फेस मास्क"],["ALOEVERA SHOWER GEL","एलोवेरा शॉवर जेल"],
+["TALCUM POWDER","टैल्कम पाउडर"],["SHAVING CREAM FOR MEN","पुरुषों के लिए शेविंग क्रीम"]];
+export function localizedProductName(name:string){
+ let result=name.toUpperCase();
+ for(const [source,target] of [...replacements].sort((a,b)=>b[0].length-a[0].length)) result=result.split(source).join(target);
+ return result.replace(/\s+/g," ").trim();
+}
