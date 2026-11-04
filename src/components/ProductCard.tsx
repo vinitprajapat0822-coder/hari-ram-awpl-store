@@ -8,6 +8,7 @@ import { useStore } from "@/store/useStore";
 import { formatPrice } from "@/lib/utils";
 import ProductArtwork from "./ProductArtwork";
 import { Check, Plus } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 type Props = {
   product: Product;
@@ -16,11 +17,13 @@ type Props = {
 
 function ProductCard({ product }: Props) {
   const addToCart = useStore((state) => state.addToCart);
+  const { t, categoryLabel, productName } = useLanguage();
+  const displayName = productName(product);
   const [added, setAdded] = useState(false);
   const inCart = useStore((state) => state.cart.some((item) => item.product.id === product.id));
 
   const canOrder = product.status === "VERIFIED";
-  const reviewLabel = product.status === "PRICE_REVIEW_REQUIRED" ? "MRP review" : "Details review";
+  const reviewLabel = product.status === "PRICE_REVIEW_REQUIRED" ? t("mrpReview") : t("detailsReview");
   const listedMrp = Number.isFinite(product.mrp) && product.mrp > 0 ? product.mrp : 0;
   const configuredSellingPrice = product.sellingPrice;
   const hasDiscount = typeof configuredSellingPrice === "number"
@@ -73,20 +76,20 @@ function ProductCard({ product }: Props) {
 
         <div className="flex min-w-0 flex-col px-0.5 pb-2">
           <p className="mb-1.5 truncate text-[9px] font-bold uppercase tracking-[0.16em] text-teal-200/75">
-            {product.category}
+            {categoryLabel(product.category)}
           </p>
           <h3 className="mb-2 line-clamp-2 min-h-[2.6em] text-[12px] font-bold leading-[1.3] text-white sm:text-sm">
-            {product.name}
+            {displayName}
           </h3>
           <p className="line-clamp-2 min-h-[2.7em] text-[10px] leading-relaxed text-slate-200/45 sm:text-[11px]">
-            {product.description || "Open product for available details and store confirmation."}
+            {product.description || t("openProductHint")}
           </p>
         </div>
 
         <div className="mb-3 border-t border-white/[0.075] px-0.5 pt-3">
           <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-1">
             {product.status === "PRICE_REVIEW_REQUIRED" ? (
-              <p className="text-xs font-bold text-amber-200">MRP under review</p>
+              <p className="text-xs font-bold text-amber-200">{t("mrpUnderReview")}</p>
             ) : (
               <span className="price-architecture__selling">{formatPrice(sellingPrice)}</span>
             )}
@@ -98,7 +101,7 @@ function ProductCard({ product }: Props) {
             )}
           </div>
           <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.13em] text-white/35">
-            {hasDiscount ? "Offer price · Listed MRP crossed out" : "Listed MRP"}
+            {hasDiscount ? t("offerPrice") : t("listedMrp")}
           </p>
         </div>
       </Link>
@@ -123,11 +126,11 @@ function ProductCard({ product }: Props) {
       >
         {canOrder ? (
           added ? (
-            <><Check size={14} aria-hidden="true" /> Added to cart</>
+            <><Check size={14} aria-hidden="true" /> {t("addedToCart")}</>
           ) : inCart ? (
-            <><Plus size={14} aria-hidden="true" /> Add another</>
+            <><Plus size={14} aria-hidden="true" /> {t("addAnother")}</>
           ) : (
-            <><Plus size={14} aria-hidden="true" /> Add to cart</>
+            <><Plus size={14} aria-hidden="true" /> {t("addToCart")}</>
           )
         ) : reviewLabel}
       </button>

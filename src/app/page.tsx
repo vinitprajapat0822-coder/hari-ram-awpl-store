@@ -10,11 +10,13 @@ import VelocityTicker from "@/components/VelocityTicker";
 import CategorySurfer from "@/components/CategorySurfer";
 import { useSearchMorphPlaceholder } from "@/components/SearchMorph";
 import { ArrowRight, Search, X } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
   const searchPlaceholder = useSearchMorphPlaceholder();
+  const { locale, t } = useLanguage();
 
   const filtered = useMemo(() => {
     let list = products;
@@ -51,10 +53,10 @@ export default function HomePage() {
 
         <div className="mb-4 mt-7 flex flex-col gap-3 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-teal-200/65">Discover the range</p>
-            <h2 className="mt-1 text-xl font-extrabold tracking-tight text-white sm:text-2xl">Product catalogue</h2>
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-teal-200/65">{t("discoverRange")}</p>
+            <h2 className="mt-1 text-xl font-extrabold tracking-tight text-white sm:text-2xl">{t("productCatalogue")}</h2>
           </div>
-          <p className="text-xs text-white/40">Browse by category or search by name and pack size.</p>
+          <p className="text-xs text-white/40">{t("browseByCategory")}</p>
         </div>
 
         <div className="search-shell mb-4 flex min-h-[54px] items-center gap-3 px-4">
@@ -64,14 +66,14 @@ export default function HomePage() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder={searchPlaceholder}
-            aria-label="Search products"
+            aria-label={t("searchProducts")}
             className="min-w-0 flex-1 py-3 text-sm outline-none"
           />
           {search && (
             <button
               type="button"
               onClick={() => setSearch("")}
-              aria-label="Clear search"
+              aria-label={t("clearSearch")}
               className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white/50 transition-colors hover:bg-white/10 hover:text-white"
             >
               <X size={16} aria-hidden="true" />
@@ -87,7 +89,7 @@ export default function HomePage() {
 
         <div className="mb-4 flex min-h-8 items-center justify-between gap-3">
           <p className="text-xs font-medium text-white/45" aria-live="polite">
-            {filtered.length} product{filtered.length !== 1 ? "s" : ""}{activeCategory !== "All" ? " in " + activeCategory : ""}
+            {filtered.length} {locale === "hi" ? t("products") : filtered.length === 1 ? t("product") : t("products")}{activeCategory !== "All" ? " · " + activeCategory : ""}
           </p>
           {(search || activeCategory !== "All") && (
             <button
@@ -98,7 +100,7 @@ export default function HomePage() {
               }}
               className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-teal-100/75 transition-colors hover:text-teal-50"
             >
-              Clear filters <X size={13} aria-hidden="true" />
+              {t("clearFilters")} <X size={13} aria-hidden="true" />
             </button>
           )}
         </div>
@@ -108,8 +110,8 @@ export default function HomePage() {
             <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-teal-100/15 bg-teal-100/[0.06] text-teal-100/70">
               <Search size={22} aria-hidden="true" />
             </span>
-            <h3 className="mt-4 text-base font-bold text-white">No matches found</h3>
-            <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-white/45">Try another product name, pack size or category.</p>
+            <h3 className="mt-4 text-base font-bold text-white">{t("noMatches")}</h3>
+            <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-white/45">{t("tryAnother")}</p>
             <button
               type="button"
               onClick={() => {
@@ -118,7 +120,7 @@ export default function HomePage() {
               }}
               className="mt-5 inline-flex items-center gap-2 rounded-xl border border-teal-100/20 bg-teal-100/[0.08] px-4 py-2.5 text-xs font-bold text-teal-100"
             >
-              Reset catalogue <ArrowRight size={14} aria-hidden="true" />
+              {t("resetCatalogue")} <ArrowRight size={14} aria-hidden="true" />
             </button>
           </div>
         ) : (
