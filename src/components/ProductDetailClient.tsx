@@ -12,6 +12,7 @@ import { products } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
 import { getWhatsAppUrl, useStore } from "@/store/useStore";
 import { getSupabaseClient } from "@/lib/supabase";
+import { useLanguage } from "@/i18n/LanguageProvider";
 import {
   ArrowLeft,
   Check,
@@ -42,6 +43,8 @@ function displayDate(value: string | null | undefined): string {
 }
 
 export default function ProductDetailClient({ product }: Props) {
+  const { locale, t, categoryLabel, productName } = useLanguage();
+  const displayName = productName(product);
   const addToCart = useStore((state) => state.addToCart);
   const [added, setAdded] = useState(false);
   const [storeSellingPrice, setStoreSellingPrice] = useState<number | null>(product.sellingPrice ?? null);
@@ -124,15 +127,15 @@ export default function ProductDetailClient({ product }: Props) {
           href="/#catalogue"
           className="mb-5 inline-flex items-center gap-2 text-xs font-semibold text-white/50 transition-colors hover:text-teal-100"
         >
-          <ArrowLeft size={15} aria-hidden="true" /> Back to catalogue
+          <ArrowLeft size={15} aria-hidden="true" /> {t("backToCatalogue")}
         </Link>
 
         <div className="mb-5 flex flex-wrap items-center gap-2 text-[10px] font-semibold text-white/35">
-          <Link href="/" className="transition-colors hover:text-teal-100">Home</Link>
+          <Link href="/" className="transition-colors hover:text-teal-100">{t("home")}</Link>
           <span aria-hidden="true">/</span>
-          <Link href="/#catalogue" className="transition-colors hover:text-teal-100">Catalogue</Link>
+          <Link href="/#catalogue" className="transition-colors hover:text-teal-100">{t("catalogue")}</Link>
           <span aria-hidden="true">/</span>
-          <span className="max-w-[58vw] truncate text-teal-100/75">{product.category}</span>
+          <span className="max-w-[58vw] truncate text-teal-100/75">{categoryLabel(product.category)}</span>
         </div>
 
         <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(340px,.92fr)] lg:gap-7">
@@ -142,41 +145,41 @@ export default function ProductDetailClient({ product }: Props) {
               <div className="flex flex-wrap items-center justify-between gap-2 px-1 pb-1">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-100/15 bg-teal-100/[0.06] px-3 py-1.5 text-[10px] font-bold text-teal-100/80">
                   <ShieldCheck size={13} aria-hidden="true" />
-                  {product.image && product.imageStatus === "VERIFIED" ? "Official product image" : "Illustrative image / artwork fallback"}
+                  {product.image && product.imageStatus === "VERIFIED" ? t("imageOfficial") : t("imageFallback")}
                 </span>
-                <span className="text-[10px] font-medium text-white/35">Pack: {product.qty || "Not listed"}</span>
+                <span className="text-[10px] font-medium text-white/35">{t("pack")}: {product.qty || t("notListed")}</span>
               </div>
             </GlassCard>
 
             <GlassCard className="rounded-[25px] p-5 sm:p-6">
               <div className="mb-4 flex items-center gap-2">
                 <Package size={17} className="text-teal-100/75" aria-hidden="true" />
-                <h2 className="text-sm font-extrabold text-white">Product information</h2>
+                <h2 className="text-sm font-extrabold text-white">{t("productInformation")}</h2>
               </div>
 
               <dl className="grid grid-cols-2 gap-3">
                 <div className="detail-fact">
-                  <dt>Category</dt>
-                  <dd>{product.category}</dd>
+                  <dt>{t("category")}</dt>
+                  <dd>{categoryLabel(product.category)}</dd>
                 </div>
                 <div className="detail-fact">
-                  <dt>Brand</dt>
-                  <dd>{product.brand || "Not specified"}</dd>
+                  <dt>{t("brand")}</dt>
+                  <dd>{product.brand || t("notSpecified")}</dd>
                 </div>
                 <div className="detail-fact">
-                  <dt>Pack size</dt>
+                  <dt>{t("packSize")}</dt>
                   <dd>{product.qty || "Not listed"}</dd>
                 </div>
                 <div className="detail-fact">
-                  <dt>Product code</dt>
+                  <dt>{t("productCode")}</dt>
                   <dd className="break-all text-[10px]">{product.id}</dd>
                 </div>
                 <div className="detail-fact">
-                  <dt>Added date</dt>
-                  <dd>Not recorded</dd>
+                  <dt>{t("addedDate")}</dt>
+                  <dd>{t("notRecorded")}</dd>
                 </div>
                 <div className="detail-fact">
-                  <dt>Last verified</dt>
+                  <dt>{t("lastVerified")}</dt>
                   <dd>{verifiedDate}</dd>
                 </div>
               </dl>
@@ -187,30 +190,30 @@ export default function ProductDetailClient({ product }: Props) {
             <GlassCard className="rounded-[28px] p-5 sm:p-6">
               <div className="mb-3 flex flex-wrap items-center gap-2">
                 <span className="rounded-full border border-teal-100/15 bg-teal-100/[0.06] px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.15em] text-teal-100/75">
-                  {product.category}
+                  {categoryLabel(product.category)}
                 </span>
                 {product.status === "VERIFIED" ? (
                   <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200/15 bg-emerald-200/[0.06] px-2.5 py-1.5 text-[9px] font-bold text-emerald-100/75">
-                    <Check size={11} aria-hidden="true" /> Catalogue record verified
+                    <Check size={11} aria-hidden="true" /> {t("catalogueVerified")}
                   </span>
                 ) : (
                   <span className="rounded-full border border-amber-200/15 bg-amber-200/[0.06] px-2.5 py-1.5 text-[9px] font-bold text-amber-100/80">
-                    Details under review
+                    {t("detailsUnderReview")}
                   </span>
                 )}
               </div>
 
               <h1 className="text-[clamp(1.5rem,4vw,2.25rem)] font-black leading-tight tracking-[-0.04em] text-white">
-                {product.name}
+                {displayName}
               </h1>
-              {product.nameHi && <p className="mt-2 text-sm text-white/55">{product.nameHi}</p>}
+              {locale === "hi" && <p className="mt-2 text-xs text-white/45">उत्पाद का नाम हिन्दी में दिखाया गया है।</p>}
 
               <div className="my-5 rounded-2xl border border-white/[0.09] bg-white/[0.035] p-4">
-                <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-white/40">Price information</p>
+                <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-white/40">{t("priceInformation")}</p>
                 <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <span className="text-2xl font-black tracking-tight text-white">{formatPrice(shownPrice)}</span>
                   <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/40">
-                    {hasSellingPrice ? "Current selling price" : "Listed MRP"}
+                    {hasSellingPrice ? t("currentSellingPrice") : t("listedMrp")}
                   </span>
                   {hasDiscount && (
                     <>
@@ -223,7 +226,7 @@ export default function ProductDetailClient({ product }: Props) {
                 </div>
                 {!hasSellingPrice && (
                   <p className="mt-2 text-[11px] leading-5 text-white/45">
-                    Current selling price or offer is not published in the verified catalogue. Confirm with the store before ordering.
+                    {t("currentPriceNotPublished")}
                   </p>
                 )}
               </div>
@@ -236,7 +239,7 @@ export default function ProductDetailClient({ product }: Props) {
                   className="btn-cyan flex min-h-12 flex-1 items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <ShoppingBag size={17} aria-hidden="true" />
-                  {added ? "Added to cart" : "Add to cart"}
+                  {added ? t("addedToCart") : t("addToCart")}
                 </button>
                 <a
                   href={sellerContactUrl}
@@ -244,24 +247,24 @@ export default function ProductDetailClient({ product }: Props) {
                   rel="noreferrer"
                   className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-2xl border border-teal-100/20 bg-teal-100/[0.06] px-4 py-3 text-sm font-bold text-teal-100 transition-colors hover:bg-teal-100/[0.11]"
                 >
-                  <MessageCircle size={17} aria-hidden="true" /> Ask store
+                  <MessageCircle size={17} aria-hidden="true" /> {t("askStore")}
                 </a>
               </div>
               <p className="mt-3 text-[10px] leading-5 text-white/35">
-                The listed MRP is catalogue information. Final selling price and delivery are confirmed by the store.
+                {t("confirmBeforeOrdering")}
               </p>
             </GlassCard>
 
             <GlassCard className="rounded-[25px] p-5 sm:p-6">
               <div className="mb-3 flex items-center gap-2">
                 <Store size={17} className="text-teal-100/75" aria-hidden="true" />
-                <h2 className="text-sm font-extrabold text-white">Seller & support</h2>
+                <h2 className="text-sm font-extrabold text-white">{t("sellerSupport")}</h2>
               </div>
               <div className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4">
                 <p className="text-sm font-bold text-white">Hariram Prajapat</p>
-                <p className="mt-1 text-[11px] text-white/45">Owner · Hari Ram AWPL Store</p>
+                <p className="mt-1 text-[11px] text-white/45">{t("ownerStore")}</p>
                 <a href={sellerContactUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-teal-100 hover:text-white">
-                  Contact seller on WhatsApp <ExternalLink size={13} aria-hidden="true" />
+                  {t("contactSeller")} <ExternalLink size={13} aria-hidden="true" />
                 </a>
               </div>
             </GlassCard>
@@ -272,20 +275,20 @@ export default function ProductDetailClient({ product }: Props) {
           <GlassCard className="rounded-[25px] p-5 sm:p-6">
             <div className="mb-3 flex items-center gap-2">
               <Tag size={17} className="text-teal-100/75" aria-hidden="true" />
-              <h2 className="text-sm font-extrabold text-white">Description & usage</h2>
+              <h2 className="text-sm font-extrabold text-white">{t("descriptionUsage")}</h2>
             </div>
             <p className="text-sm leading-7 text-white/60">
-              {product.description || "An official product description has not been provided in the current catalogue record. Please check the product packaging or ask the store for verified details before use."}
+              {product.description || t("descriptionMissing")}
             </p>
             {product.ingredients && product.ingredients.length > 0 ? (
               <div className="mt-4 border-t border-white/[0.08] pt-4">
-                <h3 className="text-xs font-bold text-white">Ingredients / composition</h3>
+                <h3 className="text-xs font-bold text-white">{t("ingredientsComposition")}</h3>
                 <p className="mt-2 text-xs leading-6 text-white/55">{product.ingredients.join(", ")}</p>
               </div>
             ) : (
               <div className="mt-4 flex items-start gap-2 border-t border-white/[0.08] pt-4 text-[11px] leading-5 text-white/40">
                 <CircleHelp size={14} className="mt-0.5 shrink-0 text-teal-100/55" aria-hidden="true" />
-                Ingredients and usage directions are not recorded. Follow the label and verified product instructions.
+                {t("ingredientsMissing")}
               </div>
             )}
           </GlassCard>
@@ -299,20 +302,20 @@ export default function ProductDetailClient({ product }: Props) {
             <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-teal-200/60">
-                  Explore more
+                  {t("exploreMore")}
                 </p>
                 <h2
                   id="related-products-heading"
                   className="mt-1 text-xl font-extrabold tracking-tight text-white"
                 >
-                  You may also like
+                  {t("youMayAlsoLike")}
                 </h2>
               </div>
               <Link
                 href="/#catalogue"
                 className="text-[11px] font-bold text-teal-100/75 transition-colors hover:text-white"
               >
-                View full catalogue
+                {t("viewFullCatalogue")}
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
