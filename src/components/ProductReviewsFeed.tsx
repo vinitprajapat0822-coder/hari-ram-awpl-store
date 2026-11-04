@@ -3,6 +3,8 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { X } from "lucide-react";
 import { Star } from "lucide-react";
 import { getSupabaseClient } from "@/lib/supabase";
 import type { StoreReview } from "@/lib/commerce";
@@ -18,6 +20,8 @@ export default function ProductReviewsFeed({
   officialSource?: string | null;
 }) {
   const { t } = useLanguage();
+  const reducedMotion = useReducedMotion();
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [reviews, setReviews] = useState<ReviewView[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -62,6 +66,15 @@ export default function ProductReviewsFeed({
     void load();
     return () => { active = false; };
   }, [productId]);
+
+  useEffect(() => {
+    if (!selectedPhoto) return undefined;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedPhoto(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedPhoto]);
 
   const average = reviews.length > 0
     ? reviews.reduce((total, review) => total + review.rating, 0) / reviews.length
@@ -114,8 +127,16 @@ export default function ProductReviewsFeed({
               </div>
               {review.photoUrls.length > 0 && (
                 <div className="mt-3 grid grid-cols-3 gap-2">
-                  {review.photoUrls.map((url) => (
-                    <img key={url} src={url} alt={t("customerReviews")} loading="lazy" decoding="async" className="aspect-square w-full rounded-xl border border-white/10 object-cover" />
+                  {review.photoUrls.map((url, index) => (
+                    <button
+                      key={url}
+                      type="button"
+                      onClick={() => setSelectedPhoto(url)}
+                      aria-label={t("viewReviewPhoto") + " " + (index + 1)}
+                      className="group overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200"
+                    >
+                      <img src={url} alt={t("reviewPhotoAlt")} loading="lazy" decoding="async" className="aspect-square w-full object-cover transition duration-300 group-hover:scale-105" />
+                    </button>
                   ))}
                 </div>
               )}
@@ -129,6 +150,34 @@ export default function ProductReviewsFeed({
           {t("officialSource")}
         </a>
       )}
+      <AnimatePresence>
+        {selectedPhoto && (
+          <motion.div
+            className="fixed inset-0 z-[90] flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reducedMotion ? 0 : 0.18 }}
+          >
+            <button type="button" className="absolute inset-0 bg-[#020611]/90 backdrop-blur-xl" aria-label={t("closePhoto")} onClick={() => setSelectedPhoto(null)} />
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label={t("viewReviewPhoto")}
+              className="relative z-10 max-h-[90dvh] max-w-4xl overflow-hidden rounded-2xl border border-white/15 bg-[#0b0f19] p-2 shadow-2xl"
+              initial={reducedMotion ? false : { opacity: 0, y: 14, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={reducedMotion ? undefined : { opacity: 0, y: 8, scale: 0.98 }}
+              transition={{ duration: reducedMotion ? 0 : 0.2 }}
+            >
+              <button type="button" onClick={() => setSelectedPhoto(null)} aria-label={t("closePhoto")} className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/55 text-white backdrop-blur-md">
+                <X size={17} aria-hidden="true" />
+              </button>
+              <img src={selectedPhoto} alt={t("reviewPhotoAlt")} className="max-h-[84dvh] w-auto max-w-full rounded-xl object-contain" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
