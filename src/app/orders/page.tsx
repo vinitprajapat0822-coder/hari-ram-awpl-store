@@ -13,7 +13,7 @@ import { ArrowLeft, PackageCheck, RefreshCw } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 export default function OrdersPage() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const statusLabels = {
     ORDER_PLACED: "orderPlaced", ORDER_ACCEPTED: "orderAccepted", PACKED: "packed",
     SHIPPED: "shipped", IN_TRANSIT: "inTransit", OUT_FOR_DELIVERY: "outForDelivery", DELIVERED: "delivered",
@@ -132,7 +132,7 @@ export default function OrdersPage() {
                 <div className="flex flex-wrap items-start justify-between gap-3 border-b border-white/[0.08] pb-4">
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-wider text-teal-100/65">Order {order.order_number}</p>
-                    <h2 className="mt-1 text-sm font-extrabold text-white">{formatOrderDate(order.created_at)}</h2>
+                    <h2 className="mt-1 text-sm font-extrabold text-white">{formatOrderDate(order.created_at, locale)}</h2>
                   </div>
                   <span className="rounded-full border border-teal-100/15 bg-teal-100/[0.06] px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-teal-100/80">{order.status in statusLabels ? t(statusLabels[order.status as keyof typeof statusLabels]) : order.status.replaceAll("_", " ")}</span>
                 </div>
