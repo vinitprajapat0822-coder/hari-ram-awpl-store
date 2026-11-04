@@ -7,7 +7,7 @@
 - The captured apparel listing rows are separate product records (for example, each shirt colour/size is its own SKU).
 - Product records use MRP only. DP and SP are not part of the product type, catalogue data or cart calculations.
 - Product descriptions and ingredient claims are left blank unless separately verified.
-- Official AWPL image URLs are enabled for 113 exact product matches; 22 unresolved products retain the square "Image pending" placeholder.
+- Official AWPL image URLs are enabled for 115 exact product matches; 20 unresolved products retain the square "Image pending" placeholder.
 - Cart lines are SKU-specific and WhatsApp order text includes the product's pack size.
 - Existing persisted cart data is migrated to the current catalogue and stale/unsupported products are dropped.
 
@@ -29,7 +29,7 @@ The AWPL page snippets do not expose a formal page-update timestamp. The date in
 
 ## Images
 
-No images were supplied. Images are mapped to exact official AWPL product-image links where the product name and image alt text match. Current verified coverage is 113 of 135 records (83.7%). The remaining 22 records retain placeholders until their exact official image links are identified. Three additional exact official AWPL image URLs were verified and synchronized into the TypeScript catalogue and SQL seed on 2026-11-04. Do not reuse a related product's image.
+No images were supplied. Images are mapped to exact official AWPL product-image links where the product name and image alt text match. Current verified coverage is 115 of 135 records (85.2%). The remaining 20 records retain placeholders until their exact official image links are identified. Five additional exact official AWPL image URLs have been verified and synchronized into the TypeScript catalogue and SQL seed during the current work. Do not reuse a related product's image. Do not reuse a related product's image.
 
 ## Product SKU rules
 
