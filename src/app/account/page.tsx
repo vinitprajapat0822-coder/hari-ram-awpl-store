@@ -48,7 +48,7 @@ function AccountContent() {
     try {
       const client = getSupabaseClient();
       if (!client) throw new Error(t("accountServiceUnavailable"));
-      if (!email.trim() || password.length < 8) throw new Error(t("enterEmail{t("password")}"));
+      if (!email.trim() || password.length < 8) throw new Error(t("enterEmailPassword"));
 
       if (mode === "signup") {
         if (fullName.trim().length < 2) throw new Error(t("enterFullName"));
