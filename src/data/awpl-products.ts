@@ -2016,8 +2016,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T42911_957021.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Flick&Lift Waterproof Mascara"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
@@ -2198,8 +2199,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T46622_464547.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS Strobe Cream Dewy Glow Flamingo"
     },
     "availability": "UNKNOWN",
     "status": "VERIFIED",
