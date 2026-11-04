@@ -38,7 +38,7 @@ values
   ('awpl-home-care-toshine-detergent-bar', 'TOSHINE DETERGENT BAR', 'home-care', '3 NUMBER', 120, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
   ('awpl-home-care-limfresh-dish-wash-bar', 'LIMFRESH DISH WASH BAR', 'home-care', '3 NUMBER', 129, null, 'VERIFIED', 'UNKNOWN', null, 'MISSING'),
   ('awpl-home-care-room-freshner-musk', 'ROOM FRESHNER (MUSK)', 'home-care', '200 ML', 325, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T26422_057524.jpg', 'VERIFIED'),
-  ('awpl-jeeveda-jeeveda-rice-bran-oil-2-ltr', 'JEEVEDA RICE BRAN OIL (2 LTR)', 'jeeveda', '2 LTR', 699, null, 'PRICE_REVIEW_REQUIRED', 'UNKNOWN', null, 'MISSING'),
+  ('awpl-jeeveda-jeeveda-rice-bran-oil-2-ltr', 'JEEVEDA RICE BRAN OIL (2 LTR)', 'jeeveda', '2 LTR', 699, null, 'PRICE_REVIEW_REQUIRED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T16144_062207.jpeg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-rice-bran-oil-5-ltr', 'JEEVEDA RICE BRAN OIL (5 LTR)', 'jeeveda', '5 LTR', 1743, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T16222_417330.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-chhole-chana-masala', 'JEEVEDA CHHOLE CHANA MASALA', 'jeeveda', '100 GM', 139, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3241_507729.jpg', 'VERIFIED'),
   ('awpl-jeeveda-jeeveda-chicken-masala', 'JEEVEDA CHICKEN MASALA', 'jeeveda', '100 GM', 147, null, 'VERIFIED', 'UNKNOWN', 'https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T3251_493990.jpg', 'VERIFIED'),
