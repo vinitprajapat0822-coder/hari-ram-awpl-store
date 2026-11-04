@@ -1997,8 +1997,9 @@ export const awplProducts: ProductMasterRecord[] = [
     "description": null,
     "ingredients": null,
     "image": {
-      "url": null,
-      "status": "MISSING"
+      "url": "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4282_660264.jpg",
+      "status": "VERIFIED",
+      "altText": "Official SNISS retractable kajal pencil"
     },
     "availability": "UNKNOWN",
     "status": "MISSING_DATA",
