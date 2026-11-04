@@ -20,7 +20,7 @@ function AccountContent() {
   const router = useRouter();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
-  const [password, set{t("password")}] = useState("");
+  const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
@@ -64,7 +64,7 @@ function AccountContent() {
           router.push(safeNextPath(searchParams.get("next")));
         }
       } else {
-        const { error: authError } = await client.auth.signInWith{t("password")}({
+        const { error: authError } = await client.auth.signInWithPassword({
           email: email.trim(),
           password,
         });
@@ -137,7 +137,7 @@ function AccountContent() {
                 </label>
                 <label className="block text-xs font-semibold text-white/65">
                   {t("password")}
-                  <input type="password" value={password} onChange={(event) => set{t("password")}(event.target.value)} autoComplete={mode === "signup" ? "new-password" : "current-password"} minLength={8} className="mt-1.5 min-h-11 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 text-sm text-white outline-none focus:border-teal-100/40" />
+                  <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={mode === "signup" ? "new-password" : "current-password"} minLength={8} className="mt-1.5 min-h-11 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 text-sm text-white outline-none focus:border-teal-100/40" />
                 </label>
                 <p className="text-[10px] leading-5 text-white/35">{t("passwordHint")}</p>
                 {error && <p role="alert" className="rounded-xl border border-rose-200/20 bg-rose-200/[0.06] p-3 text-xs text-rose-100">{error}</p>}

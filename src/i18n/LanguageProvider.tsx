@@ -70,7 +70,7 @@ const dictionaries = {
     noVerifiedReviews:"No verified reviews yet",
     reviewsAfterDelivery:"Ratings appear after a customer receives the product, submits a review and the store approves it.",
     verifiedPurchase:"Verified purchase", productQuality:"Product quality", packaging:"Packaging",
-    delivery:"Delivery", officialSource:"View official product source", openCart:"Open cart", closeCart:"Close cart", emptyCart:"Your cart is empty", emptyCartHint:"Add catalogue items to see them here.", viewCart:"View cart", removeFromCart:"Remove item", decreaseQuantity:"Decrease quantity", increaseQuantity:"Increase quantity", itemSubtotal:"Item subtotal", language:"Language",
+    delivery:"Delivery", officialSource:"View official product source", openCart:"Open cart", closeCart:"Close cart", emptyCart:"Your cart is empty", cartItem:"Cart item", emptyCartHint:"Add catalogue items to see them here.", viewCart:"View cart", removeFromCart:"Remove item", decreaseQuantity:"Decrease quantity", increaseQuantity:"Increase quantity", itemSubtotal:"Item subtotal", language:"Language",
   },
   hi: {
     home:"होम", catalogue:"उत्पाद सूची", about:"हमारे बारे में", cart:"कार्ट", profile:"प्रोफ़ाइल",
@@ -139,7 +139,7 @@ const dictionaries = {
     noVerifiedReviews:"अभी कोई सत्यापित समीक्षा नहीं है",
     reviewsAfterDelivery:"ग्राहक को उत्पाद मिलने, समीक्षा भेजने और स्टोर की मंज़ूरी के बाद रेटिंग दिखाई जाती है।",
     verifiedPurchase:"सत्यापित खरीद", productQuality:"उत्पाद की गुणवत्ता", packaging:"पैकिंग",
-    delivery:"डिलीवरी", officialSource:"कंपनी की मूल उत्पाद सूची देखें", openCart:"कार्ट खोलें", closeCart:"कार्ट बंद करें", emptyCart:"आपका कार्ट खाली है", emptyCartHint:"उत्पाद सूची से सामान जोड़ें। वे यहाँ दिखाई देंगे।", viewCart:"कार्ट देखें", removeFromCart:"उत्पाद हटाएँ", decreaseQuantity:"मात्रा घटाएँ", increaseQuantity:"मात्रा बढ़ाएँ", itemSubtotal:"उत्पाद का कुल", language:"भाषा",
+    delivery:"डिलीवरी", officialSource:"कंपनी की मूल उत्पाद सूची देखें", openCart:"कार्ट खोलें", closeCart:"कार्ट बंद करें", emptyCart:"आपका कार्ट खाली है", cartItem:"कार्ट का उत्पाद", emptyCartHint:"उत्पाद सूची से सामान जोड़ें। वे यहाँ दिखाई देंगे।", viewCart:"कार्ट देखें", removeFromCart:"उत्पाद हटाएँ", decreaseQuantity:"मात्रा घटाएँ", increaseQuantity:"मात्रा बढ़ाएँ", itemSubtotal:"उत्पाद का कुल", language:"भाषा",
   },
 } as const;
 

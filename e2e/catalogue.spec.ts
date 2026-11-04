@@ -263,5 +263,6 @@ test("cart drawer opens for a selected item and updates quantity", async ({ page
   await expect(drawer).toBeVisible();
   await expect(drawer.getByRole("heading", { name: "Your Cart" })).toBeVisible();
   await drawer.getByRole("button", { name: "Increase quantity" }).click();
-  await expect(drawer.getByText("2", { exact: true })).toBeVisible();
+  const cartItem = drawer.getByRole("article", { name: /Cart item:/ });
+  await expect(cartItem.getByText("2", { exact: true })).toBeVisible();
 });

@@ -110,7 +110,7 @@ export default function CartDrawer() {
                 <>
                   <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
                     {cart.map((item) => (
-                      <article key={item.product.id} className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,.045)]">
+                      <article key={item.product.id} aria-label={t("cartItem") + ": " + productName(item.product)} className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,.045)]">
                         <div className="flex items-start justify-between gap-3">
                           <div className="min-w-0">
                             <h3 className="line-clamp-2 text-sm font-bold leading-5 text-white">{productName(item.product)}</h3>
