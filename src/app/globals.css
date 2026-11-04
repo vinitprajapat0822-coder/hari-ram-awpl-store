@@ -568,3 +568,28 @@ button, a { touch-action: manipulation; }
     will-change: auto;
   }
 }
+
+
+.language-toggle {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 11px;
+  border: 1px solid rgba(146, 230, 225, .22);
+  border-radius: 13px;
+  color: rgba(218, 255, 249, .92);
+  background: linear-gradient(145deg, rgba(102, 234, 215, .13), rgba(111, 126, 255, .07));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 8px 22px -14px rgba(82,226,212,.65);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+.language-toggle:hover { transform: translateY(-1px); border-color: rgba(146, 230, 225, .42); }
+.language-toggle:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) {
+  .language-toggle { transition: none; }
+  .language-toggle:hover { transform: none; }
+}

@@ -14,6 +14,10 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 
 export default function OrdersPage() {
   const { t } = useLanguage();
+  const statusLabels = {
+    ORDER_PLACED: "orderPlaced", ORDER_ACCEPTED: "orderAccepted", PACKED: "packed",
+    SHIPPED: "shipped", IN_TRANSIT: "inTransit", OUT_FOR_DELIVERY: "outForDelivery", DELIVERED: "delivered",
+  } as const;
   const [orders, setOrders] = useState<StoreOrder[]>([]);
   const [loading, setLoading] = useState(true);
   const [configured, setConfigured] = useState(false);
@@ -130,7 +134,7 @@ export default function OrdersPage() {
                     <p className="text-[10px] font-bold uppercase tracking-wider text-teal-100/65">Order {order.order_number}</p>
                     <h2 className="mt-1 text-sm font-extrabold text-white">{formatOrderDate(order.created_at)}</h2>
                   </div>
-                  <span className="rounded-full border border-teal-100/15 bg-teal-100/[0.06] px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-teal-100/80">{order.status.replaceAll("_", " ")}</span>
+                  <span className="rounded-full border border-teal-100/15 bg-teal-100/[0.06] px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-teal-100/80">{order.status in statusLabels ? t(statusLabels[order.status as keyof typeof statusLabels]) : order.status.replaceAll("_", " ")}</span>
                 </div>
                 <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_1fr]">
                   <div>
@@ -161,7 +165,7 @@ export default function OrdersPage() {
                       <strong className="text-teal-100">₹{Number(order.subtotal_mrp).toLocaleString("en-IN")}</strong>
                     </div>
                     {order.final_total !== null && (
-                      <p className="mt-1 text-right text-[10px] text-white/45">Owner-confirmed final total: ₹{Number(order.final_total).toLocaleString("en-IN")}</p>
+                      <p className="mt-1 text-right text-[10px] text-white/45">{t("ownerConfirmedTotal")}: ₹{Number(order.final_total).toLocaleString("en-IN")}</p>
                     )}
                   </div>
                   <OrderTrackingTimeline order={order} />

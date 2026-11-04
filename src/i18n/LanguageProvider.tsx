@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { localizedProductName } from "@/i18n/product-labels";
 
 export type Locale = "en" | "hi";
@@ -58,7 +58,7 @@ const dictionaries = {
     loadingOrders:"Loading your orders…", noTrackedOrders:"No tracked orders yet",
     trackedOrderHint:"A tracked order will appear here after you place it while signed in.",
     browseCatalogue:"Browse catalogue", itemsOrdered:"Items ordered", packNotListed:"Pack not listed",
-    orderMrpTotal:"Order MRP total", reviewPublished:"Your review is published.",
+    orderMrpTotal:"Order MRP total", ownerConfirmedTotal:"Owner-confirmed final total", reviewPublished:"Your review is published.",
     reviewModeration:"Your review is awaiting owner moderation.", trackingTimeline:"Tracking timeline",
     orderPlaced:"Order placed", orderAccepted:"Order accepted", packed:"Packed", shipped:"Shipped",
     inTransit:"In transit", outForDelivery:"Out for delivery", delivered:"Delivered",
@@ -127,7 +127,7 @@ const dictionaries = {
     loadingOrders:"आपके ऑर्डर खुल रहे हैं…", noTrackedOrders:"अभी कोई ट्रैक किया गया ऑर्डर नहीं है",
     trackedOrderHint:"साइन इन करके ऑर्डर देने के बाद उसकी जानकारी यहाँ दिखाई देगी।",
     browseCatalogue:"उत्पाद सूची देखें", itemsOrdered:"ऑर्डर किए गए उत्पाद", packNotListed:"पैक का आकार दर्ज नहीं है",
-    orderMrpTotal:"ऑर्डर की सूची कीमत", reviewPublished:"आपकी समीक्षा प्रकाशित हो गई है।",
+    orderMrpTotal:"ऑर्डर की सूची कीमत", ownerConfirmedTotal:"मालिक द्वारा पुष्टि की गई अंतिम कीमत", reviewPublished:"आपकी समीक्षा प्रकाशित हो गई है।",
     reviewModeration:"आपकी समीक्षा स्टोर की जाँच के लिए भेज दी गई है।", trackingTimeline:"ऑर्डर की स्थिति",
     orderPlaced:"ऑर्डर दर्ज हुआ", orderAccepted:"ऑर्डर स्वीकार हुआ", packed:"पैक कर दिया गया",
     shipped:"भेज दिया गया", inTransit:"रास्ते में है", outForDelivery:"डिलीवरी के लिए निकला",
@@ -165,16 +165,16 @@ export function LanguageProvider({children}:{children:React.ReactNode}) {
     if(saved==="hi"||saved==="en") setLocaleState(saved);
   },[]);
   useEffect(()=>{document.documentElement.lang=locale;},[locale]);
-  const setLocale=(next:Locale)=>{
+  const setLocale=useCallback((next:Locale)=>{
     window.localStorage.setItem("hari-ram-awpl-locale",next);
     setLocaleState(next);
-  };
+  },[]);
   const value=useMemo<ContextValue>(()=>({
     locale,setLocale,
     t:(key)=>dictionaries[locale][key]??dictionaries.en[key],
     categoryLabel:(name)=>locale==="hi"?categories[name]??name:name,
     productName:(product)=>locale==="hi"?product.nameHi?.trim()||localizedProductName(product.name):product.name,
-  }),[locale]);
+  }),[locale,setLocale]);
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 export function useLanguage(){

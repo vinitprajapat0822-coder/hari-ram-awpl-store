@@ -140,7 +140,7 @@ function ProfileContent() {
 
 export default function ProfilePage() {
   return (
-    <Suspense fallback={<main className="min-h-screen pb-28 md:pb-16"><Navbar /><div className="mx-auto max-w-xl px-4 pt-7 text-sm text-white/50 sm:px-6">{t("loadingProfile")}</div></main>}>
+    <Suspense fallback={<main className="min-h-screen pb-28 md:pb-16"><Navbar /><div className="mx-auto max-w-xl px-4 pt-7 text-sm text-white/50 sm:px-6">Loading profile…</div></main>}>
       <ProfileContent />
     </Suspense>
   );
