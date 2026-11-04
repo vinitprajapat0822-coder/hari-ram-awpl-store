@@ -34,7 +34,12 @@ const replacements:Array<[string,string]>=[
 ["ROOT & SHINE SHAMPOO","रूट एंड शाइन शैम्पू"],["MOISTURISING CREAM","मॉइस्चराइज़िंग क्रीम"],["ULTRA SMOOTHING SERUM","अल्ट्रा स्मूदिंग सीरम"],
 ["HERBAL FACE WASH","हर्बल फेस वॉश"],["STRAWBERRY FACE WASH","स्ट्रॉबेरी फेस वॉश"],["LIP BALM","लिप बाम"],["BODY LOTION","बॉडी लोशन"],
 ["FACE PACK CREAM","फेस पैक क्रीम"],["PEEL OFF FACE MASK","पील-ऑफ फेस मास्क"],["ALOEVERA SHOWER GEL","एलोवेरा शॉवर जेल"],
-["TALCUM POWDER","टैल्कम पाउडर"],["SHAVING CREAM FOR MEN","पुरुषों के लिए शेविंग क्रीम"]];
+["TALCUM POWDER","टैल्कम पाउडर"],["SHAVING CREAM FOR MEN","पुरुषों के लिए शेविंग क्रीम"],["TOSHINE DETERGENT BAR","टोशाइन कपड़े धोने की टिकिया"],["LIMFRESH DISH WASH BAR","लिमफ्रेश बर्तन धोने की टिकिया"],
+["BLURR LOOSE POWDER - WHITE TOUCH","ब्लर लूज़ पाउडर - व्हाइट टच"],["POWDER BLUSH - NASTY","पाउडर ब्लश - नेस्टी"],
+["EYELINER HOLOGRAPHIC","होलोग्राफिक आईलाइनर"],["EYELINER METALLIC","मेटैलिक आईलाइनर"],
+["MATT EYE LINER BLACK","मैट ब्लैक आईलाइनर"],["ALL DAY LUXE CREAM LIPSTICK","ऑल डे लक्स क्रीम लिपस्टिक"],
+["SKIN TINT LUMINOUS VEIL","स्किन टिंट ल्यूमिनस वेल"],["RADIANT SAND","रेडिएंट सैंड"],["SINDOOR - RED","लाल सिंदूर"],
+["TIE - BLACK","काली टाई"],["RICE BRAN OIL (1 LTR)","राइस ब्रान तेल (1 लीटर)"]];
 export function localizedProductName(name:string){
  let result=name.toUpperCase();
  for(const [source,target] of [...replacements].sort((a,b)=>b[0].length-a[0].length)) result=result.split(source).join(target);
