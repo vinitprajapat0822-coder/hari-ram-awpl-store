@@ -612,7 +612,6 @@ export const awplProducts: ProductMasterRecord[] = [
       checkedAt: "2026-11-06"
     },
     lastVerifiedAt: "2026-11-06"
-  }
   },
   ...importedCatalogueProducts
 ];
