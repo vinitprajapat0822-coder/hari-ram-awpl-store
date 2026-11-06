@@ -116,7 +116,7 @@ export default function StorefrontHero({
               A single place to browse products, categories and pack details.
             </p>
 
-            <div className="storefront-hero__category-preview" aria-label="Featured categories">
+            <div className="storefront-hero__category-preview" role="group" aria-label="Featured categories">
               {featuredCategories.slice(0, 3).map((category) => (
                 <span key={category}>{category}</span>
               ))}
