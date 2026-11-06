@@ -37,6 +37,7 @@ export default function HomePage() {
   }, [activeCategory, search]);
 
   const categoryCount = categories.filter((category) => category !== "All").length;
+  const categoryPending = !search.trim() && ["Wellness", "Wellroot", "Veterinary"].includes(activeCategory);
 
   return (
     <main className="min-h-screen pb-28 md:pb-16">
@@ -108,8 +109,8 @@ export default function HomePage() {
             <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-teal-100/15 bg-teal-100/[0.06] text-teal-100/70">
               <Search size={22} aria-hidden="true" />
             </span>
-            <h3 className="mt-4 text-base font-bold text-white">No matches found</h3>
-            <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-white/45">Try another product name, pack size or category.</p>
+            <h3 className="mt-4 text-base font-bold text-white">{categoryPending ? "Category not enabled for ordering" : "No matches found"}</h3>
+            <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-white/45">{categoryPending ? "This category is not part of the public order catalogue while product classification and label details are reviewed." : "Try another product name, pack size or category."}</p>
             <button
               type="button"
               onClick={() => {
