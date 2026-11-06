@@ -4,35 +4,42 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, ArrowLeft, ArrowRight, Layers3, PackageCheck, Sparkles } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
+
+type TranslationKey =
+  | "heroSlide1Eyebrow" | "heroSlide1TitleA" | "heroSlide1TitleB" | "heroSlide1Description"
+  | "heroSlide2Eyebrow" | "heroSlide2TitleA" | "heroSlide2TitleB" | "heroSlide2Description"
+  | "heroSlide3Eyebrow" | "heroSlide3TitleA" | "heroSlide3TitleB" | "heroSlide3Description"
+  | "heroSkuDetail";
 
 type PromoSlide = {
-  eyebrow: string;
-  title: [string, string];
-  description: string;
-  detail: string;
+  eyebrow: TranslationKey;
+  title: [TranslationKey, TranslationKey];
+  description: TranslationKey;
+  detail: TranslationKey;
   Icon: typeof Sparkles;
 };
 
 const slides: PromoSlide[] = [
   {
-    eyebrow: "HARI RAM AWPL",
-    title: ["Everyday essentials,", "beautifully organised."],
-    description: "Explore wellness, personal care, home and everyday ranges in one calm catalogue.",
-    detail: "135 individual product listings",
+    eyebrow: "heroSlide1Eyebrow",
+    title: ["heroSlide1TitleA", "heroSlide1TitleB"],
+    description: "heroSlide1Description",
+    detail: "heroSkuDetail",
     Icon: Sparkles,
   },
   {
-    eyebrow: "A CLEARER CATALOGUE",
-    title: ["Find your range,", "without the clutter."],
-    description: "Move through the category collection and narrow the catalogue by name or pack size.",
-    detail: "15 category filters",
+    eyebrow: "heroSlide2Eyebrow",
+    title: ["heroSlide2TitleA", "heroSlide2TitleB"],
+    description: "heroSlide2Description",
+    detail: "heroSkuDetail",
     Icon: Layers3,
   },
   {
-    eyebrow: "SKU-FIRST SHOPPING",
-    title: ["Every pack size,", "listed separately."],
-    description: "Browse each captured size and apparel SKU as its own product and cart line.",
-    detail: "Separate product listings",
+    eyebrow: "heroSlide3Eyebrow",
+    title: ["heroSlide3TitleA", "heroSlide3TitleB"],
+    description: "heroSlide3Description",
+    detail: "heroSkuDetail",
     Icon: PackageCheck,
   },
 ];
@@ -44,6 +51,7 @@ type Props = {
 
 export default function PromoCarousel({ productCount, categoryCount }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { t } = useLanguage();
   const reducedMotion = useReducedMotion();
   const activeSlide = slides[activeIndex] ?? slides[0]!;
   const Icon = activeSlide.Icon;
@@ -62,21 +70,21 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
   }, [reducedMotion]);
 
   const detail = activeIndex === 0
-    ? productCount + " individual product listings"
+    ? productCount + " " + t("heroItemsSuffix")
     : activeIndex === 1
-      ? categoryCount + " category filters"
-      : activeSlide.detail;
+      ? categoryCount + " " + t("heroCategorySuffix")
+      : t(activeSlide.detail);
 
   return (
     <section
       className="hero-panel hero-carousel relative overflow-hidden rounded-[27px] p-5 sm:rounded-[34px] sm:p-9 lg:p-11"
-      aria-label="Store highlights"
+      aria-label={t("storeHighlights")}
       aria-roledescription="carousel"
     >
       <div className="hero-carousel__inner relative z-10 grid items-center gap-7 md:grid-cols-[1.2fr_0.8fr]">
         <div className="max-w-2xl">
           <div className="flex items-center justify-between gap-3">
-            <span className="hero-eyebrow">{activeSlide.eyebrow}</span>
+            <span className="hero-eyebrow">{t(activeSlide.eyebrow)}</span>
             <span className="hero-carousel__counter">
               {String(activeIndex + 1).padStart(2, "0")} <span>/</span> {String(slides.length).padStart(2, "0")}
             </span>
@@ -93,11 +101,11 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
               >
                 <h1 className="mt-5 text-[clamp(2.1rem,7vw,4.1rem)] font-black leading-[0.98] tracking-[-0.055em] text-white">
                   <span className="block text-[0.34em] font-extrabold tracking-[0.22em] text-teal-100/75">HARI RAM</span>
-                  <span className="mt-3 block">{activeSlide.title[0]}</span>
-                  <span className="hero-title-accent mt-1 block">{activeSlide.title[1]}</span>
+                  <span className="mt-3 block">{t(activeSlide.title[0])}</span>
+                  <span className="hero-title-accent mt-1 block">{t(activeSlide.title[1])}</span>
                 </h1>
                 <p className="mt-5 max-w-lg text-sm leading-7 text-slate-200/60 sm:text-[15px]">
-                  {activeSlide.description}
+                  {t(activeSlide.description)}
                 </p>
               </motion.div>
             </AnimatePresence>
@@ -105,7 +113,7 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
 
           <div className="mt-7 flex flex-wrap items-center gap-4">
             <Link href="#catalogue" className="hero-cta">
-              Explore catalogue <ArrowDownRight size={17} aria-hidden="true" />
+              {t("exploreCatalogue")} <ArrowDownRight size={17} aria-hidden="true" />
             </Link>
             <span className="inline-flex items-center gap-2 text-[11px] font-medium text-white/45">
               <PackageCheck size={15} className="text-teal-200/75" aria-hidden="true" />
@@ -117,50 +125,50 @@ export default function PromoCarousel({ productCount, categoryCount }: Props) {
         <div className="hero-carousel__visual hidden md:grid">
           <div className="hero-orbit">
             <div className="hero-orbit__core"><Icon size={42} strokeWidth={1.25} aria-hidden="true" /></div>
-            <span className="hero-orbit__tag hero-orbit__tag--left">Daily care</span>
-            <span className="hero-orbit__tag hero-orbit__tag--bottom">Home & living</span>
-            <span className="hero-orbit__tag hero-orbit__tag--right">Wellness</span>
+            <span className="hero-orbit__tag hero-orbit__tag--left">{t("dailyCare")}</span>
+            <span className="hero-orbit__tag hero-orbit__tag--bottom">{t("homeAndLiving")}</span>
+            <span className="hero-orbit__tag hero-orbit__tag--right">{t("wellness")}</span>
           </div>
-          <div className="hero-carousel__controls" role="group" aria-label="Carousel controls">
-            <button type="button" onClick={() => showSlide(activeIndex - 1)} aria-label="Previous highlight">
+          <div className="hero-carousel__controls" role="group" aria-label={t("carouselControls")}>
+            <button type="button" onClick={() => showSlide(activeIndex - 1)} aria-label={t("previousHighlight")}>
               <ArrowLeft size={16} aria-hidden="true" />
             </button>
-            <div className="hero-carousel__dots" role="group" aria-label="Choose highlight">
+            <div className="hero-carousel__dots" role="group" aria-label={t("chooseHighlight")}>
               {slides.map((slide, index) => (
                 <button
                   key={slide.eyebrow}
                   type="button"
                   onClick={() => showSlide(index)}
-                  aria-label={"Show highlight " + (index + 1)}
+                  aria-label={t("showHighlight") + " " + (index + 1)}
                   aria-current={activeIndex === index ? "true" : undefined}
                   className={activeIndex === index ? "is-active" : ""}
                 />
               ))}
             </div>
-            <button type="button" onClick={() => showSlide(activeIndex + 1)} aria-label="Next highlight">
+            <button type="button" onClick={() => showSlide(activeIndex + 1)} aria-label={t("nextHighlight")}>
               <ArrowRight size={16} aria-hidden="true" />
             </button>
           </div>
         </div>
       </div>
 
-      <div className="hero-carousel__mobile-controls md:hidden" role="group" aria-label="Mobile carousel controls">
-        <button type="button" onClick={() => showSlide(activeIndex - 1)} aria-label="Previous highlight">
+      <div className="hero-carousel__mobile-controls md:hidden" role="group" aria-label={t("mobileCarouselControls")}>
+        <button type="button" onClick={() => showSlide(activeIndex - 1)} aria-label={t("previousHighlight")}>
           <ArrowLeft size={16} aria-hidden="true" />
         </button>
-        <div className="hero-carousel__dots" role="group" aria-label="Choose highlight">
+        <div className="hero-carousel__dots" role="group" aria-label={t("chooseHighlight")}>
           {slides.map((slide, index) => (
             <button
               key={slide.eyebrow}
               type="button"
               onClick={() => showSlide(index)}
-              aria-label={"Show highlight " + (index + 1)}
+              aria-label={t("showHighlight") + " " + (index + 1)}
               aria-current={activeIndex === index ? "true" : undefined}
               className={activeIndex === index ? "is-active" : ""}
             />
           ))}
         </div>
-        <button type="button" onClick={() => showSlide(activeIndex + 1)} aria-label="Next highlight">
+        <button type="button" onClick={() => showSlide(activeIndex + 1)} aria-label={t("nextHighlight")}>
           <ArrowRight size={16} aria-hidden="true" />
         </button>
       </div>

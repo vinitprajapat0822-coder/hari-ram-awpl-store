@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import StoreHydration from "@/components/StoreHydration";
+import { LanguageProvider } from "@/i18n/LanguageProvider";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -21,10 +22,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <MotionConfig reducedMotion="user">
-          <StoreHydration />
-          {children}
-        </MotionConfig>
+        <LanguageProvider>
+          <MotionConfig reducedMotion="user">
+            <StoreHydration />
+            {children}
+          </MotionConfig>
+        </LanguageProvider>
       </body>
     </html>
   );

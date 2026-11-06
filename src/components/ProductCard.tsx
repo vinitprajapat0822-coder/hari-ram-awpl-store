@@ -2,25 +2,28 @@
 
 import Link from "next/link";
 import { memo, useState } from "react";
-import type { PointerEvent } from "react";
+import type { CSSProperties, PointerEvent } from "react";
 import type { Product } from "@/data/products";
 import { useStore } from "@/store/useStore";
 import { formatPrice } from "@/lib/utils";
 import ProductArtwork from "./ProductArtwork";
 import { Check, Plus } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 type Props = {
   product: Product;
   index?: number;
 };
 
-function ProductCard({ product }: Props) {
+function ProductCard({ product, index = 0 }: Props) {
   const addToCart = useStore((state) => state.addToCart);
+  const { t, categoryLabel, productName } = useLanguage();
+  const displayName = productName(product);
   const [added, setAdded] = useState(false);
   const inCart = useStore((state) => state.cart.some((item) => item.product.id === product.id));
 
   const canOrder = product.status === "VERIFIED";
-  const reviewLabel = product.status === "PRICE_REVIEW_REQUIRED" ? "MRP review" : "Details review";
+  const reviewLabel = product.status === "PRICE_REVIEW_REQUIRED" ? t("mrpReview") : t("detailsReview");
   const listedMrp = Number.isFinite(product.mrp) && product.mrp > 0 ? product.mrp : 0;
   const configuredSellingPrice = product.sellingPrice;
   const hasDiscount = typeof configuredSellingPrice === "number"
@@ -35,6 +38,7 @@ function ProductCard({ product }: Props) {
   const handleAdd = () => {
     if (!canOrder) return;
     addToCart(product);
+    if (typeof navigator !== "undefined") navigator.vibrate?.(10);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1100);
   };
@@ -45,6 +49,20 @@ function ProductCard({ product }: Props) {
     const y = ((event.clientY - bounds.top) / Math.max(bounds.height, 1)) * 100;
     event.currentTarget.style.setProperty("--ripple-x", x + "%");
     event.currentTarget.style.setProperty("--ripple-y", y + "%");
+  };
+
+  const handleCardPointerMove = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse") return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / Math.max(bounds.width, 1);
+    const y = (event.clientY - bounds.top) / Math.max(bounds.height, 1);
+    event.currentTarget.style.setProperty("--card-tilt-x", ((0.5 - y) * 3.2).toFixed(2) + "deg");
+    event.currentTarget.style.setProperty("--card-tilt-y", ((x - 0.5) * 3.8).toFixed(2) + "deg");
+  };
+
+  const handleCardPointerLeave = (event: PointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty("--card-tilt-x", "0deg");
+    event.currentTarget.style.setProperty("--card-tilt-y", "0deg");
   };
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
@@ -60,8 +78,11 @@ function ProductCard({ product }: Props) {
   return (
     <article
       role="group"
-      aria-label={"Product " + product.name}
+      aria-label={t("productPrefix") + " " + displayName}
       className="glass-card product-card flex h-full flex-col rounded-[21px] p-2.5 sm:p-3.5"
+      onPointerMove={handleCardPointerMove}
+      onPointerLeave={handleCardPointerLeave}
+      style={{ animationDelay: `${Math.min(index, 8) * 34}ms` } as CSSProperties}
     >
       <Link
         href={"/product/" + encodeURIComponent(product.id) + "/"}
@@ -73,20 +94,20 @@ function ProductCard({ product }: Props) {
 
         <div className="flex min-w-0 flex-col px-0.5 pb-2">
           <p className="mb-1.5 truncate text-[9px] font-bold uppercase tracking-[0.16em] text-teal-200/75">
-            {product.category}
+            {categoryLabel(product.category)}
           </p>
           <h3 className="mb-2 line-clamp-2 min-h-[2.6em] text-[12px] font-bold leading-[1.3] text-white sm:text-sm">
-            {product.name}
+            {displayName}
           </h3>
           <p className="line-clamp-2 min-h-[2.7em] text-[10px] leading-relaxed text-slate-200/45 sm:text-[11px]">
-            {product.description || "Open product for available details and store confirmation."}
+            {product.description || t("openProductHint")}
           </p>
         </div>
 
         <div className="mb-3 border-t border-white/[0.075] px-0.5 pt-3">
           <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-1">
             {product.status === "PRICE_REVIEW_REQUIRED" ? (
-              <p className="text-xs font-bold text-amber-200">MRP under review</p>
+              <p className="text-xs font-bold text-amber-200">{t("mrpUnderReview")}</p>
             ) : (
               <span className="price-architecture__selling">{formatPrice(sellingPrice)}</span>
             )}
@@ -98,7 +119,7 @@ function ProductCard({ product }: Props) {
             )}
           </div>
           <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.13em] text-white/35">
-            {hasDiscount ? "Offer price · Listed MRP crossed out" : "Listed MRP"}
+            {hasDiscount ? t("offerPrice") : t("listedMrp")}
           </p>
         </div>
       </Link>
@@ -108,7 +129,7 @@ function ProductCard({ product }: Props) {
         onClick={handleAdd}
         aria-label={
           canOrder
-            ? (added ? "Added to cart" : inCart ? "Add another" : "Add to cart") + " — Add " + product.name + " to cart"
+            ? (added ? t("addedToCart") : inCart ? t("addAnother") : t("addToCart")) + " — " + t("addProductVerb") + " " + displayName + " " + t("toCart")
             : reviewLabel
         }
         disabled={!canOrder}
@@ -123,11 +144,11 @@ function ProductCard({ product }: Props) {
       >
         {canOrder ? (
           added ? (
-            <><Check size={14} aria-hidden="true" /> Added to cart</>
+            <><Check size={14} aria-hidden="true" /> {t("addedToCart")}</>
           ) : inCart ? (
-            <><Plus size={14} aria-hidden="true" /> Add another</>
+            <><Plus size={14} aria-hidden="true" /> {t("addAnother")}</>
           ) : (
-            <><Plus size={14} aria-hidden="true" /> Add to cart</>
+            <><Plus size={14} aria-hidden="true" /> {t("addToCart")}</>
           )
         ) : reviewLabel}
       </button>
