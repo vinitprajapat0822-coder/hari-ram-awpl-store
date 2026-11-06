@@ -37,7 +37,7 @@ export default function HomePage() {
   }, [activeCategory, search]);
 
   const categoryCount = categories.filter((category) => category !== "All").length;
-  const categoryPending = !search.trim() && ["Wellness", "Wellroot", "Veterinary"].includes(activeCategory);
+  const categoryPending = !search.trim() && ["Wellness", "Wellroot", "Agriculture", "Veterinary"].includes(activeCategory);
 
   return (
     <main className="min-h-screen pb-28 md:pb-16">
