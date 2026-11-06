@@ -1,0 +1,28 @@
+name: AWPL official image URL audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Audit official image URLs
+        run: python scripts/audit-awpl-images.py
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: awpl-image-audit
+          path: artifacts/awpl-image-audit.*
+          if-no-files-found: error
+          retention-days: 30
