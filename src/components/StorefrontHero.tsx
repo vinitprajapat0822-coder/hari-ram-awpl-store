@@ -6,7 +6,6 @@ import {
   ArrowDown,
   ArrowUpRight,
   BadgeCheck,
-  Boxes,
   CheckCircle2,
   Layers3,
   PackageSearch,
