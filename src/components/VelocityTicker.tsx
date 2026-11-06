@@ -3,15 +3,22 @@
 import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 
-const tickerItems = [
+type Props = {
+  productCount: number;
+  categoryCount: number;
+};
+
+const buildTickerItems = (productCount: number, categoryCount: number) => [
   "🌱 Everyday wellness & care",
-  "🚚 Delivery details confirmed on enquiry",
-  "🛍️ 135 individual product listings",
-  "📦 Separate pack-size listings",
+  "🛍️ " + productCount.toLocaleString("en-IN") + " listed product records",
+  "🧭 " + categoryCount.toLocaleString("en-IN") + " categories in navigation",
+  "📦 Pack-size details shown where recorded",
+  "🚚 Confirm stock and delivery before ordering",
 ];
 
-export default function VelocityTicker() {
+export default function VelocityTicker({ productCount, categoryCount }: Props) {
   const trackRef = useRef<HTMLDivElement | null>(null);
+  const tickerItems = buildTickerItems(productCount, categoryCount);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
