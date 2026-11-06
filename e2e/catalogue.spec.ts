@@ -22,7 +22,7 @@ test.afterEach(async () => {
 test("home page shows the category catalogue and resilient product artwork", async ({ page }) => {
   await page.goto("./");
   await expect(page.getByRole("heading", { name: "HARI RAM" })).toBeVisible();
-  await expect(page.getByText("135 products", { exact: true })).toBeVisible();
+  await expect(page.getByText("148 products", { exact: true })).toBeVisible();
   await page.getByTestId("product-grid").scrollIntoViewIfNeeded();
   await expect(page.getByTestId("product-artwork").first()).toBeVisible();
   await expect(page.getByText("Image pending")).toHaveCount(0);
@@ -89,7 +89,7 @@ test("search filters the catalogue and can be cleared", async ({ page }) => {
   await expect(page.getByText("1 product", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Clear search" }).click();
   await expect(search).toHaveValue("");
-  await expect(page.getByText("135 products", { exact: true })).toBeVisible();
+  await expect(page.getByText("148 products", { exact: true })).toBeVisible();
 });
 
 test("category filters only show matching products", async ({ page }) => {
@@ -119,7 +119,7 @@ test("apparel colour and size SKUs are separate product cards", async ({ page })
   await expect(page.getByRole("heading", { name: "Your Cart" })).toBeVisible();
   const oliveLine = page.getByTestId("cart-line-awpl-apparels-asclepius-t-shirt-olive-s");
   await expect(oliveLine.getByText("ASCLEPIUS T SHIRT - OLIVE (S)", { exact: true })).toBeVisible();
-  await expect(oliveLine.getByText("1 NUMBER", { exact: true })).toBeVisible();
+  await expect(oliveLine.locator("p").filter({ hasText: "1 NUMBER" })).toBeVisible();
   await expect(oliveLine.getByText("₹2,559", { exact: true })).toBeVisible();
   await page.reload();
   await expect(page.getByTestId("cart-line-awpl-apparels-asclepius-t-shirt-olive-s")).toBeVisible();
@@ -138,9 +138,9 @@ test("different Hairdoc Oil pack sizes remain separate cart products", async ({ 
   const hundredMlLine = page.getByTestId("cart-line-awpl-sniss-herbal-hairdoc-oil");
   const twoHundredMlLine = page.getByTestId("cart-line-awpl-sniss-herbal-hairdoc-oil-200-ml");
   await expect(hundredMlLine.getByText("HAIRDOC OIL", { exact: true })).toBeVisible();
-  await expect(hundredMlLine.getByText("100 ML", { exact: true })).toBeVisible();
+  await expect(hundredMlLine.locator("p").filter({ hasText: "100 ML" })).toBeVisible();
   await expect(twoHundredMlLine.getByText("HAIRDOC OIL 200 ML", { exact: true })).toBeVisible();
-  await expect(twoHundredMlLine.getByText("200 ML", { exact: true })).toBeVisible();
+  await expect(twoHundredMlLine.locator("p").filter({ hasText: "200 ML" })).toBeVisible();
   await expect(page.getByText("₹660", { exact: true })).toBeVisible();
 });
 
