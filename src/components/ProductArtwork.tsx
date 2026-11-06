@@ -5,7 +5,7 @@ import Image from "next/image";
 import type { Product } from "@/data/products";
 
 function initialsFor(name: string): string {
-  const words = name.trim().split(/\\s+/).filter(Boolean);
+  const words = name.trim().split(/\s+/).filter(Boolean);
   const initials = words.slice(0, 2).map((word) => word.charAt(0)).join("");
   return initials.toUpperCase() || "AW";
 }
