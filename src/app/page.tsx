@@ -47,7 +47,7 @@ export default function HomePage() {
         <StorefrontHero
           productCount={products.length}
           categoryCount={categoryCount}
-          featuredCategories={categories.filter((category) => category !== "All").slice(0, 3)}
+          featuredCategories={[...new Set(products.map((product) => product.category))].slice(0, 3)}
         />
       </section>
 
