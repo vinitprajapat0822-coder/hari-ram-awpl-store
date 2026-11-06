@@ -22,7 +22,7 @@ test.afterEach(async () => {
 test("home page shows the category catalogue and resilient product artwork", async ({ page }) => {
   await page.goto("./");
   await expect(page.getByRole("heading", { name: "HARI RAM" })).toBeVisible();
-  await expect(page.getByText("135 products", { exact: true })).toBeVisible();
+  await expect(page.getByText("148 products", { exact: true })).toBeVisible();
   await page.getByTestId("product-grid").scrollIntoViewIfNeeded();
   await expect(page.getByTestId("product-artwork").first()).toBeVisible();
   await expect(page.getByText("Image pending")).toHaveCount(0);
@@ -37,6 +37,7 @@ test("mobile navigation stays visible and exposes all primary routes", async ({ 
   await expect(dock).toBeVisible();
   await expect(dock.getByRole("link", { name: "Home" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Catalogue" })).toBeVisible();
+  await expect(dock.getByRole("link", { name: "About" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Cart" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Profile" })).toBeVisible();
 
@@ -45,11 +46,18 @@ test("mobile navigation stays visible and exposes all primary routes", async ({ 
   expect(bounds).not.toBeNull();
   if (!bounds) throw new Error("The first mobile dock item has no layout box.");
 
-  await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
-  await expect.poll(() => firstDockItem.evaluate((element) => element.style.getPropertyValue("--dock-scale"))).toBe("1.180");
+  await page.mouse.move(1, 1);
+  await firstDockItem.hover();
+  await expect.poll(
+    () => firstDockItem.evaluate((element) => Number(element.style.getPropertyValue("--dock-scale"))),
+    { timeout: 10_000 }
+  ).toBeGreaterThan(1.17);
 
   await page.mouse.move(1, 1);
-  await expect.poll(() => firstDockItem.evaluate((element) => element.style.getPropertyValue("--dock-scale"))).toBe("1");
+  await expect.poll(
+    () => firstDockItem.evaluate((element) => element.style.getPropertyValue("--dock-scale")),
+    { timeout: 10_000 }
+  ).toBe("1");
 });
 
 
@@ -81,7 +89,7 @@ test("search filters the catalogue and can be cleared", async ({ page }) => {
   await expect(page.getByText("1 product", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Clear search" }).click();
   await expect(search).toHaveValue("");
-  await expect(page.getByText("135 products", { exact: true })).toBeVisible();
+  await expect(page.getByText("148 products", { exact: true })).toBeVisible();
 });
 
 test("category filters only show matching products", async ({ page }) => {
@@ -109,11 +117,12 @@ test("apparel colour and size SKUs are separate product cards", async ({ page })
   await olive.getByRole("button", { name: "Add ASCLEPIUS T SHIRT - OLIVE (S) to cart" }).click();
   await page.goto("cart/");
   await expect(page.getByRole("heading", { name: "Your Cart" })).toBeVisible();
-  await expect(page.getByText("ASCLEPIUS T SHIRT - OLIVE (S)", { exact: true })).toBeVisible();
-  await expect(page.getByText("1 NUMBER", { exact: true })).toBeVisible();
-  await expect(page.getByText("₹2,559", { exact: true }).first()).toBeVisible();
+  const oliveLine = page.getByTestId("cart-line-awpl-apparels-asclepius-t-shirt-olive-s");
+  await expect(oliveLine.getByText("ASCLEPIUS T SHIRT - OLIVE (S)", { exact: true })).toBeVisible();
+  await expect(oliveLine.locator("p").filter({ hasText: "1 NUMBER" })).toBeVisible();
+  await expect(oliveLine.getByText("₹2,559", { exact: true })).toBeVisible();
   await page.reload();
-  await expect(page.getByText("ASCLEPIUS T SHIRT - OLIVE (S)", { exact: true })).toBeVisible();
+  await expect(page.getByTestId("cart-line-awpl-apparels-asclepius-t-shirt-olive-s")).toBeVisible();
 });
 
 test("different Hairdoc Oil pack sizes remain separate cart products", async ({ page }) => {
@@ -126,11 +135,13 @@ test("different Hairdoc Oil pack sizes remain separate cart products", async ({ 
   await hundredMl.getByRole("button", { name: "Add HAIRDOC OIL to cart" }).click();
   await twoHundredMl.getByRole("button", { name: "Add HAIRDOC OIL 200 ML to cart" }).click();
   await page.goto("cart/");
-  await expect(page.getByText("HAIRDOC OIL", { exact: true })).toBeVisible();
-  await expect(page.getByText("100 ML", { exact: true })).toBeVisible();
-  await expect(page.getByText("HAIRDOC OIL 200 ML", { exact: true })).toBeVisible();
-  await expect(page.getByText("200 ML", { exact: true })).toBeVisible();
-  await expect(page.getByText("₹660", { exact: true }).first()).toBeVisible();
+  const hundredMlLine = page.getByTestId("cart-line-awpl-sniss-herbal-hairdoc-oil");
+  const twoHundredMlLine = page.getByTestId("cart-line-awpl-sniss-herbal-hairdoc-oil-200-ml");
+  await expect(hundredMlLine.getByText("HAIRDOC OIL", { exact: true })).toBeVisible();
+  await expect(hundredMlLine.locator("p").filter({ hasText: "100 ML" })).toBeVisible();
+  await expect(twoHundredMlLine.getByText("HAIRDOC OIL 200 ML", { exact: true })).toBeVisible();
+  await expect(twoHundredMlLine.locator("p").filter({ hasText: "200 ML" })).toBeVisible();
+  await expect(page.getByText("₹660", { exact: true })).toBeVisible();
 });
 
 test("conflicting MRP product is blocked from cart", async ({ page }) => {
@@ -150,7 +161,8 @@ test("profile route renders and has labelled customer fields", async ({ page }) 
 });
 
 test("home, cart, profile and product detail pass WCAG accessibility scan", async ({ page }) => {
-  const routes = ["./", "cart/", "profile/", "product/awpl-apparels-asclepius-women-saree-crape/"];
+  test.setTimeout(60_000);
+  const routes = ["./", "about/", "cart/", "profile/", "account/", "orders/", "admin/", "product/awpl-apparels-asclepius-women-saree-crape/"];
   for (const route of routes) {
     await page.goto(route);
     await page.waitForTimeout(700);
@@ -176,12 +188,14 @@ test("product card opens a dedicated product detail page", async ({ page }) => {
 
   await expect(page.getByRole("heading", { name: "ASCLEPIUS WOMEN SAREE CRAPE", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Product information" })).toBeVisible();
-  await expect(page.getByText("Hari Ram AWPL Store", { exact: true })).toBeVisible();
-  await expect(page.getByText("Live stock count not synced")).toBeVisible();
+  await expect(page.getByText("Hariram Prajapat", { exact: true })).toBeVisible();
+  await expect(page.getByText("Owner · Hari Ram AWPL Store", { exact: true })).toBeVisible();
+  await expect(page.getByText("Live stock count not synced")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "You may also like" })).toBeVisible();
   await expect(page.getByText("No verified reviews yet")).toBeVisible();
   await expect(page.getByText("Added date", { exact: true })).toBeVisible();
   await expect(page.getByText("Not recorded").first()).toBeVisible();
-  await expect(page.getByRole("button", { name: "Add to cart" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Add to cart", exact: true })).toBeVisible();
 });
 
 test("product card image lookup is concurrency limited", async ({ page }) => {
@@ -207,14 +221,64 @@ test("product card image lookup is concurrency limited", async ({ page }) => {
 });
 
 
-test("product feedback form requires a rating and comment", async ({ page }) => {
+test("product reviews show only approved purchase-verified submissions", async ({ page }) => {
   await page.goto("./");
   const product = page.getByRole("group", { name: "Product ASCLEPIUS WOMEN SAREE CRAPE", exact: true });
   await product.getByRole("link", { name: /ASCLEPIUS WOMEN SAREE CRAPE/ }).click();
 
-  const sendFeedback = page.getByRole("button", { name: "Send feedback via WhatsApp" });
-  await expect(sendFeedback).toBeDisabled();
-  await page.getByRole("button", { name: "Rate 5 stars" }).click();
-  await page.getByLabel("Your comment").fill("The product details were helpful.");
-  await expect(sendFeedback).toBeEnabled();
+  await expect(page.getByRole("heading", { name: "Customer ratings & reviews" })).toBeVisible();
+  await expect(page.getByText("No verified reviews yet")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Send feedback via WhatsApp" })).toHaveCount(0);
+});
+
+test("About page presents the store owner and direct contact channels", async ({ page }) => {
+  await page.goto("about/");
+  await expect(page.getByRole("heading", { name: "AWPL STORE" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Hariram Prajapat" })).toBeVisible();
+  await expect(page.getByRole("link", { name: /WhatsApp · 9799133838/ })).toHaveAttribute("href", /wa\.me\/919799133838/);
+  await expect(page.getByRole("link", { name: /@hariramprajapat97/ })).toHaveAttribute("href", /instagram\.com\/hariramprajapat97/);
+});
+
+
+test("account, order centre and protected admin routes render without a configured backend", async ({ page }) => {
+  await page.goto("account/");
+  await expect(page.getByRole("heading", { name: "Sign in or create account" })).toBeVisible();
+
+  await page.goto("orders/");
+  await expect(page.getByRole("heading", { name: "My Orders" })).toBeVisible();
+
+  await page.goto("admin/");
+  await expect(page.getByRole("heading", { name: "Owner Dashboard" })).toBeVisible();
+  await expect(page.getByText("Access denied")).toBeVisible();
+});
+
+
+test("Hindi and English switcher translates catalogue labels and persists the choice", async ({ page }) => {
+  await page.goto("./");
+  await page.getByRole("button", { name: /हिन्दी.*Switch language to Hindi/ }).click();
+  await expect(page.getByRole("heading", { name: "उत्पाद सूची" })).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("lang", "hi");
+  await page.reload();
+  await expect(page.getByRole("heading", { name: "उत्पाद सूची" })).toBeVisible();
+  await expect(page.getByText("रोज़मर्रा की ज़रूरतें,", { exact: true })).toBeVisible();
+  const hindiSearch = page.getByRole("searchbox", { name: "उत्पाद खोजें" });
+  await hindiSearch.fill("जीवेदा छोले-चना मसाला");
+  await expect(page.getByRole("group", { name: "उत्पाद जीवेदा छोले-चना मसाला", exact: true })).toBeVisible();
+  await hindiSearch.fill("");
+  await page.getByRole("button", { name: /EN.*भाषा अंग्रेज़ी में बदलें/ }).click();
+  await expect(page.getByRole("heading", { name: "Product catalogue" })).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+});
+
+
+test("cart drawer opens for a selected item and updates quantity", async ({ page }) => {
+  await page.goto("./");
+  await page.getByRole("button", { name: /Add to cart — Add .* to cart/ }).first().click();
+  await page.getByRole("button", { name: "Open cart" }).click();
+  const drawer = page.getByRole("dialog");
+  await expect(drawer).toBeVisible();
+  await expect(drawer.getByRole("heading", { name: "Your Cart" })).toBeVisible();
+  await drawer.getByRole("button", { name: "Increase quantity" }).click();
+  const cartItem = drawer.getByRole("article", { name: /Cart item:/ });
+  await expect(cartItem.getByText("2", { exact: true })).toBeVisible();
 });

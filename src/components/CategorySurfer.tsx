@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 type Props = {
   categories: string[];
@@ -16,6 +17,7 @@ export default function CategorySurfer({
 }: Props) {
   const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
   const reducedMotion = useReducedMotion();
+  const { t, categoryLabel } = useLanguage();
 
   useEffect(() => {
     const activeButton = buttonRefs.current.get(activeCategory);
@@ -27,7 +29,7 @@ export default function CategorySurfer({
   }, [activeCategory, reducedMotion]);
 
   return (
-    <nav aria-label="Product categories" className="category-surfer no-scrollbar mb-5 flex gap-2 overflow-x-auto pb-2">
+    <nav aria-label={t("productCatalogue")} className="category-surfer no-scrollbar mb-5 flex gap-2 overflow-x-auto pb-2">
       {categories.map((category) => {
         const active = activeCategory === category;
         return (
@@ -52,7 +54,7 @@ export default function CategorySurfer({
                 aria-hidden="true"
               />
             )}
-            <span className="relative z-10">{category}</span>
+            <span className="relative z-10">{categoryLabel(category)}</span>
           </motion.button>
         );
       })}
