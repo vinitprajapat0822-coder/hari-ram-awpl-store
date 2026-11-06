@@ -36,6 +36,18 @@ jobs:
       - name: Build static site
         run: npm run build
 
+      - name: Disable Jekyll processing for Next.js assets
+        run: touch ./out/.nojekyll
+
+      - name: Verify exported product detail pages
+        run: |
+          test -f ./out/index.html
+          test -f ./out/product/awpl-elite-salicylic-sheet-mask/index.html
+          test -f ./out/product/awpl-sniss-elite-salicylic-acid-face-sheet-mask/index.html
+          count=$(find ./out/product -mindepth 2 -maxdepth 2 -name index.html | wc -l)
+          echo "Exported product detail pages: ${count}"
+          test "${count}" -ge 148
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
