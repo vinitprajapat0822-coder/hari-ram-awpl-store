@@ -39,7 +39,6 @@ export default function StorefrontHero({
     <section
       className="storefront-hero"
       aria-label="Store introduction"
-      aria-labelledby="storefront-hero-title"
     >
       <div className="storefront-hero__mesh" aria-hidden="true" />
       <div className="storefront-hero__glow storefront-hero__glow--one" aria-hidden="true" />
