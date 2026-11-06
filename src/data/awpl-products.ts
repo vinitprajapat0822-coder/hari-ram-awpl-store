@@ -219,7 +219,7 @@ const importedCatalogueProducts: ProductMasterRecord[] = importedCatalogueSeeds.
     ingredients: null,
     image: {
       url: seed.imageUrl ?? null,
-      status: verifiedImage ? "VERIFIED" : "MISSING",
+      status: seed.imageUrl ? "UPLOADED_UNVERIFIED" : "MISSING",
       altText: verifiedImage ? seed.name + " official AWPL product image" : null
     },
     availability: seed.priceStatus === "PRICE_REVIEW_REQUIRED" ? "REVIEW_REQUIRED" : "UNKNOWN",
