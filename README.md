@@ -4,16 +4,17 @@ A Next.js storefront prototype with a Liquid Glass interface and a category-wise
 
 ## Catalogue
 
-- 15 AWPL category filters.
-- 158 individual SKU records currently in the master file (not a claim of complete AWPL coverage), including separate pack-size and apparel SKU entries.
-- MRP only; DP and SP are not stored or displayed.
-- No size, colour or pack-size variant selector is used; each captured SKU is a separate product card and cart line.
-- Official image URLs are supported without storing image files in this repository. Only exact verified matches are enabled; unmatched products retain placeholders. 8 of the 144 newly added records currently have exact official image URLs; most products still show placeholders until an exact image-to-SKU match is confirmed.
-- Records with conflicting prices or incomplete source data are blocked from cart.
-- Agriculture and Veterinary remain held for classification review. Wellness and Wellroot records are excluded from the public orderable catalogue pending product-claim and classification review.
-- Category-selector counts are listing-entry counts, not necessarily unique products. Several categories are only partially collected.
+- 15 category filters arranged in the same order as the official AWPL product navigation.
+- 163 product records in the catalogue master; 151 are currently passed to the public storefront.
+- The official category selector currently shows 374 entries. These are selector counters, not confirmed unique product-card totals.
+- MRP only. DP and SP are not stored or displayed.
+- Pack sizes and apparel variants remain separate SKU records when the official listing supplies separate rows.
+- Only exact, verified official AWPL image URLs are displayed as product photos. The current master has 8 exact official image URLs; other records show an explicit image-pending placeholder instead of unrelated stock photos.
+- Price-review and missing-label records remain blocked from cart.
+- Wellness, Wellroot and Veterinary product records are withheld from the public order flow pending appropriate product classification and label review. Their category names remain in the source-aligned category navigation.
+- Agriculture entries are visible for reference but blocked from cart until composition and label information are verified. The ambiguous second item in Others is not guessed or imported.
 
-The current master file is still a partial catalogue: 158 SKU records are present, while Agriculture and Veterinary are held for review and several consumer categories remain partial. See [catalogue integration notes](docs/catalogue-integration.md) and [QA plan](docs/qa-test-plan.md).
+The master catalogue is not represented as a fully reconciled copy of every source-site SKU. The category-selector counters and source-page product rows are tracked separately. See [catalogue integration notes](docs/catalogue-integration.md) and [QA plan](docs/qa-test-plan.md).
 
 ## Store flows
 
@@ -23,7 +24,7 @@ The current master file is still a partial catalogue: 158 SKU records are presen
 - WhatsApp order-enquiry message with each product's exact pack size.
 - Cart migration from the previous persisted store version.
 
-Stock, current pack-label MRP and delivery must be confirmed before accepting any real order. The prototype does not process payments or confirm inventory.
+Stock, current pack-label MRP and delivery must be confirmed before an order is accepted. The prototype does not process payments or confirm inventory.
 
 ## Deployment (GitHub Pages only)
 
