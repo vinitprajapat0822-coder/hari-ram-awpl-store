@@ -12,7 +12,7 @@
 - 147 source-matched consumer-product records are present in the public catalogue.
 - All displayed prices are MRP only. DP and SP are not stored, rendered, or used in cart totals.
 - Pack sizes, apparel colours/sizes and cosmetic shades remain separate SKUs where the official listing exposes separate rows.
-- 10 exact official image URLs are mapped to their matching product records. Other products use image-pending artwork; no unrelated stock photos are substituted.
+- 2 product images are explicitly mapped as verified in the source. Imported S3 URLs remain pending until HTTP/MIME checks and exact SKU/pack visual review are complete.
 - MRP-conflict and missing-data records are not orderable.
 - Wellness, Wellroot, Agriculture and Veterinary product listings are withheld from the public order catalogue.
 - Baby nutrition/supplement-like items are withheld; three ordinary Baby Care consumer-product rows remain.
@@ -33,12 +33,15 @@ Selector counters and visible page rows are tracked separately. A category's sel
 
 The date in `checkedAt` records when the category page was inspected, not the date of a company-issued price circular. Confirm current printed MRP and stock before accepting any order.
 
-## Product images
+## Product images (Phase 1 audit)
 
-- 10 exact official AWPL image URLs are enabled.
-- Each official image is mapped only when the image/page identifies the same product SKU.
-- Other records use an explicit image-pending placeholder.
-- Add an image URL only after confirming the exact SKU/pack match.
+- Two product records have explicit, individually labelled official image mappings in the source.
+- Imported S3 URLs are marked `UPLOADED_UNVERIFIED` and are not displayed merely because a URL is present.
+- Run the manual GitHub Actions workflow **AWPL official image URL audit** to check each unique S3 URL for HTTP 200 and an `image/*` content type.
+- The workflow produces CSV and JSON artifacts with status, MIME type, final URL and product ID/name.
+- HTTP/MIME success is only a transport check. A human must compare the returned image with the exact AWPL product name, pack size, colour/shade and SKU before changing its status to `VERIFIED`.
+- Failed URLs should be cleared and marked `MISSING`; mismatched images must never be reused for another SKU.
+- Never substitute stock photos or AI-generated packaging.
 
 ## SKU and storefront rules
 
