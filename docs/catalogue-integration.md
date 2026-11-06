@@ -2,44 +2,46 @@
 
 ## Source and taxonomy
 
-- Primary source: the official Asclepius Wellness website and its category listing pages.
+- Primary source: official Asclepius Wellness homepage and its category listing pages.
 - Source snapshot checked: 6 November 2026.
 - The storefront uses the same 15 category names and navigation order as the official product menu.
-- The official category selector reports 374 entries. This is stored as a selector snapshot only; it is not treated as 374 unique products or as proof that every variant is a separate product card.
+- The official selector showed 374 entries. This is a selector snapshot only; it is not a verified total of unique product-card SKUs.
 
-## Current data state
+## Public catalogue state
 
-- Catalogue master: 163 records.
-- Public storefront projection: 151 records.
-- Records use MRP only. DP and SP are intentionally not imported, shown, or used in cart totals.
-- Pack sizes, apparel colours and apparel sizes are kept as separate records only where the official listing exposes separate rows.
-- Categories with a product count different from the official selector counter are not padded with assumed variants.
-- The second item shown in the official Others page is not imported because its contents could not be verified from the captured listing.
-- Wellness, Wellroot and Veterinary records are withheld from the public order flow pending appropriate product classification and label review.
-- Agriculture records show the source-listed name, MRP and pack size, but remain blocked from cart while composition and label information are unavailable.
-- A nutrition product in Baby Care remains outside the public order flow; the ordinary baby-care product rows remain separate.
+- 147 source-matched consumer-product records are present in the public catalogue.
+- All displayed prices are MRP only. DP and SP are not stored, rendered, or used in cart totals.
+- Pack sizes, apparel colours/sizes and cosmetic shades remain separate SKUs where the official listing exposes separate rows.
+- 10 exact official image URLs are mapped to their matching product records. Other products use image-pending artwork; no unrelated stock photos are substituted.
+- MRP-conflict and missing-data records are not orderable.
+- Wellness, Wellroot, Agriculture and Veterinary product listings are withheld from the public order catalogue.
+- Baby nutrition/supplement-like items are withheld; three ordinary Baby Care consumer-product rows remain.
+- The second Others listing is not added to the public store because it is a supplement-like product rather than a general lifestyle SKU.
+- The four SNISS Herbal items requiring medical/chemical classification are not added to the public store.
 
-See `catalogueCollectionCoverage` and `catalogueDataStatus` in `src/data/catalogue.ts` for the captured-row and review state by category.
+See `catalogueCollectionCoverage` and `catalogueDataStatus` in `src/data/catalogue.ts` for source-selector counters and captured-row coverage by category.
+
+## Source reconciliation
+
+Selector counters and visible page rows are tracked separately. A category's selector count is not used to invent product variants or missing records. The public data reflects only exact, source-matched consumer product rows that can be responsibly listed. Category filters for withheld categories remain present but display a review-state message rather than orderable product cards.
 
 ## Price and data statuses
 
-- `VERIFIED`: listed name, MRP and pack size were transcribed from the official category listing.
-- `PRICE_REVIEW_REQUIRED`: the record has a price discrepancy requiring pack-label or current company confirmation. The card cannot be added to cart.
-- `MISSING_DATA`: one or more product details, such as composition/classification, still require verification. The card cannot be added to cart.
+- `VERIFIED`: listed product name, MRP and pack size were transcribed from an official listing.
+- `PRICE_REVIEW_REQUIRED`: a listed price conflicts with an earlier source snapshot; the record cannot be added to cart.
+- `MISSING_DATA`: product label/classification details still need verification; the record cannot be added to cart.
 
-The official site does not provide a dependable page-update timestamp in the captured listing. The checked date records when the page was inspected; it is not a claim that the company issued a new price circular on that date. Confirm current printed MRP and stock before accepting any order.
+The date in `checkedAt` records when the category page was inspected, not the date of a company-issued price circular. Confirm current printed MRP and stock before accepting any order.
 
-## Images
+## Product images
 
-- The master currently contains 8 exact official AWPL product-image URLs.
-- Only those verified official image URLs are rendered as product photographs.
-- Other products display an explicit image-pending placeholder. Unrelated stock photos and inferred image-to-product matches are not used.
-- Add an image URL only after confirming that it belongs to the exact product and pack/variant.
+- 10 exact official AWPL image URLs are enabled.
+- Each official image is mapped only when the image/page identifies the same product SKU.
+- Other records use an explicit image-pending placeholder.
+- Add an image URL only after confirming the exact SKU/pack match.
 
-## Product SKU rules
+## SKU and storefront rules
 
-Never merge different pack sizes, apparel sizes, colours or cosmetic shades into one selector when the company page lists them separately. Each confirmed SKU is its own product card and cart line. Do not infer extra variants from category selector counters.
+Never merge separate pack sizes, apparel sizes/colours, or cosmetic shades where AWPL lists them as individual SKUs. Each confirmed SKU is its own product card and cart line. Do not infer extra variants from selector counters.
 
-## Public order flow
-
-The catalogue is a storefront prototype, not an inventory or medical-advice system. Category rows with incomplete classification or label information must remain non-orderable. Do not publish unverified health claims, ingredients, usage directions, stock status, certifications or delivery promises.
+The storefront is a product catalogue and order-enquiry prototype, not a live inventory system. Do not invent ingredients, medical claims, usage directions, stock status, certifications, customer reviews, or delivery promises.
