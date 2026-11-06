@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
-  BadgeIndianRupee,
+  BadgeCheck,
   Boxes,
   CheckCircle2,
   Layers3,
@@ -90,21 +90,20 @@ export default function StorefrontHero({
               <span>categories in navigation</span>
             </div>
             <div className="storefront-hero__stat storefront-hero__stat--note">
-              <span className="storefront-hero__stat-icon"><BadgeIndianRupee size={16} aria-hidden="true" /></span>
+              <span className="storefront-hero__stat-icon"><BadgeCheck size={16} aria-hidden="true" /></span>
               <span><b>MRP-first</b><small>Clear listed pricing</small></span>
             </div>
           </div>
         </motion.div>
 
-        <motion.div className="storefront-hero__visual" {...entrance(0.16)} aria-label="Catalogue features">
+        <motion.div className="storefront-hero__visual" {...entrance(0.16)} role="group" aria-label="Catalogue features">
           <div className="storefront-hero__orbit storefront-hero__orbit--outer" aria-hidden="true" />
           <div className="storefront-hero__orbit storefront-hero__orbit--inner" aria-hidden="true" />
 
           <div className="storefront-hero__showcase">
             <div className="storefront-hero__showcase-top">
               <span className="storefront-hero__live-dot" />
-              <span>THE EVERYDAY EDIT</span>
-              <span className="storefront-hero__showcase-index">01 / 03</span>
+              <span>CATALOGUE OVERVIEW</span>
             </div>
 
             <div className="storefront-hero__showcase-icon">
