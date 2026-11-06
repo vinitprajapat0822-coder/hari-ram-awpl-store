@@ -17,9 +17,9 @@ from urllib.request import Request, urlopen
 
 SOURCE = Path("src/data/awpl-products.ts")
 OUT_DIR = Path("artifacts")
-URL_RE = re.compile(r'https://awpl-kycdocs\\.s3\\.ap-south-1\\.amazonaws\\.com/[^"\\s]+')
-ID_RE = re.compile(r'id:\\s*"([^"]+)"')
-NAME_RE = re.compile(r'name:\\s*"([^"]+)"')
+URL_RE = re.compile(r'https://awpl-kycdocs[.]s3[.]ap-south-1[.]amazonaws[.]com/[^\"]+')
+ID_RE = re.compile(r'id: *"([^"]+)"')
+NAME_RE = re.compile(r'name: *"([^"]+)"')
 TIMEOUT_SECONDS = 25
 RETRIES = 2
 
@@ -66,7 +66,6 @@ def audit(record: dict[str, str]) -> dict[str, object]:
                 record["url"],
                 headers={
                     "User-Agent": "HariRamAWPLStore-ImageAudit/1.0",
-                    "Range": "bytes=0-63",
                 },
                 method="GET",
             )
