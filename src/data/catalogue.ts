@@ -124,13 +124,13 @@ export const catalogueCategoryFilters = [
  * the catalogue with assumed variants or products not present in source data.
  */
 export const catalogueCollectionCoverage = [
-  { slug: "wellness", selectorEntries: 48, capturedRows: 8, coverage: "HELD_FOR_REVIEW" },
-  { slug: "wellroot", selectorEntries: 47, capturedRows: 3, coverage: "HELD_FOR_REVIEW" },
-  { slug: "agriculture", selectorEntries: 4, capturedRows: 4, coverage: "PARTIAL" },
+  { slug: "wellness", selectorEntries: 48, capturedRows: 0, coverage: "HELD_FOR_REVIEW" },
+  { slug: "wellroot", selectorEntries: 47, capturedRows: 0, coverage: "HELD_FOR_REVIEW" },
+  { slug: "agriculture", selectorEntries: 4, capturedRows: 0, coverage: "HELD_FOR_REVIEW" },
   { slug: "jeeveda", selectorEntries: 36, capturedRows: 30, coverage: "PARTIAL" },
   { slug: "sniss-cosmetic", selectorEntries: 88, capturedRows: 24, coverage: "PARTIAL" },
   { slug: "sniss-herbal", selectorEntries: 35, capturedRows: 30, coverage: "PARTIAL" },
-  { slug: "baby-care", selectorEntries: 4, capturedRows: 4, coverage: "COMPLETE" },
+  { slug: "baby-care", selectorEntries: 4, capturedRows: 3, coverage: "PARTIAL" },
   { slug: "sniss-fragrances", selectorEntries: 4, capturedRows: 4, coverage: "COMPLETE" },
   { slug: "others", selectorEntries: 2, capturedRows: 1, coverage: "PARTIAL" },
   { slug: "food", selectorEntries: 2, capturedRows: 2, coverage: "COMPLETE" },
@@ -144,10 +144,10 @@ export const catalogueCollectionCoverage = [
 export const catalogueDataStatus = {
   capturedAt: "2026-11-06",
   selectorEntryCountObserved: 374,
-  rawListingRowsCaptured: 163,
-  individualProductRecordsAfterVariantSplit: 163,
-  completeCategories: 6,
+  rawListingRowsCaptured: 147,
+  individualProductRecordsAfterVariantSplit: 147,
+  completeCategories: 5,
   partialCategories: 6,
-  heldCategories: 3,
-  note: "Selector counters are not unique product-card totals. Use only exact source rows; do not infer variants from counters.",
+  heldCategories: 4,
+  note: "147 consumer-product records are in the public catalogue. Wellness, Wellroot, Agriculture and Veterinary source categories are withheld; selector counters are not unique product totals.",
 } as const;
