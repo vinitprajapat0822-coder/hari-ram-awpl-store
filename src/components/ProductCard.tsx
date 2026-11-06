@@ -22,15 +22,6 @@ function ProductCard({ product }: Props) {
   const canOrder = product.status === "VERIFIED";
   const reviewLabel = product.status === "PRICE_REVIEW_REQUIRED" ? "MRP review" : "Details review";
   const listedMrp = Number.isFinite(product.mrp) && product.mrp > 0 ? product.mrp : 0;
-  const configuredSellingPrice = product.sellingPrice;
-  const hasDiscount = typeof configuredSellingPrice === "number"
-    && Number.isFinite(configuredSellingPrice)
-    && configuredSellingPrice >= 0
-    && configuredSellingPrice < listedMrp;
-  const sellingPrice = hasDiscount ? configuredSellingPrice : listedMrp;
-  const discountPercent = hasDiscount && listedMrp > 0
-    ? Math.round(((listedMrp - sellingPrice) / listedMrp) * 100)
-    : 0;
 
   const handleAdd = () => {
     if (!canOrder) return;
@@ -88,18 +79,10 @@ function ProductCard({ product }: Props) {
             {product.status === "PRICE_REVIEW_REQUIRED" ? (
               <p className="text-xs font-bold text-amber-200">MRP under review</p>
             ) : (
-              <span className="price-architecture__selling">{formatPrice(sellingPrice)}</span>
-            )}
-            {hasDiscount && (
-              <>
-                <del className="price-architecture__mrp">{formatPrice(listedMrp)}</del>
-                <span className="price-architecture__discount">{discountPercent}% OFF</span>
-              </>
+              <span className="price-architecture__selling">{formatPrice(listedMrp)}</span>
             )}
           </div>
-          <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.13em] text-white/35">
-            {hasDiscount ? "Offer price · Listed MRP crossed out" : "Listed MRP"}
-          </p>
+          <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.13em] text-white/35">Listed MRP only</p>
         </div>
       </Link>
 
