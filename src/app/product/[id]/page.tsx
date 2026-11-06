@@ -5,16 +5,29 @@ import { products } from "@/data/products";
 
 export const dynamicParams = false;
 
+// Backward-compatible IDs used by earlier catalogue links.
+const PRODUCT_ID_ALIASES: Record<string, string> = {
+  "awpl-sniss-elite-salicylic-acid-face-sheet-mask": "awpl-elite-salicylic-sheet-mask",
+};
+
+function getProductByRouteId(id: string) {
+  const canonicalId = PRODUCT_ID_ALIASES[id] ?? id;
+  return products.find((item) => item.id === canonicalId);
+}
+
 type PageProps = {
   params: { id: string };
 };
 
 export function generateStaticParams() {
-  return products.map((product) => ({ id: product.id }));
+  return [
+    ...products.map((product) => ({ id: product.id })),
+    ...Object.keys(PRODUCT_ID_ALIASES).map((id) => ({ id })),
+  ];
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
-  const product = products.find((item) => item.id === params.id);
+  const product = getProductByRouteId(params.id);
   if (!product) return { title: "Product not found | Hari Ram AWPL Store" };
 
   return {
@@ -25,7 +38,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 }
 
 export default function ProductDetailPage({ params }: PageProps) {
-  const product = products.find((item) => item.id === params.id);
+  const product = getProductByRouteId(params.id);
   if (!product) notFound();
 
   return <ProductDetailClient product={product} />;
