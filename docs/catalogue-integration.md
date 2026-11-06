@@ -1,40 +1,45 @@
 # AWPL catalogue integration
 
-## Current implementation
+## Source and taxonomy
 
-- 15 AWPL category filters are available.
-- 135 individual product records are wired to the storefront.
-- The captured apparel listing rows are separate product records (for example, each shirt colour/size is its own SKU).
-- Product records use MRP only. DP and SP are not part of the product type, catalogue data or cart calculations.
-- Product descriptions and ingredient claims are left blank unless separately verified.
-- Official AWPL image URLs are enabled for 30 exact product matches; unresolved products retain the square "Image pending" placeholder.
-- Cart lines are SKU-specific and WhatsApp order text includes the product's pack size.
-- Existing persisted cart data is migrated to the current catalogue and stale/unsupported products are dropped.
+- Primary source: the official Asclepius Wellness website and its category listing pages.
+- Source snapshot checked: 6 November 2026.
+- The storefront uses the same 15 category names and navigation order as the official product menu.
+- The official category selector reports 374 entries. This is stored as a selector snapshot only; it is not treated as 374 unique products or as proof that every variant is a separate product card.
 
-## Source coverage
+## Current data state
 
-The AWPL selector showed 374 category entries in the latest indexed view checked on 2026-11-03. Those entries are not guaranteed to represent 374 unique parent products.
+- Catalogue master: 163 records.
+- Public storefront projection: 151 records.
+- Records use MRP only. DP and SP are intentionally not imported, shown, or used in cart totals.
+- Pack sizes, apparel colours and apparel sizes are kept as separate records only where the official listing exposes separate rows.
+- Categories with a product count different from the official selector counter are not padded with assumed variants.
+- The second item shown in the official Others page is not imported because its contents could not be verified from the captured listing.
+- Wellness, Wellroot and Veterinary records are withheld from the public order flow pending appropriate product classification and label review.
+- Agriculture records show the source-listed name, MRP and pack size, but remain blocked from cart while composition and label information are unavailable.
+- A nutrition product in Baby Care remains outside the public order flow; the ordinary baby-care product rows remain separate.
 
-The current imported data contains 135 individual product records. The set remains partial against the 374-entry category selector. Categories with partial extraction remain visibly flagged in `catalogueCollectionCoverage`. Incomplete categories are not padded with invented products.
-
-Categories marked HELD_FOR_REVIEW have category filters but no orderable product records. Product lines whose intended use/classification or required label information was not sufficiently established are intentionally not imported into the storefront.
+See `catalogueCollectionCoverage` and `catalogueDataStatus` in `src/data/catalogue.ts` for the captured-row and review state by category.
 
 ## Price and data statuses
 
-- `VERIFIED`: the name, listed MRP and pack information were transcribed from an AWPL official category listing.
-- `PRICE_REVIEW_REQUIRED`: an AWPL listing price conflicts with the February 2026 catalogue data supplied in the project brief. The card is visible but cannot be added to cart.
-- `MISSING_DATA`: the official listing contains a title or pack-size anomaly. The card is visible for review but cannot be added to cart.
+- `VERIFIED`: listed name, MRP and pack size were transcribed from the official category listing.
+- `PRICE_REVIEW_REQUIRED`: the record has a price discrepancy requiring pack-label or current company confirmation. The card cannot be added to cart.
+- `MISSING_DATA`: one or more product details, such as composition/classification, still require verification. The card cannot be added to cart.
 
-The AWPL page snippets do not expose a formal page-update timestamp. The date in `checkedAt` is the date the indexed official listing was inspected; it is not a claim that the company issued a fresh price circular that day. Confirm current MRP on the labelled pack or current company-issued price list before accepting orders.
+The official site does not provide a dependable page-update timestamp in the captured listing. The checked date records when the page was inspected; it is not a claim that the company issued a new price circular on that date. Confirm current printed MRP and stock before accepting any order.
 
 ## Images
 
-No images were supplied. Images are mapped to exact official AWPL product-image links where the product name and image alt text match. Current verified coverage is 53 of 135 records. The remaining 105 records retain placeholders until their exact official image links are identified. Do not reuse a related product's image.
+- The master currently contains 8 exact official AWPL product-image URLs.
+- Only those verified official image URLs are rendered as product photographs.
+- Other products display an explicit image-pending placeholder. Unrelated stock photos and inferred image-to-product matches are not used.
+- Add an image URL only after confirming that it belongs to the exact product and pack/variant.
 
 ## Product SKU rules
 
-Never group different pack sizes, sizes, colours or shades under one product selector. Each official listing SKU is its own product record, card and cart line. For example, 100 ML and 200 ML packs remain separate records even when the base product name is the same. Only create a new SKU when the official listing or product page confirms it; do not infer additional sizes or variants.
+Never merge different pack sizes, apparel sizes, colours or cosmetic shades into one selector when the company page lists them separately. Each confirmed SKU is its own product card and cart line. Do not infer extra variants from category selector counters.
 
-## Data still required
+## Public order flow
 
-The project file `Asclepius_Wellness_Product_Catalog_Analysis.md` was not available in the Library at the time of this work. The full SKU-level list is still needed to reconcile the partial categories and to validate the remaining source rows against the company's original product master.
+The catalogue is a storefront prototype, not an inventory or medical-advice system. Category rows with incomplete classification or label information must remain non-orderable. Do not publish unverified health claims, ingredients, usage directions, stock status, certifications or delivery promises.
