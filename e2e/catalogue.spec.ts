@@ -22,7 +22,7 @@ test.afterEach(async () => {
 test("home page shows the category catalogue and resilient product artwork", async ({ page }) => {
   await page.goto("./");
   await expect(page.getByRole("heading", { name: "HARI RAM" })).toBeVisible();
-  await expect(page.getByText("151 products", { exact: true })).toBeVisible();
+  await expect(page.getByText("147 products", { exact: true })).toBeVisible();
   await page.getByTestId("product-grid").scrollIntoViewIfNeeded();
   await expect(page.getByTestId("product-artwork").first()).toBeVisible();
   await expect(page.getByText("Official image pending").first()).toBeVisible();
@@ -81,7 +81,7 @@ test("search filters the catalogue and can be cleared", async ({ page }) => {
   await expect(page.getByText("1 product", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Clear search" }).click();
   await expect(search).toHaveValue("");
-  await expect(page.getByText("151 products", { exact: true })).toBeVisible();
+  await expect(page.getByText("147 products", { exact: true })).toBeVisible();
 });
 
 test("category filters only show matching products", async ({ page }) => {
@@ -92,10 +92,13 @@ test("category filters only show matching products", async ({ page }) => {
   await expect(page.getByRole("group", { name: "Product PREP-IT PRIMER" })).toHaveCount(0);
 });
 
-test("held category filters do not show unreviewed items as orderable", async ({ page }) => {
+test("withheld categories stay visible but cannot be browsed as orderable product lists", async ({ page }) => {
   await page.goto("./");
-  await page.getByRole("button", { name: "Wellness", exact: true }).click();
-  await expect(page.getByText("Category not enabled for ordering")).toBeVisible();
+  for (const category of ["Wellness", "Wellroot", "Agriculture", "Veterinary"]) {
+    await page.getByRole("button", { name: category, exact: true }).click();
+    await expect(page.getByText("Category not enabled for ordering")).toBeVisible();
+    await expect(page.getByTestId("product-grid")).toHaveCount(0);
+  }
 });
 
 test("apparel colour and size SKUs are separate product cards", async ({ page }) => {
