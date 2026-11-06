@@ -227,3 +227,40 @@ test("product feedback form requires a rating and comment", async ({ page }) => 
   await page.getByLabel("Your comment").fill("The product details were helpful.");
   await expect(sendFeedback).toBeEnabled();
 });
+
+test("every product card links to a working product detail route", async ({ page }) => {
+  await page.goto("./");
+  const cards = page.locator('[data-testid="product-grid"] article[aria-label^="Product "]');
+  const productLinks = await cards.evaluateAll((elements) =>
+    elements.map((element) => ({
+      name: element.getAttribute("aria-label") || "Unnamed product",
+      href: element.querySelector("a[href*='/product/']")?.getAttribute("href") ?? null,
+    }))
+  );
+
+  expect(productLinks.length, "Catalogue should expose product cards").toBeGreaterThan(0);
+  expect(productLinks.every((item) => item.href), "Every product card must have a detail URL").toBe(true);
+
+  const hrefs = productLinks.map((item) => item.href);
+  expect(new Set(hrefs).size, "Product detail URLs must be unique").toBe(productLinks.length);
+
+  for (let offset = 0; offset < productLinks.length; offset += 8) {
+    const batch = productLinks.slice(offset, offset + 8);
+    const responses = await Promise.all(batch.map(async (item) => {
+      const response = await page.request.get(new URL(item.href!, page.url()).toString());
+      return { item, response };
+    }));
+
+    for (const { item, response } of responses) {
+      expect(
+        response.status(),
+        item.name + " detail route " + item.href + " must not return an HTTP error"
+      ).toBe(200);
+      const html = await response.text();
+      expect(
+        html,
+        item.name + " detail route must render a product page"
+      ).toContain("<h1");
+    }
+  }
+});
