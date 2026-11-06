@@ -16,7 +16,6 @@ export type Product = {
   description?: string | null;
   ingredients?: string[] | null;
   mrp: number;
-  sellingPrice?: number | null;
   qty: string;
   image: string | null;
   imageStatus: ProductImageStatus;
@@ -38,6 +37,8 @@ const categoryNameBySlug = new Map(
  */
 export const products: Product[] = awplProducts.flatMap((record) => {
   if (record.mrp === null) return [];
+  // Keep medical/supplement and baby nutrition records out of the orderable public catalogue.
+  if (record.category === "wellness" || record.category === "wellroot" || record.id === "awpl-baby-protein") return [];
   const category = categoryNameBySlug.get(record.category);
   if (!category) return [];
 
@@ -51,7 +52,6 @@ export const products: Product[] = awplProducts.flatMap((record) => {
     description: record.description ?? null,
     ingredients: record.ingredients ?? null,
     mrp: record.mrp,
-    sellingPrice: null,
     qty: record.packSize ?? "",
     image: record.image.url,
     imageStatus: record.image.status,
