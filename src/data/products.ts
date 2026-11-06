@@ -38,7 +38,7 @@ const categoryNameBySlug = new Map(
 export const products: Product[] = awplProducts.flatMap((record) => {
   if (record.mrp === null) return [];
   // Keep medical/supplement and baby nutrition records out of the orderable public catalogue.
-  if (record.category === "wellness" || record.category === "wellroot" || record.id === "awpl-baby-protein") return [];
+  if (record.category === "wellness" || record.category === "wellroot" || record.category === "veterinary" || record.id === "awpl-baby-protein") return [];
   const category = categoryNameBySlug.get(record.category);
   if (!category) return [];
 
