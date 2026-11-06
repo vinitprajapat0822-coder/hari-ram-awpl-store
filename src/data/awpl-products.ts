@@ -197,7 +197,9 @@ const importedCatalogueSeeds: ImportedCatalogueSeed[] = [
 
 const importedCatalogueProducts: ProductMasterRecord[] = importedCatalogueSeeds.map((seed) => {
   const sourceUrl = seed.sourceUrl ?? sourceByCategory[seed.category];
-  const verifiedImage = Boolean(seed.imageUrl);
+  // A URL alone does not prove HTTP availability, image MIME type, or exact SKU identity.
+  // Keep imported URLs hidden until the audit report and manual SKU review are complete.
+  const verifiedImage = false;
   return {
     id: seed.id,
     name: seed.name,
