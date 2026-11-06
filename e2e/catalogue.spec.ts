@@ -171,6 +171,12 @@ test("home, cart, profile and product detail pass WCAG accessibility scan", asyn
 });
 
 
+test("legacy SNISS Elite salicylic sheet mask URL resolves to the canonical product", async ({ page }) => {
+  await page.goto("product/awpl-sniss-elite-salicylic-acid-face-sheet-mask/");
+  await expect(page.getByRole("heading", { name: "SALICYLIC ACID FACE SHEET MASK", exact: true })).toBeVisible();
+  await expect(page.getByText("₹315", { exact: true })).toBeVisible();
+});
+
 test("product card opens a dedicated product detail page", async ({ page }) => {
   await page.goto("./");
   const product = page.getByRole("group", { name: "Product ASCLEPIUS WOMEN SAREE CRAPE", exact: true });
