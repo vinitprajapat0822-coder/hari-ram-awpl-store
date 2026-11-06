@@ -5,7 +5,7 @@ import Link from "next/link";
 import { products, categories } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
-import PromoCarousel from "@/components/PromoCarousel";
+import StorefrontHero from "@/components/StorefrontHero";
 import VelocityTicker from "@/components/VelocityTicker";
 import CategorySurfer from "@/components/CategorySurfer";
 import { useSearchMorphPlaceholder } from "@/components/SearchMorph";
@@ -44,18 +44,26 @@ export default function HomePage() {
       <Navbar />
 
       <section className="mx-auto max-w-6xl px-4 pb-5 pt-5 sm:px-6 sm:pt-7">
-        <PromoCarousel productCount={products.length} categoryCount={categoryCount} />
+        <StorefrontHero
+          productCount={products.length}
+          categoryCount={categoryCount}
+          featuredCategories={categories.filter((category) => category !== "All").slice(0, 3)}
+        />
       </section>
 
       <section id="catalogue" className="mx-auto max-w-6xl scroll-mt-28 px-4 sm:px-6">
-        <VelocityTicker />
+        <VelocityTicker productCount={products.length} categoryCount={categoryCount} />
 
-        <div className="mb-4 mt-7 flex flex-col gap-3 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
+        <div className="catalogue-heading mb-4 mt-8 sm:mb-5">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-teal-200/65">Discover the range</p>
+            <p className="catalogue-heading__eyebrow">THE FULL RANGE</p>
             <h2 className="mt-1 text-xl font-extrabold tracking-tight text-white sm:text-2xl">Product catalogue</h2>
+            <p className="mt-1.5 text-xs text-white/45">A clear view of products, pack sizes and listed MRP.</p>
           </div>
-          <p className="text-xs text-white/40">Browse by category or search by name and pack size.</p>
+          <span className="catalogue-heading__hint">
+            <Search size={14} aria-hidden="true" />
+            Search or filter to explore
+          </span>
         </div>
 
         <div className="search-shell mb-4 flex min-h-[54px] items-center gap-3 px-4">
