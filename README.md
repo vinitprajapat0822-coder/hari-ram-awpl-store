@@ -5,16 +5,16 @@ A Next.js storefront prototype with a Liquid Glass interface and a category-wise
 ## Catalogue
 
 - 15 category filters arranged in the same order as the official AWPL product navigation.
-- 163 product records in the catalogue master; 151 are currently passed to the public storefront.
-- The official category selector currently shows 374 entries. These are selector counters, not confirmed unique product-card totals.
+- 147 verified consumer-product records are currently in the public catalogue.
+- The official category selector showed 374 entries on 6 November 2026. These are selector counters, not confirmed unique product-card totals.
 - MRP only. DP and SP are not stored or displayed.
-- Pack sizes and apparel variants remain separate SKU records when the official listing supplies separate rows.
-- Only exact, verified official AWPL image URLs are displayed as product photos. The current master has 8 exact official image URLs; other records show an explicit image-pending placeholder instead of unrelated stock photos.
-- Price-review and missing-label records remain blocked from cart.
-- Wellness, Wellroot and Veterinary product records are withheld from the public order flow pending appropriate product classification and label review. Their category names remain in the source-aligned category navigation.
-- Agriculture entries are visible for reference but blocked from cart until composition and label information are verified. The ambiguous second item in Others is not guessed or imported.
+- Pack sizes, apparel colours/sizes and cosmetic shades remain separate records when the official listing exposes separate SKUs.
+- 10 exact official AWPL product-image URLs are enabled. Products without a confirmed image-to-SKU match show an explicit image-pending placeholder.
+- Records with MRP conflicts or incomplete product-label data remain blocked from cart.
+- Wellness, Wellroot, Agriculture and Veterinary product listings are withheld from the public order flow. Baby nutrition and supplement-like products are not orderable.
+- Category-selector counts are kept separate from actual captured product-card rows. Missing products are not fabricated to match a counter.
 
-The master catalogue is not represented as a fully reconciled copy of every source-site SKU. The category-selector counters and source-page product rows are tracked separately. See [catalogue integration notes](docs/catalogue-integration.md) and [QA plan](docs/qa-test-plan.md).
+The public catalogue is limited to source-matched consumer-product rows. It is not represented as a complete copy of all 374 selector entries. See [catalogue integration notes](docs/catalogue-integration.md) and [QA plan](docs/qa-test-plan.md).
 
 ## Store flows
 
