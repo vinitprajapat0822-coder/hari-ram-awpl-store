@@ -15,13 +15,13 @@ export const catalogueCategories = [
   { slug: "jeeveda", name: "Jeeveda", userSnapshotCount: 36 },
   { slug: "oral-care", name: "Oral Care", userSnapshotCount: 1 },
   { slug: "others", name: "Others", userSnapshotCount: 2 },
-  { slug: "sniss-cosmetic", name: "SNISS Cosmetic", userSnapshotCount: 84 },
+  { slug: "sniss-cosmetic", name: "SNISS Cosmetic", userSnapshotCount: 88 },
   { slug: "sniss-elite", name: "SNISS Elite", userSnapshotCount: 24 },
   { slug: "sniss-fragrances", name: "SNISS Fragrances", userSnapshotCount: 4 },
-  { slug: "sniss-herbal", name: "SNISS Herbal", userSnapshotCount: 34 },
+  { slug: "sniss-herbal", name: "SNISS Herbal", userSnapshotCount: 35 },
   { slug: "veterinary", name: "Veterinary", userSnapshotCount: 2 },
   { slug: "wellness", name: "Wellness", userSnapshotCount: 48 },
-  { slug: "wellroot", name: "Wellroot", userSnapshotCount: 45 },
+  { slug: "wellroot", name: "Wellroot", userSnapshotCount: 47 },
 ] as const;
 
 export type CatalogueCategorySlug =
@@ -85,7 +85,7 @@ export type ProductMasterRecord = {
  */
 export const userProvidedCategorySnapshot = {
   capturedAt: null,
-  totalListedEntries: 367,
+  totalListedEntries: 374,
   countMeaning: "category-selector entries; variants may be separate entries",
   categories: catalogueCategories.map(({ slug, name, userSnapshotCount }) => ({
     slug,
