@@ -46,11 +46,7 @@ export default function ProductDetailClient({ product }: Props) {
   const [reviewComment, setReviewComment] = useState("");
 
   const canOrder = product.status === "VERIFIED";
-  const hasDiscount = typeof product.sellingPrice === "number"
-    && Number.isFinite(product.sellingPrice)
-    && product.sellingPrice >= 0
-    && product.sellingPrice < product.mrp;
-  const shownPrice = hasDiscount ? product.sellingPrice as number : product.mrp;
+  const shownPrice = product.mrp;
 
   const stockLabel = product.availability === "AVAILABLE"
     ? "Marked available · reconfirm before dispatch"
@@ -66,7 +62,7 @@ export default function ProductDetailClient({ product }: Props) {
     "Product: " + product.name,
     "Pack size: " + (product.qty || "Not listed"),
     "Listed MRP: " + formatPrice(product.mrp),
-    "Please confirm current selling price, available stock and delivery.",
+    "Please confirm current MRP, stock availability and delivery before order.",
   ].join("\n");
 
   const reviewMessage = [
@@ -197,23 +193,11 @@ export default function ProductDetailClient({ product }: Props) {
                 <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-white/40">Price information</p>
                 <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <span className="text-2xl font-black tracking-tight text-white">{formatPrice(shownPrice)}</span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/40">
-                    {hasDiscount ? "Current selling price" : "Listed MRP"}
-                  </span>
-                  {hasDiscount && (
-                    <>
-                      <del className="text-xs text-white/40">{formatPrice(product.mrp)}</del>
-                      <span className="price-architecture__discount">
-                        {Math.round(((product.mrp - shownPrice) / product.mrp) * 100)}% OFF
-                      </span>
-                    </>
-                  )}
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/40">Listed MRP only</span>
                 </div>
-                {!hasDiscount && (
-                  <p className="mt-2 text-[11px] leading-5 text-white/45">
-                    Current selling price or offer is not published in the verified catalogue. Confirm with the store before ordering.
-                  </p>
-                )}
+                <p className="mt-2 text-[11px] leading-5 text-white/45">
+                  DP and SP are not displayed. Confirm the current pack-label MRP, stock and delivery with the store before order.
+                </p>
               </div>
 
               <div className="flex flex-col gap-2 sm:flex-row">
