@@ -197,7 +197,7 @@ const importedCatalogueSeeds: ImportedCatalogueSeed[] = [
 
 const importedCatalogueProducts: ProductMasterRecord[] = importedCatalogueSeeds.map((seed) => {
   const sourceUrl = seed.sourceUrl ?? sourceByCategory[seed.category];
-  const verifiedImage = Boolean(seed.imageUrl);
+  const hasImageUrl = Boolean(seed.imageUrl);
   return {
     id: seed.id,
     name: seed.name,
@@ -217,8 +217,8 @@ const importedCatalogueProducts: ProductMasterRecord[] = importedCatalogueSeeds.
     ingredients: null,
     image: {
       url: seed.imageUrl ?? null,
-      status: verifiedImage ? "VERIFIED" : "MISSING",
-      altText: verifiedImage ? seed.name + " official AWPL product image" : null
+      status: hasImageUrl ? "UPLOADED_UNVERIFIED" : "MISSING",
+      altText: hasImageUrl ? seed.name + " product image; exact SKU and pack match pending" : null
     },
     availability: seed.priceStatus === "PRICE_REVIEW_REQUIRED" ? "REVIEW_REQUIRED" : "UNKNOWN",
     status: seed.priceStatus ?? "VERIFIED",
@@ -249,7 +249,7 @@ export const awplProducts: ProductMasterRecord[] = [
     packSize: "100.00 ML",
     description: "Hair oil product, 100 ML. Refer to the product label for ingredients and usage directions.",
     ingredients: null,
-    image: { url: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51211_960923.jpg", status: "VERIFIED", altText: "HAIRDOC OIL 100 ML official AWPL product image" },
+    image: { url: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51211_960923.jpg", status: "UPLOADED_UNVERIFIED", altText: "HAIRDOC OIL 100 ML product image; exact SKU and pack match pending" },
     availability: "UNKNOWN",
     status: "VERIFIED",
     priceEvidence: {
@@ -276,7 +276,7 @@ export const awplProducts: ProductMasterRecord[] = [
     packSize: "100.00 GM",
     description: "DentoDoc oral-care cream, 100 GM. Refer to the product label for ingredients and directions.",
     ingredients: null,
-    image: { url: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T5011.jpeg", status: "VERIFIED", altText: "DentoDoc Cream official AWPL product image" },
+    image: { url: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T5011.jpeg", status: "UPLOADED_UNVERIFIED", altText: "DentoDoc Cream product image; exact SKU and pack match pending" },
     availability: "UNKNOWN",
     status: "VERIFIED",
     priceEvidence: {

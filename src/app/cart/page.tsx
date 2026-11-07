@@ -58,8 +58,8 @@ export default function CartPage() {
                 <GlassCard key={item.product.id} className="rounded-[22px] p-3.5 sm:p-4">
                   <div className="flex gap-3.5">
                     <div className="product-media h-[76px] w-[76px] shrink-0 rounded-2xl sm:h-[88px] sm:w-[88px]">
-                      {item.product.image && item.product.imageStatus === "VERIFIED" ? (
-                        <Image src={item.product.image} alt={item.product.name} width={176} height={176} sizes="88px" className="h-full w-full object-contain p-2" />
+                      {item.product.image && item.product.imageStatus !== "MISSING" ? (
+                        <Image src={item.product.image} alt={item.product.name + " product image"} width={176} height={176} sizes="88px" className="h-full w-full object-contain p-2" />
                       ) : (
                         <ImageIcon size={23} className="text-teal-100/40" aria-hidden="true" />
                       )}

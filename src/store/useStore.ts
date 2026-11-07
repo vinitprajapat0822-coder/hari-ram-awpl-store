@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { products } from "@/data/products";
 import type { Product } from "@/data/products";
+import { storefrontConfig } from "@/data/storefront-config";
 
 export type CartItem = {
   product: Product;
@@ -159,7 +160,7 @@ export function generateWhatsAppMessage(
 }
 
 export function getWhatsAppUrl(message: string) {
-  const phone = "919799133838";
+  const phone = storefrontConfig.whatsapp.number;
   const encoded = encodeURIComponent(message);
   return `https://wa.me/${phone}?text=${encoded}`;
 }
