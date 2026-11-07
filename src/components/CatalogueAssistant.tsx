@@ -87,7 +87,7 @@ export default function CatalogueAssistant() {
           ref={fabRef}
           type="button"
           onClick={() => setOpen(true)}
-          aria-label="Open catalogue assistant"
+          aria-label="Ask catalogue — open assistant"
           aria-expanded={false}
           aria-controls="catalogue-assistant-panel"
           data-testid="assistant-open"
