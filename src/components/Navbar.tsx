@@ -5,13 +5,14 @@ import type { PointerEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useStore } from "@/store/useStore";
-import { Home, LayoutGrid, Search, ShoppingCart, UserRound } from "lucide-react";
+import { Home, LayoutGrid, Search, ShoppingCart, UserRound, LogIn } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navigation = [
   { href: "/", label: "Home", icon: Home },
   { href: "/#catalogue", label: "Catalogue", icon: LayoutGrid },
   { href: "/cart", label: "Cart", icon: ShoppingCart },
+  { href: "/login", label: "Account", icon: LogIn },
   { href: "/profile", label: "Profile", icon: UserRound },
 ];
 
