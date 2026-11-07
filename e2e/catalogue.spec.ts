@@ -52,6 +52,7 @@ test("mobile navigation stays visible and exposes all primary routes", async ({ 
   await expect(dock.getByRole("link", { name: "Home" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Catalogue" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Cart" })).toBeVisible();
+  await expect(dock.getByRole("link", { name: "Account" })).toBeVisible();
   await expect(dock.getByRole("link", { name: "Profile" })).toBeVisible();
 
   const firstDockItem = dock.locator(".mobile-dock__item").first();
