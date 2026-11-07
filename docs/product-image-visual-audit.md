@@ -6,14 +6,16 @@ The public catalogue contains **147 product image records**. This review compare
 
 | Status | Count |
 |---|---:|
-| VERIFIED — visible product/pack evidence matches | 62 |
+| VERIFIED — visible product/pack evidence matches | 64 |
 | MISMATCH — visible product/pack evidence conflicts | 9 |
-| UPLOADED_UNVERIFIED — evidence not conclusive | 76 |
+| UPLOADED_UNVERIFIED — evidence not conclusive | 74 |
 | **Total** | **147** |
 
 ## Confirmed mismatches
 
 These images must not be presented as verified. The storefront now hides images with `MISMATCH` status and displays a replacement-pending notice.
+
+Two additional apparel records were verified using exact official category-page image alt/title matches plus visual inspection: the women’s suit image and a black tie image. The tie record now uses the inspected official image variant.
 
 - **awpl-elite-charcoal-face-wash** — Image label: 100 g; catalogue: 100 ML.
 - **awpl-elite-sunscreen-gel** — Image label: 50 mL; catalogue: 50 GM.
@@ -172,8 +174,8 @@ These images must not be presented as verified. The storefront now hides images 
 | awpl-fragrance-sniss-revoque | SNISS REVOQUE | 150 ML | UPLOADED_UNVERIFIED | Not visually confirmed to exact SKU/pack/shade; retained as unverified. | [Image](https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T67011_988311.jpg) · [Official category](https://www.asclepiuswellness.com/product/sniss-fragrances/) |
 | awpl-fragrance-sniss-london-xi | SNISS LONDON XI | 150 ML | UPLOADED_UNVERIFIED | Not visually confirmed to exact SKU/pack/shade; retained as unverified. | [Image](https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T67111_675985.jpg) · [Official category](https://www.asclepiuswellness.com/product/sniss-fragrances/) |
 | awpl-apparels-asclepius-women-saree-crape | ASCLEPIUS WOMEN SAREE CRAPE | 1 NUMBER | UPLOADED_UNVERIFIED | Not visually confirmed to exact SKU/pack/shade; retained as unverified. | [Image](https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51911_979702.png) · [Official category](https://www.asclepiuswellness.com/product/apparels/) |
-| awpl-apparels-asclepius-women-suits | ASCLEPIUS WOMEN SUITS | 1 NUMBER | UPLOADED_UNVERIFIED | Not visually confirmed to exact SKU/pack/shade; retained as unverified. | [Image](https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T5201_768289.jpg) · [Official category](https://www.asclepiuswellness.com/product/apparels/) |
-| awpl-apparels-asclepius-tie-black | ASCLEPIUS TIE -BLACK | 1 NUMBER | UPLOADED_UNVERIFIED | Not visually confirmed to exact SKU/pack/shade; retained as unverified. | [Image](https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T5211_148684.jpg) · [Official category](https://www.asclepiuswellness.com/product/apparels/) |
+| awpl-apparels-asclepius-women-suits | ASCLEPIUS WOMEN SUITS | 1 NUMBER | VERIFIED | Official category image alt/title matches the exact product name; visible image shows a women’s suit set. | [Image](https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T5201_768289.jpg) · [Official category](https://www.asclepiuswellness.com/product/apparels/) |
+| awpl-apparels-asclepius-tie-black | ASCLEPIUS TIE -BLACK | 1 NUMBER | VERIFIED | Exact official category image alt/title match; visible image shows a black tie. | [Image](https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T5212_733354.jpg) · [Official category](https://www.asclepiuswellness.com/product/apparels/) |
 | awpl-apparels-tshirt-olive-s | ASCLEPIUS T SHIRT -OLIVE- (S) | 1 NUMBER | UPLOADED_UNVERIFIED | Not visually confirmed to exact SKU/pack/shade; retained as unverified. | [Image](https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T68911_367592.jpg) · [Official category](https://www.asclepiuswellness.com/product/apparels/) |
 | awpl-apparels-tshirt-light-blue-s | ASCLEPIUS T SHIRT -LIGHT BLUE (S) | 1 NUMBER | UPLOADED_UNVERIFIED | Not visually confirmed to exact SKU/pack/shade; retained as unverified. | [Image](https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T71011_904020.jpg) · [Official category](https://www.asclepiuswellness.com/product/apparels/) |
 | awpl-apparels-tshirt-teal-s | ASCLEPIUS T SHIRT -TEAL (S) | 1 NUMBER | UPLOADED_UNVERIFIED | Not visually confirmed to exact SKU/pack/shade; retained as unverified. | [Image](https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T71111_044937.jpg) · [Official category](https://www.asclepiuswellness.com/product/apparels/) |
