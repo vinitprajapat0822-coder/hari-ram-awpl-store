@@ -111,7 +111,7 @@ export default function CatalogueAssistant() {
             <div>
               <h2 className="text-sm font-bold text-white">Catalogue assistant</h2>
               <p className="mt-0.5 text-[11px] leading-4 text-white/55">
-                Rule-based search, not AI and not an AWPL service. Your questions are not saved or sent anywhere.
+                Automated catalogue helper, not AI or an AWPL service. This runs in your browser; questions are not stored. The WhatsApp link opens a prefilled message for you to review and send.
               </p>
             </div>
             <button
