@@ -37,6 +37,14 @@ jobs:
       - name: Generate catalogue audit report
         run: npm run audit:catalogue
 
+      - name: Set up Python for official image discovery
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Discover exact official images for missing products
+        run: python scripts/find-missing-awpl-images.py
+
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
@@ -58,5 +66,14 @@ jobs:
         with:
           name: catalogue-audit-report
           path: docs/catalogue-audit-report.md
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Upload missing product image candidates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: missing-awpl-image-candidates
+          path: artifacts/missing-awpl-image-candidates.*
           if-no-files-found: warn
           retention-days: 14
