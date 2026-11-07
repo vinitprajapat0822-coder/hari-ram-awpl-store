@@ -28,7 +28,7 @@ test("forgot password offers an email reset flow", async ({ page }) => {
   await page.getByRole("button", { name: "Forgot password?" }).click();
   await expect(page.getByRole("heading", { name: "Reset your password" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Send reset link" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Back to sign in" })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Back to sign in/ })).toBeVisible();
 });
 
 test("login page has no detectable serious accessibility violations", async ({ page }) => {
