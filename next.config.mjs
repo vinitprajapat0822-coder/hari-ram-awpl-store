@@ -6,6 +6,8 @@ const nextConfig = {
   output: process.env.NODE_ENV === "development" ? undefined : "export",
   trailingSlash: true,
   basePath: "/hari-ram-awpl-store",
+  // basePath prefixes Next.js assets; no separate CDN prefix is required.
+  assetPrefix: undefined,
   images: {
     // GitHub Pages serves static files; remote AWPL images are rendered directly.
     unoptimized: true,
