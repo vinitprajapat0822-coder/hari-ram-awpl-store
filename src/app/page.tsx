@@ -36,6 +36,7 @@ export default function HomePage() {
   }, [activeCategory, search]);
 
   const categoryCount = categories.filter((category) => category !== "All").length;
+  const populatedCategoryCount = new Set(products.map((product) => product.category)).size;
   const categoryPending = !search.trim() && ["Wellness", "Wellroot", "Agriculture", "Veterinary"].includes(activeCategory);
 
   return (
@@ -46,6 +47,7 @@ export default function HomePage() {
         <StorefrontHero
           productCount={products.length}
           categoryCount={categoryCount}
+          populatedCategoryCount={populatedCategoryCount}
           featuredCategories={Array.from(new Set(products.map((product) => product.category))).slice(0, 3)}
         />
       </section>

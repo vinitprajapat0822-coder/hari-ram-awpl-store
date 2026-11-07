@@ -71,19 +71,19 @@ const importedCatalogueSeeds: ImportedCatalogueSeed[] = [
   { id: "awpl-cosmetic-lift-sculpt-concealer-ivory-play", name: "LIFT AND SCULPT CONCEALER- IVORY PLAY", category: "sniss-cosmetic", mrp: 909, packSize: "4 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T39633_845124.jpg", description: "SNISS concealer in the Ivory Play variant, 4 ML. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-ultra-smooth-foundation-creamy-vanilla", name: "ULTRA SMOOTH FOUNDATION FOR RADIANT GLOW-CREAMY VANILLA", category: "sniss-cosmetic", mrp: 1049, packSize: "30 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T39011_485458.jpg", description: "SNISS foundation in the Creamy Vanilla variant, 30 ML. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-color-drew-blush-stick-flirty", name: "COLOR DREW BLUSH STICK-FLIRTY", category: "sniss-cosmetic", mrp: 559, packSize: "4 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T40244_868418.jpg", description: "SNISS blush stick in the Flirty variant, 4 ML. Refer to the package for ingredients and directions." },
-  { id: "awpl-cosmetic-blurr-loose-powder-white-touch", name: "BLURR LOOSE POWDER-WHITE TOUCH", category: "sniss-cosmetic", mrp: 1245, packSize: "15 GM", description: "SNISS loose face powder in the White Touch variant, 15 GM. Refer to the package for ingredients and directions." },
-  { id: "awpl-cosmetic-lumitouch-compact-soft-sand", name: "LUMITOUCH COMPACT POWDER-SOFT SAND", category: "sniss-cosmetic", mrp: 979, packSize: "9 GM", description: "SNISS compact powder in the Soft Sand variant, 9 GM. Refer to the package for ingredients and directions." },
+  { id: "awpl-cosmetic-blurr-loose-powder-white-touch", name: "BLURR LOOSE POWDER-WHITE TOUCH", category: "sniss-cosmetic", mrp: 1245, packSize: "15 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4051_365172.jpg", description: "SNISS loose face powder in the White Touch variant, 15 GM. Refer to the package for ingredients and directions." },
+  { id: "awpl-cosmetic-lumitouch-compact-soft-sand", name: "LUMITOUCH COMPACT POWDER-SOFT SAND", category: "sniss-cosmetic", mrp: 979, packSize: "9 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4091_962749.jpg", description: "SNISS compact powder in the Soft Sand variant, 9 GM. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-powder-blush-nasty", name: "POWDER BLUSH-NASTY", category: "sniss-cosmetic", mrp: 909, packSize: "3.5 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T41511_836766.jpg", description: "SNISS powder blush in the Nasty variant, 3.5 GM. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-diamond-bomb-highlighter-rosemary", name: "DIAMOND BOMB HIGHLIGHTER-ROSEMARY", category: "sniss-cosmetic", mrp: 419, packSize: "3.5 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T41911_311487.png", description: "SNISS highlighter in the Rosemary variant, 3.5 GM. Refer to the package for ingredients and directions." },
-  { id: "awpl-cosmetic-diamond-bomb-highlighter-champagne", name: "DIAMOND BOMB HIGHLIGHTER-SPARKLING CHAMPAGNE", category: "sniss-cosmetic", mrp: 419, packSize: "3.5 GM", description: "SNISS highlighter in the Sparkling Champagne variant, 3.5 GM. Refer to the package for ingredients and directions." },
-  { id: "awpl-cosmetic-eyeliner-holographic-peacock", name: "EYELINER HOLOGRAPHIC-PEACOCK GREEN HALO", category: "sniss-cosmetic", mrp: 279, packSize: "1 ML", description: "SNISS holographic eyeliner in the Peacock Green Halo variant, 1 ML. Refer to the package for ingredients and directions." },
+  { id: "awpl-cosmetic-diamond-bomb-highlighter-champagne", name: "DIAMOND BOMB HIGHLIGHTER-SPARKLING CHAMPAGNE", category: "sniss-cosmetic", mrp: 419, packSize: "3.5 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4201_542211.png", description: "SNISS highlighter in the Sparkling Champagne variant, 3.5 GM. Refer to the package for ingredients and directions." },
+  { id: "awpl-cosmetic-eyeliner-holographic-peacock", name: "EYELINER HOLOGRAPHIC-PEACOCK GREEN HALO", category: "sniss-cosmetic", mrp: 279, packSize: "1 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4221_107013.jpg", description: "SNISS holographic eyeliner in the Peacock Green Halo variant, 1 ML. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-eyeliner-metallic-rose-gold", name: "EYELINER METTALIC-ROSE GOLD", category: "sniss-cosmetic", mrp: 979, packSize: "3.5 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T42411_400200.jpg", description: "SNISS metallic eyeliner in the Rose Gold variant, 3.5 ML. Refer to the package for ingredients and directions." },
-  { id: "awpl-cosmetic-matte-eye-liner-black", name: "MATTE EYE LINER BLACK", category: "sniss-cosmetic", mrp: 867, packSize: "3.5 ML", description: "SNISS black matte eyeliner, 3.5 ML. Refer to the package for ingredients and directions." },
+  { id: "awpl-cosmetic-matte-eye-liner-black", name: "MATTE EYE LINER BLACK", category: "sniss-cosmetic", mrp: 867, packSize: "3.5 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4261_652470.jpg", description: "SNISS black matte eyeliner, 3.5 ML. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-kajal-with-sharpner", name: "KAJAL WITH SHARPNER", category: "sniss-cosmetic", mrp: 979, packSize: "1.5 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T42711_327083.png", description: "SNISS kajal with sharpener, 1.5 GM. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-kajal-retractable", name: "KAJAL RETRACTABLE", category: "sniss-cosmetic", mrp: 349, packSize: "0.3 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T42811_504923.jpeg", description: "SNISS retractable kajal, 0.3 GM. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-flick-lift-mascara", name: "FLICK&LIFT MASCARA", category: "sniss-cosmetic", mrp: 699, packSize: "5 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T42911_957021.jpg", description: "SNISS mascara, 5 ML. Refer to the package for ingredients and directions." },
-  { id: "awpl-cosmetic-cream-lipstick-dusky-rose", name: "ALL DAY LUXE CREAM LIPSTICK-DUSKY ROSE", category: "sniss-cosmetic", mrp: 699, packSize: "3.5 GM", description: "SNISS cream lipstick in the Dusky Rose shade, 3.5 GM. Refer to the package for ingredients and directions." },
-  { id: "awpl-cosmetic-liquid-lipstick-fine-wine", name: "LUXE MATTE LIQUID LIPSTICK-FINE WINE", category: "sniss-cosmetic", mrp: 517, packSize: "3.5 ML", description: "SNISS liquid lipstick in the Fine Wine shade, 3.5 ML. Refer to the package for ingredients and directions." },
+  { id: "awpl-cosmetic-cream-lipstick-dusky-rose", name: "ALL DAY LUXE CREAM LIPSTICK-DUSKY ROSE", category: "sniss-cosmetic", mrp: 699, packSize: "3.5 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4301_248136.jpg", description: "SNISS cream lipstick in the Dusky Rose shade, 3.5 GM. Refer to the package for ingredients and directions." },
+  { id: "awpl-cosmetic-liquid-lipstick-fine-wine", name: "LUXE MATTE LIQUID LIPSTICK-FINE WINE", category: "sniss-cosmetic", mrp: 517, packSize: "3.5 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4421_532018.jpg", description: "SNISS liquid lipstick in the Fine Wine shade, 3.5 ML. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-juicy-lip-balm-vanilla", name: "JUICY LIP BALM-VANILLA", category: "sniss-cosmetic", mrp: 406, packSize: "4 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T45411_803167.jpg", description: "SNISS lip balm in the Vanilla variant, 4 GM. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-skin-tint-radiant-sand", name: "SKIN TINT LUMINOUS VEIL-RADIANT SAND", category: "sniss-cosmetic", mrp: 1399, packSize: "30 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T45711_773299.jpg", description: "SNISS skin tint in the Radiant Sand variant, 30 ML. Refer to the package for ingredients and directions." },
   { id: "awpl-cosmetic-luxe-lips-definer-blossom", name: "LUXE LIPS DEFINER-BLOSSOM", category: "sniss-cosmetic", mrp: 979, packSize: "1.5 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T4602_239553.jpg", description: "SNISS lip pencil in the Blossom variant, 1.5 GM. Refer to the package for ingredients and directions." },
@@ -98,7 +98,7 @@ const importedCatalogueSeeds: ImportedCatalogueSeed[] = [
   { id: "awpl-elite-hydrating-face-wash", name: "HYDRATING FACE WASH", category: "sniss-elite", mrp: 357, packSize: "100 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28111_982416.jpg", description: "SNISS Elite hydrating face wash, 100 ML. Refer to the label for ingredients and directions." },
   { id: "awpl-elite-aloevera-cucumber-gel", name: "ALOEVERA CUCUMBER GEL", category: "sniss-elite", mrp: 371, packSize: "300 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28211_045696.jpg", description: "SNISS Elite aloe vera cucumber gel, 300 ML. Refer to the label for ingredients and directions." },
   { id: "awpl-elite-aloevera-turmeric-gel", name: "ALOEVERA TURMERIC GEL", category: "sniss-elite", mrp: 371, packSize: "300 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28311_456748.jpg", description: "SNISS Elite aloe vera turmeric gel, 300 ML. Refer to the label for ingredients and directions." },
-  { id: "awpl-elite-aloevera-pink-gel", name: "ALOEVERA PINK GEL", category: "sniss-elite", mrp: 371, packSize: "300 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28411_374297.png", description: "SNISS Elite aloe vera pink gel, 300 ML. Refer to the label for ingredients and directions." },
+  { id: "awpl-elite-aloevera-pink-gel", name: "ALOEVERA PINK GEL", category: "sniss-elite", mrp: 371, packSize: "300 ML", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28411_374297.jpg", description: "SNISS Elite aloe vera pink gel, 300 ML. Refer to the label for ingredients and directions." },
   { id: "awpl-elite-hyaluronic-moisturizer", name: "HYALURONIC ACID FACE MOISTURIZER", category: "sniss-elite", mrp: 770, packSize: "50 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28511_818334.jpg", description: "SNISS Elite hyaluronic acid face moisturizer, 50 GM. Refer to the label for ingredients and directions." },
   { id: "awpl-elite-gold-moisturizer", name: "24K GOLD FACE MOISTURIZER", category: "sniss-elite", mrp: 770, packSize: "50 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28611_574415.jpg", description: "SNISS Elite 24K Gold face moisturizer, 50 GM. Refer to the label for ingredients and directions." },
   { id: "awpl-elite-under-eye-cream", name: "UNDER EYE CREAM", category: "sniss-elite", mrp: 699, packSize: "15 GM", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T28711_741561.png", description: "SNISS Elite under-eye cream, 15 GM. Refer to the label for ingredients and directions." },
@@ -178,8 +178,8 @@ const importedCatalogueSeeds: ImportedCatalogueSeed[] = [
 
   // Apparels are individual colour/size SKUs, not a variant selector.
   { id: "awpl-apparels-asclepius-women-saree-crape", name: "ASCLEPIUS WOMEN SAREE CRAPE", category: "apparels", mrp: 2099, packSize: "1 NUMBER", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51911_979702.png", description: "Asclepius women's crape saree. Fabric composition and care details are on the product label." },
-  { id: "awpl-apparels-asclepius-women-suits", name: "ASCLEPIUS WOMEN SUITS", category: "apparels", mrp: 2099, packSize: "1 NUMBER", description: "Asclepius women's suit set. Fabric composition and care details are on the product label." },
-  { id: "awpl-apparels-asclepius-tie-black", name: "ASCLEPIUS TIE -BLACK", category: "apparels", mrp: 559, packSize: "1 NUMBER", description: "Asclepius black tie. Fabric composition and care details are on the product label." },
+  { id: "awpl-apparels-asclepius-women-suits", name: "ASCLEPIUS WOMEN SUITS", category: "apparels", mrp: 2099, packSize: "1 NUMBER", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T5201_768289.jpg", description: "Asclepius women's suit set. Fabric composition and care details are on the product label." },
+  { id: "awpl-apparels-asclepius-tie-black", name: "ASCLEPIUS TIE -BLACK", category: "apparels", mrp: 559, packSize: "1 NUMBER", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T5211_148684.jpg", description: "Asclepius black tie. Fabric composition and care details are on the product label." },
   { id: "awpl-apparels-tshirt-olive-s", name: "ASCLEPIUS T SHIRT -OLIVE- (S)", category: "apparels", mrp: 2559, packSize: "1 NUMBER", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T68911_367592.jpg", description: "Asclepius olive T-shirt, size S. Fabric composition and care details are on the product label." },
   { id: "awpl-apparels-tshirt-light-blue-s", name: "ASCLEPIUS T SHIRT -LIGHT BLUE (S)", category: "apparels", mrp: 2559, packSize: "1 NUMBER", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T71011_904020.jpg", description: "Asclepius light blue T-shirt, size S. Fabric composition and care details are on the product label." },
   { id: "awpl-apparels-tshirt-teal-s", name: "ASCLEPIUS T SHIRT -TEAL (S)", category: "apparels", mrp: 2559, packSize: "1 NUMBER", imageUrl: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T71111_044937.jpg", description: "Asclepius teal T-shirt, size S. Fabric composition and care details are on the product label." },
@@ -197,7 +197,7 @@ const importedCatalogueSeeds: ImportedCatalogueSeed[] = [
 
 const importedCatalogueProducts: ProductMasterRecord[] = importedCatalogueSeeds.map((seed) => {
   const sourceUrl = seed.sourceUrl ?? sourceByCategory[seed.category];
-  const verifiedImage = Boolean(seed.imageUrl);
+  const hasImageUrl = Boolean(seed.imageUrl);
   return {
     id: seed.id,
     name: seed.name,
@@ -217,8 +217,8 @@ const importedCatalogueProducts: ProductMasterRecord[] = importedCatalogueSeeds.
     ingredients: null,
     image: {
       url: seed.imageUrl ?? null,
-      status: verifiedImage ? "VERIFIED" : "MISSING",
-      altText: verifiedImage ? seed.name + " official AWPL product image" : null
+      status: hasImageUrl ? "UPLOADED_UNVERIFIED" : "MISSING",
+      altText: hasImageUrl ? seed.name + " product image; exact SKU and pack match pending" : null
     },
     availability: seed.priceStatus === "PRICE_REVIEW_REQUIRED" ? "REVIEW_REQUIRED" : "UNKNOWN",
     status: seed.priceStatus ?? "VERIFIED",
@@ -249,7 +249,7 @@ export const awplProducts: ProductMasterRecord[] = [
     packSize: "100.00 ML",
     description: "Hair oil product, 100 ML. Refer to the product label for ingredients and usage directions.",
     ingredients: null,
-    image: { url: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51211_960923.jpg", status: "VERIFIED", altText: "HAIRDOC OIL 100 ML official AWPL product image" },
+    image: { url: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T51211_960923.jpg", status: "UPLOADED_UNVERIFIED", altText: "HAIRDOC OIL 100 ML product image; exact SKU and pack match pending" },
     availability: "UNKNOWN",
     status: "VERIFIED",
     priceEvidence: {
@@ -276,7 +276,7 @@ export const awplProducts: ProductMasterRecord[] = [
     packSize: "100.00 GM",
     description: "DentoDoc oral-care cream, 100 GM. Refer to the product label for ingredients and directions.",
     ingredients: null,
-    image: { url: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T5011.jpeg", status: "VERIFIED", altText: "DentoDoc Cream official AWPL product image" },
+    image: { url: "https://awpl-kycdocs.s3.ap-south-1.amazonaws.com/upload1/product/_T5011.jpeg", status: "UPLOADED_UNVERIFIED", altText: "DentoDoc Cream product image; exact SKU and pack match pending" },
     availability: "UNKNOWN",
     status: "VERIFIED",
     priceEvidence: {

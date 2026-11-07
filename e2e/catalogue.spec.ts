@@ -25,9 +25,23 @@ test("home page shows the category catalogue and resilient product artwork", asy
   await expect(page.getByText("147 products", { exact: true })).toBeVisible();
   await page.getByTestId("product-grid").scrollIntoViewIfNeeded();
   await expect(page.getByTestId("product-artwork").first()).toBeVisible();
-  await expect(page.getByText("Official image pending").first()).toBeVisible();
+  await expect(page.getByText("Image match pending review").first()).toBeVisible();
   await expect(page.getByRole("button", { name: "Agriculture", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Wellroot", exact: true })).toBeVisible();
+});
+
+
+test("independent-store disclosures and information pages are available", async ({ page }) => {
+  await page.goto("./");
+  const footer = page.getByRole("contentinfo");
+  await expect(footer).toContainText("not the official AWPL corporate website");
+  await footer.getByRole("link", { name: "About this store" }).click();
+  await expect(page.getByRole("heading", { name: "About this store" })).toBeVisible();
+  await page.goto("privacy/");
+  await expect(page.getByRole("heading", { name: "Privacy and data use" })).toBeVisible();
+  await expect(page.getByText(/not a complete legal privacy policy/)).toBeVisible();
+  await page.goto("product-disclaimer/");
+  await expect(page.getByRole("heading", { name: "Product information notice" })).toBeVisible();
 });
 
 test("mobile navigation stays visible and exposes all primary routes", async ({ page }) => {
@@ -190,7 +204,7 @@ test("product card opens a dedicated product detail page", async ({ page }) => {
 
   await expect(page.getByRole("heading", { name: "ASCLEPIUS WOMEN SAREE CRAPE", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Product information" })).toBeVisible();
-  await expect(page.getByText("Hari Ram AWPL Store", { exact: true })).toBeVisible();
+  await expect(page.getByRole("main").getByText("Hari Ram AWPL Store", { exact: true })).toBeVisible();
   await expect(page.getByText("Live stock count not synced")).toBeVisible();
   await expect(page.getByText("No verified reviews yet")).toBeVisible();
   await expect(page.getByText("Added date", { exact: true })).toBeVisible();

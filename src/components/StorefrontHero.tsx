@@ -16,6 +16,7 @@ import {
 type Props = {
   productCount: number;
   categoryCount: number;
+  populatedCategoryCount: number;
   featuredCategories: string[];
 };
 
@@ -24,6 +25,7 @@ const formatCount = (value: number) => value.toLocaleString("en-IN");
 export default function StorefrontHero({
   productCount,
   categoryCount,
+  populatedCategoryCount,
   featuredCategories,
 }: Props) {
   const reducedMotion = useReducedMotion();
@@ -65,7 +67,7 @@ export default function StorefrontHero({
 
           <p className="storefront-hero__description">
             Explore the AWPL range by category, find the right pack size, and review listed MRP
-            before sending an order enquiry.
+            before sending an order enquiry. Public product listings currently appear in {formatCount(populatedCategoryCount)} of {formatCount(categoryCount)} defined categories.
           </p>
 
           <div className="storefront-hero__actions">

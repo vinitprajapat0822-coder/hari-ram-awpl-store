@@ -14,8 +14,8 @@ type Props = { product: Product; showAttribution?: boolean };
 
 export default function ProductArtwork({ product }: Props) {
   const [imageFailed, setImageFailed] = useState(false);
-  const hasOfficialImage = Boolean(product.image)
-    && product.imageStatus === "VERIFIED"
+  const hasProductImage = Boolean(product.image)
+    && product.imageStatus !== "MISSING"
     && !imageFailed;
 
   return (
@@ -25,10 +25,10 @@ export default function ProductArtwork({ product }: Props) {
         <span className="product-artwork__category">{product.category}</span>
       </div>
 
-      {hasOfficialImage && product.image ? (
+      {hasProductImage && product.image && (
         <Image
           src={product.image}
-          alt={product.name + " official product image"}
+          alt={product.name + " product image"}
           width={600}
           height={600}
           unoptimized
@@ -36,13 +36,16 @@ export default function ProductArtwork({ product }: Props) {
           className="product-artwork__image"
           onError={() => setImageFailed(true)}
         />
-      ) : (
-        <span className="product-artwork__source">
-          {product.image && product.imageStatus === "VERIFIED"
-            ? "Official image unavailable"
-            : "Official image pending"}
-        </span>
       )}
+      <span className="product-artwork__source">
+        {imageFailed
+          ? "Image unavailable"
+          : product.image && product.imageStatus === "VERIFIED"
+            ? "SKU/pack match verified"
+            : product.image
+              ? "Image match pending review"
+              : "No product image"}
+      </span>
 
       <span className="absolute bottom-2 right-2 max-w-[75%] truncate rounded-full border border-white/10 bg-slate-950/75 px-2.5 py-1 text-[9px] font-semibold text-white/75 backdrop-blur-xl">
         {product.qty || "Pack size pending"}
