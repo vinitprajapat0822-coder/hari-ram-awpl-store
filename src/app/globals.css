@@ -1370,3 +1370,11 @@ button, a { touch-action: manipulation; }
 .auth-mascot--protect .auth-mascot__hands { opacity: 1; transform: translateY(0); }
 .auth-mascot--protect .auth-mascot__eyes { opacity: 0; }
 .auth-glass-card .auth-field-label > label { color: rgba(230,240,250,.77); }
+
+/* Keep small helper copy legible against the dark glass surfaces. */
+.auth-trust-row { color: rgba(215,231,245,.72); }
+.auth-divider { color: rgba(203,220,235,.62); }
+.auth-input-wrap input::placeholder { color: rgba(192,207,225,.58); }
+.auth-switcher { color: rgba(206,220,236,.76); }
+.auth-privacy-note { color: rgba(201,215,230,.58); }
+.auth-input-wrap { color: rgba(194,218,235,.64); }
