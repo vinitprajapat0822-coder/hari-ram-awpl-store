@@ -48,6 +48,15 @@ test.describe("catalogue assistant logic (no browser)", () => {
       expect(product.category).toBe("Jeeveda");
     }
     expect(answerQuery("tel", products).kind).toBe("products");
+
+    const masale = answerQuery("Jeeveda ke masale dikhao", products);
+    expect(masale.kind).toBe("products");
+    expect(masale.products.length).toBeGreaterThan(0);
+    for (const product of masale.products) {
+      expect(product.category).toBe("Jeeveda");
+      expect(product.name.toLowerCase()).toContain("masala");
+    }
+
     expect(answerQuery("zzzz-not-a-product", products).kind).toBe("no-match");
   });
 
