@@ -9,6 +9,11 @@ import VelocityTicker from "@/components/VelocityTicker";
 import CategorySurfer from "@/components/CategorySurfer";
 import { useSearchMorphPlaceholder } from "@/components/SearchMorph";
 import { ArrowRight, Search, X } from "lucide-react";
+import FeaturedProductCard from "@/components/FeaturedProductCard";
+
+const featuredProduct = products.find(
+  (product) => product.status === "VERIFIED" && product.imageStatus === "VERIFIED" && Boolean(product.image)
+);
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -50,6 +55,10 @@ export default function HomePage() {
           populatedCategoryCount={populatedCategoryCount}
           featuredCategories={Array.from(new Set(products.map((product) => product.category))).slice(0, 3)}
         />
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 pb-5 pt-1 sm:px-6" aria-label="Featured product">
+        {featuredProduct && <FeaturedProductCard product={featuredProduct} />}
       </section>
 
       <section id="catalogue" className="mx-auto max-w-6xl scroll-mt-28 px-4 sm:px-6">
