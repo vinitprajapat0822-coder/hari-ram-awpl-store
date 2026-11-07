@@ -16,6 +16,7 @@ export default function ProductArtwork({ product }: Props) {
   const [imageFailed, setImageFailed] = useState(false);
   const hasProductImage = Boolean(product.image)
     && product.imageStatus !== "MISSING"
+    && product.imageStatus !== "MISMATCH"
     && !imageFailed;
 
   return (
@@ -40,7 +41,9 @@ export default function ProductArtwork({ product }: Props) {
       <span className="product-artwork__source">
         {imageFailed
           ? "Image unavailable"
-          : product.image && product.imageStatus === "VERIFIED"
+          : product.image && product.imageStatus === "MISMATCH"
+            ? "Image/pack mismatch — hidden pending replacement"
+            : product.image && product.imageStatus === "VERIFIED"
             ? "SKU/pack match verified"
             : product.image
               ? "Image match pending review"
