@@ -29,6 +29,7 @@ export type CatalogueCategorySlug =
 export type ProductImageStatus =
   | "MISSING"
   | "UPLOADED_UNVERIFIED"
+  | "MISMATCH"
   | "VERIFIED";
 
 export type ProductMasterStatus =
