@@ -34,6 +34,9 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
+      - name: Generate catalogue audit report
+        run: npm run audit:catalogue
+
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
@@ -48,3 +51,12 @@ jobs:
 
       - name: Playwright end-to-end and accessibility tests
         run: npm run test:e2e
+
+      - name: Upload catalogue audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalogue-audit-report
+          path: docs/catalogue-audit-report.md
+          if-no-files-found: warn
+          retention-days: 14

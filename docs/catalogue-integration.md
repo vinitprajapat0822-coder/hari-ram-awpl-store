@@ -12,7 +12,7 @@
 - 147 source-matched consumer-product records are present in the public catalogue.
 - All displayed prices are MRP only. DP and SP are not stored, rendered, or used in cart totals.
 - Pack sizes, apparel colours/sizes and cosmetic shades remain separate SKUs where the official listing exposes separate rows.
-- 10 exact official image URLs are mapped to their matching product records. Other products use image-pending artwork; no unrelated stock photos are substituted.
+- 138 of the 147 current records contain an image URL; 9 have no image URL. URL presence alone does not prove an exact SKU/pack match or permission to use the image.
 - MRP-conflict and missing-data records are not orderable.
 - Wellness, Wellroot, Agriculture and Veterinary product listings are withheld from the public order catalogue.
 - Baby nutrition/supplement-like items are withheld; three ordinary Baby Care consumer-product rows remain.
@@ -35,10 +35,13 @@ The date in `checkedAt` records when the category page was inspected, not the da
 
 ## Product images
 
-- 10 exact official AWPL image URLs are enabled.
-- Each official image is mapped only when the image/page identifies the same product SKU.
-- Other records use an explicit image-pending placeholder.
-- Add an image URL only after confirming the exact SKU/pack match.
+- The source data contains 138 image URL references across 147 product records; 9 records have no image URL.
+- The previous mapper marked every non-empty image URL as VERIFIED. That was not a valid verification test.
+- All URL-backed image records are tagged UPLOADED_UNVERIFIED until a person checks the exact product and pack against reliable source evidence.
+- Existing image URLs remain visible to avoid removing catalogue artwork, but the storefront labels them "Image match pending review" and does not call them official/verified.
+- The two formerly hard-coded VERIFIED image records are also downgraded pending the same evidence check.
+- Image match verification does not establish copyright permission. Image-use permission remains OWNER CONFIRMATION REQUIRED.
+- Promote an image only after recording exact SKU/pack evidence and confirming the lawful basis for use.
 
 ## SKU and storefront rules
 
