@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import { useStore } from "@/store/useStore";
 import { Home, LayoutGrid, Search, ShoppingCart, UserRound, LogIn } from "lucide-react";
 import { motion } from "framer-motion";
+import { GlassCard } from "@zakisheriff/liquid-glass";
+import FloatingOrderButton from "@/components/FloatingOrderButton";
 
 const navigation = [
   { href: "/", label: "Home", icon: Home },
@@ -70,7 +72,7 @@ export default function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5">
-        <div className="site-header__inner glass mx-auto flex max-w-6xl items-center justify-between rounded-[22px] px-3.5 sm:px-5">
+        <GlassCard padding="0px" radius="22px" intensity={4} thickness={2} tint="rgba(3, 26, 28, 0.80)" className="site-header__inner mx-auto flex max-w-6xl items-center justify-between rounded-[22px] px-3.5 sm:px-5">
           <Link href="/" onClick={() => handleNavigation("/")} className="flex min-w-0 items-center gap-3">
             <span className="brand-mark text-lg font-black tracking-tight">H</span>
             <span className="min-w-0 leading-tight">
@@ -115,7 +117,7 @@ export default function Navbar() {
             <Search size={17} aria-hidden="true" />
             <span className="hidden sm:inline">Search</span>
           </Link>
-        </div>
+        </GlassCard>
       </header>
 
       <div className="pointer-events-none fixed inset-x-0 bottom-3 z-50 px-4 md:hidden">
@@ -156,6 +158,7 @@ export default function Navbar() {
           })}
         </nav>
       </div>
+      <FloatingOrderButton />
     </>
   );
 }

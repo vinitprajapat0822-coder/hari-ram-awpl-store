@@ -39,8 +39,11 @@ jobs:
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
         run: npm run build
 
-      - name: Disable Jekyll processing for Next.js assets
-        run: touch ./out/.nojekyll
+      - name: Verify and preserve GitHub Pages .nojekyll marker
+        run: |
+          test -f ./public/.nojekyll
+          cp ./public/.nojekyll ./out/.nojekyll
+          test -f ./out/.nojekyll
 
       - name: Verify exported product detail pages
         run: |
@@ -57,6 +60,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
+          include-hidden-files: true
 
   deploy:
     environment:
