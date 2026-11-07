@@ -7,7 +7,7 @@ test.describe("catalogue assistant widget", () => {
     await page.getByTestId("assistant-open").click();
     const panel = page.getByTestId("assistant-panel");
     await expect(panel).toBeVisible();
-    await expect(panel.getByText("not AI and not an AWPL service")).toBeVisible();
+    await expect(panel.getByText("Automated catalogue helper, not AI or an AWPL service.")).toBeVisible();
 
     await page.getByLabel("Ask about a product, category or price").fill("products under 100 rs");
     await page.keyboard.press("Enter");
