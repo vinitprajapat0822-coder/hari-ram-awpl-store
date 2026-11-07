@@ -1359,3 +1359,14 @@ button, a { touch-action: manipulation; }
   .auth-trust-row { gap: 7px 12px; font-size: 9px; }
   .auth-reset-card { padding: 24px 20px; }
 }
+
+.auth-mascot__hands {
+  opacity: 0;
+  transform: translateY(13px);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 220ms ease, transform 380ms cubic-bezier(.2,.8,.2,1);
+}
+.auth-mascot--protect .auth-mascot__hands { opacity: 1; transform: translateY(0); }
+.auth-mascot--protect .auth-mascot__eyes { opacity: 0; }
+.auth-glass-card .auth-field-label > label { color: rgba(230,240,250,.77); }
