@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { ExternalLink, MessageCircle, SendHorizontal, X } from "lucide-react";
 import { products } from "@/data/products";
@@ -24,6 +25,7 @@ type Message =
  * visitor taps the "Ask the store" link.
  */
 export default function CatalogueAssistant() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([{ id: 0, from: "bot", reply: welcomeReply(), question: "" }]);
@@ -79,6 +81,8 @@ export default function CatalogueAssistant() {
     event.preventDefault();
     ask(input);
   }
+
+  if (pathname === "/login" || pathname === "/reset-password") return null;
 
   return (
     <>

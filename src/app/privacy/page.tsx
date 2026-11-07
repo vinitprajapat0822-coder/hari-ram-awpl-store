@@ -23,6 +23,10 @@ export default function PrivacyPage() {
         <p className="mt-2 text-sm leading-7 text-white/60">
           When you choose to continue on WhatsApp from the cart, the application prepares a message containing selected products and the profile details you saved. A WhatsApp window opens with that message prefilled. Review it carefully; it is not sent by this website unless you choose to send it in WhatsApp. WhatsApp and the recipient then handle the information under their own applicable terms and practices.
         </p>
+        <h2 className="mt-6 text-sm font-bold text-white">Customer account authentication</h2>
+        <p className="mt-2 text-sm leading-7 text-white/60">
+          When customer sign-in is enabled, account email, sign-in metadata and session information are processed by the configured Supabase authentication service. Google sign-in may also share the basic profile information permitted by the Google consent screen. Password verification is handled by Supabase; this storefront does not receive or store raw passwords. The session is kept in this browser using the storage option selected on the login page.
+        </p>
         <h2 className="mt-6 text-sm font-bold text-white">No website order database yet</h2>
         <p className="mt-2 text-sm leading-7 text-white/60">
           This GitHub Pages version is a static catalogue and enquiry storefront. It does not currently submit customer details to a site-operated order database or provide a seller admin order-management service.

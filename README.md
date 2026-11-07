@@ -18,6 +18,8 @@ The public catalogue is limited to source-matched consumer-product rows. It is n
 
 ## Store flows
 
+- Public catalogue browsing; customer login and registration at `/login/`.
+- Supabase email/password authentication, Google OAuth, and password reset (requires the setup in [customer authentication setup](docs/customer-auth-setup.md)).
 - Search and category filtering.
 - SKU-specific cart with MRP totals.
 - Local customer profile.
