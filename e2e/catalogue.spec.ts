@@ -66,11 +66,16 @@ test("catalogue grid uses two mobile columns and four desktop columns", async ({
   expect(desktopColumns).toBe(4);
 });
 
-test("promo carousel exposes working highlight controls", async ({ page }) => {
+test("home hero presents a stable catalogue introduction and clear actions", async ({ page }) => {
   await page.goto("./");
-  await expect(page.getByRole("region", { name: "Store highlights" })).toBeVisible();
-  await page.getByRole("button", { name: "Next highlight" }).first().click();
-  await expect(page.getByText("Find your range,", { exact: true })).toBeVisible();
+  const intro = page.getByRole("region", { name: "Store introduction" });
+  await expect(intro).toBeVisible();
+  await expect(intro.getByRole("heading", { name: /HARI RAM/ })).toBeVisible();
+  await expect(intro.getByRole("link", { name: /Explore catalogue/ })).toHaveAttribute("href", "#catalogue");
+  await expect(intro.getByRole("link", { name: /Browse categories/ })).toHaveAttribute("href", "#catalogue-categories");
+  await expect(intro.getByText("147", { exact: true })).toBeVisible();
+  await expect(intro.getByText("15", { exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Next highlight/ })).toHaveCount(0);
 });
 
 test("search filters the catalogue and can be cleared", async ({ page }) => {
