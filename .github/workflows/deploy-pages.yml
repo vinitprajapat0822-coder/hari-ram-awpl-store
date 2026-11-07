@@ -34,6 +34,9 @@ jobs:
         run: npm install
 
       - name: Build static site
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
         run: npm run build
 
       - name: Disable Jekyll processing for Next.js assets
@@ -42,6 +45,8 @@ jobs:
       - name: Verify exported product detail pages
         run: |
           test -f ./out/index.html
+          test -f ./out/login/index.html
+          test -f ./out/reset-password/index.html
           test -f ./out/product/awpl-elite-salicylic-sheet-mask/index.html
           test -f ./out/product/awpl-sniss-elite-salicylic-acid-face-sheet-mask/index.html
           count=$(find ./out/product -mindepth 2 -maxdepth 2 -name index.html | wc -l)
