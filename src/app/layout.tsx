@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import "./globals.css";
+import "@zakisheriff/liquid-glass/styles.css";
+import "./liquid-glass-theme.css";
 import StoreHydration from "@/components/StoreHydration";
 import Footer from "@/components/Footer";
 import CatalogueAssistant from "@/components/CatalogueAssistant";
