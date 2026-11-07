@@ -191,7 +191,7 @@ export function answerQuery(rawQuery: string, catalogue: Product[]): AssistantRe
     return {
       kind: "seller-info",
       text:
-        "This is an independently operated catalogue and order-enquiry storefront. It is not the official AWPL website, and no AWPL authorisation is claimed. Seller details are still being verified, so I can't share them. See the About page, or ask the store.",
+        "The seller for this storefront is Hariram. This is an independently operated catalogue and order-enquiry storefront; it is not the official AWPL website, and no AWPL authorisation is claimed. Please use the store contact link to confirm any contact or order details.",
       products: [],
       total: 0,
       offerStore: true,
