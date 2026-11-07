@@ -299,7 +299,7 @@ export default function LoginExperience() {
               <div className="py-7 text-center">
                 <span className="auth-success-mark"><CheckCircle2 size={28} aria-hidden="true" /></span>
                 <p className="auth-kicker mt-5">ACCOUNT CONNECTED</p>
-                <h2 className="mt-2 text-2xl font-extrabold text-white">You're signed in</h2>
+                <h2 className="mt-2 text-2xl font-extrabold text-white">You&apos;re signed in</h2>
                 <p className="mt-2 break-all text-sm text-slate-300/65">{authenticatedEmail}</p>
                 <p className="mt-4 text-xs leading-5 text-slate-300/55">Your account session is active in this browser.</p>
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -394,7 +394,7 @@ export default function LoginExperience() {
                   {mode === "forgot" ? (
                     <button type="button" onClick={() => selectMode("login")}>← Back to sign in</button>
                   ) : mode === "login" ? (
-                    <>Don't have an account? <button type="button" onClick={() => selectMode("register")}>Register now</button></>
+                    <>Don&apos;t have an account? <button type="button" onClick={() => selectMode("register")}>Register now</button></>
                   ) : (
                     <>Already registered? <button type="button" onClick={() => selectMode("login")}>Sign in</button></>
                   )}
