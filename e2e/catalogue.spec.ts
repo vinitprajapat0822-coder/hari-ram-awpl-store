@@ -204,7 +204,7 @@ test("product card opens a dedicated product detail page", async ({ page }) => {
 
   await expect(page.getByRole("heading", { name: "ASCLEPIUS WOMEN SAREE CRAPE", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Product information" })).toBeVisible();
-  await expect(page.getByText("Hari Ram AWPL Store", { exact: true })).toBeVisible();
+  await expect(page.getByRole("main").getByText("Hari Ram AWPL Store", { exact: true })).toBeVisible();
   await expect(page.getByText("Live stock count not synced")).toBeVisible();
   await expect(page.getByText("No verified reviews yet")).toBeVisible();
   await expect(page.getByText("Added date", { exact: true })).toBeVisible();
