@@ -19,6 +19,8 @@ from urllib.request import Request, urlopen
 OUT = Path("artifacts")
 PAGES = {
     "sniss-cosmetic": "https://www.asclepiuswellness.com/product/sniss-cosmetic/",
+    "sniss-herbal": "https://www.asclepiuswellness.com/product/sniss-herbal/",
+    "sniss-elite": "https://www.asclepiuswellness.com/product/sniss-elite/",
     "apparels": "https://www.asclepiuswellness.com/product/apparels/",
 }
 TARGETS = [
@@ -29,6 +31,12 @@ TARGETS = [
     {"id": "awpl-cosmetic-matte-eye-liner-black", "name": "MATTE EYE LINER BLACK", "category": "sniss-cosmetic"},
     {"id": "awpl-cosmetic-cream-lipstick-dusky-rose", "name": "ALL DAY LUXE CREAM LIPSTICK-DUSKY ROSE", "category": "sniss-cosmetic"},
     {"id": "awpl-cosmetic-liquid-lipstick-fine-wine", "name": "LUXE MATTE LIQUID LIPSTICK-FINE WINE", "category": "sniss-cosmetic"},
+    {"id": "awpl-herbal-aloevera-orange-shower-gel", "name": "ALOEVERA ORANGE SHOWER GEL", "category": "sniss-herbal"},
+    {"id": "awpl-herbal-aloevera-shower-gel", "name": "ALOEVERA SHOWER GEL", "category": "sniss-herbal"},
+    {"id": "awpl-herbal-lip-balm", "name": "LIP BALM", "category": "sniss-herbal"},
+    {"id": "awpl-herbal-body-lotion", "name": "BODY LOTION", "category": "sniss-herbal"},
+    {"id": "awpl-elite-charcoal-face-wash", "name": "CHARCOAL FACE WASH", "category": "sniss-elite"},
+    {"id": "awpl-elite-sunscreen-gel", "name": "SUNSCREEN SPF50 PA++++ GEL", "category": "sniss-elite"},
     {"id": "awpl-apparels-asclepius-women-suits", "name": "ASCLEPIUS WOMEN SUITS", "category": "apparels"},
     {"id": "awpl-apparels-asclepius-tie-black", "name": "ASCLEPIUS TIE -BLACK", "category": "apparels"},
 ]
