@@ -9,6 +9,7 @@ test("customer login page presents the animated Liquid Glass experience", async 
   await expect(page.getByLabel("Password", { exact: true })).toBeVisible();
   await expect(page.getByRole("checkbox", { name: "Remember me" })).toBeChecked();
   await expect(page.getByRole("link", { name: "Continue browsing the catalogue" })).toHaveAttribute("href", "/hari-ram-awpl-store/");
+  await expect(page.getByTestId("assistant-open")).toHaveCount(0);
 });
 
 test("registration validates matching passwords before authentication", async ({ page }) => {
