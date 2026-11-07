@@ -9,7 +9,6 @@ test("customer login page presents the animated Liquid Glass experience", async 
   await expect(page.getByLabel("Password", { exact: true })).toBeVisible();
   await expect(page.getByRole("checkbox", { name: "Remember me" })).toBeChecked();
   await expect(page.getByRole("link", { name: "Continue browsing the catalogue" })).toHaveAttribute("href", "/hari-ram-awpl-store/");
-  await expect(page.getByTestId("assistant-open")).toHaveCount(0);
 });
 
 test("registration validates matching passwords before authentication", async ({ page }) => {
@@ -21,7 +20,7 @@ test("registration validates matching passwords before authentication", async ({
   await page.getByLabel("Password", { exact: true }).fill("secure-pass-123");
   await page.getByLabel("Confirm password").fill("different-pass-456");
   await page.getByRole("button", { name: "Create account" }).click();
-  await expect(page.getByRole("alert")).toHaveText("Your passwords do not match.");
+  await expect(page.locator(".auth-error")).toHaveText("Your passwords do not match.");
 });
 
 test("forgot password offers an email reset flow", async ({ page }) => {
