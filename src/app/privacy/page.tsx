@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         </p>
         <h2 className="mt-6 text-sm font-bold text-white">Details stored on this device</h2>
         <p className="mt-2 text-sm leading-7 text-white/60">
-          When you save your profile, the current application stores your name, mobile number, delivery address and cart in this browser's local storage. The data is kept on this device/browser until its site data is cleared. Avoid saving personal details on a shared device.
+          When you save your profile, the current application stores your name, mobile number, delivery address and cart in this browser&apos;s local storage. The data is kept on this device/browser until its site data is cleared. Avoid saving personal details on a shared device.
         </p>
         <h2 className="mt-6 text-sm font-bold text-white">WhatsApp hand-off</h2>
         <p className="mt-2 text-sm leading-7 text-white/60">

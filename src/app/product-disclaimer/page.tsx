@@ -17,7 +17,7 @@ export default function ProductDisclaimerPage() {
         </p>
         <h2 className="mt-6 text-sm font-bold text-white">Images and descriptions</h2>
         <p className="mt-2 text-sm leading-7 text-white/60">
-          An image URL does not by itself establish that the image matches the exact product and pack. Some image matches are still under review. Descriptions may be incomplete and must not be treated as a substitute for the product's physical label, ingredients list, directions or warnings.
+          An image URL does not by itself establish that the image matches the exact product and pack. Some image matches are still under review. Descriptions may be incomplete and must not be treated as a substitute for the product&apos;s physical label, ingredients list, directions or warnings.
         </p>
         <h2 className="mt-6 text-sm font-bold text-white">Health, food and cosmetic information</h2>
         <p className="mt-2 text-sm leading-7 text-white/60">
