@@ -108,6 +108,11 @@ function Character({ passwordFocus }: { passwordFocus: boolean }) {
           <circle cx="88" cy="200" r="11" fill="url(#mascot-skin)" />
           <circle cx="252" cy="200" r="11" fill="url(#mascot-skin)" />
         </g>
+        <g className="auth-mascot__hands">
+          <ellipse cx="151" cy="165" rx="14" ry="10" fill="url(#mascot-skin)" stroke="#ffe2ca" strokeOpacity=".65" strokeWidth="2" />
+          <ellipse cx="190" cy="165" rx="14" ry="10" fill="url(#mascot-skin)" stroke="#ffe2ca" strokeOpacity=".65" strokeWidth="2" />
+          <path d="M139 163c3-7 7-10 12-10M178 153c5 0 9 3 12 10" fill="none" stroke="#fff0e4" strokeOpacity=".65" strokeWidth="2" strokeLinecap="round" />
+        </g>
         <path d="M131 292c11 8 24 12 39 12s28-4 39-12" fill="none" stroke="#b4fbf2" strokeOpacity=".4" strokeWidth="2" strokeLinecap="round" />
       </svg>
       <span className="auth-mascot__spark auth-mascot__spark--one" />
@@ -344,24 +349,24 @@ export default function LoginExperience() {
                   </label>
 
                   {mode !== "forgot" && (
-                    <label className="auth-field-label">
-                      Password
+                    <div className="auth-field-label">
+                      <label htmlFor="customer-password">Password</label>
                       <span className="auth-input-wrap">
                         <KeyRound size={17} aria-hidden="true" />
-                        <input type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete={mode === "register" ? "new-password" : "current-password"} required minLength={8} placeholder="At least 8 characters" />
+                        <input id="customer-password" type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete={mode === "register" ? "new-password" : "current-password"} required minLength={8} placeholder="At least 8 characters" />
                         <button type="button" className="auth-eye-button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? "Hide password" : "Show password"}>{showPassword ? <EyeOff size={17} /> : <Eye size={17} />}</button>
                       </span>
-                    </label>
+                    </div>
                   )}
 
                   {mode === "register" && (
-                    <label className="auth-field-label">
-                      Confirm password
+                    <div className="auth-field-label">
+                      <label htmlFor="customer-confirm-password">Confirm password</label>
                       <span className="auth-input-wrap">
                         <LockKeyhole size={17} aria-hidden="true" />
-                        <input type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete="new-password" required minLength={8} placeholder="Enter password again" />
+                        <input id="customer-confirm-password" type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete="new-password" required minLength={8} placeholder="Enter password again" />
                       </span>
-                    </label>
+                    </div>
                   )}
 
                   {mode === "login" && (
