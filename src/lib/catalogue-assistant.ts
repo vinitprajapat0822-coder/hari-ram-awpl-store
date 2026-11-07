@@ -44,7 +44,7 @@ const STOPWORDS = new Set((
 
 const SYNONYMS: Record<string, string> = {
   tel: "oil", sabun: "soap", chai: "tea", shahad: "honey", kapde: "apparel", kapda: "apparel",
-  daal: "dal", mirch: "chilli", haldi: "turmeric", jeera: "cumin", dhaniya: "coriander",
+  daal: "dal", masale: "masala", masalon: "masala", masalas: "masala", mirch: "chilli", haldi: "turmeric", jeera: "cumin", dhaniya: "coriander",
 };
 
 const GUARDS: { kind: "medical" | "business" | "logistics" | "ingredients"; pattern: RegExp }[] = [
