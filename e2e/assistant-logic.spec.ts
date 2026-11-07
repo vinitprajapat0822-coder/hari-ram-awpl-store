@@ -99,6 +99,7 @@ test.describe("catalogue assistant logic (no browser)", () => {
     const reply = answerQuery("who is the seller", products);
     expect(reply.kind).toBe("seller-info");
     expect(reply.text).toMatch(/not the official AWPL website/i);
+    expect(reply.text).toMatch(/seller for this storefront is Hariram/i);
     expect(reply.text).not.toMatch(/\d{10}|@|gstin|fssai/i);
   });
 
