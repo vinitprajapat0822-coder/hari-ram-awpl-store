@@ -204,7 +204,7 @@ export default function ProductDetailClient({ product }: Props) {
                   rel="noreferrer"
                   className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-2xl border border-teal-100/20 bg-teal-100/[0.06] px-4 py-3 text-sm font-bold text-teal-100 transition-colors hover:bg-teal-100/[0.11]"
                 >
-                  <MessageCircle size={17} aria-hidden="true" /> Ask store
+                  <MessageCircle size={17} aria-hidden="true" /> {t("productAskStore")}
                 </a>
               </div>
               <p className="mt-3 text-[10px] leading-5 text-white/35">
@@ -218,7 +218,7 @@ export default function ProductDetailClient({ product }: Props) {
                 <h2 className="text-sm font-extrabold text-white">{t("sellerStock")}</h2>
               </div>
               <div className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4">
-                <p className="text-sm font-bold text-white">Hari Ram AWPL Store</p>
+                <p className="text-sm font-bold text-white">{lang === "hi" ? "Hari Ram AWPL स्टोर" : "Hari Ram AWPL Store"}</p>
                 <p className="mt-1 text-[11px] text-white/45">{t("storeOwnerNotListed")}</p>
                 <a href={sellerContactUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-teal-100 hover:text-white">
                   {t("contactSellerWhatsapp")} <ExternalLink size={13} aria-hidden="true" />
