@@ -20,7 +20,7 @@ function ProductCard({ product }: Props) {
   const productName = lang === "hi" && product.nameHi ? product.nameHi : product.name;
   const productDescription = lang === "hi" && product.descriptionHi ? product.descriptionHi : product.description;
   const canOrder = product.status === "VERIFIED";
-  const reviewLabel = product.status === "PRICE_REVIEW_REQUIRED" ? (lang === "hi" ? "एमआरपी समीक्षा" : "MRP review") : (lang === "hi" ? "विवरण की समीक्षा" : "Details under review");
+  const reviewLabel = product.status === "PRICE_REVIEW_REQUIRED" ? t("priceReviewRequired") : t("productDetailsReview");
   const listedMrp = Number.isFinite(product.mrp) && product.mrp > 0 ? product.mrp : 0;
 
   const handleAdd = () => {
