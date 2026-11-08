@@ -418,4 +418,8 @@ export const hi: { [K in keyof typeof en]: string } = {
   authSignOutBusy: "साइन आउट हो रहा है…",
   emailPlaceholder: "name@example.com",
   priceReviewRequired: "एमआरपी समीक्षा",
+  orderAcceptanceFooter: "पूछताछ या WhatsApp संदेश भेजना ऑर्डर की स्वीकृति नहीं है। विक्रेता को वर्तमान एमआरपी, उत्पाद की उपलब्धता, डिलीवरी विवरण और ऑर्डर की स्वीकृति की अलग से पुष्टि करनी होगी।",
+  language: "भाषा",
+  switchToEnglish: "अंग्रेज़ी भाषा चुनें",
+  switchToHindi: "हिंदी भाषा चुनें",
 };
