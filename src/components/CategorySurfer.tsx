@@ -1,29 +1,19 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
+import { useLanguage } from "@/i18n/useLanguage";
 
-type Props = {
-  categories: string[];
-  activeCategory: string;
-  onSelect: (category: string) => void;
-};
+type Props = { categories: string[]; activeCategory: string; onSelect: (category: string) => void };
 
-export default function CategorySurfer({
-  categories,
-  activeCategory,
-  onSelect,
-}: Props) {
+export default function CategorySurfer({ categories, activeCategory, onSelect }: Props) {
   const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
   const reducedMotion = useReducedMotion();
+  const { categoryLabel } = useLanguage();
 
   useEffect(() => {
     const activeButton = buttonRefs.current.get(activeCategory);
-    activeButton?.scrollIntoView({
-      behavior: reducedMotion ? "auto" : "smooth",
-      block: "nearest",
-      inline: "center",
-    });
+    activeButton?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "nearest", inline: "center" });
   }, [activeCategory, reducedMotion]);
 
   return (
@@ -31,29 +21,17 @@ export default function CategorySurfer({
       {categories.map((category) => {
         const active = activeCategory === category;
         return (
-          <motion.button
+          <button
             key={category}
-            ref={(element) => {
-              if (element) buttonRefs.current.set(category, element);
-              else buttonRefs.current.delete(category);
-            }}
+            ref={(element) => { if (element) buttonRefs.current.set(category, element); else buttonRefs.current.delete(category); }}
             type="button"
-            layout
             onClick={() => onSelect(category)}
             aria-pressed={active}
-            className={"category-chip category-surfer__chip" + (active ? " is-active" : "")}
-            transition={{ type: "spring", stiffness: 420, damping: 34 }}
+            className={"category-chip category-surfer__chip focus-visible:amber" + (active ? " is-active" : "")}
           >
-            {active && (
-              <motion.span
-                layoutId="category-surfer-active"
-                className="category-surfer__active-surface"
-                transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                aria-hidden="true"
-              />
-            )}
-            <span className="relative z-10">{category}</span>
-          </motion.button>
+            {active && <span className="category-surfer__active-surface" aria-hidden="true" />}
+            <span className="relative z-10">{categoryLabel(category)}</span>
+          </button>
         );
       })}
     </nav>
