@@ -132,7 +132,7 @@ export default function CatalogueAssistant() {
           <header className="flex items-start justify-between gap-3 border-b border-white/[0.08] px-4 py-3">
             <div>
               <h2 className="text-sm font-bold text-white">{t("catalogueAssistantTitle")}</h2>
-              <p className="mt-1 text-[11px] leading-5 text-white/85">{lang === "hi" ? t("assistantDisclaimer") : "Automated catalogue helper, not AI or an AWPL service. This runs in your browser; questions are not stored. The WhatsApp link opens a prefilled message for you to review and send."}</p>
+              <p className="mt-1 text-[11px] leading-5 text-white/85">{t("assistantDisclaimer")}</p>
             </div>
             <button type="button" onClick={() => close(true)} aria-label={t("assistantClose")} data-testid="assistant-close" className="focus-visible:amber inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 text-white/85 hover:text-white">
               <X size={16} aria-hidden="true" />
@@ -161,10 +161,10 @@ export default function CatalogueAssistant() {
                     })}
                   </ul>
                 )}
-                {message.reply.products.length > 0 && <p className="text-[10px] leading-5 text-white/85">{lang === "hi" ? t("assistantProductMrpNoticeHindi") : "MRP is as listed in this catalogue. Confirm with the store before ordering."}</p>}
+                {message.reply.products.length > 0 && <p className="text-[10px] leading-5 text-white/85">{lang === "hi" ? t("assistantProductMrpNoticeHindi") : t("assistantMrpNotice")}</p>}
                 {message.reply.offerStore && (
                   <a href={getWhatsAppUrl(askStoreMessage(message.question))} target="_blank" rel="noopener noreferrer" className="focus-visible:amber inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-teal-100/90 hover:text-teal-50">
-                    {lang === "hi" ? t("assistantOpenWhatsappHindi") : "Ask the store on WhatsApp"}
+                    {lang === "hi" ? t("assistantOpenWhatsappHindi") : t("assistantAskStoreWhatsapp")}
                     <ExternalLink size={12} aria-hidden="true" />
                   </a>
                 )}
