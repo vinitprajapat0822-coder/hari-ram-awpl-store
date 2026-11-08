@@ -392,6 +392,12 @@ export const en = {
   productVerifiedStatus: "Catalogue record verified",
   productDetailsReview: "Details under review",
   productAskStore: "Ask store",
+  authWelcomeTo: "Welcome to",
+  authStoreSuffix: "Store",
+  authIntro: "Sign in to manage your customer account. Browse the product catalogue without signing in.",
+  passwordPlaceholder: "At least 8 characters",
+  passwordConfirmAgain: "Enter it again",
+  authConfigNotReady: "Customer sign-in is not configured yet.",
 } as const;
 
 export type TranslationKey = keyof typeof en;
