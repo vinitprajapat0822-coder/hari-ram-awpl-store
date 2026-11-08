@@ -5,6 +5,8 @@ import type { ProductMasterRecord } from "./catalogue";
 type ImportedCatalogueSeed = {
   id: string;
   name: string;
+  nameHi?: string;
+  descriptionHi?: string;
   category: ProductMasterRecord["category"];
   mrp: number;
   packSize: string;
@@ -248,7 +250,8 @@ export const awplProducts: ProductMasterRecord[] = [
   {
     id: "awpl-herbal-hairdoc",
     name: "HAIRDOC OIL",
-    nameHi: null,
+    nameHi: "HAIRDOC तेल",
+    descriptionHi: "HAIRDOC हेयर ऑयल। सामग्री और उपयोग संबंधी निर्देश उत्पाद के लेबल पर पढ़ें। पैक आकार: 100.00 ML।",
     brand: null,
     category: "sniss-herbal",
     subcategory: null,
@@ -275,7 +278,8 @@ export const awplProducts: ProductMasterRecord[] = [
   {
     id: "awpl-oral-dentodoc",
     name: "DENTODOC CREAM",
-    nameHi: null,
+    nameHi: "DENTODOC क्रीम",
+    descriptionHi: "DENTODOC ओरल केयर क्रीम। सामग्री और उपयोग संबंधी निर्देश उत्पाद के लेबल पर पढ़ें। पैक आकार: 100.00 GM।",
     brand: null,
     category: "oral-care",
     subcategory: null,
