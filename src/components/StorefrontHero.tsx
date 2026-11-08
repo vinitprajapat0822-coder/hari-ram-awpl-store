@@ -25,7 +25,7 @@ export default function StorefrontHero({ productCount, categoryCount, populatedC
         <motion.div className="storefront-hero__copy" {...entrance(0.04)}>
           <div className="storefront-hero__eyebrow">
             <span className="storefront-hero__brand-mark">H</span>
-            <span>HARI RAM <i /> AWPL STORE</span>
+            <span>HARI RAM <i /> AWPL {t("authStoreSuffix").toUpperCase()}</span>
             <span className="storefront-hero__eyebrow-tag"><Sparkles size={12} aria-hidden="true" />{t("heroEyebrow")}</span>
           </div>
           <h1 id="storefront-hero-title" aria-label={t("heroTitle")} className="storefront-hero__title">
