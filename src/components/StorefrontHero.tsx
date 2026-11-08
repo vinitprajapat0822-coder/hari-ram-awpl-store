@@ -1,20 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, BadgeCheck, CheckCircle2, Layers3, PackageSearch, ShieldCheck, Sparkles } from "lucide-react";
 import { useLanguage } from "@/i18n/useLanguage";
 
 type Props = { productCount: number; categoryCount: number; populatedCategoryCount: number; featuredCategories: string[] };
 
 export default function StorefrontHero({ productCount, categoryCount, populatedCategoryCount, featuredCategories }: Props) {
-  const reducedMotion = useReducedMotion();
   const { t, categoryLabel, formatNumber } = useLanguage();
-  const entrance = (delay: number) => ({
-    initial: reducedMotion ? false : { opacity: 0, y: 18 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: reducedMotion ? 0 : 0.55, delay: reducedMotion ? 0 : delay, ease: "easeOut" as const },
-  });
 
   return (
     <section className="storefront-hero" aria-label={t("heroAria")}>
@@ -22,7 +15,7 @@ export default function StorefrontHero({ productCount, categoryCount, populatedC
       <div className="storefront-hero__glow storefront-hero__glow--one" aria-hidden="true" />
       <div className="storefront-hero__glow storefront-hero__glow--two" aria-hidden="true" />
       <div className="storefront-hero__layout">
-        <motion.div className="storefront-hero__copy" {...entrance(0.04)}>
+        <div className="storefront-hero__copy motion-enter motion-enter--left">
           <div className="storefront-hero__eyebrow">
             <span className="storefront-hero__brand-mark">H</span>
             <span>HARI RAM <i /> AWPL {t("authStoreSuffix").toUpperCase()}</span>
@@ -43,8 +36,8 @@ export default function StorefrontHero({ productCount, categoryCount, populatedC
             <div className="storefront-hero__stat"><strong>{formatNumber(categoryCount)}</strong><span>{t("categoryCountLabel")}</span></div>
             <div className="storefront-hero__stat storefront-hero__stat--note"><span className="storefront-hero__stat-icon"><BadgeCheck size={16} aria-hidden="true" /></span><span><b>{t("mrpFirst")}</b><small>{t("clearPricing")}</small></span></div>
           </div>
-        </motion.div>
-        <motion.div className="storefront-hero__visual" {...entrance(0.16)} role="group" aria-label={t("catalogueOverview")}>
+        </div>
+        <div className="storefront-hero__visual motion-enter motion-enter--right" role="group" aria-label={t("catalogueOverview")}>
           <div className="storefront-hero__orbit storefront-hero__orbit--outer" aria-hidden="true" />
           <div className="storefront-hero__orbit storefront-hero__orbit--inner" aria-hidden="true" />
           <div className="storefront-hero__showcase">
@@ -67,7 +60,7 @@ export default function StorefrontHero({ productCount, categoryCount, populatedC
             <CheckCircle2 className="storefront-hero__float-check" size={16} aria-hidden="true" />
           </div>
           <span className="storefront-hero__visual-caption">{t("browseCompare")}</span>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
