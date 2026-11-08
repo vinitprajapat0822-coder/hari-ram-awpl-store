@@ -354,4 +354,13 @@ export const hi: typeof en = {
   assistantPackPending: "पैक आकार की जानकारी उपलब्ध नहीं",
   assistantConversation: "बातचीत",
   assistantAskProduct: "उत्पाद, श्रेणी या कीमत के बारे में पूछें",
+
+  customerSignInNotConfigured: "ग्राहक साइन-इन अभी कॉन्फ़िगर नहीं है।",
+  customerAccountAccess: "ग्राहक खाते में प्रवेश",
+  passwordLengthPlaceholder: "कम से कम 8 अक्षर",
+  enterItAgain: "दोबारा दर्ज करें",
+  forgotPasswordHelp: "अपने खाते में उपयोग किया गया ईमेल पता दर्ज करें। रीसेट लिंक सुरक्षित पासवर्ड अपडेट पृष्ठ खोलेगा।",
+  newPasswordLabel: "नया पासवर्ड",
+  confirmNewPassword: "नए पासवर्ड की पुष्टि करें",
+  passwordRecoveryNotConfigured: "पासवर्ड रिकवरी कॉन्फ़िगर नहीं है।",
 };
