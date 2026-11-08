@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
 };
 
-const basePath = process.env.NODE_ENV === "production" ? "/hari-ram-awpl-store" : "";
+const basePath = "/hari-ram-awpl-store";
 
 const restoreLanguageScript = `(function(){try{var l=localStorage.getItem('lang');if(l==='hi'||l==='en'){document.documentElement.lang=l;}}catch(e){}})();`;
 
