@@ -27,9 +27,9 @@ export default function ResetPasswordForm() {
       });
       return () => data.subscription.unsubscribe();
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : t("passwordRecoveryNotConfigured"));
+      setError(t("passwordRecoveryNotConfigured"));
     }
-  }, []);
+  }, [t]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
