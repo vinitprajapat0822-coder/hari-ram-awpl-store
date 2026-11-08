@@ -415,6 +415,7 @@ export const en = {
   storefrontName: "Hari Ram AWPL Store",
   authSignOutBusy: "Signing out…",
   emailPlaceholder: "name@example.com",
+  priceReviewRequired: "MRP review",
 } as const;
 
 export type TranslationKey = keyof typeof en;
