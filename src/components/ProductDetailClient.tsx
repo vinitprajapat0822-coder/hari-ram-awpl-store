@@ -37,7 +37,7 @@ function displayDate(value: string | null | undefined, lang: "en" | "hi"): strin
 
 export default function ProductDetailClient({ product }: Props) {
   const addToCart = useStore((state) => state.addToCart);
-  const { lang, t, categoryLabel, formatDate } = useLanguage();
+  const { lang, t, categoryLabel } = useLanguage();
   const productName = lang === "hi" && product.nameHi ? product.nameHi : product.name;
   const productDescription = lang === "hi" && product.descriptionHi ? product.descriptionHi : product.description;
   const [added, setAdded] = useState(false);
@@ -55,23 +55,13 @@ export default function ProductDetailClient({ product }: Props) {
         ? t("availabilityReview")
         : t("stockNotSynced");
 
-  const enquiryMessage = [
-    "Hello Hari Ram Store,",
-    "I want to enquire about this product:",
-    "Product: " + product.name,
-    "Pack size: " + (product.qty || "Not listed"),
-    "Listed MRP: " + formatPrice(product.mrp),
-    "Please confirm current MRP, stock availability and delivery before order.",
-  ].join("\n");
+  const enquiryMessage = lang === "hi"
+    ? ["नमस्ते Hari Ram Store,", "मैं इस उत्पाद के बारे में पूछताछ करना चाहता/चाहती हूँ:", "उत्पाद: " + productName, "पैक आकार: " + (product.qty || t("notListed")), "सूचीबद्ध एमआरपी: " + formatPrice(product.mrp), t("confirmCurrentStockDelivery")].join("\n")
+    : ["Hello Hari Ram Store,", "I want to enquire about this product:", "Product: " + productName, "Pack size: " + (product.qty || "Not listed"), "Listed MRP: " + formatPrice(product.mrp), "Please confirm current MRP, stock availability and delivery before order."].join("\n");
 
-  const reviewMessage = [
-    "Hello Hari Ram Store,",
-    "I want to share feedback for:",
-    "Product: " + product.name,
-    "Rating: " + reviewRating + "/5",
-    "Comment: " + reviewComment.trim(),
-    "Please review this feedback before publishing it.",
-  ].join("\n");
+  const reviewMessage = lang === "hi"
+    ? ["नमस्ते Hari Ram Store,", "मैं इस उत्पाद के बारे में प्रतिक्रिया साझा करना चाहता/चाहती हूँ:", "उत्पाद: " + productName, "रेटिंग: " + reviewRating + "/5", "टिप्पणी: " + reviewComment.trim(), "प्रकाशित करने से पहले कृपया इस प्रतिक्रिया की समीक्षा करें।"].join("\n")
+    : ["Hello Hari Ram Store,", "I want to share feedback for:", "Product: " + productName, "Rating: " + reviewRating + "/5", "Comment: " + reviewComment.trim(), "Please review this feedback before publishing it."].join("\n");
   const reviewUrl = reviewRating > 0 && reviewComment.trim()
     ? getWhatsAppUrl(reviewMessage)
     : null;
@@ -161,7 +151,7 @@ export default function ProductDetailClient({ product }: Props) {
             <GlassCard className="rounded-[28px] p-5 sm:p-6">
               <div className="mb-3 flex flex-wrap items-center gap-2">
                 <span className="rounded-full border border-teal-100/15 bg-teal-100/[0.06] px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.15em] text-teal-100/75">
-                  {product.category}
+                  {categoryLabel(product.category)}
                 </span>
                 {product.status === "VERIFIED" ? (
                   <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200/15 bg-emerald-200/[0.06] px-2.5 py-1.5 text-[9px] font-bold text-emerald-100/75">
@@ -175,9 +165,8 @@ export default function ProductDetailClient({ product }: Props) {
               </div>
 
               <h1 className="text-[clamp(1.5rem,4vw,2.25rem)] font-black leading-tight tracking-[-0.04em] text-white">
-                {product.name}
+                {productName}
               </h1>
-              {product.nameHi && <p className="mt-2 text-sm text-white/55">{product.nameHi}</p>}
 
               <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px] text-white/45">
                 <span className="inline-flex items-center gap-1.5">
@@ -296,7 +285,7 @@ export default function ProductDetailClient({ product }: Props) {
             )}
             <div className="mt-5 border-t border-white/[0.08] pt-5">
               <h3 className="text-xs font-extrabold text-white">{t("shareFeedback")}</h3>
-              <div className="mt-3 flex items-center gap-1.5" role="group" aria-label="{t("chooseProductRating")}">
+              <div className="mt-3 flex items-center gap-1.5" role="group" aria-label={t("chooseProductRating")}>
                 {[1, 2, 3, 4, 5].map((value) => (
                   <button
                     key={value}
