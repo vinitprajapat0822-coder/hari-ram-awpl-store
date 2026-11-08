@@ -114,7 +114,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const scrollToRestore = pendingScrollRestore.current;
     if (scrollToRestore !== null) {
       requestAnimationFrame(() => {
-        window.scrollTo(0, scrollToRestore);
+        window.scrollTo({ left: 0, top: scrollToRestore, behavior: "instant" });
         requestAnimationFrame(() => {
           if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
         });
