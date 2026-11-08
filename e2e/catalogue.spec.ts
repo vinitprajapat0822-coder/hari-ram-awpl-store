@@ -103,17 +103,22 @@ test("the navbar GlassCard applies the crystal refraction SVG filter", async ({ 
     const glassCards = Array.from(document.querySelectorAll("header [data-liquid-glass], header .lg-glass"));
     const filter = document.getElementById("hari-ram-crystal-refraction");
     const appliedBackdrops = glassCards.map((element) => {
-      const own = getComputedStyle(element).backdropFilter;
-      const before = getComputedStyle(element, "::before").backdropFilter;
-      return { own, before };
+      const ownStyle = getComputedStyle(element);
+      const beforeStyle = getComputedStyle(element, "::before");
+      return {
+        own: ownStyle.backdropFilter,
+        before: beforeStyle.backdropFilter,
+        ownFilter: ownStyle.filter,
+        beforeFilter: beforeStyle.filter,
+      };
     });
     return {
       glassCardCount: glassCards.length,
       filterOuterHTML: filter?.outerHTML ?? null,
       hasFeTurbulence: Boolean(filter?.querySelector("feTurbulence")),
       hasFeDisplacementMap: Boolean(filter?.querySelector("feDisplacementMap")),
-      appliedToGlassCount: appliedBackdrops.filter(({ own, before }) =>
-        (own + " " + before).includes("hari-ram-crystal-refraction")
+      appliedToGlassCount: appliedBackdrops.filter(({ own, before, ownFilter, beforeFilter }) =>
+        (own + " " + before + " " + ownFilter + " " + beforeFilter).includes("hari-ram-crystal-refraction")
       ).length,
       appliedBackdrops,
     };
