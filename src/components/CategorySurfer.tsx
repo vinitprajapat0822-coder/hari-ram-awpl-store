@@ -16,7 +16,7 @@ export default function CategorySurfer({ categories, activeCategory, onSelect }:
   }, [activeCategory]);
 
   return (
-    <nav id="catalogue-categories" aria-label="Product categories" className="category-surfer no-scrollbar mb-5 flex scroll-mt-28 gap-2 overflow-x-auto pb-2">
+    <nav id="catalogue-categories" aria-label={useLanguage().t("categoryNavigation")} className="category-surfer no-scrollbar mb-5 flex scroll-mt-28 gap-2 overflow-x-auto pb-2">
       {categories.map((category) => {
         const active = activeCategory === category;
         return (
