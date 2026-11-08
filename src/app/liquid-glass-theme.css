@@ -65,3 +65,33 @@ body { color: #EAF6F5; }
 @media (max-width: 640px) {
   .ambient-backdrop { background-attachment: scroll; }
 }
+
+/* Crystal refraction layer: adds a fine turbulence displacement over the
+   package's per-component ray-traced refraction without replacing that map. */
+.crystal-refraction-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+@supports (backdrop-filter: url(#hari-ram-crystal-refraction)) {
+  html:not([data-lg-scrolling]) .lg-glass[data-lg-refract]:not([data-lg-offscreen]):not(.lg-glass--host) {
+    backdrop-filter:
+      url(#hari-ram-crystal-refraction)
+      var(--lg-filter, )
+      blur(var(--lg-glass-blur, var(--lg-blur)))
+      saturate(var(--lg-saturate))
+      brightness(var(--lg-brightness));
+  }
+
+  html:not([data-lg-scrolling]) .lg-glass.lg-glass--host[data-lg-refract]:not([data-lg-offscreen])::before {
+    backdrop-filter:
+      url(#hari-ram-crystal-refraction)
+      var(--lg-filter, )
+      blur(var(--lg-glass-blur, var(--lg-blur)))
+      saturate(var(--lg-saturate))
+      brightness(var(--lg-brightness));
+  }
+}
