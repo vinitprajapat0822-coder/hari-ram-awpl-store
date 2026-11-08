@@ -20,7 +20,7 @@ function ProductCard({ product }: Props) {
   const productName = lang === "hi" && product.nameHi ? product.nameHi : product.name;
   const productDescription = lang === "hi" && product.descriptionHi ? product.descriptionHi : product.description;
   const canOrder = product.status === "VERIFIED";
-  const reviewLabel = product.status === "PRICE_REVIEW_REQUIRED" ? "एमआरपी समीक्षा" : "विवरण की समीक्षा";
+  const reviewLabel = product.status === "PRICE_REVIEW_REQUIRED" ? (lang === "hi" ? "एमआरपी समीक्षा" : "MRP review") : (lang === "hi" ? "विवरण की समीक्षा" : "Details under review");
   const listedMrp = Number.isFinite(product.mrp) && product.mrp > 0 ? product.mrp : 0;
 
   const handleAdd = () => {
@@ -40,7 +40,7 @@ function ProductCard({ product }: Props) {
   };
 
   return (
-    <article role="group" aria-label={"Product " + productName} className="catalogue-card product-card flex h-full flex-col rounded-[22px] p-3 sm:p-4">
+    <article role="group" aria-label={(lang === "hi" ? "उत्पाद " : "Product ") + productName} className="catalogue-card product-card flex h-full flex-col rounded-[22px] p-3 sm:p-4">
       <Link href={"/product/" + encodeURIComponent(product.id) + "/"} className="product-card__details block min-w-0 flex-1 rounded-xl focus-visible:amber">
         <div onPointerMove={handlePointerMove}>
           <ProductArtwork product={product} showAttribution={false} />
