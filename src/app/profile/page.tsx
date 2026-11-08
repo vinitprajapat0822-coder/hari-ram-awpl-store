@@ -22,14 +22,14 @@ function ProfileContent() {
   useEffect(() => { setForm(user); }, [user]);
 
   const handleSave = () => {
-    const digits = form.phone.replace(/\\D/g, "");
+    const digits = form.phone.replace(/\D/g, "");
     const phone = digits.length === 12 && digits.startsWith("91") ? digits.slice(2) : digits;
 
     if (!form.name.trim() || !form.address.trim()) {
       setError(t("profileRequiredNameAddress"));
       return;
     }
-    if (!/^[6-9]\\d{9}$/.test(phone)) {
+    if (!/^[6-9]\d{9}$/.test(phone)) {
       setError(t("profileInvalidPhone"));
       return;
     }
