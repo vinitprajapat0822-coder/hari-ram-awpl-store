@@ -1458,3 +1458,24 @@ small, .text-sm { line-height: 1.5; }
   .mobile-dock__item, .product-card, .btn-cyan, .hero-cta { transition: none !important; transform: none !important; }
   .mobile-dock__link::after { transition: none; }
 }
+
+
+/* Compact design tokens and minimum hit area for all controls. */
+:root {
+  --radius-card: 22px;
+  --radius-button: 12px;
+  --radius-input: 10px;
+  --radius-pill: 9999px;
+}
+.catalogue-card, .glass-card, .liquid-glass-featured, .storefront-hero__showcase {
+  border-radius: var(--radius-card) !important;
+}
+button:not(.language-switcher button) { border-radius: var(--radius-button); }
+input, textarea, select { border-radius: var(--radius-input); }
+.language-switcher { min-height: 48px; }
+.language-switcher button { min-height: 44px; min-width: 44px; }
+.mobile-dock__link { min-height: 54px; min-width: 44px; }
+:where(a, button, input, textarea, select, [role="button"]):focus-visible {
+  outline: 2px solid #FFB300 !important;
+  outline-offset: 2px !important;
+}
