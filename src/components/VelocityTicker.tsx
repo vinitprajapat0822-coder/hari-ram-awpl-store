@@ -18,7 +18,7 @@ export default function VelocityTicker({ productCount, categoryCount }: Props) {
         t("tickerStockDelivery"),
       ]
     : [
-        "🌱 Everyday wellness & care",
+        t("tickerWellness"),
         "🛍️ " + formatNumber(productCount) + " " + t("tickerListedRecords"),
         "🧭 " + formatNumber(categoryCount) + " " + t("tickerCategories"),
         t("tickerPackDetails"),
