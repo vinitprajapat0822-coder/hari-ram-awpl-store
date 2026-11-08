@@ -90,7 +90,13 @@ test("product detail and cart retain the selected verified SKU", async ({ page }
 
 test("profile route renders labelled delivery fields", async ({ page }) => {
   await page.goto("profile/");
-  await expect(page.getByRole("heading", { name: "Your Details"test("the navbar GlassCard applies the crystal refraction SVG filter", async ({ page }) => {
+  await expect(page.getByRole("heading", { name: "Your Details" })).toBeVisible();
+  await expect(page.getByLabel("Full name *")).toBeVisible();
+  await expect(page.getByLabel("Mobile Number *")).toBeVisible();
+  await expect(page.getByLabel("Delivery Address *")).toBeVisible();
+});
+
+test("the navbar GlassCard applies the crystal refraction SVG filter", async ({ page }) => {
   await page.goto("./");
   await expect.poll(() => page.locator("header [data-lg-refract]").count()).toBeGreaterThan(0);
   const report = await page.evaluate(() => {
