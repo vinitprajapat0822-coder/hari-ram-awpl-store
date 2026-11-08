@@ -39,9 +39,10 @@ function visibleEnglishLeaks(bodyText: string) {
     if (!english || english.length < 4 || english === hindi) return [];
     const candidate = removeAllowedBrands(english).toLocaleLowerCase();
     if (candidate.length < 4) return [];
-    const escaped = candidate.replace(/[.*+?^${}()|[\]\\]/g, "\\    return visibleText.includes(candidate) ? [english] : [];");
-    const wholePhrase = new RegExp("(^|[^a-z])" + escaped.replace(/\\s+/g, "\\\\s+") + "($|[^a-z])", "i");
-    return wholePhrase.test(visibleText) ? [english] : [];
+    const wholeWord = /^[a-z]+$/i.test(candidate)
+      ? new RegExp("\\b" + candidate + "\\b", "i").test(visibleText)
+      : visibleText.includes(candidate);
+    return wholeWord ? [english] : [];
   });
 }
 
