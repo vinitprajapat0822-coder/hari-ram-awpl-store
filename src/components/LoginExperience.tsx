@@ -15,6 +15,8 @@ import {
   UserRound,
 } from "lucide-react";
 import { getSupabaseBrowserClient, setAuthRememberPreference } from "@/lib/supabase";
+import Navbar from "@/components/Navbar";
+import { useLanguage } from "@/i18n/useLanguage";
 
 type Mode = "login" | "register" | "forgot";
 
@@ -122,6 +124,7 @@ function Character({ passwordFocus }: { passwordFocus: boolean }) {
 }
 
 export default function LoginExperience() {
+  const { t } = useLanguage();
   const [mode, setMode] = useState<Mode>("login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -259,6 +262,7 @@ export default function LoginExperience() {
 
   return (
     <main className="auth-page relative isolate min-h-[calc(100svh-80px)] overflow-hidden px-4 pb-16 pt-8 sm:px-6 sm:pt-12">
+      <Navbar />
       <div className="auth-ambient auth-ambient--cyan" aria-hidden="true" />
       <div className="auth-ambient auth-ambient--violet" aria-hidden="true" />
       <div className="auth-grid absolute inset-0 -z-10" aria-hidden="true" />
@@ -272,11 +276,11 @@ export default function LoginExperience() {
         >
           <div className="auth-intro__eyebrow"><span /> INDEPENDENT CUSTOMER STORE</div>
           <h1 className="mt-3 text-3xl font-black leading-tight tracking-[-0.04em] text-white sm:text-4xl lg:text-[2.8rem]">
-            Welcome to <span className="auth-title-gradient">HARI RAM</span>
-            <span className="block text-white/75">AWPL Store</span>
+            {t("authWelcomeTo")} <span className="auth-title-gradient">HARI RAM</span>
+            <span className="block text-white/75">AWPL {t("authStoreSuffix")}</span>
           </h1>
           <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-slate-300/65 lg:mx-0">
-            Sign in to manage your customer account. Browse the product catalogue without signing in.
+            {t("authIntro")}
           </p>
           <Character passwordFocus={passwordFocus} />
           <div className="auth-trust-row">
