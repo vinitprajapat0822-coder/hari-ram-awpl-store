@@ -114,7 +114,7 @@ export default function Navbar() {
     setActiveHash(href === "/#catalogue" ? "#catalogue" : "");
   };
 
-  const activeLanguageLabel = lang === "en" ? "English" : "हिंदी";
+  const activeLanguageLabel = t(lang === "en" ? "english" : "hindi");
 
   return (
     <>
@@ -154,9 +154,9 @@ export default function Navbar() {
               <Search size={17} aria-hidden="true" />
               <span className="hidden sm:inline">{t("navSearch")}</span>
             </Link>
-            <div role="group" aria-label={lang === "hi" ? "भाषा" : "Language"} className="language-switcher">
-              <button type="button" onClick={() => setLang("en")} aria-pressed={lang === "en"} aria-label={lang === "hi" ? "EN, अंग्रेज़ी भाषा चुनें" : "EN, switch language to English"} title={activeLanguageLabel}>EN</button>
-              <button type="button" onClick={() => setLang("hi")} aria-pressed={lang === "hi"} aria-label="हिंदी भाषा चुनें" title={activeLanguageLabel}>हिं</button>
+            <div role="group" aria-label={t("language")} className="language-switcher">
+              <button type="button" onClick={() => setLang("en")} aria-pressed={lang === "en"} aria-label={"EN, " + t("switchToEnglish")} title={activeLanguageLabel}>EN</button>
+              <button type="button" onClick={() => setLang("hi")} aria-pressed={lang === "hi"} aria-label={"हिं, " + t("switchToHindi")} title={activeLanguageLabel}>हिं</button>
             </div>
           </div>
         </GlassCard>
