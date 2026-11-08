@@ -10,7 +10,7 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: catalogue-quality-${{ github.workflow }}-${{ github.ref }}
@@ -32,22 +32,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Generate npm lockfile with npm install (one-time bootstrap)
-        run: npm install --ignore-scripts --no-audit --no-fund
-
-      - name: Commit generated npm lockfile to this PR branch
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add package-lock.json
-          if git diff --cached --quiet; then
-            echo "package-lock.json is already committed"
-          else
-            git commit -m "chore: commit npm lockfile"
-            git push origin "HEAD:${GITHUB_HEAD_REF}"
-          fi
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
