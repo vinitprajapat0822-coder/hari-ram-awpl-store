@@ -154,9 +154,9 @@ export default function Navbar() {
               <Search size={17} aria-hidden="true" />
               <span className="hidden sm:inline">{t("navSearch")}</span>
             </Link>
-            <div role="group" aria-label="Language" className="language-switcher">
-              <button type="button" onClick={() => setLang("en")} aria-pressed={lang === "en"} aria-label="Switch language to English" title={activeLanguageLabel}>EN</button>
-              <button type="button" onClick={() => setLang("hi")} aria-pressed={lang === "hi"} aria-label="भाषा हिंदी में बदलें" title={activeLanguageLabel}>हिं</button>
+            <div role="group" aria-label={lang === "hi" ? "भाषा" : "Language"} className="language-switcher">
+              <button type="button" onClick={() => setLang("en")} aria-pressed={lang === "en"} aria-label={lang === "hi" ? "अंग्रेज़ी भाषा चुनें" : "Switch language to English"} title={activeLanguageLabel}>EN</button>
+              <button type="button" onClick={() => setLang("hi")} aria-pressed={lang === "hi"} aria-label="हिंदी भाषा चुनें" title={activeLanguageLabel}>हिं</button>
             </div>
           </div>
         </GlassCard>
