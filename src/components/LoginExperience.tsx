@@ -152,7 +152,7 @@ export default function LoginExperience() {
       });
       return () => data.subscription.unsubscribe();
     } catch (caught) {
-      setConfigWarning(caught instanceof Error ? caught.message : "Customer sign-in is not configured yet.");
+      setConfigWarning(caught instanceof Error ? caught.message : t("authConfigNotReady"));
     }
   }, []);
 
@@ -274,7 +274,7 @@ export default function LoginExperience() {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="auth-intro order-2 text-center lg:order-1 lg:text-left"
         >
-          <div className="auth-intro__eyebrow"><span /> INDEPENDENT CUSTOMER STORE</div>
+          <div className="auth-intro__eyebrow"><span /> {t("authIndependentStorefront")}</div>
           <h1 className="mt-3 text-3xl font-black leading-tight tracking-[-0.04em] text-white sm:text-4xl lg:text-[2.8rem]">
             {t("authWelcomeTo")} <span className="auth-title-gradient">HARI RAM</span>
             <span className="block text-white/75">AWPL {t("authStoreSuffix")}</span>
@@ -284,8 +284,8 @@ export default function LoginExperience() {
           </p>
           <Character passwordFocus={passwordFocus} />
           <div className="auth-trust-row">
-            <span><ShieldCheck size={14} aria-hidden="true" /> Secure account access</span>
-            <span><LockKeyhole size={13} aria-hidden="true" /> Protected by Supabase Auth</span>
+            <span><ShieldCheck size={14} aria-hidden="true" /> {t("secureAccess")}</span>
+            <span><LockKeyhole size={13} aria-hidden="true" /> {t("protectedSupabase")}</span>
           </div>
           <Link href="/" className="auth-back-link">← Continue browsing the catalogue</Link>
         </motion.section>
@@ -295,19 +295,19 @@ export default function LoginExperience() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="auth-ring-frame order-1 mx-auto w-full max-w-[470px] lg:order-2"
-          aria-label="Customer account access"
+          aria-label={t("authCustomerAccount")}
         >
           <div className="auth-ring-frame__spin" aria-hidden="true" />
           <div className="auth-glass-card">
             {authenticatedEmail ? (
               <div className="py-7 text-center">
                 <span className="auth-success-mark"><CheckCircle2 size={28} aria-hidden="true" /></span>
-                <p className="auth-kicker mt-5">ACCOUNT CONNECTED</p>
-                <h2 className="mt-2 text-2xl font-extrabold text-white">You&apos;re signed in</h2>
+                <p className="auth-kicker mt-5">{t("authAccountConnected")}</p>
+                <h2 className="mt-2 text-2xl font-extrabold text-white">{t("signedIn")}</h2>
                 <p className="mt-2 break-all text-sm text-slate-300/65">{authenticatedEmail}</p>
-                <p className="mt-4 text-xs leading-5 text-slate-300/55">Your account session is active in this browser.</p>
+                <p className="mt-4 text-xs leading-5 text-slate-300/55">{t("sessionActive")}</p>
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <Link href="/" className="liquid-button auth-action">Browse catalogue <ArrowRight size={16} /></Link>
+                  <Link href="/" className="liquid-button auth-action">{t("authBrowseCatalogue")} <ArrowRight size={16} /></Link>
                   <button type="button" onClick={signOut} disabled={busy} className="auth-secondary-button">{busy ? "Signing out…" : "Sign out"}</button>
                 </div>
               </div>
@@ -315,7 +315,7 @@ export default function LoginExperience() {
               <>
                 <div className="mb-6 text-center">
                   <div className="auth-brand-icon"><ShieldCheck size={23} aria-hidden="true" /></div>
-                  <p className="auth-kicker mt-3">HARI RAM · CUSTOMER ACCOUNT</p>
+                  <p className="auth-kicker mt-3">HARI RAM · {t("authCustomerAccount")}</p>
                   <h2 className="mt-2 text-[1.7rem] font-extrabold tracking-tight text-white">
                     {mode === "login" ? "Welcome back" : mode === "register" ? "Create your account" : "Reset your password"}
                   </h2>
@@ -326,11 +326,11 @@ export default function LoginExperience() {
 
                 {mode !== "forgot" && (
                   <button type="button" onClick={signInWithGoogle} disabled={busy} className="auth-google-button">
-                    <GoogleMark /> <span>Continue with Google</span>
+                    <GoogleMark /> <span>{t("continueGoogle")}</span>
                   </button>
                 )}
 
-                {mode !== "forgot" && <div className="auth-divider"><span>OR CONTINUE WITH EMAIL</span></div>}
+                {mode !== "forgot" && <div className="auth-divider"><span>{t("authOrContinueWithEmail")}</span></div>}
 
                 <form onSubmit={submit} className="space-y-4" noValidate={false}>
                   <AnimatePresence initial={false}>
@@ -342,7 +342,7 @@ export default function LoginExperience() {
                         className="auth-field-label"
                       >
                         Full name
-                        <span className="auth-input-wrap"><UserRound size={17} aria-hidden="true" /><input value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" required minLength={2} maxLength={100} placeholder="Your full name" /></span>
+                        <span className="auth-input-wrap"><UserRound size={17} aria-hidden="true" /><input value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" required minLength={2} maxLength={100} placeholder={t("yourFullName")} /></span>
                       </motion.label>
                     )}
                   </AnimatePresence>
@@ -354,10 +354,10 @@ export default function LoginExperience() {
 
                   {mode !== "forgot" && (
                     <div className="auth-field-label">
-                      <label htmlFor="customer-password">Password</label>
+                      <label htmlFor="customer-password">{t("password")}</label>
                       <span className="auth-input-wrap">
                         <KeyRound size={17} aria-hidden="true" />
-                        <input id="customer-password" type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete={mode === "register" ? "new-password" : "current-password"} required minLength={8} placeholder="At least 8 characters" />
+                        <input id="customer-password" type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete={mode === "register" ? "new-password" : "current-password"} required minLength={8} placeholder={t("passwordPlaceholder")} />
                         <button type="button" className="auth-eye-button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? "Hide password" : "Show password"}>{showPassword ? <EyeOff size={17} /> : <Eye size={17} />}</button>
                       </span>
                     </div>
@@ -365,10 +365,10 @@ export default function LoginExperience() {
 
                   {mode === "register" && (
                     <div className="auth-field-label">
-                      <label htmlFor="customer-confirm-password">Confirm password</label>
+                      <label htmlFor="customer-confirm-password">{t("confirmPassword")}</label>
                       <span className="auth-input-wrap">
                         <LockKeyhole size={17} aria-hidden="true" />
-                        <input id="customer-confirm-password" type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete="new-password" required minLength={8} placeholder="Enter password again" />
+                        <input id="customer-confirm-password" type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete="new-password" required minLength={8} placeholder={t("passwordConfirmAgain")} />
                       </span>
                     </div>
                   )}
@@ -379,31 +379,31 @@ export default function LoginExperience() {
                         <input type="checkbox" checked={rememberMe} onChange={(event) => setRememberMe(event.target.checked)} className="auth-checkbox" />
                         Remember me
                       </label>
-                      <button type="button" onClick={() => selectMode("forgot")} className="font-semibold text-cyan-200 transition-colors hover:text-white">Forgot password?</button>
+                      <button type="button" onClick={() => selectMode("forgot")} className="font-semibold text-cyan-200 transition-colors hover:text-white">{t("forgotPassword")}</button>
                     </div>
                   )}
 
-                  {mode === "forgot" && <p className="text-[11px] leading-5 text-slate-300/55">Enter the email address used for your account. The reset link will open a secure password update page.</p>}
+                  {mode === "forgot" && <p className="text-[11px] leading-5 text-slate-300/55">{t("authResetHelp")}</p>}
 
                   {configWarning && <p className="auth-config-note" role="status">{configWarning}</p>}
                   {error && <p className="auth-error" role="alert">{error}</p>}
                   {notice && <p className="auth-notice" role="status">{notice}</p>}
 
                   <button type="submit" disabled={busy} className="liquid-button auth-action mt-2">
-                    {busy ? <><span className="auth-spinner" /> Please wait…</> : <>{mode === "login" ? "Sign in" : mode === "register" ? "Create account" : "Send reset link"} <ArrowRight size={16} /></>}
+                    {busy ? <><span className="auth-spinner" /> {t("pleaseWait")}</> : <>{mode === "login" ? t("signIn") : mode === "register" ? t("createAccount") : t("sendResetLink")} <ArrowRight size={16} /></>}
                   </button>
                 </form>
 
                 <div className="auth-switcher">
                   {mode === "forgot" ? (
-                    <button type="button" onClick={() => selectMode("login")}>← Back to sign in</button>
+                    <button type="button" onClick={() => selectMode("login")}>← {t("authBackToSignIn")}</button>
                   ) : mode === "login" ? (
-                    <>Don&apos;t have an account? <button type="button" onClick={() => selectMode("register")}>Register now</button></>
+                    <>{t("authNoAccount")} <button type="button" onClick={() => selectMode("register")}>{t("authRegisterNow")}</button></>
                   ) : (
-                    <>Already registered? <button type="button" onClick={() => selectMode("login")}>Sign in</button></>
+                    <>{t("authAlreadyRegistered")} <button type="button" onClick={() => selectMode("login")}>{t("signIn")}</button></>
                   )}
                 </div>
-                <p className="auth-privacy-note">Independent storefront. Your password is handled by Supabase Authentication, not stored by this website.</p>
+                <p className="auth-privacy-note">{t("authPrivacyNote")}</p>
               </>
             )}
           </div>
