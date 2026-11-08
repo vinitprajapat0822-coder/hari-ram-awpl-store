@@ -1,20 +1,19 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/i18n/useLanguage";
 
 type Props = { categories: string[]; activeCategory: string; onSelect: (category: string) => void };
 
 export default function CategorySurfer({ categories, activeCategory, onSelect }: Props) {
   const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
-  const reducedMotion = useReducedMotion();
   const { categoryLabel } = useLanguage();
 
   useEffect(() => {
     const activeButton = buttonRefs.current.get(activeCategory);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     activeButton?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "nearest", inline: "center" });
-  }, [activeCategory, reducedMotion]);
+  }, [activeCategory]);
 
   return (
     <nav id="catalogue-categories" aria-label="Product categories" className="category-surfer no-scrollbar mb-5 flex scroll-mt-28 gap-2 overflow-x-auto pb-2">
