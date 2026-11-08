@@ -15,7 +15,7 @@ type Props = { product: Product; showAttribution?: boolean };
 export default function ProductArtwork({ product }: Props) {
   const [imageFailed, setImageFailed] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const { lang } = useLanguage();
+  const { lang, categoryLabel } = useLanguage();
   const productName = lang === "hi" && product.nameHi ? product.nameHi : product.name;
   const hasProductImage = Boolean(product.image) && product.imageStatus !== "MISSING" && product.imageStatus !== "MISMATCH" && !imageFailed;
 
@@ -23,7 +23,7 @@ export default function ProductArtwork({ product }: Props) {
     <div className="product-media product-artwork mb-3" data-testid="product-artwork">
       <div className="product-artwork__fallback" data-testid="product-artwork-fallback" aria-hidden="true">
         <span className="product-artwork__monogram">{initialsFor(productName)}</span>
-        <span className="product-artwork__category">{product.category}</span>
+        <span className="product-artwork__category">{categoryLabel(product.category)}</span>
       </div>
       {hasProductImage && product.image && (
         <>
