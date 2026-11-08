@@ -398,6 +398,21 @@ export const en = {
   passwordPlaceholder: "At least 8 characters",
   passwordConfirmAgain: "Enter it again",
   authConfigNotReady: "Customer sign-in is not configured yet.",
+  authIndependentStorefront: "Independent customer store",
+  authAccountConnected: "Account connected",
+  authContinueBrowsingCatalogue: "Continue browsing the catalogue",
+  authBrowseCatalogue: "Browse catalogue",
+  authOrContinueWithEmail: "Or continue with email",
+  authResetHelp: "Enter the email address used for your account. The reset link will open a secure password update page.",
+  authBackToSignIn: "Back to sign in",
+  authNoAccount: "Don't have an account?",
+  authRegisterNow: "Register now",
+  authAlreadyRegistered: "Already registered?",
+  authCustomerAccount: "Customer account",
+  assistantAskStoreWhatsapp: "Ask the store on WhatsApp",
+  assistantMrpNotice: "MRP is as listed in this catalogue. Confirm with the store before ordering.",
+  storeInfoLabel: "Store information",
+  storefrontName: "Hari Ram AWPL Store",
 } as const;
 
 export type TranslationKey = keyof typeof en;
