@@ -394,4 +394,10 @@ export const hi: { [K in keyof typeof en]: string } = {
   productVerifiedStatus: "कैटलॉग रिकॉर्ड सत्यापित",
   productDetailsReview: "विवरण समीक्षा में",
   productAskStore: "स्टोर से पूछें",
+  authWelcomeTo: "स्वागत है",
+  authStoreSuffix: "स्टोर",
+  authIntro: "अपने ग्राहक खाते को प्रबंधित करने के लिए साइन इन करें। उत्पाद सूची देखने के लिए साइन इन करना आवश्यक नहीं है।",
+  passwordPlaceholder: "कम से कम 8 अक्षर",
+  passwordConfirmAgain: "दोबारा दर्ज करें",
+  authConfigNotReady: "ग्राहक साइन-इन अभी कॉन्फ़िगर नहीं है।",
 };
