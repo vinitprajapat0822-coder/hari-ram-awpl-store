@@ -415,4 +415,6 @@ export const hi: { [K in keyof typeof en]: string } = {
   assistantMrpNotice: "एमआरपी इस कैटलॉग में सूचीबद्ध कीमत के अनुसार है। ऑर्डर से पहले स्टोर से पुष्टि करें।",
   storeInfoLabel: "स्टोर की जानकारी",
   storefrontName: "Hari Ram AWPL स्टोर",
+  authSignOutBusy: "साइन आउट हो रहा है…",
+  emailPlaceholder: "name@example.com",
 };
