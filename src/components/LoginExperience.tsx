@@ -325,7 +325,7 @@ export default function LoginExperience() {
 
                   <label className="auth-field-label">
                     {t("email")}
-                    <span className="auth-input-wrap"><Mail size={17} aria-hidden="true" /><input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" required maxLength={254} placeholder="name@example.com" /></span>
+                    <span className="auth-input-wrap"><Mail size={17} aria-hidden="true" /><input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" required maxLength={254} placeholder={t("emailPlaceholder")} /></span>
                   </label>
 
                   {mode !== "forgot" && (
@@ -383,7 +383,7 @@ export default function LoginExperience() {
               </>
             )}
           </div>
-        </motion.section>
+        </section>
       </div>
     </main>
   );
