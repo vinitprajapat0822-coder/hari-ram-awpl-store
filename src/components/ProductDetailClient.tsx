@@ -155,11 +155,11 @@ export default function ProductDetailClient({ product }: Props) {
                 </span>
                 {product.status === "VERIFIED" ? (
                   <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200/15 bg-emerald-200/[0.06] px-2.5 py-1.5 text-[9px] font-bold text-emerald-100/75">
-                    <Check size={11} aria-hidden="true" /> Catalogue record verified
+                    <Check size={11} aria-hidden="true" /> {t("productVerifiedStatus")}
                   </span>
                 ) : (
                   <span className="rounded-full border border-amber-200/15 bg-amber-200/[0.06] px-2.5 py-1.5 text-[9px] font-bold text-amber-100/80">
-                    Details under review
+                    {t("productDetailsReview")}
                   </span>
                 )}
               </div>
@@ -218,7 +218,7 @@ export default function ProductDetailClient({ product }: Props) {
                 <h2 className="text-sm font-extrabold text-white">{t("sellerStock")}</h2>
               </div>
               <div className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4">
-                <p className="text-sm font-bold text-white">{lang === "hi" ? "Hari Ram AWPL स्टोर" : "Hari Ram AWPL Store"}</p>
+                <p className="text-sm font-bold text-white">Hari Ram AWPL {t("authStoreSuffix")}</p>
                 <p className="mt-1 text-[11px] text-white/45">{t("storeOwnerNotListed")}</p>
                 <a href={sellerContactUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-teal-100 hover:text-white">
                   {t("contactSellerWhatsapp")} <ExternalLink size={13} aria-hidden="true" />
