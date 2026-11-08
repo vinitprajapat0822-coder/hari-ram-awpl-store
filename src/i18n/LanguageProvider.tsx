@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { createContext, useCallback, useEffect, useMemo, useRef, useState, useTransition, type ReactNode } from "react";
 import { en, type TranslationKey } from "./en";
 import { hi } from "./hi";
 
@@ -29,13 +29,18 @@ const categoryKeys: Record<string, TranslationKey> = {
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Language>("en");
   const [ready, setReady] = useState(false);
+  const [, startTransition] = useTransition();
+  const pendingScrollRestore = useRef<number | null>(null);
   const textState = useRef(new WeakMap<Text, { source: string; rendered: string }>());
   const attributeState = useRef(new WeakMap<Element, Map<string, { source: string; rendered: string }>>());
 
   useEffect(() => {
-    const saved = document.documentElement.dataset.lang;
-    if (saved === "hi") setLangState("hi");
-    else if (saved === "en") setLangState("en");
+    try {
+      const saved = window.localStorage.getItem("lang");
+      if (saved === "hi" || saved === "en") setLangState(saved);
+    } catch {
+      // The default language remains available when storage is disabled.
+    }
     setReady(true);
   }, []);
 
@@ -47,11 +52,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [lang, ready]);
 
   const setLang = useCallback((next: Language) => {
-    document.documentElement.lang = next;
-    document.documentElement.dataset.lang = next;
+    if (next === lang) return;
+    pendingScrollRestore.current = window.scrollY;
     try { window.localStorage.setItem("lang", next); } catch { /* In-memory language still works. */ }
-    setLangState(next);
-  }, []);
+    startTransition(() => setLangState(next));
+  }, [lang, startTransition]);
 
   const translationMap = useMemo(() => {
     const map = new Map<string, string>();
@@ -106,6 +111,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       }
     };
     visit(document.body);
+    const scrollToRestore = pendingScrollRestore.current;
+    if (scrollToRestore !== null) {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, scrollToRestore);
+        requestAnimationFrame(() => {
+          if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
+        });
+      });
+    }
     const observer = new MutationObserver((records) => {
       records.forEach((record) => {
         if (record.type === "characterData" && record.target.nodeType === Node.TEXT_NODE) applyText(record.target as Text);
