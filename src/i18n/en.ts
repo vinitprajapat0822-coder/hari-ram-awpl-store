@@ -416,6 +416,10 @@ export const en = {
   authSignOutBusy: "Signing out…",
   emailPlaceholder: "name@example.com",
   priceReviewRequired: "MRP review",
+  orderAcceptanceFooter: "Sending an enquiry or WhatsApp message is not acceptance of an order. The seller must separately confirm the current MRP, product availability, delivery details and acceptance.",
+  language: "Language",
+  switchToEnglish: "Switch language to English",
+  switchToHindi: "Switch language to Hindi",
 } as const;
 
 export type TranslationKey = keyof typeof en;
