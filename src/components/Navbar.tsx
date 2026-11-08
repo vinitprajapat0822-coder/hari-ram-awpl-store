@@ -124,7 +124,7 @@ export default function Navbar() {
             <span className="brand-mark text-lg font-black tracking-tight">H</span>
             <span className="min-w-0 leading-tight">
               <span className="block text-sm font-extrabold tracking-[0.13em] text-white">HARI RAM</span>
-              <span className="mt-1 block text-[9px] font-bold tracking-[0.25em] text-teal-200/80">AWPL STORE</span>
+              <span className="mt-1 block text-[9px] font-bold tracking-[0.25em] text-teal-200/80">AWPL {t("authStoreSuffix").toUpperCase()}</span>
             </span>
           </Link>
 
