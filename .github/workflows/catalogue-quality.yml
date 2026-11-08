@@ -10,7 +10,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: catalogue-quality-${{ github.workflow }}-${{ github.ref }}
@@ -31,16 +31,21 @@ jobs:
         with:
           node-version: 20
 
-      - name: Generate npm lockfile (bootstrap only; removed after committing the artifact)
-        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Generate npm lockfile with npm install (one-time bootstrap)
+        run: npm install --ignore-scripts --no-audit --no-fund
 
-      - name: Export generated lockfile for repository commit
-        uses: actions/upload-artifact@v4
-        with:
-          name: generated-package-lock
-          path: package-lock.json
-          if-no-files-found: error
-          retention-days: 1
+      - name: Commit generated npm lockfile to this PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          if git diff --cached --quiet; then
+            echo "package-lock.json is already committed"
+          else
+            git commit -m "chore: commit npm lockfile"
+            git push origin "HEAD:${GITHUB_HEAD_REF}"
+          fi
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
