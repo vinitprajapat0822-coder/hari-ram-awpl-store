@@ -32,7 +32,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Generate catalogue audit report
         run: npm run audit:catalogue
@@ -59,6 +59,13 @@ jobs:
 
       - name: Production build
         run: npm run build
+
+      - name: Verify static export marker and basePath assets
+        run: |
+          test -f ./public/.nojekyll
+          test -f ./out/.nojekyll
+          test -d ./out/_next
+          grep -R -q '/hari-ram-awpl-store/_next/' ./out/index.html
 
       - name: Playwright end-to-end and accessibility tests
         run: npm run test:e2e
