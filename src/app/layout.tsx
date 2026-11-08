@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_Devanagari } from "next/font/google";
-import { MotionConfig } from "framer-motion";
 import Script from "next/script";
 import "./globals.css";
 import "@zakisheriff/liquid-glass/styles.css";
@@ -33,26 +32,57 @@ export const metadata: Metadata = {
 
 const basePath = process.env.NODE_ENV === "production" ? "/hari-ram-awpl-store" : "";
 
-const restoreLanguageScript = `(function(){try{var l=localStorage.getItem('lang');if(l==='hi'||l==='en'){document.documentElement.lang=l;document.documentElement.dataset.lang=l;}}catch(e){}})();`;
+const restoreLanguageScript = `(function(){try{var l=localStorage.getItem('lang');if(l==='hi'||l==='en'){document.documentElement.lang=l;}}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${inter.variable} ${devanagari.variable}`}>
         <Script id="restore-language" strategy="beforeInteractive">{restoreLanguageScript}</Script>
+        <svg
+          aria-hidden="true"
+          className="crystal-refraction-defs"
+          width="0"
+          height="0"
+          focusable="false"
+        >
+          <defs>
+            <filter
+              id="hari-ram-crystal-refraction"
+              x="-15%"
+              y="-15%"
+              width="130%"
+              height="130%"
+              colorInterpolationFilters="sRGB"
+            >
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.008 0.012"
+                numOctaves="2"
+                seed="7"
+                result="crystalNoise"
+              />
+              <feDisplacementMap
+                in="SourceGraphic"
+                in2="crystalNoise"
+                scale="3.5"
+                xChannelSelector="R"
+                yChannelSelector="G"
+              />
+            </filter>
+          </defs>
+        </svg>
         <div
           className="ambient-backdrop"
           style={{ backgroundImage: `url("${basePath}/midnight-teal-backdrop.svg")` }}
           aria-hidden="true"
         />
-        <MotionConfig reducedMotion="user">
-          <LanguageProvider>
+        <LanguageProvider>
             <StoreHydration />
             {children}
             <Footer />
             <CatalogueAssistant />
-          </LanguageProvider>
-        </MotionConfig>
+        </LanguageProvider>
       </body>
     </html>
   );
