@@ -14,6 +14,7 @@ test.beforeEach(async ({ page }) => {
   page.on("pageerror", (error) => browserErrors.push(error.message));
   page.on("response", (response) => {
     if (response.status() < 400) return;
+    console.log("NETWORK_HTTP_ERROR=" + response.status() + " " + response.url());
     try {
       if (new URL(response.url()).origin === APP_ORIGIN) {
         responseErrors.push(response.status() + " " + response.url());
@@ -25,6 +26,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.afterEach(async () => {
+  console.log("BROWSER_ERRORS=" + JSON.stringify(browserErrors));
+  console.log("HTTP_RESPONSE_ERRORS=" + JSON.stringify(responseErrors));
   expect(browserErrors, "Browser console/page errors").toEqual([]);
   expect(responseErrors, "Same-origin HTTP 4xx/5xx responses").toEqual([]);
 });
@@ -87,41 +90,34 @@ test("product detail and cart retain the selected verified SKU", async ({ page }
 
 test("profile route renders labelled delivery fields", async ({ page }) => {
   await page.goto("profile/");
-  await expect(page.getByRole("heading", { name: "Your Details" })).toBeVisible();
-  await expect(page.getByLabel("Full name *")).toBeVisible();
-  await expect(page.getByLabel("Mobile Number *")).toBeVisible();
-  await expect(page.getByLabel("Delivery Address *")).toBeVisible();
-});
-
-test("the navbar GlassCard renders a live SVG refraction filter", async ({ page }) => {
+  await expect(page.getByRole("heading", { name: "Your Details"test("the navbar GlassCard applies the crystal refraction SVG filter", async ({ page }) => {
   await page.goto("./");
-  await page.waitForTimeout(900);
+  await expect.poll(() => page.locator("header [data-lg-refract]").count()).toBeGreaterThan(0);
   const report = await page.evaluate(() => {
     const glassCards = Array.from(document.querySelectorAll("header [data-liquid-glass], header .lg-glass"));
-    const filters = Array.from(document.querySelectorAll("svg filter"));
-    const cardReferences = glassCards.map((element) => {
-      const style = getComputedStyle(element);
-      return style.backdropFilter + " " + style.filter + " " + (element.getAttribute("style") || "");
+    const filter = document.getElementById("hari-ram-crystal-refraction");
+    const appliedBackdrops = glassCards.map((element) => {
+      const own = getComputedStyle(element).backdropFilter;
+      const before = getComputedStyle(element, "::before").backdropFilter;
+      return { own, before };
     });
-    const referencedIds = Array.from(new Set(cardReferences.flatMap((value) =>
-      Array.from(value.matchAll(/url\(#([^\)]+)\)/g), (match) => match[1])
-    )));
     return {
       glassCardCount: glassCards.length,
-      filterCount: filters.length,
-      filterIds: filters.map((element) => element.id),
-      referencedIds,
-      filterOuterHTML: filters[0]?.outerHTML ?? null,
-      hasFeTurbulence: Boolean(filters[0]?.querySelector("feTurbulence")),
-      hasFeDisplacementMap: Boolean(filters[0]?.querySelector("feDisplacementMap")),
+      filterOuterHTML: filter?.outerHTML ?? null,
+      hasFeTurbulence: Boolean(filter?.querySelector("feTurbulence")),
+      hasFeDisplacementMap: Boolean(filter?.querySelector("feDisplacementMap")),
+      appliedToGlassCount: appliedBackdrops.filter(({ own, before }) =>
+        (own + " " + before).includes("hari-ram-crystal-refraction")
+      ).length,
+      appliedBackdrops,
     };
   });
-  console.log("GLASS_FILTER_DOM_REPORT=" + JSON.stringify(report));
-  expect(report.glassCardCount, "Navbar GlassCard should be present").toBeGreaterThan(0);
-  expect(report.filterCount, "A generated SVG filter should be present in the document").toBeGreaterThan(0);
+  console.log("CRYSTAL_REFRACTION_DOM=" + JSON.stringify(report));
+  expect(report.glassCardCount, "Navbar glass surface should be present").toBeGreaterThan(0);
   expect(report.filterOuterHTML).toContain("<filter");
-  expect(report.hasFeTurbulence, "Refraction filter must contain feTurbulence").toBe(true);
-  expect(report.hasFeDisplacementMap, "Refraction filter must contain feDisplacementMap").toBe(true);
+  expect(report.hasFeTurbulence, "Crystal filter must contain feTurbulence").toBe(true);
+  expect(report.hasFeDisplacementMap, "Crystal filter must contain feDisplacementMap").toBe(true);
+  expect(report.appliedToGlassCount, "Crystal filter must be applied to visible glass surfaces").toBeGreaterThan(0);
 });
 
 test("home, cart, profile, login, reset-password and product pages pass WCAG 2.1 AA axe scan", async ({ page }) => {
