@@ -413,6 +413,8 @@ export const en = {
   assistantMrpNotice: "MRP is as listed in this catalogue. Confirm with the store before ordering.",
   storeInfoLabel: "Store information",
   storefrontName: "Hari Ram AWPL Store",
+  authSignOutBusy: "Signing out…",
+  emailPlaceholder: "name@example.com",
 } as const;
 
 export type TranslationKey = keyof typeof en;
