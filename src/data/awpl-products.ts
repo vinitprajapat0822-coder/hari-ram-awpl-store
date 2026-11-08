@@ -204,7 +204,8 @@ const importedCatalogueProducts: ProductMasterRecord[] = importedCatalogueSeeds.
   return {
     id: seed.id,
     name: seed.name,
-    nameHi: null,
+    nameHi: seed.nameHi ?? null,
+    descriptionHi: seed.descriptionHi ?? null,
     brand: seed.category.startsWith("sniss-") ? "SNISS"
       : seed.category === "jeeveda" ? "Jeeveda"
       : seed.category === "baby-care" ? "Little Pie"
