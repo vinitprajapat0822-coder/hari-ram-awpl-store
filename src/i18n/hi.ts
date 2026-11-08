@@ -81,7 +81,7 @@ export const hi: typeof en = {
   enquireConfidence: "जानकारी लेकर पूछताछ करें",
   confirmStock: "पहले स्टॉक और डिलीवरी की पुष्टि करें",
   browseCompareEnquire: "देखें · तुलना करें · पूछताछ करें",
-  categoryAll: "सभी",
+  categoryJeeveda: "जीवेदा",\n  from: "से",\n  categoryAll: "सभी",
   categoryHerbal: "हर्बल",
   categoryElite: "एलीट",
   categoryCookingOils: "खाद्य तेल",
