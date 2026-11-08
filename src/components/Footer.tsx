@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { ArrowUpRight, ShieldCheck } from "lucide-react";
-import { storefrontConfig } from "@/data/storefront-config";
 import { useLanguage } from "@/i18n/useLanguage";
 
 export default function Footer() {
@@ -27,7 +26,7 @@ export default function Footer() {
         </div>
         <div className="mt-5 flex items-start gap-2 border-t border-white/[0.07] pt-4 text-[10px] leading-5 text-white/75">
           <ShieldCheck size={13} className="mt-0.5 shrink-0 text-teal-100/85" aria-hidden="true" />
-          <p>{storefrontConfig.orderAcceptanceDisclosure} {t("footerSecurity")}</p>
+          <p>{t("orderAcceptanceFooter")} {t("footerSecurity")}</p>
         </div>
       </div>
     </footer>
