@@ -1479,3 +1479,5 @@ input, textarea, select { border-radius: var(--radius-input); }
   outline: 2px solid #FFB300 !important;
   outline-offset: 2px !important;
 }
+
+body { font-family: var(--font-inter), var(--font-devanagari), sans-serif; }
