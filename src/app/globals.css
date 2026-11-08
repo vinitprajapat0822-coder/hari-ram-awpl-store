@@ -1536,3 +1536,50 @@ small, .text-small { font-size: .875rem; line-height: 1.5; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* Lightweight CSS motion replaces Framer Motion on the public routes. */
+.motion-enter {
+  opacity: 0;
+  animation: storefront-enter .56s cubic-bezier(.22,1,.36,1) both;
+}
+.motion-enter--left { animation-delay: 40ms; }
+.motion-enter--right { animation-delay: 160ms; }
+.auth-entrance {
+  opacity: 0;
+  animation: auth-enter .58s cubic-bezier(.22,1,.36,1) both;
+}
+.auth-entrance--left { animation-delay: 0ms; }
+.auth-entrance--right { animation-delay: 80ms; }
+.auth-field-enter { animation: auth-field-enter .24s ease-out both; }
+.auth-mascot--float { animation: auth-mascot-float 5.5s ease-in-out infinite; }
+@keyframes storefront-enter {
+  from { opacity: 0; transform: translate3d(0,18px,0); }
+  to { opacity: 1; transform: translate3d(0,0,0); }
+}
+@keyframes auth-enter {
+  from { opacity: 0; transform: translate3d(0,18px,0) scale(.985); }
+  to { opacity: 1; transform: translate3d(0,0,0) scale(1); }
+}
+@keyframes auth-field-enter {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes auth-mascot-float {
+  0%, 100% { transform: translate3d(0,0,0) rotate(0); }
+  50% { transform: translate3d(0,-8px,0) rotate(1.2deg); }
+}
+/* Product-detail metadata was below WCAG AA against the dark cards. */
+.text-white\/45,
+.text-white\/40,
+.text-white\/35,
+.text-white\/30,
+.detail-fact dt {
+  color: #BFCFD7 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-enter, .auth-entrance, .auth-field-enter, .auth-mascot--float {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
