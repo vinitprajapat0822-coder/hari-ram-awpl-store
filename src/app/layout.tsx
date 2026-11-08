@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Noto_Sans_Devanagari } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import Script from "next/script";
 import "./globals.css";
@@ -10,7 +10,8 @@ import Footer from "@/components/Footer";
 import CatalogueAssistant from "@/components/CatalogueAssistant";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 
-const inter = Inter({ subsets: ["latin"], display: "swap", preload: true });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", preload: true });
+const devanagari = Noto_Sans_Devanagari({ subsets: ["devanagari"], variable: "--font-devanagari", display: "swap", preload: true });
 
 // Static export emits English metadata. The in-page language toggle updates document.lang.
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ const restoreLanguageScript = `(function(){try{var l=localStorage.getItem('lang'
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${devanagari.variable}`}>
         <Script id="restore-language" strategy="beforeInteractive">{restoreLanguageScript}</Script>
         <div
           className="ambient-backdrop"
