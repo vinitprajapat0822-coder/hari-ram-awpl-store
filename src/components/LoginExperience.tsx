@@ -2,7 +2,6 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle2,
@@ -38,12 +37,7 @@ function GoogleMark() {
 
 function Character({ passwordFocus }: { passwordFocus: boolean }) {
   return (
-    <motion.div
-      className={`auth-mascot ${passwordFocus ? "auth-mascot--protect" : ""}`}
-      animate={{ y: [0, -8, 0], rotate: [0, 1.2, 0] }}
-      transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-      aria-hidden="true"
-    >
+    <div className={`auth-mascot auth-mascot--float ${passwordFocus ? "auth-mascot--protect" : ""}`} aria-hidden="true">
       <svg viewBox="0 0 340 350" role="presentation" className="h-full w-full">
         <defs>
           <radialGradient id="mascot-halo" cx="50%" cy="45%" r="55%">
@@ -119,7 +113,7 @@ function Character({ passwordFocus }: { passwordFocus: boolean }) {
       </svg>
       <span className="auth-mascot__spark auth-mascot__spark--one" />
       <span className="auth-mascot__spark auth-mascot__spark--two" />
-    </motion.div>
+    </div>
   );
 }
 
@@ -152,9 +146,9 @@ export default function LoginExperience() {
       });
       return () => data.subscription.unsubscribe();
     } catch (caught) {
-      setConfigWarning(caught instanceof Error ? caught.message : t("authConfigNotReady"));
+      setConfigWarning(t("authConfigNotReady"));
     }
-  }, []);
+  }, [t]);
 
   function selectMode(nextMode: Mode) {
     setMode(nextMode);
@@ -173,21 +167,21 @@ export default function LoginExperience() {
 
     try {
       if (mode === "forgot") {
-        if (!email.trim()) throw new Error("Enter your email address first.");
+        if (!email.trim()) throw new Error(t("enterEmailFirst"));
         const supabase = getSupabaseBrowserClient();
         const { error: resetError } = await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
           redirectTo: appRedirect("/reset-password/"),
         });
         if (resetError) throw resetError;
-        setNotice("Password reset link sent. Check your email inbox.");
+        setNotice(t("passwordResetSent"));
         return;
       }
 
       if (mode === "register") {
-        if (name.trim().length < 2) throw new Error("Enter your full name.");
-        if (password !== confirmPassword) throw new Error("Your passwords do not match.");
+        if (name.trim().length < 2) throw new Error(t("enterYourFullName"));
+        if (password !== confirmPassword) throw new Error(t("passwordsMismatch"));
       }
-      if (password.length < 8) throw new Error("Use a password with at least 8 characters.");
+      if (password.length < 8) throw new Error(t("passwordMinLength"));
 
       setAuthRememberPreference(rememberMe);
       const supabase = getSupabaseBrowserClient();
@@ -204,9 +198,9 @@ export default function LoginExperience() {
         if (signUpError) throw signUpError;
         if (data.session?.user.email) {
           setAuthenticatedEmail(data.session.user.email);
-          setNotice("Your account is ready. You are signed in.");
+          setNotice(t("accountReady"));
         } else {
-          setNotice("Account created. Check your email to verify your address, then sign in.");
+          setNotice(t("accountCreatedVerification"));
         }
       } else {
         const { data, error: signInError } = await supabase.auth.signInWithPassword({
@@ -215,10 +209,10 @@ export default function LoginExperience() {
         });
         if (signInError) throw signInError;
         setAuthenticatedEmail(data.user.email ?? email);
-        setNotice("Signed in successfully. Your session is active.");
+        setNotice(t("signedInSuccess"));
       }
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Authentication could not be completed.");
+      setError(t("authCouldNotComplete"));
     } finally {
       setBusy(false);
     }
@@ -240,7 +234,7 @@ export default function LoginExperience() {
       });
       if (oauthError) throw oauthError;
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Google sign-in could not be started.");
+      setError(t("googleCouldNotStart"));
       setBusy(false);
     }
   }
@@ -252,9 +246,9 @@ export default function LoginExperience() {
       const { error: signOutError } = await getSupabaseBrowserClient().auth.signOut();
       if (signOutError) throw signOutError;
       setAuthenticatedEmail(null);
-      setNotice("You have been signed out.");
+      setNotice(t("signedOutNotice"));
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Unable to sign out.");
+      setError(t("signOutFailed"));
     } finally {
       setBusy(false);
     }
@@ -268,12 +262,7 @@ export default function LoginExperience() {
       <div className="auth-grid absolute inset-0 -z-10" aria-hidden="true" />
 
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-7 lg:grid-cols-[minmax(0,.88fr)_minmax(390px,1fr)] lg:gap-14">
-        <motion.section
-          initial={{ opacity: 0, x: -18 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="auth-intro order-2 text-center lg:order-1 lg:text-left"
-        >
+        <section className="auth-intro auth-entrance auth-entrance--left order-2 text-center lg:order-1 lg:text-left">
           <div className="auth-intro__eyebrow"><span /> {t("authIndependentStorefront")}</div>
           <h1 className="mt-3 text-3xl font-black leading-tight tracking-[-0.04em] text-white sm:text-4xl lg:text-[2.8rem]">
             {t("authWelcomeTo")} <span className="auth-title-gradient">HARI RAM</span>
@@ -287,16 +276,10 @@ export default function LoginExperience() {
             <span><ShieldCheck size={14} aria-hidden="true" /> {t("secureAccess")}</span>
             <span><LockKeyhole size={13} aria-hidden="true" /> {t("protectedSupabase")}</span>
           </div>
-          <Link href="/" className="auth-back-link">← Continue browsing the catalogue</Link>
-        </motion.section>
+          <Link href="/" className="auth-back-link">← {t("authContinueBrowsingCatalogue")}</Link>
+        </section>
 
-        <motion.section
-          initial={{ opacity: 0, y: 18, scale: 0.985 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="auth-ring-frame order-1 mx-auto w-full max-w-[470px] lg:order-2"
-          aria-label={t("authCustomerAccount")}
-        >
+        <section className="auth-ring-frame auth-entrance auth-entrance--right order-1 mx-auto w-full max-w-[470px] lg:order-2" aria-label={t("authCustomerAccount")}>
           <div className="auth-ring-frame__spin" aria-hidden="true" />
           <div className="auth-glass-card">
             {authenticatedEmail ? (
@@ -308,7 +291,7 @@ export default function LoginExperience() {
                 <p className="mt-4 text-xs leading-5 text-slate-300/55">{t("sessionActive")}</p>
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   <Link href="/" className="liquid-button auth-action">{t("authBrowseCatalogue")} <ArrowRight size={16} /></Link>
-                  <button type="button" onClick={signOut} disabled={busy} className="auth-secondary-button">{busy ? "Signing out…" : "Sign out"}</button>
+                  <button type="button" onClick={signOut} disabled={busy} className="auth-secondary-button">{busy ? t("authSignOutBusy") : t("signOut")}</button>
                 </div>
               </div>
             ) : (
@@ -317,10 +300,10 @@ export default function LoginExperience() {
                   <div className="auth-brand-icon"><ShieldCheck size={23} aria-hidden="true" /></div>
                   <p className="auth-kicker mt-3">HARI RAM · {t("authCustomerAccount")}</p>
                   <h2 className="mt-2 text-[1.7rem] font-extrabold tracking-tight text-white">
-                    {mode === "login" ? "Welcome back" : mode === "register" ? "Create your account" : "Reset your password"}
+                    {mode === "login" ? t("welcomeBack") : mode === "register" ? t("createYourAccount") : t("resetYourPassword")}
                   </h2>
                   <p className="mt-1.5 text-xs leading-5 text-slate-300/55">
-                    {mode === "login" ? "Sign in to access your customer account." : mode === "register" ? "A few details to get your account started." : "We'll email you a secure password reset link."}
+                    {mode === "login" ? t("signInAccess") : mode === "register" ? t("accountStarted") : t("resetEmail")}
                   </p>
                 </div>
 
@@ -333,22 +316,15 @@ export default function LoginExperience() {
                 {mode !== "forgot" && <div className="auth-divider"><span>{t("authOrContinueWithEmail")}</span></div>}
 
                 <form onSubmit={submit} className="space-y-4" noValidate={false}>
-                  <AnimatePresence initial={false}>
                     {mode === "register" && (
-                      <motion.label
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="auth-field-label"
-                      >
-                        Full name
+                      <label className="auth-field-label auth-field-enter">
+                        {t("fullName")}
                         <span className="auth-input-wrap"><UserRound size={17} aria-hidden="true" /><input value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" required minLength={2} maxLength={100} placeholder={t("yourFullName")} /></span>
-                      </motion.label>
+                      </label>
                     )}
-                  </AnimatePresence>
 
                   <label className="auth-field-label">
-                    Email address
+                    {t("email")}
                     <span className="auth-input-wrap"><Mail size={17} aria-hidden="true" /><input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" required maxLength={254} placeholder="name@example.com" /></span>
                   </label>
 
@@ -358,7 +334,7 @@ export default function LoginExperience() {
                       <span className="auth-input-wrap">
                         <KeyRound size={17} aria-hidden="true" />
                         <input id="customer-password" type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete={mode === "register" ? "new-password" : "current-password"} required minLength={8} placeholder={t("passwordPlaceholder")} />
-                        <button type="button" className="auth-eye-button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? "Hide password" : "Show password"}>{showPassword ? <EyeOff size={17} /> : <Eye size={17} />}</button>
+                        <button type="button" className="auth-eye-button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? t("hidePassword") : t("showPassword")}>{showPassword ? <EyeOff size={17} /> : <Eye size={17} />}</button>
                       </span>
                     </div>
                   )}
@@ -377,7 +353,7 @@ export default function LoginExperience() {
                     <div className="flex items-center justify-between gap-3 pt-0.5 text-xs">
                       <label className="flex cursor-pointer items-center gap-2 text-slate-300/65">
                         <input type="checkbox" checked={rememberMe} onChange={(event) => setRememberMe(event.target.checked)} className="auth-checkbox" />
-                        Remember me
+                        {t("rememberMe")}
                       </label>
                       <button type="button" onClick={() => selectMode("forgot")} className="font-semibold text-cyan-200 transition-colors hover:text-white">{t("forgotPassword")}</button>
                     </div>
