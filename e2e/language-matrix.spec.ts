@@ -92,9 +92,11 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
     const startingUrl = page.url();
     const startingCartCount = await storedCartCount(page);
     const startY = await page.evaluate(() => {
+      document.documentElement.style.scrollBehavior = "auto";
       const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-      window.scrollTo(0, Math.min(220, max));
-      return window.scrollY;
+      const target = Math.min(500, max);
+      window.scrollTo({ left: 0, top: target, behavior: "instant" });
+      return Math.round(window.scrollY);
     });
     const navigationsBeforeSwitch = mainFrameNavigations;
 
