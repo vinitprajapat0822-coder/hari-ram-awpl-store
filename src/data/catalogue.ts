@@ -40,7 +40,7 @@ export type ProductMasterStatus =
 export type ProductMasterRecord = {
   id: string;
   name: string;
-  nameHi?: string | null;
+  nameHi?: string | null;\n  descriptionHi?: string | null;
   brand?: string | null;
   category: CatalogueCategorySlug;
   subcategory?: string | null;
