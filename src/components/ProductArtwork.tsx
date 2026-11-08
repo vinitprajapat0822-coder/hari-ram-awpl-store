@@ -6,7 +6,7 @@ import type { Product } from "@/data/products";
 import { useLanguage } from "@/i18n/useLanguage";
 
 function initialsFor(name: string): string {
-  const words = name.trim().split(/\\s+/).filter(Boolean);
+  const words = name.trim().split(/\s+/).filter(Boolean);
   return words.slice(0, 2).map((word) => word.charAt(0)).join("").toUpperCase() || "AW";
 }
 
