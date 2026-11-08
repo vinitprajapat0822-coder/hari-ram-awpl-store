@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useStore } from "@/store/useStore";
 import Navbar from "@/components/Navbar";
 import GlassCard from "@/components/GlassCard";
@@ -14,12 +14,14 @@ function ProfileContent() {
   const [form, setForm] = useState(user);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const fromCheckout = searchParams.get("from") === "checkout";
+  const [fromCheckout, setFromCheckout] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => { setForm(user); }, [user]);
+  useEffect(() => {
+    setFromCheckout(new URLSearchParams(window.location.search).get("from") === "checkout");
+  }, []);
 
   const handleSave = () => {
     const digits = form.phone.replace(/\D/g, "");
@@ -103,10 +105,5 @@ function ProfileContent() {
 }
 
 export default function ProfilePage() {
-  const { t } = useLanguage();
-  return (
-    <Suspense fallback={<main className="min-h-screen pb-28 md:pb-16"><Navbar /><div className="mx-auto max-w-xl px-4 pt-7 text-sm text-white/75 sm:px-6">{t("loadingProfile")}</div></main>}>
-      <ProfileContent />
-    </Suspense>
-  );
+  return <ProfileContent />;
 }
