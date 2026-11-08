@@ -53,7 +53,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLang = useCallback((next: Language) => {
     if (next === lang) return;
-    pendingScrollRestore.current = window.scrollY;
+    const scrollY = window.scrollY;
+    const minimumHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.getBoundingClientRect().height,
+      scrollY + window.innerHeight,
+    );
+    document.body.style.minHeight = Math.ceil(minimumHeight) + "px";
+    pendingScrollRestore.current = scrollY;
     try { window.localStorage.setItem("lang", next); } catch { /* In-memory language still works. */ }
     startTransition(() => setLangState(next));
   }, [lang, startTransition]);
