@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { ArrowUpRight, ShieldCheck } from "lucide-react";
-import { storefrontConfig } from "@/data/storefront-config";
 import { useLanguage } from "@/i18n/useLanguage";
 
 export default function Footer() {
@@ -17,7 +16,7 @@ export default function Footer() {
       <div className="glass-card overflow-hidden rounded-[22px] border border-white/[0.08] p-5 sm:p-6">
         <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
           <div className="max-w-xl">
-            <p className="text-xs font-extrabold tracking-[0.16em] text-white">{storefrontConfig.storeName}</p>
+            <p className="text-xs font-extrabold tracking-[0.16em] text-white">{t("storefrontName")}</p>
             <p className="mt-2 text-xs leading-6 text-white/85">{t("footerDescription")}</p>
             <p className="mt-2 text-[10px] leading-5 text-white/75">{t("footerAffiliation")} {t("footerDisclosure")}</p>
           </div>
