@@ -32,7 +32,7 @@ export default function CatalogueAssistant() {
   const categorySummary = useMemo(() => {
     const counts = new Map<string, number>();
     products.forEach((product) => counts.set(product.category, (counts.get(product.category) ?? 0) + 1));
-    return [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([name, count]) => `${categoryLabel(name)} (${formatNumber(count)})`).join(", ");
+    return Array.from(counts.entries()).sort((a, b) => b[1] - a[1]).map(([name, count]) => `${categoryLabel(name)} (${formatNumber(count)})`).join(", ");
   }, [categoryLabel, formatNumber]);
 
   function localizedReply(reply: AssistantReply): string {
