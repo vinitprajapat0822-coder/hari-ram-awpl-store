@@ -79,7 +79,7 @@ export const en = {
   enquireConfidence: "Enquire with confidence",
   confirmStock: "Confirm stock and delivery first",
   browseCompareEnquire: "Browse · Compare · Enquire",
-  categoryAll: "All",
+  categoryJeeveda: "Jeeveda",\n  from: "from",\n  categoryAll: "All",
   categoryHerbal: "Herbal",
   categoryElite: "Elite",
   categoryCookingOils: "Cooking Oils",
