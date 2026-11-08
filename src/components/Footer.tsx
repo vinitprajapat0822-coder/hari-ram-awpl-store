@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import { storefrontConfig } from "@/data/storefront-config";
 import { useLanguage } from "@/i18n/useLanguage";
 
 export default function Footer() {
