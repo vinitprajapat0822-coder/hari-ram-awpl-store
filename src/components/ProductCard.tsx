@@ -52,9 +52,9 @@ function ProductCard({ product }: Props) {
         </div>
         <div className="mb-3 border-t border-white/[0.075] px-1 pt-3">
           <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-1">
-            {product.status === "PRICE_REVIEW_REQUIRED" ? <p className="text-xs font-bold text-amber-200">{lang === "hi" ? "एमआरपी समीक्षा में" : "MRP under review"}</p> : <span className="price-architecture__selling">{formatPrice(listedMrp)}</span>}
+            {product.status === "PRICE_REVIEW_REQUIRED" ? <p className="text-xs font-bold text-amber-200">{t("priceReviewRequired")}</p> : <span className="price-architecture__selling">{formatPrice(listedMrp)}</span>}
           </div>
-          <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.13em] text-white/75">{lang === "hi" ? "केवल सूचीबद्ध एमआरपी" : "Listed MRP only"}</p>
+          <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.13em] text-white/75">{t("listedMrpOnly")}</p>
         </div>
       </Link>
       <button
