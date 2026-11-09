@@ -161,13 +161,29 @@ export default function LoginExperience() {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setBusy(true);
     setError("");
     setNotice("");
 
+    // Keep local form validation separate from network/authentication errors.
+    // This makes the actual correction actionable without calling Supabase.
+    const validationMessage = mode === "forgot"
+      ? (!email.trim() ? t("enterEmailFirst") : "")
+      : mode === "register" && name.trim().length < 2
+        ? t("enterYourFullName")
+        : mode === "register" && password !== confirmPassword
+          ? t("passwordsMismatch")
+          : password.length < 8
+            ? t("passwordMinLength")
+            : "";
+
+    if (validationMessage) {
+      setError(validationMessage);
+      return;
+    }
+
+    setBusy(true);
     try {
       if (mode === "forgot") {
-        if (!email.trim()) throw new Error(t("enterEmailFirst"));
         const supabase = getSupabaseBrowserClient();
         const { error: resetError } = await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
           redirectTo: appRedirect("/reset-password/"),
@@ -176,12 +192,6 @@ export default function LoginExperience() {
         setNotice(t("passwordResetSent"));
         return;
       }
-
-      if (mode === "register") {
-        if (name.trim().length < 2) throw new Error(t("enterYourFullName"));
-        if (password !== confirmPassword) throw new Error(t("passwordsMismatch"));
-      }
-      if (password.length < 8) throw new Error(t("passwordMinLength"));
 
       setAuthRememberPreference(rememberMe);
       const supabase = getSupabaseBrowserClient();

@@ -10,7 +10,8 @@ import CatalogueAssistant from "@/components/CatalogueAssistant";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", preload: true });
-const devanagari = Noto_Sans_Devanagari({ subsets: ["devanagari"], variable: "--font-devanagari", display: "swap", preload: true });
+// Hindi glyphs load on demand; avoid preloading a second font for the default English view.
+const devanagari = Noto_Sans_Devanagari({ subsets: ["devanagari"], variable: "--font-devanagari", display: "swap", preload: false });
 
 // Static export emits English metadata. The in-page language toggle updates document.lang.
 // Both descriptions are retained here; GitHub Pages serves the English static metadata.

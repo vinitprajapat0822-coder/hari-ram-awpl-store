@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useEffect, useMemo, useRef, useState, useTransition, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { en, type TranslationKey } from "./en";
 import { hi } from "./hi";
 
@@ -27,12 +28,22 @@ const categoryKeys: Record<string, TranslationKey> = {
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
   const [lang, setLangState] = useState<Language>("en");
   const [ready, setReady] = useState(false);
   const [, startTransition] = useTransition();
   const pendingScrollRestore = useRef<number | null>(null);
   const textState = useRef(new WeakMap<Text, { source: string; rendered: string }>());
   const attributeState = useRef(new WeakMap<Element, Map<string, { source: string; rendered: string }>>());
+
+  // A height reserve is needed only while the same route is being translated.
+  // Clear it on route navigation so a previous long page cannot add blank space
+  // to a shorter destination page.
+  useEffect(() => {
+    document.documentElement.style.minHeight = "";
+    document.body.style.minHeight = "";
+    pendingScrollRestore.current = null;
+  }, [pathname]);
 
   useEffect(() => {
     try {
@@ -54,12 +65,16 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const setLang = useCallback((next: Language) => {
     if (next === lang) return;
     const scrollY = window.scrollY;
-    const minimumHeight = Math.max(
+    const minimumHeight = Math.ceil(Math.max(
       document.documentElement.scrollHeight,
+      document.body.scrollHeight,
       document.body.getBoundingClientRect().height,
       scrollY + window.innerHeight,
-    );
-    document.body.style.minHeight = Math.ceil(minimumHeight) + "px";
+    ));
+    // The document element is the scrolling root in Chromium. Reserving height
+    // on both root and body prevents a shorter translation from clamping scrollY.
+    document.documentElement.style.minHeight = minimumHeight + "px";
+    document.body.style.minHeight = minimumHeight + "px";
     pendingScrollRestore.current = scrollY;
     try { window.localStorage.setItem("lang", next); } catch { /* In-memory language still works. */ }
     startTransition(() => setLangState(next));
@@ -120,9 +135,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     visit(document.body);
     const scrollToRestore = pendingScrollRestore.current;
     if (scrollToRestore !== null) {
+      const restoreScroll = () => {
+        window.scrollTo({ left: 0, top: scrollToRestore, behavior: "auto" });
+      };
       requestAnimationFrame(() => {
-        window.scrollTo({ left: 0, top: scrollToRestore, behavior: "instant" });
+        restoreScroll();
         requestAnimationFrame(() => {
+          // Re-apply after the browser has completed text reflow and scroll anchoring.
+          restoreScroll();
           if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
         });
       });

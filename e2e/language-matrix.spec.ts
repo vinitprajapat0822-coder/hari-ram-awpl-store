@@ -28,6 +28,8 @@ type RouteResult = {
 function removeAllowedBrands(value: string) {
   return value
     .replace(/SNISS|Jeeveda|AWPL|HARI RAM/gi, "")
+    // Product IDs are technical catalogue identifiers, not customer-facing copy.
+    .replace(/\bawpl-[a-z0-9]+(?:-[a-z0-9]+)*\b/gi, "")
     .replace(/₹/g, "")
     .trim();
 }

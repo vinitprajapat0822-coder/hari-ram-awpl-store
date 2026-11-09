@@ -99,6 +99,15 @@ test("profile route renders labelled delivery fields", async ({ page }) => {
 test("the navbar GlassCard applies the crystal refraction SVG filter", async ({ page }) => {
   await page.goto("./");
   await expect.poll(() => page.locator("header [data-lg-refract]").count()).toBeGreaterThan(0);
+  // The package decorates the glass pseudo-element after it measures the card.
+  // Wait for the computed filter instead of racing that asynchronous setup.
+  await expect.poll(() => page.evaluate(() => {
+    const glassCards = Array.from(document.querySelectorAll("header [data-liquid-glass], header .lg-glass"));
+    return glassCards.filter((element) => {
+      const beforeFilter = getComputedStyle(element, "::before").filter;
+      return beforeFilter.includes("hari-ram-crystal-refraction");
+    }).length;
+  })).toBeGreaterThan(0);
   const report = await page.evaluate(() => {
     const glassCards = Array.from(document.querySelectorAll("header [data-liquid-glass], header .lg-glass"));
     const filter = document.getElementById("hari-ram-crystal-refraction");
