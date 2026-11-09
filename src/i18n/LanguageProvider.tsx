@@ -21,7 +21,8 @@ const categoryKeys: Record<string, TranslationKey> = {
   All: "categoryAll", Herbal: "categoryHerbal", "SNISS Herbal": "categoryHerbal",
   Elite: "categoryElite", "SNISS Elite": "categoryElite", "Cooking Oils": "categoryCookingOils",
   Masalas: "categoryMasalas", "Baby Care": "categoryBabyCare", "Home Care": "categoryHomeCare",
-  Apparels: "categoryApparels", Food: "categoryFood", Others: "categoryOthers",
+  Apparels: "categoryApparels", apparels: "categoryApparels", apparel: "categoryApparels",
+  Food: "categoryFood", Others: "categoryOthers",
   "SNISS Fragrances": "categoryFragrances", "SNISS Cosmetic": "categoryCosmetic",
   Wellness: "categoryWellness", Wellroot: "categoryWellroot", Agriculture: "categoryAgriculture",
   Veterinary: "categoryVeterinary", "Oral Care": "categoryOralCare",
@@ -160,8 +161,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const t = useCallback((key: TranslationKey) => lang === "hi" ? hi[key] : en[key], [lang]);
   const categoryLabel = useCallback((category: string) => {
-    const key = categoryKeys[category];
-    return key ? (lang === "hi" ? hi[key] : en[key]) : category;
+    const normalized = category.trim();
+    const key = categoryKeys[normalized] ?? categoryKeys[normalized.toLowerCase()];
+    return key ? (lang === "hi" ? hi[key] : en[key]) : normalized;
   }, [lang]);
   const formatNumber = useCallback((value: number) => new Intl.NumberFormat("en-IN").format(value), []);
   const formatDate = useCallback((value: Date | string | number) =>

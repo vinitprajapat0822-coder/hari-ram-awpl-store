@@ -6,7 +6,7 @@ import "@zakisheriff/liquid-glass/styles.css";
 import "./liquid-glass-theme.css";
 import StoreHydration from "@/components/StoreHydration";
 import Footer from "@/components/Footer";
-import CatalogueAssistant from "@/components/CatalogueAssistant";
+import DeferredCatalogueAssistant from "@/components/DeferredCatalogueAssistant";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", preload: true });
@@ -82,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <StoreHydration />
             {children}
             <Footer />
-            <CatalogueAssistant />
+            <DeferredCatalogueAssistant />
         </LanguageProvider>
       </body>
     </html>

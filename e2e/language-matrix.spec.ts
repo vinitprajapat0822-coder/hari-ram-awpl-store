@@ -105,7 +105,9 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
     });
     const navigationsBeforeSwitch = mainFrameNavigations;
 
-    await hiButton.click();
+    // Programmatic activation avoids Playwright auto-scrolling the off-screen
+    // navbar control into view before the language-switch behavior is measured.
+    await hiButton.evaluate((button) => (button as HTMLButtonElement).click());
     await expect(page.locator("html")).toHaveAttribute("lang", "hi");
     await page.waitForTimeout(120);
     const hiBody = await page.locator("body").innerText();
@@ -115,7 +117,7 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
     const hindiCartCount = await storedCartCount(page);
     const hindiNavCount = mainFrameNavigations;
 
-    await enButton.click();
+    await enButton.evaluate((button) => (button as HTMLButtonElement).click());
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
     await page.waitForTimeout(120);
     const afterEnglishY = await page.evaluate(() => window.scrollY);

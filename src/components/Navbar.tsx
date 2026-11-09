@@ -156,7 +156,7 @@ export default function Navbar() {
             </Link>
             <div role="group" aria-label={t("language")} className="language-switcher">
               <button type="button" onClick={() => setLang("en")} aria-pressed={lang === "en"} aria-label={"EN, " + t("switchToEnglish")} title={activeLanguageLabel}>EN</button>
-              <button type="button" onClick={() => setLang("hi")} aria-pressed={lang === "hi"} aria-label={"हिं, " + t("switchToHindi")} title={activeLanguageLabel}>हिं</button>
+              <button type="button" onClick={() => setLang("hi")} aria-pressed={lang === "hi"} aria-label={"HI, " + t("switchToHindi")} title={activeLanguageLabel}>HI</button>
             </div>
           </div>
         </GlassCard>
