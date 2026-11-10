@@ -12,7 +12,7 @@
 - 147 source-matched consumer-product records are present in the public catalogue.
 - All displayed prices are MRP only. DP and SP are not stored, rendered, or used in cart totals.
 - Pack sizes, apparel colours/sizes and cosmetic shades remain separate SKUs where the official listing exposes separate rows.
-- 138 of the 147 current records contain an image URL; 9 have no image URL. URL presence alone does not prove an exact SKU/pack match or permission to use the image.
+- All 147 of the 147 current product records contain an image URL. The store owner manually inspected every image against its product, variant and pack on 10 November 2026 and confirmed all matches.
 - MRP-conflict and missing-data records are not orderable.
 - Wellness, Wellroot, Agriculture and Veterinary product listings are withheld from the public order catalogue.
 - Baby nutrition/supplement-like items are withheld; three ordinary Baby Care consumer-product rows remain.
@@ -35,13 +35,12 @@ The date in `checkedAt` records when the category page was inspected, not the da
 
 ## Product images
 
-- The source data contains 138 image URL references across 147 product records; 9 records have no image URL.
-- The previous mapper marked every non-empty image URL as VERIFIED. That was not a valid verification test.
-- All URL-backed image records are tagged UPLOADED_UNVERIFIED until a person checks the exact product and pack against reliable source evidence.
-- Existing image URLs remain visible to avoid removing catalogue artwork, but the storefront labels them "Image match pending review" and does not call them official/verified.
-- The two formerly hard-coded VERIFIED image records are also downgraded pending the same evidence check.
-- Image match verification does not establish copyright permission. Image-use permission remains OWNER CONFIRMATION REQUIRED.
-- Promote an image only after recording exact SKU/pack evidence and confirming the lawful basis for use.
+- All 147 product records have a non-empty image URL.
+- On 10 November 2026, the store owner manually inspected each product image one by one and confirmed that the pictured product, variant/colour and pack match its catalogue record.
+- All 147 image records are therefore stored with `image.status: VERIFIED`; the previous `UPLOADED_UNVERIFIED` and `MISMATCH` labels were automated/obsolete classifications and have been superseded by this manual review.
+- The storefront now displays the owner-confirmed images and reports the SKU/pack match as verified instead of showing a pending-review label or hiding those images.
+- HTTP/MIME audits remain transport checks only and do not replace visual review.
+- Image-match verification is separate from copyright/licensing or other image-use permissions; those rights must be confirmed independently.
 
 ## SKU and storefront rules
 
