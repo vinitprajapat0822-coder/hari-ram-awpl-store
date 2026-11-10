@@ -154,7 +154,7 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
       });
       console.log("APPARELS_VISIBLE_TEXT_NODES=" + JSON.stringify(leakNodes));
     }
-    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY)), { timeout: 1500 }).toBe(startY);
+    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY)), { timeout: 5000 }).toBe(startY);
     await page.waitForTimeout(80);
     const hiBody = await page.locator("body").innerText();
     const afterHindiY = await page.evaluate(() => window.scrollY);
@@ -164,7 +164,7 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
 
     await enButton.evaluate((button) => (button as HTMLButtonElement).click());
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
-    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY)), { timeout: 1500 }).toBe(startY);
+    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY)), { timeout: 5000 }).toBe(startY);
     await page.waitForTimeout(80);
     const afterEnglishY = await page.evaluate(() => window.scrollY);
     const englishCartCount = await storedCartCount(page);

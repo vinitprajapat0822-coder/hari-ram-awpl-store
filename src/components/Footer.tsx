@@ -21,7 +21,7 @@ export default function Footer() {
             <p className="mt-2 text-[10px] leading-5 text-white/75">{t("footerAffiliation")} {t("footerDisclosure")}</p>
           </div>
           <nav aria-label={t("footerProducts")} className="flex flex-wrap gap-x-4 gap-y-3">
-            {footerLinks.map((item) => <Link key={item.href} href={item.href} className="focus-visible:amber inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-teal-100/85 transition-colors hover:text-teal-50">{item.label}<ArrowUpRight size={12} aria-hidden="true" /></Link>)}
+            {footerLinks.map((item) => <Link key={item.href} href={item.href} prefetch={false} className="focus-visible:amber inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-teal-100/85 transition-colors hover:text-teal-50">{item.label}<ArrowUpRight size={12} aria-hidden="true" /></Link>)}
           </nav>
         </div>
         <div className="mt-5 flex items-start gap-2 border-t border-white/[0.07] pt-4 text-[10px] leading-5 text-white/75">

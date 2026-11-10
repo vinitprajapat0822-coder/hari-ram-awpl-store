@@ -53,7 +53,7 @@ export default function FeaturedProductCard({ product }: { product: Product }) {
               <span className="text-[11px] text-[#C2D8D8]/85">{t("pack")} {product.qty || "—"}</span>
               <strong className="text-base font-black text-[#FFB300]">{formatPrice(product.mrp)}</strong>
             </div>
-            <Link href={"/product/" + encodeURIComponent(product.id) + "/"} className="focus-visible:amber mt-4 inline-flex min-h-11 items-center rounded-xl border border-[#FFB300]/40 bg-[#FFB300]/10 px-4 text-xs font-extrabold text-[#FFD166] transition-colors hover:bg-[#FFB300]/20">
+            <Link href={"/product/" + encodeURIComponent(product.id) + "/"} prefetch={false} className="focus-visible:amber mt-4 inline-flex min-h-11 items-center rounded-xl border border-[#FFB300]/40 bg-[#FFB300]/10 px-4 text-xs font-extrabold text-[#FFD166] transition-colors hover:bg-[#FFB300]/20">
               {t("viewProduct")}
             </Link>
           </div>

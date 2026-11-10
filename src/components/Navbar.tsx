@@ -120,7 +120,7 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5">
         <GlassCard padding="0px" radius="22px" intensity={6} thickness={3} tint="rgba(3, 26, 28, 0.80)" className="site-header__inner mx-auto flex max-w-6xl items-center justify-between rounded-[22px] px-3.5 sm:px-5">
-          <Link href="/" onClick={() => handleNavigation("/")} className="flex min-w-0 items-center gap-3">
+          <Link href="/" prefetch={false} onClick={() => handleNavigation("/")} className="flex min-w-0 items-center gap-3">
             <span className="brand-mark text-lg font-black tracking-tight">H</span>
             <span className="min-w-0 leading-tight">
               <span className="block text-sm font-extrabold tracking-[0.13em] text-white">HARI RAM</span>
@@ -135,7 +135,7 @@ export default function Navbar() {
                 const active = isActive(pathname, item.href, activeHash);
                 const Icon = item.icon;
                 return (
-                  <Link key={item.href} href={item.href} onClick={() => handleNavigation(item.href)} className="nav-link relative text-xs font-semibold" aria-current={active ? "page" : undefined}>
+                  <Link key={item.href} href={item.href} prefetch={false} onClick={() => handleNavigation(item.href)} className="nav-link relative text-xs font-semibold" aria-current={active ? "page" : undefined}>
                     <Icon size={16} aria-hidden="true" />
                     {t(item.key)}
                     {item.href === "/cart" && cartCount > 0 && (
@@ -150,7 +150,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
-            <Link href="/#catalogue" onClick={() => handleNavigation("/#catalogue")} className="header-search-link focus-visible:amber" aria-label={t("searchCatalogue")}>
+            <Link href="/#catalogue" prefetch={false} onClick={() => handleNavigation("/#catalogue")} className="header-search-link focus-visible:amber" aria-label={t("searchCatalogue")}>
               <Search size={17} aria-hidden="true" />
               <span className="hidden sm:inline">{t("navSearch")}</span>
             </Link>
@@ -178,7 +178,7 @@ export default function Navbar() {
             const Icon = item.icon;
             return (
               <div key={item.href} className="mobile-dock__item min-w-0 flex-1">
-                <Link href={item.href} onClick={() => handleNavigation(item.href)} className="mobile-dock__link relative text-[10px] font-semibold" aria-current={active ? "page" : undefined}>
+                <Link href={item.href} prefetch={false} onClick={() => handleNavigation(item.href)} className="mobile-dock__link relative text-[10px] font-semibold" aria-current={active ? "page" : undefined}>
                   <span className="relative">
                     <Icon size={19} strokeWidth={active ? 2.2 : 1.8} aria-hidden="true" />
                     {item.href === "/cart" && cartCount > 0 && (
