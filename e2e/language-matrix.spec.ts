@@ -109,9 +109,33 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
     // navbar control into view before the language-switch behavior is measured.
     await hiButton.evaluate((button) => (button as HTMLButtonElement).click());
     await expect(page.locator("html")).toHaveAttribute("lang", "hi");
-    await page.waitForTimeout(120);
+    await page.waitForTimeout(80);
+    const leaks = visibleEnglishLeaks(await page.locator("body").innerText());
+    if (leaks.includes("Apparels")) {
+      const leakNodes = await page.locator("body").evaluate((body) => {
+        const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT);
+        const matches: Array<{ text: string; tag: string; className: string; html: string }> = [];
+        let node = walker.nextNode();
+        while (node) {
+          const nodeText = node.textContent?.trim() ?? "";
+          if (/\bapparels\b/i.test(nodeText)) {
+            const element = node.parentElement;
+            if (element) matches.push({
+              text: nodeText,
+              tag: element.tagName,
+              className: typeof element.className === "string" ? element.className : "",
+              html: element.outerHTML.slice(0, 500),
+            });
+          }
+          node = walker.nextNode();
+        }
+        return matches;
+      });
+      console.log("APPARELS_VISIBLE_TEXT_NODES=" + JSON.stringify(leakNodes));
+    }
+    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY)), { timeout: 1500 }).toBe(startY);
+    await page.waitForTimeout(80);
     const hiBody = await page.locator("body").innerText();
-    const leaks = visibleEnglishLeaks(hiBody);
     const afterHindiY = await page.evaluate(() => window.scrollY);
     const hindiUrl = page.url();
     const hindiCartCount = await storedCartCount(page);
@@ -119,7 +143,8 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
 
     await enButton.evaluate((button) => (button as HTMLButtonElement).click());
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
-    await page.waitForTimeout(120);
+    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY)), { timeout: 1500 }).toBe(startY);
+    await page.waitForTimeout(80);
     const afterEnglishY = await page.evaluate(() => window.scrollY);
     const englishCartCount = await storedCartCount(page);
     const endUrl = page.url();
