@@ -90,7 +90,8 @@ body { color: #EAF6F5; }
   .featured-glass-shell::after { animation: none; opacity: 0; }
 }
 @media (max-width: 640px) {
-  .ambient-backdrop { background-attachment: scroll; }
+  body { background-attachment: scroll; }
+  .ambient-backdrop { background-attachment: scroll; transform: none; }
 }
 
 /* Crystal refraction is applied to the painted glass layer.

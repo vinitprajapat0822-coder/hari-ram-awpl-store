@@ -28,7 +28,7 @@ export default function FeaturedProductCard({ product }: { product: Product }) {
                 src={product.image}
                 alt={productName + " product image"}
                 fill
-                priority
+                loading="lazy"
                 unoptimized
                 sizes="(max-width: 640px) 100vw, 180px"
                 className="object-contain p-4"
