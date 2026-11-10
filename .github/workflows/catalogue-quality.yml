@@ -25,14 +25,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Generate catalogue audit report
         run: npm run audit:catalogue
@@ -58,10 +60,89 @@ jobs:
         run: npm run lint
 
       - name: Production build
+        id: build
         run: npm run build
+
+      - name: Verify static export marker and basePath assets
+        run: |
+          test -f ./public/.nojekyll
+          test -f ./out/.nojekyll
+          test -d ./out/_next
+          grep -R -q '/hari-ram-awpl-store/_next/' ./out/index.html
+
+      - name: Prepare production preview under the exported basePath
+        if: steps.build.conclusion == 'success'
+        run: |
+          rm -rf .lh-preview .artifacts
+          mkdir -p .lh-preview/hari-ram-awpl-store .artifacts
+          cp -a out/. .lh-preview/hari-ram-awpl-store/
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory .lh-preview > /tmp/awpl-lighthouse-server.log 2>&1 &
+          echo $! > /tmp/awpl-lighthouse-server.pid
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4173/hari-ram-awpl-store/ >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4173/hari-ram-awpl-store/ >/dev/null
+
+      - name: Lighthouse mobile audit of the production basePath preview
+        id: lighthouse
+        if: steps.build.conclusion == 'success'
+        continue-on-error: true
+        run: |
+          CHROME_BIN="$(find "$HOME/.cache/ms-playwright" -type f -name chrome -perm -u+x | head -n 1)"
+          test -n "$CHROME_BIN"
+          echo "Using Chromium: $CHROME_BIN"
+          npm exec --yes --package=lighthouse@13.6.0 -- lighthouse \
+            http://127.0.0.1:4173/hari-ram-awpl-store/ \
+            --only-categories=performance \
+            --output=json \
+            --output-path=.artifacts/lighthouse-mobile.json \
+            --chrome-path="$CHROME_BIN" \
+            --chrome-flags="--no-sandbox --headless --disable-dev-shm-usage"
+          node <<'NODE'
+          const fs = require("node:fs");
+          const report = JSON.parse(fs.readFileSync(".artifacts/lighthouse-mobile.json", "utf8"));
+          const performance = Math.round((report.categories.performance.score ?? 0) * 100);
+          const cls = report.audits["cumulative-layout-shift"].numericValue;
+          const lcp = report.audits["largest-contentful-paint"].numericValue;
+          const metrics = {
+            formFactor: report.configSettings?.formFactor ?? "mobile",
+            performance,
+            cls,
+            lcpMs: lcp,
+            url: report.finalDisplayedUrl,
+          };
+          fs.writeFileSync(".artifacts/lighthouse-mobile-summary.json", JSON.stringify(metrics, null, 2));
+          console.log("LIGHTHOUSE_MOBILE_METRICS=" + JSON.stringify(metrics));
+          if (performance < 85) {
+            console.error("Lighthouse mobile Performance is below 85.");
+            process.exit(1);
+          }
+          NODE
 
       - name: Playwright end-to-end and accessibility tests
         run: npm run test:e2e
+
+      - name: Confirm Lighthouse mobile Performance threshold
+        if: always() && steps.build.conclusion == 'success'
+        run: |
+          if [ "${{ steps.lighthouse.outcome }}" != "success" ]; then
+            echo "Lighthouse failed or mobile Performance did not reach 85. See the attached JSON report."
+            exit 1
+          fi
+
+      - name: Upload Lighthouse mobile report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-mobile-report
+          path: |
+            .artifacts/lighthouse-mobile.json
+            .artifacts/lighthouse-mobile-summary.json
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Upload catalogue audit report
         if: always()

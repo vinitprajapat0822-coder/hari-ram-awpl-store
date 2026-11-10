@@ -41,6 +41,7 @@ export type ProductMasterRecord = {
   id: string;
   name: string;
   nameHi?: string | null;
+  descriptionHi?: string | null;
   brand?: string | null;
   category: CatalogueCategorySlug;
   subcategory?: string | null;

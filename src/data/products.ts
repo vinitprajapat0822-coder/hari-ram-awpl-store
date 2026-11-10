@@ -5,15 +5,17 @@ import type {
   ProductMasterRecord,
   ProductMasterStatus,
 } from "./catalogue";
+import { translateProductDescriptionToHindi, translateProductNameToHindi } from "@/i18n/productHindi";
 
 export type Product = {
   id: string;
   name: string;
-  nameHi?: string | null;
+  nameHi: string;
   brand?: string | null;
   category: string;
   subcategory?: string | null;
   description?: string | null;
+  descriptionHi: string;
   ingredients?: string[] | null;
   mrp: number;
   qty: string;
@@ -26,30 +28,27 @@ export type Product = {
   lastVerifiedAt: string | null;
 };
 
-const categoryNameBySlug = new Map(
-  catalogueCategories.map((category) => [category.slug, category.name])
-);
+const categoryNameBySlug = new Map(catalogueCategories.map((category) => [category.slug, category.name]));
 
-/**
- * Storefront-safe view of the MRP-only master catalogue.
- * Optional detail fields are preserved so product pages can show verified
- * information without fabricating stock, discounts, ingredients or reviews.
- */
+/** Storefront-safe MRP-only catalogue; Hindi fields are populated for every displayed record. */
 export const products: Product[] = awplProducts.flatMap((record) => {
   if (record.mrp === null) return [];
-  // Keep medical/supplement and baby nutrition records out of the orderable public catalogue.
   if (record.category === "wellness" || record.category === "wellroot" || record.category === "agriculture" || record.category === "veterinary" || record.id === "awpl-baby-protein") return [];
   const category = categoryNameBySlug.get(record.category);
   if (!category) return [];
 
+  const nameHi = record.nameHi?.trim() || translateProductNameToHindi(record.name);
+  const descriptionHi = record.descriptionHi?.trim() || translateProductDescriptionToHindi(nameHi, record.category, record.packSize ?? "");
+
   return [{
     id: record.id,
     name: record.name,
-    nameHi: record.nameHi ?? null,
+    nameHi,
     brand: record.brand ?? null,
     category,
     subcategory: record.subcategory ?? null,
     description: record.description ?? null,
+    descriptionHi,
     ingredients: record.ingredients ?? null,
     mrp: record.mrp,
     qty: record.packSize ?? "",

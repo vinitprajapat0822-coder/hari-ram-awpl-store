@@ -1,43 +1,118 @@
-/* @zakisheriff/liquid-glass — Midnight Teal & Electric Amber theme. */
+/* @zakisheriff/liquid-glass 0.3.20 — Midnight Teal / Electric Amber. */
 :root {
   color-scheme: dark;
   --midnight: #031A1C;
   --glass-border: rgba(200, 240, 255, 0.18);
   --accent: #FFB300;
   --accent-bright: #FFD166;
-  --muted: rgba(234, 246, 245, 0.68);
-
-  /* Documented package theme tokens. */
+  --muted: rgba(234, 246, 245, 0.86);
   --lg-accent: #FFB300;
   --lg-fill: rgba(200, 240, 255, 0.08);
-  --lg-blur: 22px;
+  --lg-blur: 24px;
+  --radius-card: 22px;
+  --radius-button: 12px;
+  --radius-input: 10px;
+  --radius-pill: 9999px;
 }
 
-body {
-  color: #EAF6F5;
-  background:
-    radial-gradient(ellipse 58% 42% at 8% 5%, rgba(0, 190, 180, 0.15), transparent 72%),
-    radial-gradient(ellipse 44% 36% at 92% 18%, rgba(46, 26, 71, 0.56), transparent 74%),
-    radial-gradient(ellipse 36% 30% at 72% 92%, rgba(255, 179, 0, 0.075), transparent 76%),
-    linear-gradient(180deg, #031A1C 0%, #062326 48%, #031A1C 100%);
-  background-attachment: fixed;
+html, body { background: #031A1C; }
+body { color: #EAF6F5; }
+.ambient-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
 }
 
-::selection {
-  color: #031A1C;
-  background: rgba(255, 179, 0, 0.82);
+.site-header__inner {
+  --lg-glass-blur: 24px;
+  --lg-saturate: 1.35;
+  --lg-brightness: 1;
+  box-shadow: 0 18px 48px rgba(46,26,71,0.42), 0 4px 14px rgba(0,0,0,0.30);
 }
+
+.floating-order-button {
+  display: inline-flex;
+  min-height: 44px;
+  min-width: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 209, 102, .46);
+  border-radius: 14px;
+  color: #FFD166;
+  font-size: 12px;
+  font-weight: 800;
+  background: linear-gradient(145deg, rgba(255, 209, 102, .24), rgba(255, 179, 0, .12));
+  box-shadow: 0 12px 30px rgba(255, 179, 0, .14), inset 0 1px 0 rgba(255,255,255,.24);
+  backdrop-filter: blur(24px) saturate(1.35);
+  -webkit-backdrop-filter: blur(24px) saturate(1.35);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+.floating-order-button:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(145deg, rgba(255, 209, 102, .30), rgba(255, 179, 0, .16));
+}
+.floating-order-button:active { transform: scale(.98); }
 
 .liquid-glass-featured {
+  position: relative;
   border-color: rgba(200, 240, 255, 0.24);
-  box-shadow:
-    0 24px 64px rgba(46, 26, 71, 0.38),
-    0 8px 22px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  box-shadow: inset 0 1px 0 rgba(255,179,0,0.28), 0 24px 60px rgba(255,179,0,0.08);
+}
+.featured-glass-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 22px;
+}
+.featured-glass-shell::after {
+  position: absolute;
+  z-index: 2;
+  inset: -20% auto -20% -45%;
+  width: 34%;
+  pointer-events: none;
+  content: "";
+  opacity: .15;
+  background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,.8) 48%, transparent 100%);
+  transform: skewX(-18deg);
+  animation: featured-glass-shimmer 6s linear infinite;
+}
+@keyframes featured-glass-shimmer {
+  from { transform: translateX(0) skewX(-18deg); }
+  to { transform: translateX(520%) skewX(-18deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .featured-glass-shell::after { animation: none; opacity: 0; }
+}
+@media (max-width: 640px) {
+  body { background-attachment: scroll; }
+  .ambient-backdrop { background-attachment: scroll; transform: none; }
 }
 
-@media (max-width: 640px) {
-  body {
-    background-attachment: scroll;
-  }
+/* Crystal refraction is applied to the painted glass layer.
+   The package's ray-traced backdrop map remains composed through --lg-filter. */
+.crystal-refraction-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+html:not([data-lg-scrolling]) .lg-glass[data-lg-refract]:not([data-lg-offscreen]):not(.lg-glass--host) {
+  filter: url("#hari-ram-crystal-refraction");
+}
+
+html:not([data-lg-scrolling]) .lg-glass.lg-glass--host[data-lg-refract]:not([data-lg-offscreen])::before {
+  filter: url("#hari-ram-crystal-refraction");
+  backdrop-filter:
+    var(--lg-filter, )
+    blur(var(--lg-glass-blur, var(--lg-blur)))
+    saturate(var(--lg-saturate))
+    brightness(var(--lg-brightness));
 }

@@ -2,64 +2,62 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { GlassCard } from "@zakisheriff/liquid-glass";
 import type { Product } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
+import { useLanguage } from "@/i18n/useLanguage";
 
 export default function FeaturedProductCard({ product }: { product: Product }) {
-  return (
-    <GlassCard
-      padding="16px"
-      radius="28px"
-      intensity={5}
-      thickness={2}
-      tint="rgba(255, 179, 0, 0.10)"
-      className="liquid-glass-featured"
-    >
-      <div className="grid gap-5 sm:grid-cols-[minmax(0,180px)_1fr] sm:items-center">
-        <div className="relative aspect-square overflow-hidden rounded-[20px] border border-white/10 bg-[#031A1C]/70">
-          {product.image ? (
-            <Image
-              src={product.image}
-              alt={product.name + " product image"}
-              fill
-              unoptimized
-              sizes="(max-width: 640px) 100vw, 180px"
-              className="object-contain p-4"
-            />
-          ) : (
-            <div className="grid h-full place-items-center text-sm text-white/45">
-              Product image unavailable
-            </div>
-          )}
-        </div>
+  const { lang, t } = useLanguage();
+  const productName = lang === "hi" && product.nameHi ? product.nameHi : product.name;
+  const description = lang === "hi" && product.descriptionHi ? product.descriptionHi : product.description;
 
-        <div className="min-w-0">
-          <p className="text-[9px] font-extrabold uppercase tracking-[0.2em] text-[#FFCA55]">
-            Featured catalogue pick
-          </p>
-          <h2 className="mt-2 text-lg font-extrabold leading-snug text-[#EAF6F5] sm:text-xl">
-            {product.name}
-          </h2>
-          <p className="mt-2 line-clamp-3 text-xs leading-6 text-[#C2D8D8]/75">
-            {product.description || "Open the product page for its listed details."}
-          </p>
-          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span className="text-[11px] text-[#C2D8D8]/70">
-              Pack: {product.qty || "See product details"}
-            </span>
-            <strong className="text-base font-black text-[#FFB300]">
-              {formatPrice(product.mrp)}
-            </strong>
+  return (
+    <div className="featured-glass-shell">
+      <div
+        className="glass-card liquid-glass-featured rounded-[22px] p-4"
+        style={{
+          background: "linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,179,0,.10) 58%), rgba(9,18,30,.72)",
+          backdropFilter: "blur(24px) saturate(1.35)",
+          WebkitBackdropFilter: "blur(24px) saturate(1.35)",
+        }}
+      >
+        <div className="grid gap-5 sm:grid-cols-[minmax(0,180px)_1fr] sm:items-center">
+          <div className="relative aspect-square overflow-hidden rounded-[20px] border border-white/10 bg-[#031A1C]/70">
+            {product.image ? (
+              <Image
+                src={product.image}
+                alt={productName + " product image"}
+                fill
+                loading="lazy"
+                unoptimized
+                sizes="(max-width: 640px) 100vw, 180px"
+                className="object-contain p-4"
+              />
+            ) : (
+              <div className="grid h-full place-items-center text-sm text-white/75">
+                {t("imageUnavailable")}
+              </div>
+            )}
           </div>
-          <Link
-            href={"/product/" + encodeURIComponent(product.id) + "/"}
-            className="mt-4 inline-flex min-h-10 items-center rounded-xl border border-[#FFB300]/40 bg-[#FFB300]/10 px-4 text-xs font-extrabold text-[#FFD166] transition-colors hover:bg-[#FFB300]/20"
-          >
-            View product
-          </Link>
+
+          <div className="min-w-0">
+            <p className="text-[9px] font-extrabold uppercase tracking-[0.2em] text-[#FFCA55]">
+              {t("featuredPick")}
+            </p>
+            <h2 className="mt-2 text-lg font-extrabold leading-snug text-[#EAF6F5] sm:text-xl">{productName}</h2>
+            <p className="mt-2 line-clamp-3 text-xs leading-6 text-[#C2D8D8]/85">
+              {description || (lang === "hi" ? "उत्पाद विवरण के लिए उत्पाद पृष्ठ देखें।" : "Open the product page for available details.")}
+            </p>
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+              <span className="text-[11px] text-[#C2D8D8]/85">{t("pack")} {product.qty || "—"}</span>
+              <strong className="text-base font-black text-[#FFB300]">{formatPrice(product.mrp)}</strong>
+            </div>
+            <Link href={"/product/" + encodeURIComponent(product.id) + "/"} prefetch={false} className="focus-visible:amber mt-4 inline-flex min-h-11 items-center rounded-xl border border-[#FFB300]/40 bg-[#FFB300]/10 px-4 text-xs font-extrabold text-[#FFD166] transition-colors hover:bg-[#FFB300]/20">
+              {t("viewProduct")}
+            </Link>
+          </div>
         </div>
       </div>
-    </GlassCard>
+    </div>
   );
 }

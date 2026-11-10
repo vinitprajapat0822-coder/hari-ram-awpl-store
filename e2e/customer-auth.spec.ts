@@ -39,6 +39,6 @@ test("login page has no detectable serious accessibility violations", async ({ p
 
 test("catalogue remains accessible without signing in", async ({ page }) => {
   await page.goto("./");
-  await expect(page.getByRole("heading", { name: /HARI RAM/ })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Everyday essentials, one clear catalogue." })).toBeVisible();
   await expect(page.getByTestId("product-grid")).toBeVisible();
 });

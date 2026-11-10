@@ -2,7 +2,6 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { products } from "@/data/products";
 import type { Product } from "@/data/products";
 import { storefrontConfig } from "@/data/storefront-config";
 
@@ -28,8 +27,6 @@ type StoreState = {
   getCartTotal: () => number;
   getCartCount: () => number;
 };
-
-const currentProducts = new Map(products.map((product) => [product.id, product]));
 
 export const useStore = create<StoreState>()(
   persist(
@@ -82,7 +79,12 @@ export const useStore = create<StoreState>()(
       name: "hari-ram-awpl-store",
       version: 3,
       skipHydration: true,
-      migrate: (persistedState) => {
+      // Resolve legacy cart product IDs only when a migration is actually needed.
+      // Keeping the catalogue behind this async boundary prevents the full 147-SKU
+      // dataset from entering the initial client bundle on every route.
+      migrate: async (persistedState) => {
+        const { products } = await import("@/data/products");
+        const currentProducts = new Map(products.map((product) => [product.id, product]));
         const saved = persistedState as {
           cart?: Array<{
             product?: { id?: string };

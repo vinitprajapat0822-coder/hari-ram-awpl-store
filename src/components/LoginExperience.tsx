@@ -2,7 +2,6 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle2,
@@ -15,6 +14,8 @@ import {
   UserRound,
 } from "lucide-react";
 import { getSupabaseBrowserClient, setAuthRememberPreference } from "@/lib/supabase";
+import Navbar from "@/components/Navbar";
+import { useLanguage } from "@/i18n/useLanguage";
 
 type Mode = "login" | "register" | "forgot";
 
@@ -36,12 +37,7 @@ function GoogleMark() {
 
 function Character({ passwordFocus }: { passwordFocus: boolean }) {
   return (
-    <motion.div
-      className={`auth-mascot ${passwordFocus ? "auth-mascot--protect" : ""}`}
-      animate={{ y: [0, -8, 0], rotate: [0, 1.2, 0] }}
-      transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-      aria-hidden="true"
-    >
+    <div className={`auth-mascot auth-mascot--float ${passwordFocus ? "auth-mascot--protect" : ""}`} aria-hidden="true">
       <svg viewBox="0 0 340 350" role="presentation" className="h-full w-full">
         <defs>
           <radialGradient id="mascot-halo" cx="50%" cy="45%" r="55%">
@@ -117,11 +113,12 @@ function Character({ passwordFocus }: { passwordFocus: boolean }) {
       </svg>
       <span className="auth-mascot__spark auth-mascot__spark--one" />
       <span className="auth-mascot__spark auth-mascot__spark--two" />
-    </motion.div>
+    </div>
   );
 }
 
 export default function LoginExperience() {
+  const { t } = useLanguage();
   const [mode, setMode] = useState<Mode>("login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -149,9 +146,9 @@ export default function LoginExperience() {
       });
       return () => data.subscription.unsubscribe();
     } catch (caught) {
-      setConfigWarning(caught instanceof Error ? caught.message : "Customer sign-in is not configured yet.");
+      setConfigWarning(t("authConfigNotReady"));
     }
-  }, []);
+  }, [t]);
 
   function selectMode(nextMode: Mode) {
     setMode(nextMode);
@@ -164,27 +161,37 @@ export default function LoginExperience() {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setBusy(true);
     setError("");
     setNotice("");
 
+    // Keep local form validation separate from network/authentication errors.
+    // This makes the actual correction actionable without calling Supabase.
+    const validationMessage = mode === "forgot"
+      ? (!email.trim() ? t("enterEmailFirst") : "")
+      : mode === "register" && name.trim().length < 2
+        ? t("enterYourFullName")
+        : mode === "register" && password !== confirmPassword
+          ? t("passwordsMismatch")
+          : password.length < 8
+            ? t("passwordMinLength")
+            : "";
+
+    if (validationMessage) {
+      setError(validationMessage);
+      return;
+    }
+
+    setBusy(true);
     try {
       if (mode === "forgot") {
-        if (!email.trim()) throw new Error("Enter your email address first.");
         const supabase = getSupabaseBrowserClient();
         const { error: resetError } = await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
           redirectTo: appRedirect("/reset-password/"),
         });
         if (resetError) throw resetError;
-        setNotice("Password reset link sent. Check your email inbox.");
+        setNotice(t("passwordResetSent"));
         return;
       }
-
-      if (mode === "register") {
-        if (name.trim().length < 2) throw new Error("Enter your full name.");
-        if (password !== confirmPassword) throw new Error("Your passwords do not match.");
-      }
-      if (password.length < 8) throw new Error("Use a password with at least 8 characters.");
 
       setAuthRememberPreference(rememberMe);
       const supabase = getSupabaseBrowserClient();
@@ -201,9 +208,9 @@ export default function LoginExperience() {
         if (signUpError) throw signUpError;
         if (data.session?.user.email) {
           setAuthenticatedEmail(data.session.user.email);
-          setNotice("Your account is ready. You are signed in.");
+          setNotice(t("accountReady"));
         } else {
-          setNotice("Account created. Check your email to verify your address, then sign in.");
+          setNotice(t("accountCreatedVerification"));
         }
       } else {
         const { data, error: signInError } = await supabase.auth.signInWithPassword({
@@ -212,10 +219,10 @@ export default function LoginExperience() {
         });
         if (signInError) throw signInError;
         setAuthenticatedEmail(data.user.email ?? email);
-        setNotice("Signed in successfully. Your session is active.");
+        setNotice(t("signedInSuccess"));
       }
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Authentication could not be completed.");
+      setError(t("authCouldNotComplete"));
     } finally {
       setBusy(false);
     }
@@ -237,7 +244,7 @@ export default function LoginExperience() {
       });
       if (oauthError) throw oauthError;
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Google sign-in could not be started.");
+      setError(t("googleCouldNotStart"));
       setBusy(false);
     }
   }
@@ -249,9 +256,9 @@ export default function LoginExperience() {
       const { error: signOutError } = await getSupabaseBrowserClient().auth.signOut();
       if (signOutError) throw signOutError;
       setAuthenticatedEmail(null);
-      setNotice("You have been signed out.");
+      setNotice(t("signedOutNotice"));
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Unable to sign out.");
+      setError(t("signOutFailed"));
     } finally {
       setBusy(false);
     }
@@ -259,112 +266,95 @@ export default function LoginExperience() {
 
   return (
     <main className="auth-page relative isolate min-h-[calc(100svh-80px)] overflow-hidden px-4 pb-16 pt-8 sm:px-6 sm:pt-12">
+      <Navbar />
       <div className="auth-ambient auth-ambient--cyan" aria-hidden="true" />
       <div className="auth-ambient auth-ambient--violet" aria-hidden="true" />
       <div className="auth-grid absolute inset-0 -z-10" aria-hidden="true" />
 
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-7 lg:grid-cols-[minmax(0,.88fr)_minmax(390px,1fr)] lg:gap-14">
-        <motion.section
-          initial={{ opacity: 0, x: -18 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="auth-intro order-2 text-center lg:order-1 lg:text-left"
-        >
-          <div className="auth-intro__eyebrow"><span /> INDEPENDENT CUSTOMER STORE</div>
+        <section className="auth-intro auth-entrance auth-entrance--left order-2 text-center lg:order-1 lg:text-left">
+          <div className="auth-intro__eyebrow"><span /> {t("authIndependentStorefront")}</div>
           <h1 className="mt-3 text-3xl font-black leading-tight tracking-[-0.04em] text-white sm:text-4xl lg:text-[2.8rem]">
-            Welcome to <span className="auth-title-gradient">HARI RAM</span>
-            <span className="block text-white/75">AWPL Store</span>
+            {t("authWelcomeTo")} <span className="auth-title-gradient">HARI RAM</span>
+            <span className="block text-white/75">AWPL {t("authStoreSuffix")}</span>
           </h1>
           <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-slate-300/65 lg:mx-0">
-            Sign in to manage your customer account. Browse the product catalogue without signing in.
+            {t("authIntro")}
           </p>
           <Character passwordFocus={passwordFocus} />
           <div className="auth-trust-row">
-            <span><ShieldCheck size={14} aria-hidden="true" /> Secure account access</span>
-            <span><LockKeyhole size={13} aria-hidden="true" /> Protected by Supabase Auth</span>
+            <span><ShieldCheck size={14} aria-hidden="true" /> {t("secureAccess")}</span>
+            <span><LockKeyhole size={13} aria-hidden="true" /> {t("protectedSupabase")}</span>
           </div>
-          <Link href="/" className="auth-back-link">← Continue browsing the catalogue</Link>
-        </motion.section>
+          <Link href="/" className="auth-back-link">← {t("authContinueBrowsingCatalogue")}</Link>
+        </section>
 
-        <motion.section
-          initial={{ opacity: 0, y: 18, scale: 0.985 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="auth-ring-frame order-1 mx-auto w-full max-w-[470px] lg:order-2"
-          aria-label="Customer account access"
-        >
+        <section className="auth-ring-frame auth-entrance auth-entrance--right order-1 mx-auto w-full max-w-[470px] lg:order-2" aria-label={t("authCustomerAccount")}>
           <div className="auth-ring-frame__spin" aria-hidden="true" />
           <div className="auth-glass-card">
             {authenticatedEmail ? (
               <div className="py-7 text-center">
                 <span className="auth-success-mark"><CheckCircle2 size={28} aria-hidden="true" /></span>
-                <p className="auth-kicker mt-5">ACCOUNT CONNECTED</p>
-                <h2 className="mt-2 text-2xl font-extrabold text-white">You&apos;re signed in</h2>
+                <p className="auth-kicker mt-5">{t("authAccountConnected")}</p>
+                <h2 className="mt-2 text-2xl font-extrabold text-white">{t("signedIn")}</h2>
                 <p className="mt-2 break-all text-sm text-slate-300/65">{authenticatedEmail}</p>
-                <p className="mt-4 text-xs leading-5 text-slate-300/55">Your account session is active in this browser.</p>
+                <p className="mt-4 text-xs leading-5 text-slate-300/55">{t("sessionActive")}</p>
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <Link href="/" className="liquid-button auth-action">Browse catalogue <ArrowRight size={16} /></Link>
-                  <button type="button" onClick={signOut} disabled={busy} className="auth-secondary-button">{busy ? "Signing out…" : "Sign out"}</button>
+                  <Link href="/" className="liquid-button auth-action">{t("authBrowseCatalogue")} <ArrowRight size={16} /></Link>
+                  <button type="button" onClick={signOut} disabled={busy} className="auth-secondary-button">{busy ? t("authSignOutBusy") : t("signOut")}</button>
                 </div>
               </div>
             ) : (
               <>
                 <div className="mb-6 text-center">
                   <div className="auth-brand-icon"><ShieldCheck size={23} aria-hidden="true" /></div>
-                  <p className="auth-kicker mt-3">HARI RAM · CUSTOMER ACCOUNT</p>
+                  <p className="auth-kicker mt-3">HARI RAM · {t("authCustomerAccount")}</p>
                   <h2 className="mt-2 text-[1.7rem] font-extrabold tracking-tight text-white">
-                    {mode === "login" ? "Welcome back" : mode === "register" ? "Create your account" : "Reset your password"}
+                    {mode === "login" ? t("welcomeBack") : mode === "register" ? t("createYourAccount") : t("resetYourPassword")}
                   </h2>
                   <p className="mt-1.5 text-xs leading-5 text-slate-300/55">
-                    {mode === "login" ? "Sign in to access your customer account." : mode === "register" ? "A few details to get your account started." : "We'll email you a secure password reset link."}
+                    {mode === "login" ? t("signInAccess") : mode === "register" ? t("accountStarted") : t("resetEmail")}
                   </p>
                 </div>
 
                 {mode !== "forgot" && (
                   <button type="button" onClick={signInWithGoogle} disabled={busy} className="auth-google-button">
-                    <GoogleMark /> <span>Continue with Google</span>
+                    <GoogleMark /> <span>{t("continueGoogle")}</span>
                   </button>
                 )}
 
-                {mode !== "forgot" && <div className="auth-divider"><span>OR CONTINUE WITH EMAIL</span></div>}
+                {mode !== "forgot" && <div className="auth-divider"><span>{t("authOrContinueWithEmail")}</span></div>}
 
                 <form onSubmit={submit} className="space-y-4" noValidate={false}>
-                  <AnimatePresence initial={false}>
                     {mode === "register" && (
-                      <motion.label
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="auth-field-label"
-                      >
-                        Full name
-                        <span className="auth-input-wrap"><UserRound size={17} aria-hidden="true" /><input value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" required minLength={2} maxLength={100} placeholder="Your full name" /></span>
-                      </motion.label>
+                      <label className="auth-field-label auth-field-enter">
+                        {t("fullName")}
+                        <span className="auth-input-wrap"><UserRound size={17} aria-hidden="true" /><input value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" required minLength={2} maxLength={100} placeholder={t("yourFullName")} /></span>
+                      </label>
                     )}
-                  </AnimatePresence>
 
                   <label className="auth-field-label">
-                    Email address
-                    <span className="auth-input-wrap"><Mail size={17} aria-hidden="true" /><input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" required maxLength={254} placeholder="name@example.com" /></span>
+                    {t("email")}
+                    <span className="auth-input-wrap"><Mail size={17} aria-hidden="true" /><input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" required maxLength={254} placeholder={t("emailPlaceholder")} /></span>
                   </label>
 
                   {mode !== "forgot" && (
                     <div className="auth-field-label">
-                      <label htmlFor="customer-password">Password</label>
+                      <label htmlFor="customer-password">{t("password")}</label>
                       <span className="auth-input-wrap">
                         <KeyRound size={17} aria-hidden="true" />
-                        <input id="customer-password" type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete={mode === "register" ? "new-password" : "current-password"} required minLength={8} placeholder="At least 8 characters" />
-                        <button type="button" className="auth-eye-button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? "Hide password" : "Show password"}>{showPassword ? <EyeOff size={17} /> : <Eye size={17} />}</button>
+                        <input id="customer-password" type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete={mode === "register" ? "new-password" : "current-password"} required minLength={8} placeholder={t("passwordPlaceholder")} />
+                        <button type="button" className="auth-eye-button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? t("hidePassword") : t("showPassword")}>{showPassword ? <EyeOff size={17} /> : <Eye size={17} />}</button>
                       </span>
                     </div>
                   )}
 
                   {mode === "register" && (
                     <div className="auth-field-label">
-                      <label htmlFor="customer-confirm-password">Confirm password</label>
+                      <label htmlFor="customer-confirm-password">{t("confirmPassword")}</label>
                       <span className="auth-input-wrap">
                         <LockKeyhole size={17} aria-hidden="true" />
-                        <input id="customer-confirm-password" type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete="new-password" required minLength={8} placeholder="Enter password again" />
+                        <input id="customer-confirm-password" type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} onFocus={() => setPasswordFocus(true)} onBlur={() => setPasswordFocus(false)} autoComplete="new-password" required minLength={8} placeholder={t("passwordConfirmAgain")} />
                       </span>
                     </div>
                   )}
@@ -373,37 +363,37 @@ export default function LoginExperience() {
                     <div className="flex items-center justify-between gap-3 pt-0.5 text-xs">
                       <label className="flex cursor-pointer items-center gap-2 text-slate-300/65">
                         <input type="checkbox" checked={rememberMe} onChange={(event) => setRememberMe(event.target.checked)} className="auth-checkbox" />
-                        Remember me
+                        {t("rememberMe")}
                       </label>
-                      <button type="button" onClick={() => selectMode("forgot")} className="font-semibold text-cyan-200 transition-colors hover:text-white">Forgot password?</button>
+                      <button type="button" onClick={() => selectMode("forgot")} className="font-semibold text-cyan-200 transition-colors hover:text-white">{t("forgotPassword")}</button>
                     </div>
                   )}
 
-                  {mode === "forgot" && <p className="text-[11px] leading-5 text-slate-300/55">Enter the email address used for your account. The reset link will open a secure password update page.</p>}
+                  {mode === "forgot" && <p className="text-[11px] leading-5 text-slate-300/55">{t("authResetHelp")}</p>}
 
                   {configWarning && <p className="auth-config-note" role="status">{configWarning}</p>}
                   {error && <p className="auth-error" role="alert">{error}</p>}
                   {notice && <p className="auth-notice" role="status">{notice}</p>}
 
                   <button type="submit" disabled={busy} className="liquid-button auth-action mt-2">
-                    {busy ? <><span className="auth-spinner" /> Please wait…</> : <>{mode === "login" ? "Sign in" : mode === "register" ? "Create account" : "Send reset link"} <ArrowRight size={16} /></>}
+                    {busy ? <><span className="auth-spinner" /> {t("pleaseWait")}</> : <>{mode === "login" ? t("signIn") : mode === "register" ? t("createAccount") : t("sendResetLink")} <ArrowRight size={16} /></>}
                   </button>
                 </form>
 
                 <div className="auth-switcher">
                   {mode === "forgot" ? (
-                    <button type="button" onClick={() => selectMode("login")}>← Back to sign in</button>
+                    <button type="button" onClick={() => selectMode("login")}>← {t("authBackToSignIn")}</button>
                   ) : mode === "login" ? (
-                    <>Don&apos;t have an account? <button type="button" onClick={() => selectMode("register")}>Register now</button></>
+                    <>{t("authNoAccount")} <button type="button" onClick={() => selectMode("register")}>{t("authRegisterNow")}</button></>
                   ) : (
-                    <>Already registered? <button type="button" onClick={() => selectMode("login")}>Sign in</button></>
+                    <>{t("authAlreadyRegistered")} <button type="button" onClick={() => selectMode("login")}>{t("signIn")}</button></>
                   )}
                 </div>
-                <p className="auth-privacy-note">Independent storefront. Your password is handled by Supabase Authentication, not stored by this website.</p>
+                <p className="auth-privacy-note">{t("authPrivacyNote")}</p>
               </>
             )}
           </div>
-        </motion.section>
+        </section>
       </div>
     </main>
   );

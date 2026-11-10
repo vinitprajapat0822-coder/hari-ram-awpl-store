@@ -34,8 +34,8 @@ button, a { touch-action: manipulation; }
   background: linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.025));
   border: 1px solid var(--glass-border);
   box-shadow: 0 18px 50px -24px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.12);
-  -webkit-backdrop-filter: blur(24px) saturate(1.35);
-  backdrop-filter: blur(24px) saturate(1.35);
+  
+  
 }
 .glass-card {
   position: relative;
@@ -43,8 +43,8 @@ button, a { touch-action: manipulation; }
   border: 1px solid rgba(195,226,245,.13);
   background: linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.018) 58%), rgba(9,18,30,.62);
   box-shadow: 0 22px 48px -28px rgba(0,0,0,.9), 0 8px 22px -16px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.15), inset 0 -1px 0 rgba(0,0,0,.16);
-  -webkit-backdrop-filter: blur(26px) saturate(1.25);
-  backdrop-filter: blur(26px) saturate(1.25);
+  
+  
 }
 .glass-card::before {
   position: absolute; inset: 0 12% auto; height: 1px; content: ""; pointer-events: none;
@@ -71,7 +71,7 @@ button, a { touch-action: manipulation; }
 .mobile-dock {
   border: 1px solid rgba(195,226,245,.16); border-radius: 22px;
   background: rgba(7,15,26,.88); box-shadow: 0 18px 42px -18px rgba(0,0,0,.92), inset 0 1px 0 rgba(255,255,255,.12);
-  -webkit-backdrop-filter: blur(28px) saturate(1.35); backdrop-filter: blur(28px) saturate(1.35);
+   
 }
 .mobile-dock__link {
   display: flex; min-width: 0; min-height: 54px; flex: 1; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
@@ -223,8 +223,8 @@ button, a { touch-action: manipulation; }
   font-weight: 750;
   letter-spacing: .13em;
   text-transform: uppercase;
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
+  
+  
 }
 .hero-orbit__tag--left { top: 24%; left: -2%; }
 .hero-orbit__tag--bottom { right: -5%; bottom: 12%; }
@@ -408,8 +408,8 @@ button, a { touch-action: manipulation; }
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  
+  
 }
 .product-artwork__source { top: 8px; left: 8px; pointer-events: none; }
 .product-artwork__attribution { bottom: 8px; left: 8px; color: rgba(213,255,246,.8); }
@@ -513,8 +513,8 @@ button, a { touch-action: manipulation; }
 @media (max-width: 767px) {
   .product-card {
     contain-intrinsic-size: auto 380px;
-    -webkit-backdrop-filter: blur(12px) saturate(1.1);
-    backdrop-filter: blur(12px) saturate(1.1);
+    
+    
     box-shadow: 0 12px 28px -22px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.12);
   }
   .product-card:hover {
@@ -618,11 +618,18 @@ button, a { touch-action: manipulation; }
   width: 310px;
   aspect-ratio: 1;
   border-radius: 50%;
-  filter: blur(60px);
   pointer-events: none;
 }
-.storefront-hero__glow--one { top: -190px; right: 8%; background: rgba(49, 211, 191, .16); }
-.storefront-hero__glow--two { bottom: -230px; left: 24%; background: rgba(73, 113, 220, .13); }
+.storefront-hero__glow--one {
+  top: -190px;
+  right: 8%;
+  background: radial-gradient(circle, rgba(49, 211, 191, .2) 0%, rgba(49, 211, 191, .08) 42%, transparent 74%);
+}
+.storefront-hero__glow--two {
+  bottom: -230px;
+  left: 24%;
+  background: radial-gradient(circle, rgba(73, 113, 220, .17) 0%, rgba(73, 113, 220, .06) 42%, transparent 74%);
+}
 .storefront-hero__layout {
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(310px, .88fr);
@@ -820,8 +827,8 @@ button, a { touch-action: manipulation; }
     linear-gradient(150deg, rgba(255,255,255,.12), rgba(255,255,255,.025) 44%),
     rgba(8,20,32,.78);
   box-shadow: 0 30px 60px -34px rgba(0,0,0,.95), 0 0 48px -34px rgba(112,240,221,.54), inset 0 1px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(0,0,0,.25);
-  -webkit-backdrop-filter: blur(30px) saturate(1.42);
-  backdrop-filter: blur(30px) saturate(1.42);
+  
+  
   transform: rotate(-3deg);
 }
 .storefront-hero__showcase::after {
@@ -922,8 +929,8 @@ button, a { touch-action: manipulation; }
   padding: 10px 12px;
   background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.035)), rgba(7,18,30,.84);
   box-shadow: 0 18px 40px -25px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.13);
-  -webkit-backdrop-filter: blur(22px) saturate(1.35);
-  backdrop-filter: blur(22px) saturate(1.35);
+  
+  
 }
 .storefront-hero__float-card--top { top: 13%; right: -1%; }
 .storefront-hero__float-card--bottom { bottom: 13%; left: -2%; }
@@ -973,7 +980,7 @@ button, a { touch-action: manipulation; }
   padding: 8px 11px;
   border: 1px solid rgba(185,229,233,.11);
   border-radius: 999px;
-  color: rgba(220,239,243,.48);
+  color: #D8F3F5;
   background: rgba(255,255,255,.025);
   font-size: 9px;
   font-weight: 650;
@@ -1145,8 +1152,8 @@ button, a { touch-action: manipulation; }
     linear-gradient(142deg, rgba(255,255,255,.075), rgba(255,255,255,.018) 58%),
     rgba(15,15,25,.86);
   box-shadow: 0 20px 50px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.15), inset 0 -1px 0 rgba(0,0,0,.24);
-  -webkit-backdrop-filter: blur(24px) saturate(190%);
-  backdrop-filter: blur(24px) saturate(190%);
+  
+  
 }
 .auth-glass-card::before, .auth-reset-card::before {
   position: absolute;
@@ -1222,8 +1229,8 @@ button, a { touch-action: manipulation; }
   border-radius: 13px;
   color: rgba(194,218,235,.48);
   background: rgba(10,10,18,.52);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  
+  
   transition: border-color 220ms cubic-bezier(.16,1,.3,1), background 220ms ease, box-shadow 220ms ease;
 }
 .auth-input-wrap:focus-within {
@@ -1378,3 +1385,208 @@ button, a { touch-action: manipulation; }
 .auth-switcher { color: rgba(206,220,236,.76); }
 .auth-privacy-note { color: rgba(201,215,230,.58); }
 .auth-input-wrap { color: rgba(194,218,235,.64); }
+
+
+/* Glass/performance/interaction overrides for the storefront release. */
+:root {
+  --font-body: 1rem;
+  --line-body: 1.6;
+}
+h1 { font-size: 2rem; line-height: 1.15; font-weight: 800; }
+h2 { font-size: 1.5rem; line-height: 1.25; font-weight: 700; }
+h3 { font-size: 1.25rem; line-height: 1.3; font-weight: 600; }
+body { font-size: var(--font-body); line-height: var(--line-body); }
+small, .text-sm { line-height: 1.5; }
+:where(a, button, input, textarea, select, [role="button"]):focus-visible,
+.focus-visible\\:amber:focus-visible {
+  outline: 2px solid #FFB300 !important;
+  outline-offset: 2px !important;
+}
+.catalogue-card {
+  background: #082326 !important;
+  border: 1px solid rgba(185, 226, 224, .16);
+  box-shadow: 0 8px 22px rgba(0,0,0,.22);
+  
+  
+}
+.product-card { content-visibility: auto; contain-intrinsic-size: auto 390px; }
+.content-auto { content-visibility: auto; contain-intrinsic-size: auto 780px; }
+.mobile-dock {
+  background: rgba(3, 26, 28, .98) !important;
+  
+  
+}
+.glass, .glass-card, .hero-orbit__tag, .product-artwork__source,
+.product-artwork__attribution, .storefront-hero__showcase,
+.storefront-hero__float-card, .auth-glass-card, .auth-reset-card,
+.auth-input-wrap {
+  
+  
+}
+.product-artwork__pack { background: #031A1C;  }
+.product-artwork__image { opacity: 0; transition: opacity 160ms ease; }
+.product-artwork__image.is-loaded { opacity: 1; }
+.product-artwork__skeleton {
+  position: absolute; inset: 0; z-index: 1; border-radius: inherit;
+  background: linear-gradient(100deg, #0a2b2e 20%, #164447 42%, #0a2b2e 64%);
+  background-size: 220% 100%;
+  animation: product-skeleton 1.4s ease-in-out infinite;
+}
+@keyframes product-skeleton { to { background-position-x: -220%; } }
+.language-switcher {
+  display: inline-flex; align-items: center; padding: 2px;
+  min-height: 44px; border: 1px solid rgba(255,179,0,.45);
+  border-radius: 9999px; background: rgba(3,26,28,.88);
+}
+.language-switcher button {
+  min-width: 38px; min-height: 40px; padding: 0 9px; border-radius: 9999px;
+  color: #9edbd5; font-size: 11px; font-weight: 800;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+.language-switcher button[aria-pressed="true"] { color: #031A1C; background: #FFB300; box-shadow: 0 2px 10px rgba(255,179,0,.28); }
+.mobile-dock__link { min-height: 54px; padding: 5px 2px; }
+.mobile-dock__link::after {
+  position: absolute; left: 18%; right: 18%; bottom: 3px; height: 3px;
+  content: ""; border-radius: 9999px; background: #FFB300;
+  transform: scaleX(0); transform-origin: center; opacity: 0;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+.mobile-dock__link[aria-current="page"]::after { transform: scaleX(1); opacity: 1; }
+.mobile-dock__item { transform: translate3d(var(--dock-x,0),var(--dock-y,0),0) scale(var(--dock-scale,1)); transition: transform 120ms ease-out; }
+.btn-cyan, .hero-cta, .language-switcher button, .nav-link, .category-chip {
+  transition-duration: 120ms;
+}
+.btn-cyan:hover, .hero-cta:hover, .category-chip:hover { transform: translateY(-1px); }
+.btn-cyan:active, .hero-cta:active, .category-chip:active { transform: translateY(0); }
+.product-card { transition: transform 200ms ease, box-shadow 200ms ease; }
+.product-card:hover { transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) {
+  .product-artwork__skeleton { animation: none; }
+  .mobile-dock__item, .product-card, .btn-cyan, .hero-cta { transition: none !important; transform: none !important; }
+  .mobile-dock__link::after { transition: none; }
+}
+
+
+/* Compact design tokens and minimum hit area for all controls. */
+:root {
+  --radius-card: 22px;
+  --radius-button: 12px;
+  --radius-input: 10px;
+  --radius-pill: 9999px;
+}
+.catalogue-card, .glass-card, .liquid-glass-featured, .storefront-hero__showcase {
+  border-radius: var(--radius-card) !important;
+}
+button:not(.language-switcher button) { border-radius: var(--radius-button); }
+input, textarea, select { border-radius: var(--radius-input); }
+.language-switcher { min-height: 48px; }
+.language-switcher button { min-height: 44px; min-width: 44px; }
+.mobile-dock__link { min-height: 54px; min-width: 44px; }
+:where(a, button, input, textarea, select, [role="button"]):focus-visible {
+  outline: 2px solid #FFB300 !important;
+  outline-offset: 2px !important;
+}
+
+body { font-family: var(--font-inter), var(--font-devanagari), sans-serif; }
+
+
+/* Final storefront performance and accessibility overrides. */
+:root {
+  --radius-card: 22px;
+  --radius-button: 12px;
+  --radius-input: 10px;
+  --radius-pill: 9999px;
+}
+html { scroll-behavior: smooth; }
+body { font-size: 1rem; line-height: 1.6; }
+h1 { font-size: 2rem; line-height: 1.15; font-weight: 800; }
+h2 { font-size: 1.5rem; line-height: 1.25; font-weight: 700; }
+h3 { font-size: 1.25rem; line-height: 1.3; font-weight: 600; }
+small, .text-small { font-size: .875rem; line-height: 1.5; }
+:where(a, button, input, textarea, select, [role="button"]):focus-visible {
+  outline: 2px solid #FFB300;
+  outline-offset: 2px;
+}
+.glass, .glass-card {
+  background: #082326;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.catalogue-card, .product-card {
+  background: #082326;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 1px solid rgba(194,216,216,.16);
+  border-radius: 22px;
+}
+.mobile-dock {
+  -webkit-backdrop-filter: blur(28px) saturate(1.35);
+  backdrop-filter: blur(28px) saturate(1.35);
+}
+.language-switcher { display: inline-flex; min-height: 44px; align-items: center; gap: 2px; padding: 3px; border: 1px solid rgba(0,220,210,.28); border-radius: 9999px; }
+.language-switcher button { min-width: 44px; min-height: 38px; border: 0; border-radius: 9999px; padding: 0 10px; color: #8DE7E1; background: transparent; font-size: 12px; font-weight: 800; transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease; }
+.language-switcher button[aria-pressed="true"] { color: #171100; background: #FFB300; }
+.language-switcher button:hover { transform: translateY(-1px); }
+.language-switcher button:active { transform: translateY(0); }
+.mobile-dock__link { min-width: 44px; min-height: 54px; }
+.btn-cyan, .hero-cta, .category-chip, .nav-link, .header-search-link {
+  transition: transform 120ms ease, box-shadow 120ms ease, color 120ms ease, background 120ms ease;
+}
+.btn-cyan:hover, .hero-cta:hover, .category-chip:hover, .nav-link:hover, .header-search-link:hover { transform: translateY(-1px); }
+.btn-cyan:active, .hero-cta:active, .category-chip:active, .nav-link:active, .header-search-link:active { transform: translateY(0); }
+.product-card { transition: transform 200ms ease, box-shadow 200ms ease; }
+.product-card:hover { transform: translateY(-2px); }
+.content-auto { content-visibility: auto; contain-intrinsic-size: auto 600px; }
+@media (max-width: 767px) {
+  main { padding-bottom: max(7rem, env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* Lightweight CSS motion replaces Framer Motion on the public routes. */
+.motion-enter {
+  opacity: 0;
+  animation: storefront-enter .56s cubic-bezier(.22,1,.36,1) both;
+}
+.motion-enter--left { animation-delay: 40ms; }
+.motion-enter--right { animation-delay: 160ms; }
+.auth-entrance {
+  opacity: 0;
+  animation: auth-enter .58s cubic-bezier(.22,1,.36,1) both;
+}
+.auth-entrance--left { animation-delay: 0ms; }
+.auth-entrance--right { animation-delay: 80ms; }
+.auth-field-enter { animation: auth-field-enter .24s ease-out both; }
+.auth-mascot--float { animation: auth-mascot-float 5.5s ease-in-out infinite; }
+@keyframes storefront-enter {
+  from { opacity: 0; transform: translate3d(0,18px,0); }
+  to { opacity: 1; transform: translate3d(0,0,0); }
+}
+@keyframes auth-enter {
+  from { opacity: 0; transform: translate3d(0,18px,0) scale(.985); }
+  to { opacity: 1; transform: translate3d(0,0,0) scale(1); }
+}
+@keyframes auth-field-enter {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes auth-mascot-float {
+  0%, 100% { transform: translate3d(0,0,0) rotate(0); }
+  50% { transform: translate3d(0,-8px,0) rotate(1.2deg); }
+}
+/* Product-detail metadata was below WCAG AA against the dark cards. */
+.text-white\/45,
+.text-white\/40,
+.text-white\/35,
+.text-white\/30,
+.detail-fact dt {
+  color: #BFCFD7 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-enter, .auth-entrance, .auth-field-enter, .auth-mascot--float {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
