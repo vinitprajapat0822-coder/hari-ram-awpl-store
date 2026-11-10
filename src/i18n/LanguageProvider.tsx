@@ -37,6 +37,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const pendingOverflowAnchor = useRef<{ root: string; body: string } | null>(null);
   const textState = useRef(new WeakMap<Text, { source: string; rendered: string }>());
   const attributeState = useRef(new WeakMap<Element, Map<string, { source: string; rendered: string }>>());
+  const translatedTextNodes = useRef(new Set<Text>());
+  const translatedAttributeElements = useRef(new Set<Element>());
 
   // A height reserve is needed only while the same route is being translated.
   // Clear it on route navigation so a previous long page cannot add blank space
@@ -101,54 +103,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (typeof document === "undefined" || !document.body) return;
-    const attributes = ["aria-label", "aria-description", "placeholder", "title", "alt"];
-    const applyText = (node: Text) => {
-      const current = node.nodeValue ?? "";
-      const remembered = textState.current.get(node);
-      const source = remembered && current === remembered.rendered ? remembered.source : current;
-      if (!remembered || current !== remembered.rendered) textState.current.set(node, { source, rendered: current });
-      const leading = source.match(/^\s*/)?.[0] ?? "";
-      const trailing = source.match(/\s*$/)?.[0] ?? "";
-      const body = source.slice(leading.length, source.length - trailing.length);
-      const target = lang === "hi" ? (translationMap.get(body) ?? source) : source;
-      const previous = textState.current.get(node);
-      textState.current.set(node, { source, rendered: target });
-      if (current !== target && previous?.rendered !== target) node.nodeValue = target;
-    };
-    const applyAttribute = (element: Element, attribute: string) => {
-      const current = element.getAttribute(attribute);
-      if (current === null) return;
-      let state = attributeState.current.get(element);
-      if (!state) { state = new Map(); attributeState.current.set(element, state); }
-      const remembered = state.get(attribute);
-      const source = remembered && current === remembered.rendered ? remembered.source : current;
-      const target = lang === "hi" ? (translationMap.get(source.trim()) ?? source) : source;
-      state.set(attribute, { source, rendered: target });
-      if (current !== target) element.setAttribute(attribute, target);
-    };
-    const visit = (root: Node) => {
-      if (root.nodeType === Node.TEXT_NODE) { applyText(root as Text); return; }
-      if (root.nodeType !== Node.ELEMENT_NODE && root !== document.body) return;
-      const element = root as Element;
-      if (element.matches("script,style,textarea,[data-no-translate]")) return;
-      attributes.forEach((attribute) => applyAttribute(element, attribute));
-      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
-      let node = walker.nextNode();
-      while (node) {
-        const parent = node.parentElement;
-        if (parent && !parent.closest("script,style,textarea,[data-no-translate]")) applyText(node as Text);
-        node = walker.nextNode();
-      }
-    };
-    visit(document.body);
-    const scrollToRestore = pendingScrollRestore.current;
-    if (scrollToRestore !== null) {
+
+    const restorePendingScroll = () => {
+      const scrollToRestore = pendingScrollRestore.current;
+      if (scrollToRestore === null) return;
       const restoreScroll = () => {
         window.scrollTo({ left: 0, top: scrollToRestore, behavior: "auto" });
       };
-      // Hindi font loading can change line metrics after the first React commit.
-      // Restore only after the active font set is ready, then keep the root
-      // pinned for two paint frames while browser layout/scroll anchoring settles.
+      // Wait for Hindi font metrics before the final scroll restoration.
       void document.fonts.ready.then(() => {
         if (pendingScrollRestore.current !== scrollToRestore) return;
         requestAnimationFrame(() => {
@@ -168,7 +130,81 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
           });
         });
       });
+    };
+
+    // The normal English storefront is already rendered from the translation
+    // dictionary. Do not walk the entire hydrated page or install a global
+    // MutationObserver until Hindi fallback translation is actually required.
+    if (lang === "en") {
+      translatedTextNodes.current.forEach((node) => {
+        const state = textState.current.get(node);
+        if (state && node.nodeValue === state.rendered && state.rendered !== state.source) {
+          node.nodeValue = state.source;
+          textState.current.set(node, { source: state.source, rendered: state.source });
+        }
+      });
+      translatedTextNodes.current.clear();
+
+      translatedAttributeElements.current.forEach((element) => {
+        const state = attributeState.current.get(element);
+        state?.forEach((attributeState, attribute) => {
+          if (element.getAttribute(attribute) === attributeState.rendered && attributeState.rendered !== attributeState.source) {
+            element.setAttribute(attribute, attributeState.source);
+          }
+          state.set(attribute, { source: attributeState.source, rendered: attributeState.source });
+        });
+      });
+      translatedAttributeElements.current.clear();
+      restorePendingScroll();
+      return;
     }
+
+    const attributes = ["aria-label", "aria-description", "placeholder", "title", "alt"];
+    const applyText = (node: Text) => {
+      const current = node.nodeValue ?? "";
+      const remembered = textState.current.get(node);
+      const source = remembered && current === remembered.rendered ? remembered.source : current;
+      if (!remembered || current !== remembered.rendered) textState.current.set(node, { source, rendered: current });
+      const leading = source.match(/^\\s*/)?.[0] ?? "";
+      const trailing = source.match(/\\s*$/)?.[0] ?? "";
+      const body = source.slice(leading.length, source.length - trailing.length);
+      const target = translationMap.get(body) ?? source;
+      const previous = textState.current.get(node);
+      textState.current.set(node, { source, rendered: target });
+      if (target !== source) translatedTextNodes.current.add(node);
+      else translatedTextNodes.current.delete(node);
+      if (current !== target && previous?.rendered !== target) node.nodeValue = target;
+    };
+    const applyAttribute = (element: Element, attribute: string) => {
+      const current = element.getAttribute(attribute);
+      if (current === null) return;
+      let state = attributeState.current.get(element);
+      if (!state) { state = new Map(); attributeState.current.set(element, state); }
+      const remembered = state.get(attribute);
+      const source = remembered && current === remembered.rendered ? remembered.source : current;
+      const target = translationMap.get(source.trim()) ?? source;
+      state.set(attribute, { source, rendered: target });
+      if (target !== source) translatedAttributeElements.current.add(element);
+      if (current !== target) element.setAttribute(attribute, target);
+    };
+    const visit = (root: Node) => {
+      if (root.nodeType === Node.TEXT_NODE) { applyText(root as Text); return; }
+      if (root.nodeType !== Node.ELEMENT_NODE && root !== document.body) return;
+      const element = root as Element;
+      if (element.matches("script,style,textarea,[data-no-translate]")) return;
+      attributes.forEach((attribute) => applyAttribute(element, attribute));
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+      let node = walker.nextNode();
+      while (node) {
+        const parent = node.parentElement;
+        if (parent && !parent.closest("script,style,textarea,[data-no-translate]")) applyText(node as Text);
+        node = walker.nextNode();
+      }
+    };
+
+    visit(document.body);
+    restorePendingScroll();
+
     const observer = new MutationObserver((records) => {
       records.forEach((record) => {
         if (record.type === "characterData" && record.target.nodeType === Node.TEXT_NODE) applyText(record.target as Text);

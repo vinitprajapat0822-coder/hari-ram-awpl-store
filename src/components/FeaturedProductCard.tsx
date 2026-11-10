@@ -46,7 +46,7 @@ export default function FeaturedProductCard({ product }: { product: Product }) {
             </p>
             <h2 className="mt-2 text-lg font-extrabold leading-snug text-[#EAF6F5] sm:text-xl">{productName}</h2>
             <p className="mt-2 line-clamp-3 text-xs leading-6 text-[#C2D8D8]/85">
-              {description || "उत्पाद विवरण के लिए उत्पाद पृष्ठ देखें।"}
+              {description || (lang === "hi" ? "उत्पाद विवरण के लिए उत्पाद पृष्ठ देखें।" : "Open the product page for available details.")}
             </p>
             <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
               <span className="text-[11px] text-[#C2D8D8]/85">{t("pack")} {product.qty || "—"}</span>

@@ -29,6 +29,9 @@ body { color: #EAF6F5; }
 }
 
 .site-header__inner {
+  --lg-glass-blur: 24px;
+  --lg-saturate: 1.35;
+  --lg-brightness: 1;
   box-shadow: 0 18px 48px rgba(46,26,71,0.42), 0 4px 14px rgba(0,0,0,0.30);
 }
 

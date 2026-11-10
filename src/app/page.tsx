@@ -12,7 +12,7 @@ import FeaturedProductCard from "@/components/FeaturedProductCard";
 import { useLanguage } from "@/i18n/useLanguage";
 
 const featuredProduct = products.find((product) => product.status === "VERIFIED" && product.imageStatus === "VERIFIED" && Boolean(product.image));
-const PAGE_SIZE = 24;
+const PAGE_SIZE = 12;
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("All");

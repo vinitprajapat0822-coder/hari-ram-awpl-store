@@ -118,7 +118,7 @@ export default function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5">
-        <div className="glass-card site-header__inner mx-auto flex max-w-6xl items-center justify-between rounded-[22px] px-3.5 sm:px-5" style={{ backdropFilter: "blur(24px) saturate(1.35)", WebkitBackdropFilter: "blur(24px) saturate(1.35)" }}>
+        <div data-liquid-glass="" data-lg-refract="" className="glass-card lg-glass lg-glass--host site-header__inner mx-auto flex max-w-6xl items-center justify-between rounded-[22px] px-3.5 sm:px-5" style={{ backdropFilter: "blur(24px) saturate(1.35)", WebkitBackdropFilter: "blur(24px) saturate(1.35)" }}>
           <Link href="/" prefetch={false} onClick={() => handleNavigation("/")} className="flex min-w-0 items-center gap-3">
             <span className="brand-mark text-lg font-black tracking-tight">H</span>
             <span className="min-w-0 leading-tight">
