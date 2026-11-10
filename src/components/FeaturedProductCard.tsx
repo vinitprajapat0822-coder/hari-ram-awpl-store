@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { GlassCard } from "@zakisheriff/liquid-glass";
 import type { Product } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
 import { useLanguage } from "@/i18n/useLanguage";
@@ -14,13 +13,13 @@ export default function FeaturedProductCard({ product }: { product: Product }) {
 
   return (
     <div className="featured-glass-shell">
-      <GlassCard
-        padding="16px"
-        radius="22px"
-        intensity={7}
-        thickness={3}
-        tint="rgba(255,179,0,0.10)"
-        className="liquid-glass-featured"
+      <div
+        className="glass-card liquid-glass-featured rounded-[22px] p-4"
+        style={{
+          background: "linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,179,0,.10) 58%), rgba(9,18,30,.72)",
+          backdropFilter: "blur(24px) saturate(1.35)",
+          WebkitBackdropFilter: "blur(24px) saturate(1.35)",
+        }}
       >
         <div className="grid gap-5 sm:grid-cols-[minmax(0,180px)_1fr] sm:items-center">
           <div className="relative aspect-square overflow-hidden rounded-[20px] border border-white/10 bg-[#031A1C]/70">
@@ -58,7 +57,7 @@ export default function FeaturedProductCard({ product }: { product: Product }) {
             </Link>
           </div>
         </div>
-      </GlassCard>
+      </div>
     </div>
   );
 }

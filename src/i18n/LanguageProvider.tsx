@@ -146,21 +146,25 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       const restoreScroll = () => {
         window.scrollTo({ left: 0, top: scrollToRestore, behavior: "auto" });
       };
-      requestAnimationFrame(() => {
-        restoreScroll();
+      // Hindi font loading can change line metrics after the first React commit.
+      // Restore only after the active font set is ready, then keep the root
+      // pinned for two paint frames while browser layout/scroll anchoring settles.
+      void document.fonts.ready.then(() => {
+        if (pendingScrollRestore.current !== scrollToRestore) return;
         requestAnimationFrame(() => {
-          // Disable scroll anchoring during translation so longer/shorter copy
-          // cannot move the reader away from the captured position.
           restoreScroll();
-          const previousAnchor = pendingOverflowAnchor.current;
-          if (previousAnchor) {
-            document.documentElement.style.overflowAnchor = previousAnchor.root;
-            document.body.style.overflowAnchor = previousAnchor.body;
-            pendingOverflowAnchor.current = null;
-          }
           requestAnimationFrame(() => {
             restoreScroll();
-            if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
+            const previousAnchor = pendingOverflowAnchor.current;
+            if (previousAnchor) {
+              document.documentElement.style.overflowAnchor = previousAnchor.root;
+              document.body.style.overflowAnchor = previousAnchor.body;
+              pendingOverflowAnchor.current = null;
+            }
+            requestAnimationFrame(() => {
+              restoreScroll();
+              if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
+            });
           });
         });
       });

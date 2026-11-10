@@ -161,7 +161,7 @@ export default function CatalogueAssistant({ initialOpen = false }: { initialOpe
                       const price = lang === "hi" ? "एमआरपी ₹" + new Intl.NumberFormat("en-IN").format(product.mrp) + " (सूचीबद्ध)" : formatMrp(product);
                       return (
                         <li key={product.id}>
-                          <Link href={`/product/${product.id}/`} prefetch={false} className="focus-visible:amber block min-h-11 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2 hover:border-teal-200/30">
+                          <Link href={`/product/${encodeURIComponent(product.id)}/`} prefetch={false} className="focus-visible:amber block min-h-11 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2 hover:border-teal-200/30">
                             <span className="block text-xs font-semibold text-white">{name}</span>
                             <span className="mt-1 block text-[11px] text-white/85">{product.qty || t("assistantPackPending")} · {price}</span>
                           </Link>

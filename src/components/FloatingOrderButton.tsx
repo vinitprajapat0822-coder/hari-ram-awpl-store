@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { GlassButton } from "@zakisheriff/liquid-glass";
 import { useLanguage } from "@/i18n/useLanguage";
 
 export default function FloatingOrderButton() {
@@ -15,19 +14,14 @@ export default function FloatingOrderButton() {
 
   return (
     <div className="fixed bottom-28 left-4 z-[56] md:bottom-6 md:left-6">
-      <GlassButton
+      <button
         type="button"
-        size="md"
-        variant="filled"
-        tint="#FFB300"
-        intensity={6}
-        thickness={3}
         onClick={() => router.push("/cart")}
         aria-label={t("navOrder")}
-        className="min-h-11 min-w-11 focus-visible:amber"
+        className="floating-order-button focus-visible:amber"
       >
         {t("navOrder")}
-      </GlassButton>
+      </button>
     </div>
   );
 }

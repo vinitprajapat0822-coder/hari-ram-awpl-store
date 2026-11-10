@@ -130,6 +130,10 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
     // navbar control into view before the language-switch behavior is measured.
     await hiButton.evaluate((button) => (button as HTMLButtonElement).click());
     await expect(page.locator("html")).toHaveAttribute("lang", "hi");
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    });
     await page.waitForTimeout(80);
     const leaks = visibleEnglishLeaks(await page.locator("body").innerText());
     if (leaks.includes("Apparels")) {
@@ -164,6 +168,10 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
 
     await enButton.evaluate((button) => (button as HTMLButtonElement).click());
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    });
     await expect.poll(() => page.evaluate(() => Math.round(window.scrollY)), { timeout: 5000 }).toBe(startY);
     await page.waitForTimeout(80);
     const afterEnglishY = await page.evaluate(() => window.scrollY);
