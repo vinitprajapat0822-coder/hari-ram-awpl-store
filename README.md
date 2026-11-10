@@ -9,8 +9,8 @@ A Next.js storefront prototype with a Liquid Glass interface and a category-wise
 - The official category selector showed 374 entries on 6 November 2026. These are selector counters, not confirmed unique product-card totals.
 - MRP only. DP and SP are not stored or displayed.
 - Pack sizes, apparel colours/sizes and cosmetic shades remain separate records when the official listing exposes separate SKUs.
-- 10 exact official AWPL product-image URLs are enabled. Products without a confirmed image-to-SKU match show an explicit image-pending placeholder.
-- Records with MRP conflicts or incomplete product-label data remain blocked from cart.
+- All 147 product records have image URLs. The store owner manually checked every product image against its product, variant and pack on 10 November 2026; all 147 image records are marked `VERIFIED`.
+- Image-match verification is separate from image-use permissions. Records with MRP conflicts or incomplete product-label data remain blocked from cart.
 - Wellness, Wellroot, Agriculture and Veterinary product listings are withheld from the public order flow. Baby nutrition and supplement-like products are not orderable.
 - Category-selector counts are kept separate from actual captured product-card rows. Missing products are not fabricated to match a counter.
 
