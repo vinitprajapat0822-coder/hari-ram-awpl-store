@@ -89,6 +89,27 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
     browserErrors.length = 0;
     await page.goto(APP + route);
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    // Let font swaps and images in the active viewport settle before recording scrollY.
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      const images = Array.from(document.images).filter((image) => {
+        const rect = image.getBoundingClientRect();
+        return rect.bottom > -100 && rect.top < window.innerHeight * 1.5;
+      });
+      await Promise.all(images.map((image) => new Promise<void>((resolve) => {
+        const finish = () => {
+          image.removeEventListener("load", finish);
+          image.removeEventListener("error", finish);
+          void image.decode().catch(() => undefined).finally(resolve);
+        };
+        if (image.complete) finish();
+        else {
+          image.addEventListener("load", finish, { once: true });
+          image.addEventListener("error", finish, { once: true });
+        }
+      })));
+      await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    });
     const languageSwitcher = page.locator(".language-switcher");
     await expect(languageSwitcher).toBeVisible();
     const enButton = languageSwitcher.locator("button").nth(0);

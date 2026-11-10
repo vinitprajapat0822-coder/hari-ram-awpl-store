@@ -618,11 +618,18 @@ button, a { touch-action: manipulation; }
   width: 310px;
   aspect-ratio: 1;
   border-radius: 50%;
-  filter: blur(60px);
   pointer-events: none;
 }
-.storefront-hero__glow--one { top: -190px; right: 8%; background: rgba(49, 211, 191, .16); }
-.storefront-hero__glow--two { bottom: -230px; left: 24%; background: rgba(73, 113, 220, .13); }
+.storefront-hero__glow--one {
+  top: -190px;
+  right: 8%;
+  background: radial-gradient(circle, rgba(49, 211, 191, .2) 0%, rgba(49, 211, 191, .08) 42%, transparent 74%);
+}
+.storefront-hero__glow--two {
+  bottom: -230px;
+  left: 24%;
+  background: radial-gradient(circle, rgba(73, 113, 220, .17) 0%, rgba(73, 113, 220, .06) 42%, transparent 74%);
+}
 .storefront-hero__layout {
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(310px, .88fr);

@@ -24,6 +24,15 @@ export default function CatalogueAssistant({ initialOpen = false }: { initialOpe
   const listRef = useRef<HTMLDivElement>(null);
   const fabRef = useRef<HTMLButtonElement>(null);
   const returnFocus = useRef(false);
+  const previousPathname = useRef(pathname);
+
+  useEffect(() => {
+    if (previousPathname.current !== pathname) {
+      previousPathname.current = pathname;
+      returnFocus.current = false;
+      setOpen(false);
+    }
+  }, [pathname]);
 
   const prompts = lang === "hi"
     ? ["Jeeveda", "₹200 से कम के उत्पाद", "कौन-सी श्रेणियाँ हैं?", "ऑर्डर कैसे करें?"]

@@ -135,10 +135,6 @@ export default function ProductDetailClient({ product }: Props) {
                   <dd>{product.qty || t("notListed")}</dd>
                 </div>
                 <div className="detail-fact">
-                  <dt>{t("productCode")}</dt>
-                  <dd className="break-all text-[10px]">{product.id}</dd>
-                </div>
-                <div className="detail-fact">
                   <dt>{t("addedDate")}</dt>
                   <dd>{t("notRecorded")}</dd>
                 </div>
