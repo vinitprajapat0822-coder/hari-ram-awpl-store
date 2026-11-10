@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { ExternalLink, MessageCircle, SendHorizontal, X } from "lucide-react";
 import { products } from "@/data/products";
@@ -15,7 +15,6 @@ type Message =
 
 export default function CatalogueAssistant({ initialOpen = false }: { initialOpen?: boolean }) {
   const pathname = usePathname();
-  const router = useRouter();
   const { lang, t, categoryLabel, formatNumber } = useLanguage();
   const [open, setOpen] = useState(initialOpen);
   const [input, setInput] = useState("");
@@ -166,8 +165,10 @@ export default function CatalogueAssistant({ initialOpen = false }: { initialOpe
                             href={`/product/${encodeURIComponent(product.id)}/`}
                             prefetch={true}
                             onClick={(event) => {
+                              // GitHub Pages serves a static export under basePath.
+                              // Use the resolved anchor URL so basePath is preserved.
                               event.preventDefault();
-                              router.push(`/product/${encodeURIComponent(product.id)}/`);
+                              window.location.assign(event.currentTarget.href);
                             }}
                             className="focus-visible:amber block min-h-11 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2 hover:border-teal-200/30"
                           >
