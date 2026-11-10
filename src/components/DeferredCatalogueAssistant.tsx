@@ -19,8 +19,8 @@ export default function DeferredCatalogueAssistant() {
     if (loading || Assistant) return;
     setLoading(true);
     try {
-      const module = await import("@/components/CatalogueAssistant");
-      setAssistant(() => module.default);
+      const assistantModule = await import("@/components/CatalogueAssistant");
+      setAssistant(() => assistantModule.default);
     } finally {
       setLoading(false);
     }
