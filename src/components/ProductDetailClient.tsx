@@ -40,6 +40,9 @@ export default function ProductDetailClient({ product }: Props) {
   const { lang, t, categoryLabel } = useLanguage();
   const productName = lang === "hi" && product.nameHi ? product.nameHi : product.name;
   const productDescription = lang === "hi" && product.descriptionHi ? product.descriptionHi : product.description;
+  const productCategory = product.category.trim().toLowerCase() === "apparels"
+    ? t("categoryApparels")
+    : categoryLabel(product.category);
   const [added, setAdded] = useState(false);
   const [reviewRating, setReviewRating] = useState(0);
   const [reviewComment, setReviewComment] = useState("");
@@ -96,7 +99,7 @@ export default function ProductDetailClient({ product }: Props) {
           <span aria-hidden="true">/</span>
           <Link href="/#catalogue" className="transition-colors hover:text-teal-100">{t("navCatalogue")}</Link>
           <span aria-hidden="true">/</span>
-          <span className="max-w-[58vw] truncate text-teal-100/75">{categoryLabel(product.category)}</span>
+          <span className="max-w-[58vw] truncate text-teal-100/75">{productCategory}</span>
         </div>
 
         <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(340px,.92fr)] lg:gap-7">
@@ -121,7 +124,7 @@ export default function ProductDetailClient({ product }: Props) {
               <dl className="grid grid-cols-2 gap-3">
                 <div className="detail-fact">
                   <dt>{t("categoryLabel")}</dt>
-                  <dd>{categoryLabel(product.category)}</dd>
+                  <dd>{productCategory}</dd>
                 </div>
                 <div className="detail-fact">
                   <dt>{t("brandLabel")}</dt>
@@ -151,7 +154,7 @@ export default function ProductDetailClient({ product }: Props) {
             <GlassCard className="rounded-[28px] p-5 sm:p-6">
               <div className="mb-3 flex flex-wrap items-center gap-2">
                 <span className="rounded-full border border-teal-100/15 bg-teal-100/[0.06] px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.15em] text-teal-100/75">
-                  {categoryLabel(product.category)}
+                  {productCategory}
                 </span>
                 {product.status === "VERIFIED" ? (
                   <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200/15 bg-emerald-200/[0.06] px-2.5 py-1.5 text-[9px] font-bold text-emerald-100/75">

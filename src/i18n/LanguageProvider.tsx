@@ -34,6 +34,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [, startTransition] = useTransition();
   const pendingScrollRestore = useRef<number | null>(null);
+  const pendingOverflowAnchor = useRef<{ root: string; body: string } | null>(null);
   const textState = useRef(new WeakMap<Text, { source: string; rendered: string }>());
   const attributeState = useRef(new WeakMap<Element, Map<string, { source: string; rendered: string }>>());
 
@@ -66,6 +67,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const setLang = useCallback((next: Language) => {
     if (next === lang) return;
     const scrollY = window.scrollY;
+    pendingOverflowAnchor.current = {
+      root: document.documentElement.style.overflowAnchor,
+      body: document.body.style.overflowAnchor,
+    };
+    document.documentElement.style.overflowAnchor = "none";
+    document.body.style.overflowAnchor = "none";
     const minimumHeight = Math.ceil(Math.max(
       document.documentElement.scrollHeight,
       document.body.scrollHeight,
@@ -142,9 +149,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       requestAnimationFrame(() => {
         restoreScroll();
         requestAnimationFrame(() => {
-          // Re-apply after the browser has completed text reflow and scroll anchoring.
+          // Disable scroll anchoring during translation so longer/shorter copy
+          // cannot move the reader away from the captured position.
           restoreScroll();
-          if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
+          const previousAnchor = pendingOverflowAnchor.current;
+          if (previousAnchor) {
+            document.documentElement.style.overflowAnchor = previousAnchor.root;
+            document.body.style.overflowAnchor = previousAnchor.body;
+            pendingOverflowAnchor.current = null;
+          }
+          requestAnimationFrame(() => {
+            restoreScroll();
+            if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
+          });
         });
       });
     }
