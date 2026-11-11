@@ -7,13 +7,15 @@ import type { Product } from "@/data/products";
 import { useStore } from "@/store/useStore";
 import { formatPrice } from "@/lib/utils";
 import ProductArtwork from "./ProductArtwork";
-import { Check, Plus } from "lucide-react";
+import { Check, Heart, Plus } from "lucide-react";
 import { useLanguage } from "@/i18n/useLanguage";
 
 type Props = { product: Product; index?: number };
 
 function ProductCard({ product }: Props) {
   const addToCart = useStore((state) => state.addToCart);
+  const toggleWishlist = useStore((state) => state.toggleWishlist);
+  const isSaved = useStore((state) => state.wishlistIds.includes(product.id));
   const [added, setAdded] = useState(false);
   const inCart = useStore((state) => state.cart.some((item) => item.product.id === product.id));
   const { lang, t, categoryLabel } = useLanguage();
@@ -39,8 +41,13 @@ function ProductCard({ product }: Props) {
     event.currentTarget.style.setProperty("--ripple-y", y + "%");
   };
 
+  const handleWishlistToggle = () => toggleWishlist(product.id);
+
   return (
-    <article role="group" aria-label={(lang === "hi" ? "उत्पाद " : "Product ") + productName} className="catalogue-card product-card flex h-full flex-col rounded-[22px] p-3 sm:p-4">
+    <article role="group" aria-label={(lang === "hi" ? "उत्पाद " : "Product ") + productName} className="catalogue-card product-card relative flex h-full flex-col rounded-[22px] p-3 sm:p-4">
+      <button type="button" onClick={handleWishlistToggle} aria-pressed={isSaved} aria-label={(isSaved ? t("removeFromWishlist") : t("addToWishlist")) + " — " + productName} title={isSaved ? t("removeFromWishlist") : t("addToWishlist")} className="absolute right-5 top-5 z-20 grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-slate-950/75 text-white shadow-lg backdrop-blur-md transition-colors hover:border-rose-200/35 hover:text-rose-200 focus-visible:amber">
+        <Heart size={17} fill={isSaved ? "currentColor" : "none"} aria-hidden="true" />
+      </button>
       <Link href={"/product/" + encodeURIComponent(product.id) + "/"} prefetch={false} className="product-card__details block min-w-0 flex-1 rounded-xl focus-visible:amber">
         <div onPointerMove={handlePointerMove}>
           <ProductArtwork product={product} showAttribution={false} />

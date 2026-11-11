@@ -1,6 +1,8 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import type { KeyboardEvent } from "react";
 import type { Product } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
@@ -10,6 +12,8 @@ import CategorySurfer from "@/components/CategorySurfer";
 import { ArrowRight, Search, X } from "lucide-react";
 import FeaturedProductCard from "@/components/FeaturedProductCard";
 import { useLanguage } from "@/i18n/useLanguage";
+import { rankProducts } from "@/lib/product-search";
+import { formatPrice } from "@/lib/utils";
 
 type Props = {
   initialProducts: Product[];
@@ -38,8 +42,17 @@ export default function StorefrontClient({
   const cataloguePromise = useRef<Promise<Product[]> | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [page, setPage] = useState(1);
+  const router = useRouter();
   const { t, categoryLabel, formatNumber } = useLanguage();
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setDebouncedSearch(search), 300);
+    return () => window.clearTimeout(timer);
+  }, [search]);
 
   async function ensureCatalogue(): Promise<Product[]> {
     if (catalogueReady) return catalogue;
@@ -60,22 +73,15 @@ export default function StorefrontClient({
   }
 
   const filtered = useMemo(() => {
-    let list = catalogue;
-    if (activeCategory !== "All") list = list.filter((product) => product.category === activeCategory);
-    const query = search.trim().toLowerCase();
-    if (query) {
-      list = list.filter((product) =>
-        product.name.toLowerCase().includes(query) ||
-        product.nameHi.toLowerCase().includes(query) ||
-        (product.description ?? "").toLowerCase().includes(query) ||
-        product.descriptionHi.toLowerCase().includes(query) ||
-        (product.qty ?? "").toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query) ||
-        categoryLabel(product.category).toLowerCase().includes(query)
-      );
-    }
-    return list;
-  }, [catalogue, activeCategory, search, categoryLabel]);
+    const list = activeCategory === "All" ? catalogue : catalogue.filter((product) => product.category === activeCategory);
+    return rankProducts(list, debouncedSearch);
+  }, [catalogue, activeCategory, debouncedSearch]);
+
+  const suggestionResults = useMemo(() => {
+    if (search.trim().length < 2) return [];
+    const list = activeCategory === "All" ? catalogue : catalogue.filter((product) => product.category === activeCategory);
+    return rankProducts(list, search).slice(0, 5);
+  }, [catalogue, activeCategory, search]);
 
   const visibleProducts = filtered.slice(0, page * PAGE_SIZE);
   const categoryPending = !search.trim() && ["Wellness", "Wellroot", "Agriculture", "Veterinary"].includes(activeCategory);
@@ -84,6 +90,9 @@ export default function StorefrontClient({
 
   const clearFilters = () => {
     setSearch("");
+    setDebouncedSearch("");
+    setSuggestionsOpen(false);
+    setActiveSuggestion(0);
     setActiveCategory("All");
     setPage(1);
   };
@@ -91,7 +100,37 @@ export default function StorefrontClient({
   const handleSearchChange = (value: string) => {
     setSearch(value);
     setPage(1);
+    setActiveSuggestion(0);
+    setSuggestionsOpen(value.trim().length >= 2);
     if (value.trim()) void ensureCatalogue().catch(() => undefined);
+  };
+
+  const selectSuggestion = (product: Product) => {
+    setSearch(product.name);
+    setDebouncedSearch(product.name);
+    setSuggestionsOpen(false);
+    setActiveSuggestion(0);
+    router.push("/product/" + encodeURIComponent(product.id) + "/");
+  };
+
+  const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (!suggestionsOpen || suggestionResults.length === 0) {
+      if (event.key === "Escape") setSuggestionsOpen(false);
+      return;
+    }
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setActiveSuggestion((current) => Math.min(current + 1, suggestionResults.length - 1));
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setActiveSuggestion((current) => Math.max(current - 1, 0));
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      selectSuggestion(suggestionResults[activeSuggestion] ?? suggestionResults[0]);
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      setSuggestionsOpen(false);
+    }
   };
 
   const handleCategorySelect = (category: string) => {
@@ -127,10 +166,25 @@ export default function StorefrontClient({
           </div>
           <span className="catalogue-heading__hint"><Search size={14} aria-hidden="true" />{t("searchFilter")}</span>
         </div>
-        <div className="search-shell mb-4 flex min-h-14 items-center gap-3 px-4">
-          <Search size={18} className="shrink-0 text-teal-100/75" aria-hidden="true" />
-          <input type="search" value={search} onChange={(event) => handleSearchChange(event.target.value)} placeholder={t("searchProducts")} aria-label={t("searchProducts")} className="min-w-0 flex-1 py-3 text-sm" />
-          {search && <button type="button" onClick={() => setSearch("")} aria-label={t("clearSearch")} className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-white/75 transition-colors hover:bg-white/10 hover:text-white focus-visible:amber"><X size={16} aria-hidden="true" /></button>}
+        <div className="relative mb-4">
+          <div className="search-shell flex min-h-14 items-center gap-3 px-4">
+            <Search size={18} className="shrink-0 text-teal-100/75" aria-hidden="true" />
+            <input type="search" value={search} onChange={(event) => handleSearchChange(event.target.value)} onFocus={() => setSuggestionsOpen(search.trim().length >= 2)} onKeyDown={handleSearchKeyDown} role="combobox" aria-autocomplete="list" aria-expanded={suggestionsOpen && search.trim().length >= 2 && suggestionResults.length > 0} aria-controls={suggestionsOpen && suggestionResults.length > 0 ? "catalogue-search-suggestions" : undefined} aria-activedescendant={suggestionsOpen && suggestionResults[activeSuggestion] ? "catalogue-search-option-" + activeSuggestion : undefined} placeholder={t("searchProducts")} aria-label={t("searchProducts")} className="min-w-0 flex-1 py-3 text-sm" />
+            {search && <button type="button" onClick={() => { setSearch(""); setDebouncedSearch(""); setSuggestionsOpen(false); }} aria-label={t("clearSearch")} className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-white/75 transition-colors hover:bg-white/10 hover:text-white focus-visible:amber"><X size={16} aria-hidden="true" /></button>}
+          </div>
+          {suggestionsOpen && search.trim().length >= 2 && suggestionResults.length > 0 && (
+            <div id="catalogue-search-suggestions" role="listbox" aria-label={t("searchSuggestions")} className="absolute inset-x-0 top-full z-40 mt-2 overflow-hidden rounded-2xl border border-white/10 bg-[#07111d]/[0.98] p-2 shadow-2xl backdrop-blur-2xl">
+              {suggestionResults.map((product, index) => (
+                <button id={"catalogue-search-option-" + index} key={product.id} type="button" role="option" aria-selected={activeSuggestion === index} onMouseDown={(event) => event.preventDefault()} onClick={() => selectSuggestion(product)} className={"flex min-h-14 w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left transition-colors focus-visible:amber " + (activeSuggestion === index ? "bg-teal-200/10 text-white" : "text-white/85 hover:bg-white/[0.06]")}>
+                  <span className="min-w-0">
+                    <span className="block truncate text-xs font-bold">{product.name}</span>
+                    <span className="mt-1 block truncate text-[10px] text-white/55">{categoryLabel(product.category)} · {product.qty || t("notListed")}</span>
+                  </span>
+                  <span className="shrink-0 text-xs font-extrabold text-teal-100">{formatPrice(product.mrp)}</span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
         <CategorySurfer categories={categories} activeCategory={activeCategory} onSelect={handleCategorySelect} />
         <div className="mb-4 flex min-h-11 items-center justify-between gap-3">

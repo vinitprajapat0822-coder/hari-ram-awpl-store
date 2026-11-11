@@ -17,6 +17,8 @@ type LanguageContextValue = {
 };
 export const LanguageContext = createContext<LanguageContextValue | null>(null);
 
+type PendingScrollRestore = { fallbackY: number; anchor: HTMLElement | null; anchorTop: number };
+
 const categoryKeys: Record<string, TranslationKey> = {
   All: "categoryAll", Herbal: "categoryHerbal", "SNISS Herbal": "categoryHerbal",
   Elite: "categoryElite", "SNISS Elite": "categoryElite", "Cooking Oils": "categoryCookingOils",
@@ -33,8 +35,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Language>("en");
   const [ready, setReady] = useState(false);
   const [, startTransition] = useTransition();
-  const pendingScrollRestore = useRef<number | null>(null);
-  const pendingOverflowAnchor = useRef<{ root: string; body: string } | null>(null);
+  const pendingScrollRestore = useRef<PendingScrollRestore | null>(null);
+  const pendingOverflowAnchor = useRef<{ root: string; body: string; scrollBehavior: string } | null>(null);
   const textState = useRef(new WeakMap<Text, { source: string; rendered: string }>());
   const attributeState = useRef(new WeakMap<Element, Map<string, { source: string; rendered: string }>>());
   const translatedTextNodes = useRef(new Set<Text>());
@@ -46,6 +48,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.style.minHeight = "";
     document.body.style.minHeight = "";
+    const previousAnchor = pendingOverflowAnchor.current;
+    if (previousAnchor) {
+      document.documentElement.style.overflowAnchor = previousAnchor.root;
+      document.body.style.overflowAnchor = previousAnchor.body;
+      document.documentElement.style.scrollBehavior = previousAnchor.scrollBehavior;
+      pendingOverflowAnchor.current = null;
+    }
     pendingScrollRestore.current = null;
   }, [pathname]);
 
@@ -69,12 +78,18 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const setLang = useCallback((next: Language) => {
     if (next === lang) return;
     const scrollY = window.scrollY;
-    pendingOverflowAnchor.current = {
-      root: document.documentElement.style.overflowAnchor,
-      body: document.body.style.overflowAnchor,
-    };
+    if (!pendingOverflowAnchor.current) {
+      pendingOverflowAnchor.current = {
+        root: document.documentElement.style.overflowAnchor,
+        body: document.body.style.overflowAnchor,
+        scrollBehavior: document.documentElement.style.scrollBehavior,
+      };
+    }
     document.documentElement.style.overflowAnchor = "none";
     document.body.style.overflowAnchor = "none";
+    // The global stylesheet enables smooth scrolling. Disable it during
+    // layout correction so each measured scroll adjustment is applied now.
+    document.documentElement.style.scrollBehavior = "auto";
     const minimumHeight = Math.ceil(Math.max(
       document.documentElement.scrollHeight,
       document.body.scrollHeight,
@@ -85,7 +100,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     // on both root and body prevents a shorter translation from clamping scrollY.
     document.documentElement.style.minHeight = minimumHeight + "px";
     document.body.style.minHeight = minimumHeight + "px";
-    pendingScrollRestore.current = scrollY;
+    // Use the route's main content container, not a potentially fixed
+    // header/cart control under the viewport centre. A fixed element cannot
+    // be kept at the same visual coordinate by adjusting document scroll.
+    const anchor = document.querySelector<HTMLElement>("main") ?? document.body;
+    pendingScrollRestore.current = {
+      fallbackY: scrollY,
+      anchor,
+      anchorTop: anchor?.getBoundingClientRect().top ?? 0,
+    };
     try { window.localStorage.setItem("lang", next); } catch { /* In-memory language still works. */ }
     startTransition(() => setLangState(next));
   }, [lang, startTransition]);
@@ -105,31 +128,47 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (typeof document === "undefined" || !document.body) return;
 
     const restorePendingScroll = () => {
-      const scrollToRestore = pendingScrollRestore.current;
-      if (scrollToRestore === null) return;
-      const restoreScroll = () => {
-        window.scrollTo({ left: 0, top: scrollToRestore, behavior: "auto" });
+      const snapshot = pendingScrollRestore.current;
+      if (!snapshot) return;
+
+      let frames = 0;
+      const restoreVisualAnchor = () => {
+        const delta = snapshot.anchor?.isConnected
+          ? snapshot.anchor.getBoundingClientRect().top - snapshot.anchorTop
+          : 0;
+        const scrollingElement = document.scrollingElement ?? document.documentElement;
+        const targetY = Math.max(0, scrollingElement.scrollTop + delta);
+        // Write only to the browser's actual document scroll root. Writing to
+        // body as well can create a second scroll offset when body overflow is
+        // auto, which compounds the correction after horizontal clipping.
+        scrollingElement.scrollTop = targetY;
+        window.scrollTo({ left: 0, top: targetY, behavior: "instant" });
       };
-      // Wait for Hindi font metrics before the final scroll restoration.
-      void document.fonts.ready.then(() => {
-        if (pendingScrollRestore.current !== scrollToRestore) return;
-        requestAnimationFrame(() => {
-          restoreScroll();
-          requestAnimationFrame(() => {
-            restoreScroll();
-            const previousAnchor = pendingOverflowAnchor.current;
-            if (previousAnchor) {
-              document.documentElement.style.overflowAnchor = previousAnchor.root;
-              document.body.style.overflowAnchor = previousAnchor.body;
-              pendingOverflowAnchor.current = null;
-            }
-            requestAnimationFrame(() => {
-              restoreScroll();
-              if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
-            });
-          });
-        });
-      });
+
+      const keepAnchorStable = () => {
+        if (pendingScrollRestore.current !== snapshot) return;
+        restoreVisualAnchor();
+        frames += 1;
+        if (frames < 60) {
+          requestAnimationFrame(keepAnchorStable);
+          return;
+        }
+
+        restoreVisualAnchor();
+        const previousAnchor = pendingOverflowAnchor.current;
+        if (previousAnchor) {
+          document.documentElement.style.overflowAnchor = previousAnchor.root;
+          document.body.style.overflowAnchor = previousAnchor.body;
+          document.documentElement.style.scrollBehavior = previousAnchor.scrollBehavior;
+          pendingOverflowAnchor.current = null;
+        }
+        restoreVisualAnchor();
+        if (pendingScrollRestore.current === snapshot) pendingScrollRestore.current = null;
+      };
+
+      // Wait for Hindi font metrics before correcting layout movement, then
+      // keep the reader's visual anchor stable through subsequent paint frames.
+      void document.fonts.ready.then(() => requestAnimationFrame(keepAnchorStable));
     };
 
     // The normal English storefront is already rendered from the translation
