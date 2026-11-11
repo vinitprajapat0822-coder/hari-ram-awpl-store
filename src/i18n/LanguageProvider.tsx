@@ -36,7 +36,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [, startTransition] = useTransition();
   const pendingScrollRestore = useRef<PendingScrollRestore | null>(null);
-  const pendingOverflowAnchor = useRef<{ root: string; body: string } | null>(null);
+  const pendingOverflowAnchor = useRef<{ root: string; body: string; scrollBehavior: string } | null>(null);
   const textState = useRef(new WeakMap<Text, { source: string; rendered: string }>());
   const attributeState = useRef(new WeakMap<Element, Map<string, { source: string; rendered: string }>>());
   const translatedTextNodes = useRef(new Set<Text>());
@@ -52,6 +52,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (previousAnchor) {
       document.documentElement.style.overflowAnchor = previousAnchor.root;
       document.body.style.overflowAnchor = previousAnchor.body;
+      document.documentElement.style.scrollBehavior = previousAnchor.scrollBehavior;
       pendingOverflowAnchor.current = null;
     }
     pendingScrollRestore.current = null;
@@ -81,10 +82,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       pendingOverflowAnchor.current = {
         root: document.documentElement.style.overflowAnchor,
         body: document.body.style.overflowAnchor,
+        scrollBehavior: document.documentElement.style.scrollBehavior,
       };
     }
     document.documentElement.style.overflowAnchor = "none";
     document.body.style.overflowAnchor = "none";
+    // The global stylesheet enables smooth scrolling. Disable it during
+    // layout correction so each measured scroll adjustment is applied now.
+    document.documentElement.style.scrollBehavior = "auto";
     const minimumHeight = Math.ceil(Math.max(
       document.documentElement.scrollHeight,
       document.body.scrollHeight,
@@ -137,6 +142,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         // body as well can create a second scroll offset when body overflow is
         // auto, which compounds the correction after horizontal clipping.
         scrollingElement.scrollTop = targetY;
+        window.scrollTo({ left: 0, top: targetY, behavior: "instant" });
       };
 
       const keepAnchorStable = () => {
