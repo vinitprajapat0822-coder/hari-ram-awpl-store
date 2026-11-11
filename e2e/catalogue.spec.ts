@@ -65,6 +65,38 @@ test("search filters the paginated catalogue and can be cleared", async ({ page 
   await expect(page.getByTestId("product-grid").locator("article").first()).toBeVisible();
 });
 
+test("search handles a spelling typo and keyboard autocomplete opens the matching SKU", async ({ page }) => {
+  await page.goto("./");
+  const search = page.getByRole("searchbox", { name: "Search products" });
+  await search.fill("TOSHINE DETRGENT POWDER");
+  await expect(page.getByRole("group", { name: /TOSHINE DETERGENT POWDER/ })).toBeVisible();
+  await expect(page.getByTestId("product-grid").locator("article")).toHaveCount(1);
+
+  await search.press("ArrowDown");
+  await search.press("Enter");
+  await expect(page).toHaveURL(/\\/product\\/[^/]+\\/?$/);
+  await expect(page.getByRole("heading", { name: "TOSHINE DETERGENT POWDER", exact: true })).toBeVisible();
+});
+
+test("wishlist saves products across reloads and supports removal", async ({ page }) => {
+  await page.goto("./");
+  const product = page.getByRole("group", { name: /TOSHINE DETERGENT POWDER/ });
+  const save = product.getByRole("button", { name: /Save to wishlist/ });
+  await save.click();
+  await expect(save).toHaveAttribute("aria-pressed", "true");
+
+  await page.getByRole("link", { name: /Wishlist \\(1\\)/ }).click();
+  await expect(page.getByRole("heading", { name: "Wishlist" })).toBeVisible();
+  await expect(page.getByTestId("wishlist-grid").getByRole("group", { name: /TOSHINE DETERGENT POWDER/ })).toBeVisible();
+
+  await page.reload();
+  const savedProduct = page.getByTestId("wishlist-grid").getByRole("group", { name: /TOSHINE DETERGENT POWDER/ });
+  const remove = savedProduct.getByRole("button", { name: /Remove from wishlist/ });
+  await expect(remove).toHaveAttribute("aria-pressed", "true");
+  await remove.click();
+  await expect(page.getByText("Your wishlist is empty")).toBeVisible();
+});
+
 test("category filters preserve matching products and held categories stay non-orderable", async ({ page }) => {
   await page.goto("./");
   await page.getByRole("button", { name: "Home Care", exact: true }).click();

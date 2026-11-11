@@ -5,7 +5,7 @@ import type { PointerEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useStore } from "@/store/useStore";
-import { Home, LayoutGrid, Search, ShoppingCart, UserRound, LogIn } from "lucide-react";
+import { Heart, Home, LayoutGrid, Search, ShoppingCart, UserRound, LogIn } from "lucide-react";
 import FloatingOrderButton from "@/components/FloatingOrderButton";
 import { useLanguage } from "@/i18n/useLanguage";
 
@@ -28,6 +28,7 @@ function isActive(pathname: string, href: string, activeHash: string) {
 export default function Navbar() {
   const pathname = usePathname();
   const cartCount = useStore((state) => state.getCartCount());
+  const wishlistCount = useStore((state) => state.wishlistIds.length);
   const { lang, setLang, t } = useLanguage();
   const [activeHash, setActiveHash] = useState("");
   const dockRef = useRef<HTMLElement | null>(null);
@@ -149,6 +150,11 @@ export default function Navbar() {
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
+            <Link href="/wishlist/" prefetch={false} aria-label={t("wishlist") + " (" + wishlistCount + ")"} title={t("wishlist")} className="header-search-link focus-visible:amber relative">
+              <Heart size={17} aria-hidden="true" />
+              {wishlistCount > 0 && <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-teal-200 px-1 text-[9px] font-extrabold text-slate-950">{wishlistCount > 99 ? "99+" : wishlistCount}</span>}
+              <span className="hidden sm:inline">{t("wishlist")}</span>
+            </Link>
             <Link href="/#catalogue" prefetch={false} onClick={() => handleNavigation("/#catalogue")} className="header-search-link focus-visible:amber" aria-label={t("searchCatalogue")}>
               <Search size={17} aria-hidden="true" />
               <span className="hidden sm:inline">{t("navSearch")}</span>

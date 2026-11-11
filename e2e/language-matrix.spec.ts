@@ -10,6 +10,7 @@ const routes = [
   "/cart",
   "/login",
   "/profile",
+  "/wishlist",
   "/reset-password",
   "/product/" + PRODUCT_ID + "/",
 ];

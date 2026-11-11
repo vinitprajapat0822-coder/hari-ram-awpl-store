@@ -107,29 +107,35 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const restorePendingScroll = () => {
       const scrollToRestore = pendingScrollRestore.current;
       if (scrollToRestore === null) return;
+
+      let frames = 0;
       const restoreScroll = () => {
         window.scrollTo({ left: 0, top: scrollToRestore, behavior: "auto" });
+        document.documentElement.scrollTop = scrollToRestore;
+        document.body.scrollTop = scrollToRestore;
       };
-      // Wait for Hindi font metrics before the final scroll restoration.
-      void document.fonts.ready.then(() => {
+      const keepScrollStable = () => {
         if (pendingScrollRestore.current !== scrollToRestore) return;
-        requestAnimationFrame(() => {
-          restoreScroll();
-          requestAnimationFrame(() => {
-            restoreScroll();
-            const previousAnchor = pendingOverflowAnchor.current;
-            if (previousAnchor) {
-              document.documentElement.style.overflowAnchor = previousAnchor.root;
-              document.body.style.overflowAnchor = previousAnchor.body;
-              pendingOverflowAnchor.current = null;
-            }
-            requestAnimationFrame(() => {
-              restoreScroll();
-              if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
-            });
-          });
-        });
-      });
+        restoreScroll();
+        frames += 1;
+        if (frames < 30) {
+          requestAnimationFrame(keepScrollStable);
+          return;
+        }
+
+        const previousAnchor = pendingOverflowAnchor.current;
+        if (previousAnchor) {
+          document.documentElement.style.overflowAnchor = previousAnchor.root;
+          document.body.style.overflowAnchor = previousAnchor.body;
+          pendingOverflowAnchor.current = null;
+        }
+        restoreScroll();
+        if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
+      };
+
+      // Wait for translated text and font metrics, then stabilise Chromium's
+      // scroll position while the updated layout settles over several frames.
+      void document.fonts.ready.then(() => requestAnimationFrame(keepScrollStable));
     };
 
     // The normal English storefront is already rendered from the translation
