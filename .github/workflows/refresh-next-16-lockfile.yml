@@ -1,0 +1,52 @@
+name: Refresh patched Next.js dependency lockfile
+
+on:
+  push:
+    branches:
+      - chore/next-16-security-upgrade
+
+permissions:
+  contents: write
+
+concurrency:
+  group: next-16-security-upgrade
+  cancel-in-progress: false
+
+jobs:
+  refresh-lockfile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout upgrade branch
+        uses: actions/checkout@v7
+        with:
+          ref: chore/next-16-security-upgrade
+          persist-credentials: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Install patched framework and compatible React line
+        run: >
+          npm install --save-exact --ignore-scripts --no-audit --no-fund
+          next@16.4.6
+          react@19.3.1
+          react-dom@19.3.1
+          eslint-config-next@16.4.6
+          @types/react@19.3.0
+          @types/react-dom@19.3.0
+
+      - name: Commit regenerated npm lockfile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          if git diff --cached --quiet; then
+            echo "Dependency manifests are already current."
+            exit 0
+          fi
+          git commit -m "chore: upgrade to patched Next.js 16 and React 19"
+          git push origin HEAD:chore/next-16-security-upgrade
