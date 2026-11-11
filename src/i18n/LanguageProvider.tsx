@@ -159,6 +159,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         if (previousAnchor) {
           document.documentElement.style.overflowAnchor = previousAnchor.root;
           document.body.style.overflowAnchor = previousAnchor.body;
+          document.documentElement.style.scrollBehavior = previousAnchor.scrollBehavior;
           pendingOverflowAnchor.current = null;
         }
         restoreVisualAnchor();
