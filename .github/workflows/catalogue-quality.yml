@@ -51,7 +51,7 @@ jobs:
         run: node scripts/audit-product-image-urls.cjs
 
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
 
       - name: TypeScript
         run: npm run typecheck
