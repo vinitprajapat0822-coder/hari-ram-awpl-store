@@ -32,6 +32,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
 
   return {
     title: product.name + " | Hari Ram AWPL Store",
+    alternates: {
+      canonical: "https://vinitprajapat0822-coder.github.io/hari-ram-awpl-store/product/" + encodeURIComponent(product.id) + "/",
+    },
     description: product.description
       || product.name + " — listed MRP, pack size and store availability details.",
   };

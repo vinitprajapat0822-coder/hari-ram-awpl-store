@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { KeyboardEvent } from "react";
 import type { Product } from "@/data/products";
+import { catalogueCategories } from "@/data/catalogue";
 import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
 import StorefrontHero from "@/components/StorefrontHero";
@@ -85,6 +87,7 @@ export default function StorefrontClient({
 
   const visibleProducts = filtered.slice(0, page * PAGE_SIZE);
   const categoryPending = !search.trim() && ["Wellness", "Wellroot", "Agriculture", "Veterinary"].includes(activeCategory);
+  const selectedCategory = catalogueCategories.find((category) => category.name === activeCategory);
   const resultCount = catalogueReady || search.trim() || activeCategory !== "All" ? filtered.length : productCount;
   const hasMore = visibleProducts.length < filtered.length || (!catalogueReady && !search.trim() && activeCategory === "All");
 
@@ -187,6 +190,13 @@ export default function StorefrontClient({
           )}
         </div>
         <CategorySurfer categories={categories} activeCategory={activeCategory} onSelect={handleCategorySelect} />
+        {selectedCategory && (
+          <div className="mb-4 flex justify-end">
+            <Link href={"/category/" + selectedCategory.slug + "/"} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-teal-100/20 bg-teal-100/[0.06] px-4 text-xs font-bold text-teal-100 transition-colors hover:bg-teal-100/[0.11] focus-visible:amber">
+              {t("openCategoryPage")} <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
+        )}
         <div className="mb-4 flex min-h-11 items-center justify-between gap-3">
           <p className="text-xs font-medium text-white/75" aria-live="polite">
             {formatNumber(resultCount)} {t("resultCount")}{activeCategory !== "All" ? " · " + categoryLabel(activeCategory) : ""}

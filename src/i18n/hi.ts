@@ -195,6 +195,10 @@ export const hi: { [K in keyof typeof en]: string } = {
   aboutTitle: "इस स्टोर के बारे में",
   legalDisclaimerTitle: "उत्पाद जानकारी",
 
+  openCategoryPage: "श्रेणी पृष्ठ खोलें",
+  categoryPageDescription: "इस श्रेणी में अभी प्रकाशित उत्पाद देखें। ऑर्डर स्वीकार करने से पहले पैक विवरण, सूचीबद्ध एमआरपी, उपलब्धता और डिलीवरी की फिर से पुष्टि आवश्यक है।",
+  categoryNoPublicProducts: "यहाँ अभी कोई सार्वजनिक उत्पाद सूचीबद्ध नहीं है।",
+  categoryNoPublicProductsHelp: "आधिकारिक चयनकर्ता की संख्या को पुष्टि किए गए उत्पाद रिकॉर्ड नहीं माना जाता। उत्पादों को तभी दिखाया जाता है जब उनके स्रोत और सूची विवरण की समीक्षा हो जाती है।",
   categoryNavigation: "उत्पाद श्रेणियाँ",
   enterEmailFirst: "पहले अपना ईमेल पता दर्ज करें।",
   passwordResetSent: "पासवर्ड रीसेट लिंक भेज दिया गया है। अपना ईमेल देखें।",

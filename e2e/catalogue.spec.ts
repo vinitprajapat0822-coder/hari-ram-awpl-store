@@ -175,6 +175,19 @@ test("the navbar GlassCard applies the crystal refraction SVG filter", async ({ 
   expect(report.appliedToGlassCount, "Crystal filter must be applied to visible glass surfaces").toBeGreaterThan(0);
 });
 
+test("dedicated category pages render static collections and preserve held-for-review categories", async ({ page }) => {
+  await page.goto("category/home-care/");
+  await expect(page.getByRole("heading", { level: 1, name: "Home Care" })).toBeVisible();
+  await expect(page.getByTestId("category-product-grid").locator("article")).toHaveCount(15);
+  await expect(page.locator("link[rel=canonical]")).toHaveAttribute("href", "https://vinitprajapat0822-coder.github.io/hari-ram-awpl-store/category/home-care/");
+
+  await page.goto("category/agriculture/");
+  await expect(page.getByRole("heading", { level: 1, name: "Agriculture" })).toBeVisible();
+  await expect(page.getByText("Category not enabled for ordering")).toBeVisible();
+  await expect(page.getByText(/Official selector counters are not treated as confirmed product records/)).toBeVisible();
+  await expect(page.getByTestId("category-product-grid")).toHaveCount(0);
+});
+
 test("home, cart, profile, login, reset-password and product pages pass WCAG 2.1 AA axe scan", async ({ page }) => {
   const routes = [
     "./",
@@ -183,6 +196,8 @@ test("home, cart, profile, login, reset-password and product pages pass WCAG 2.1
     "login/",
     "reset-password/",
     "product/awpl-apparels-asclepius-women-saree-crape/",
+    "category/home-care/",
+    "category/agriculture/",
   ];
   for (const route of routes) {
     await page.goto(route);

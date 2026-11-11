@@ -50,6 +50,13 @@ jobs:
           test -f ./out/index.html
           test -f ./out/login/index.html
           test -f ./out/reset-password/index.html
+          test -f ./out/category/home-care/index.html
+          test -f ./out/category/agriculture/index.html
+          test -f ./out/sitemap.xml
+          test -f ./out/robots.txt
+          category_count=$(find ./out/category -mindepth 2 -maxdepth 2 -name index.html | wc -l)
+          echo "Exported category pages: ${category_count}"
+          test "${category_count}" -eq 15
           test -f ./out/product/awpl-elite-salicylic-sheet-mask/index.html
           test -f ./out/product/awpl-sniss-elite-salicylic-acid-face-sheet-mask/index.html
           count=$(find ./out/product -mindepth 2 -maxdepth 2 -name index.html | wc -l)
