@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { catalogueCategories } from "@/data/catalogue";
 import { products } from "@/data/products";
 
+export const dynamic = "force-static";
+
 const SITE_URL = "https://vinitprajapat0822-coder.github.io/hari-ram-awpl-store";
 
 export default function sitemap(): MetadataRoute.Sitemap {

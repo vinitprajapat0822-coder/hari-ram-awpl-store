@@ -134,7 +134,10 @@ export default function LoginExperience() {
   const [configWarning, setConfigWarning] = useState("");
 
   useEffect(() => {
-    setRememberMe(window.localStorage.getItem("hr-auth-remember") !== "false");
+    const preferenceTimer = window.setTimeout(() => {
+      setRememberMe(window.localStorage.getItem("hr-auth-remember") !== "false");
+    }, 0);
+    let unsubscribe = () => {};
     try {
       const supabase = getSupabaseBrowserClient();
       void supabase.auth.getSession().then(({ data, error: sessionError }) => {
@@ -144,10 +147,14 @@ export default function LoginExperience() {
       const { data } = supabase.auth.onAuthStateChange((_event, session) => {
         setAuthenticatedEmail(session?.user.email ?? null);
       });
-      return () => data.subscription.unsubscribe();
-    } catch (caught) {
-      setConfigWarning(t("authConfigNotReady"));
+      unsubscribe = () => data.subscription.unsubscribe();
+    } catch {
+      queueMicrotask(() => setConfigWarning(t("authConfigNotReady")));
     }
+    return () => {
+      window.clearTimeout(preferenceTimer);
+      unsubscribe();
+    };
   }, [t]);
 
   function selectMode(nextMode: Mode) {

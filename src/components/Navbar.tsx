@@ -37,6 +37,15 @@ export default function Navbar() {
   const frameRef = useRef<number | null>(null);
   const magneticEnabledRef = useRef(false);
 
+  const resetMagneticDock = () => {
+    dockCacheRef.current.forEach(({ element }) => {
+      element.style.setProperty("--dock-x", "0px");
+      element.style.setProperty("--dock-y", "0px");
+      element.style.setProperty("--dock-scale", "1");
+    });
+    pointerRef.current = null;
+  };
+
   useEffect(() => {
     const dock = dockRef.current;
     const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -78,15 +87,6 @@ export default function Navbar() {
       if (frameRef.current !== null) window.cancelAnimationFrame(frameRef.current);
     };
   }, []);
-
-  const resetMagneticDock = () => {
-    dockCacheRef.current.forEach(({ element }) => {
-      element.style.setProperty("--dock-x", "0px");
-      element.style.setProperty("--dock-y", "0px");
-      element.style.setProperty("--dock-scale", "1");
-    });
-    pointerRef.current = null;
-  };
 
   const updateMagneticDock = (event: PointerEvent<HTMLElement>) => {
     if (!magneticEnabledRef.current) return;

@@ -30,10 +30,10 @@ function loadTypeScriptData(relativePath) {
     );
   }
 
-  const module = { exports: {} };
+  const transpiledModule = { exports: {} };
   const sandbox = {
-    module,
-    exports: module.exports,
+    module: transpiledModule,
+    exports: transpiledModule.exports,
     require: (specifier) => {
       throw new Error("Unexpected runtime import in audit data module: " + specifier);
     },
@@ -42,7 +42,7 @@ function loadTypeScriptData(relativePath) {
     timeout: 3000,
     filename: relativePath,
   });
-  return module.exports;
+  return transpiledModule.exports;
 }
 
 function countBy(items, selector) {

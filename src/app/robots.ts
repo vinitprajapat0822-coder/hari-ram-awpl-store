@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 const BASE_PATH = "/hari-ram-awpl-store";
 
 export default function robots(): MetadataRoute.Robots {

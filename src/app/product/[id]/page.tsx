@@ -16,7 +16,7 @@ function getProductByRouteId(id: string) {
 }
 
 type PageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export function generateStaticParams() {
@@ -26,8 +26,9 @@ export function generateStaticParams() {
   ];
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const product = getProductByRouteId(params.id);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const product = getProductByRouteId(id);
   if (!product) return { title: "Product not found | Hari Ram AWPL Store" };
 
   return {
@@ -40,8 +41,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function ProductDetailPage({ params }: PageProps) {
-  const product = getProductByRouteId(params.id);
+export default async function ProductDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const product = getProductByRouteId(id);
   if (!product) notFound();
 
   return <ProductDetailClient product={product} />;
