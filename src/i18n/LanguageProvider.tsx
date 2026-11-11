@@ -59,13 +59,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [pathname]);
 
   useEffect(() => {
+    let savedLanguage: Language | null = null;
     try {
       const saved = window.localStorage.getItem("lang");
-      if (saved === "hi" || saved === "en") setLangState(saved);
+      if (saved === "hi" || saved === "en") savedLanguage = saved;
     } catch {
       // The default language remains available when storage is disabled.
     }
-    setReady(true);
+    queueMicrotask(() => {
+      if (savedLanguage) setLangState(savedLanguage);
+      setReady(true);
+    });
   }, []);
 
   useEffect(() => {

@@ -16,6 +16,7 @@ export default function ResetPasswordForm() {
   const [ready, setReady] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [configMissing, setConfigMissing] = useState(false);
   const [notice, setNotice] = useState("");
 
   useEffect(() => {
@@ -26,10 +27,12 @@ export default function ResetPasswordForm() {
         if (event === "PASSWORD_RECOVERY" || session) setReady(true);
       });
       return () => data.subscription.unsubscribe();
-    } catch (caught) {
-      setError(t("passwordRecoveryNotConfigured"));
+    } catch {
+      queueMicrotask(() => setConfigMissing(true));
     }
   }, [t]);
+
+  const displayError = error || (configMissing ? t("passwordRecoveryNotConfigured") : "");
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -78,7 +81,7 @@ export default function ResetPasswordForm() {
               {t("confirmNewPassword")}
               <span className="auth-input-wrap"><LockKeyhole size={17} aria-hidden="true" /><input type="password" value={confirmPassword} onChange={event => setConfirmPassword(event.target.value)} autoComplete="new-password" minLength={8} required placeholder={t("passwordConfirmAgain")} /></span>
             </label>
-            {error && <p role="alert" className="auth-error">{error}</p>}
+            {displayError && <p role="alert" className="auth-error">{displayError}</p>}
             {notice && <p role="status" className="auth-notice"><CheckCircle2 size={15} className="inline mr-1" />{notice}</p>}
             <button disabled={busy} className="liquid-button auth-action">{busy ? t("updating") : t("updatePassword")}</button>
           </form>

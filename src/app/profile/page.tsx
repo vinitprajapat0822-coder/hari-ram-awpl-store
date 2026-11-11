@@ -1,27 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
-import { useStore } from "@/store/useStore";
+import { useStore, type UserDetails } from "@/store/useStore";
 import Navbar from "@/components/Navbar";
 import GlassCard from "@/components/GlassCard";
 import { ArrowLeft, Check, MapPin, Phone, Save, UserRound } from "lucide-react";
 import { useLanguage } from "@/i18n/useLanguage";
 
+function subscribeToLocation(callback: () => void) {
+  window.addEventListener("popstate", callback);
+  return () => window.removeEventListener("popstate", callback);
+}
+
+function getFromCheckoutSnapshot() {
+  return new URLSearchParams(window.location.search).get("from") === "checkout";
+}
+
 function ProfileContent() {
   const { user, setUser } = useStore();
-  const [form, setForm] = useState(user);
+  const [formEdits, setFormEdits] = useState<Partial<UserDetails>>({});
+  const form = { ...user, ...formEdits };
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-  const [fromCheckout, setFromCheckout] = useState(false);
+  const fromCheckout = useSyncExternalStore(subscribeToLocation, getFromCheckoutSnapshot, () => false);
   const { t } = useLanguage();
 
-  useEffect(() => { setForm(user); }, [user]);
-  useEffect(() => {
-    setFromCheckout(new URLSearchParams(window.location.search).get("from") === "checkout");
-  }, []);
+  const updateFormField = (field: keyof UserDetails, value: string) => {
+    setFormEdits((current) => ({ ...current, [field]: value }));
+  };
 
   const handleSave = () => {
     const digits = form.phone.replace(/\D/g, "");
@@ -38,6 +47,7 @@ function ProfileContent() {
 
     setError("");
     setUser({ name: form.name.trim(), phone, address: form.address.trim() });
+    setFormEdits({});
     setSaved(true);
     window.setTimeout(() => setSaved(false), 1500);
     if (fromCheckout) window.setTimeout(() => router.push("/cart"), 800);
@@ -68,7 +78,7 @@ function ProfileContent() {
               <label htmlFor="profile-name" className="mb-2 block text-xs font-semibold text-white/85">{t("fullName")} *</label>
               <div className="flex min-h-12 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.045] px-3.5 transition-colors focus-within:border-teal-200/40 focus-within:bg-teal-100/[0.035]">
                 <UserRound size={16} className="shrink-0 text-teal-100/75" aria-hidden="true" />
-                <input id="profile-name" type="text" autoComplete="name" value={form.name} onChange={(event) => { setForm({ ...form, name: event.target.value }); setError(""); }} placeholder={t("yourFullName")} className="min-w-0 flex-1 bg-transparent py-3 text-sm text-white placeholder:text-white/60 focus-visible:amber" />
+                <input id="profile-name" type="text" autoComplete="name" value={form.name} onChange={(event) => { updateFormField("name", event.target.value); setError(""); }} placeholder={t("yourFullName")} className="min-w-0 flex-1 bg-transparent py-3 text-sm text-white placeholder:text-white/60 focus-visible:amber" />
               </div>
             </div>
 
@@ -76,7 +86,7 @@ function ProfileContent() {
               <label htmlFor="profile-phone" className="mb-2 block text-xs font-semibold text-white/85">{t("mobileNumber")} *</label>
               <div className="flex min-h-12 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.045] px-3.5 transition-colors focus-within:border-teal-200/40 focus-within:bg-teal-100/[0.035]">
                 <Phone size={16} className="shrink-0 text-teal-100/75" aria-hidden="true" />
-                <input id="profile-phone" type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={(event) => { setForm({ ...form, phone: event.target.value }); setError(""); }} placeholder={t("phonePlaceholder")} className="min-w-0 flex-1 bg-transparent py-3 text-sm text-white placeholder:text-white/60 focus-visible:amber" />
+                <input id="profile-phone" type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={(event) => { updateFormField("phone", event.target.value); setError(""); }} placeholder={t("phonePlaceholder")} className="min-w-0 flex-1 bg-transparent py-3 text-sm text-white placeholder:text-white/60 focus-visible:amber" />
               </div>
               <p className="mt-1.5 text-[10px] text-white/75">{t("phoneHelp")}</p>
             </div>
@@ -85,7 +95,7 @@ function ProfileContent() {
               <label htmlFor="profile-address" className="mb-2 block text-xs font-semibold text-white/85">{t("deliveryAddress")} *</label>
               <div className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.045] px-3.5 transition-colors focus-within:border-teal-200/40 focus-within:bg-teal-100/[0.035]">
                 <MapPin size={16} className="mt-3.5 shrink-0 text-teal-100/75" aria-hidden="true" />
-                <textarea id="profile-address" autoComplete="street-address" value={form.address} onChange={(event) => { setForm({ ...form, address: event.target.value }); setError(""); }} placeholder={t("addressPlaceholder")} rows={4} className="min-w-0 flex-1 resize-none bg-transparent py-3 text-sm leading-6 text-white placeholder:text-white/60 focus-visible:amber" />
+                <textarea id="profile-address" autoComplete="street-address" value={form.address} onChange={(event) => { updateFormField("address", event.target.value); setError(""); }} placeholder={t("addressPlaceholder")} rows={4} className="min-w-0 flex-1 resize-none bg-transparent py-3 text-sm leading-6 text-white placeholder:text-white/60 focus-visible:amber" />
               </div>
             </div>
           </div>

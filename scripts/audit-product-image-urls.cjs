@@ -27,15 +27,15 @@ function loadCatalogue() {
       ts.flattenDiagnosticMessageText(item.messageText, "\n")
     ).join("\n"));
   }
-  const module = { exports: {} };
+  const transpiledModule = { exports: {} };
   vm.runInNewContext(transpiled.outputText, {
-    module,
-    exports: module.exports,
+    module: transpiledModule,
+    exports: transpiledModule.exports,
     require: (specifier) => {
       throw new Error("Unexpected runtime import: " + specifier);
     },
   }, { timeout: 5000, filename: sourcePath });
-  return module.exports.awplProducts;
+  return transpiledModule.exports.awplProducts;
 }
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
