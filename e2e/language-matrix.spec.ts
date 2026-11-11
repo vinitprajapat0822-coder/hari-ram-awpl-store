@@ -184,7 +184,7 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
       await document.fonts.ready;
       await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
     });
-    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY)), { timeout: 5000 }).toBe(startY);
+    await expect.poll(readAnchorTop, { timeout: 5000 }).toBe(startAnchorTop);
     await page.waitForTimeout(80);
     const afterEnglishAnchorTop = await readAnchorTop();
     const englishCartCount = await storedCartCount(page);
