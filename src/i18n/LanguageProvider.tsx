@@ -128,26 +128,29 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
       let frames = 0;
       const restoreVisualAnchor = () => {
-        if (snapshot.anchor?.isConnected) {
-          // The translated document may gain or lose height. Preserve the
-          // element's viewport position rather than forcing the same page Y.
-          const delta = snapshot.anchor.getBoundingClientRect().top - snapshot.anchorTop;
-          if (Math.abs(delta) > 0.5) {
-            window.scrollBy({ left: 0, top: delta, behavior: "auto" });
-          }
-        } else {
-          window.scrollTo({ left: 0, top: snapshot.fallbackY, behavior: "auto" });
-        }
+        const delta = snapshot.anchor?.isConnected
+          ? snapshot.anchor.getBoundingClientRect().top - snapshot.anchorTop
+          : 0;
+        const currentY = window.scrollY;
+        const targetY = Math.max(0, currentY + delta);
+        // Chromium scrolls the document element. Update the window and both
+        // standards/legacy scroll roots so the same correction is applied
+        // even while text mutation changes body and document height.
+        window.scrollTo({ left: 0, top: targetY, behavior: "instant" });
+        document.documentElement.scrollTop = targetY;
+        document.body.scrollTop = targetY;
       };
+
       const keepAnchorStable = () => {
         if (pendingScrollRestore.current !== snapshot) return;
         restoreVisualAnchor();
         frames += 1;
-        if (frames < 30) {
+        if (frames < 60) {
           requestAnimationFrame(keepAnchorStable);
           return;
         }
 
+        restoreVisualAnchor();
         const previousAnchor = pendingOverflowAnchor.current;
         if (previousAnchor) {
           document.documentElement.style.overflowAnchor = previousAnchor.root;
@@ -158,8 +161,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         if (pendingScrollRestore.current === snapshot) pendingScrollRestore.current = null;
       };
 
-      // Wait for Hindi font metrics, then keep the reading position stable
-      // while translated text and fonts settle over subsequent paint frames.
+      // Wait for Hindi font metrics before correcting layout movement, then
+      // keep the reader's visual anchor stable through subsequent paint frames.
       void document.fonts.ready.then(() => requestAnimationFrame(keepAnchorStable));
     };
 
