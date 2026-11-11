@@ -56,7 +56,7 @@ test("mobile navigation remains visible and exposes every primary route", async 
 
 test("search filters the paginated catalogue and can be cleared", async ({ page }) => {
   await page.goto("./");
-  const search = page.getByRole("searchbox", { name: "Search products" });
+  const search = page.getByRole("combobox", { name: "Search products" });
   await search.fill("TOSHINE DETERGENT POWDER");
   await expect(page.getByRole("group", { name: /TOSHINE DETERGENT POWDER/ })).toBeVisible();
   await expect(page.getByTestId("product-grid").locator("article")).toHaveCount(1);
@@ -67,7 +67,7 @@ test("search filters the paginated catalogue and can be cleared", async ({ page 
 
 test("search handles a spelling typo and keyboard autocomplete opens the matching SKU", async ({ page }) => {
   await page.goto("./");
-  const search = page.getByRole("searchbox", { name: "Search products" });
+  const search = page.getByRole("combobox", { name: "Search products" });
   await search.fill("TOSHINE DETRGENT POWDER");
   await expect(page.getByRole("group", { name: /TOSHINE DETERGENT POWDER/ })).toBeVisible();
   await expect(page.getByTestId("product-grid").locator("article")).toHaveCount(1);
@@ -80,7 +80,10 @@ test("search handles a spelling typo and keyboard autocomplete opens the matchin
 
 test("wishlist saves products across reloads and supports removal", async ({ page }) => {
   await page.goto("./");
+  const search = page.getByRole("combobox", { name: "Search products" });
+  await search.fill("TOSHINE DETERGENT POWDER");
   const product = page.getByRole("group", { name: /TOSHINE DETERGENT POWDER/ });
+  await expect(product).toBeVisible();
   const save = product.getByRole("button", { name: /Save to wishlist/ });
   await save.click();
   await expect(save).toHaveAttribute("aria-pressed", "true");
