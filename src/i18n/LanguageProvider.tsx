@@ -95,12 +95,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     // on both root and body prevents a shorter translation from clamping scrollY.
     document.documentElement.style.minHeight = minimumHeight + "px";
     document.body.style.minHeight = minimumHeight + "px";
-    const anchorX = Math.min(Math.max(Math.round(window.innerWidth / 2), 0), Math.max(window.innerWidth - 1, 0));
-    const anchorY = Math.min(Math.max(Math.round(window.innerHeight / 2), 0), Math.max(window.innerHeight - 1, 0));
-    const hit = document.elementFromPoint(anchorX, anchorY);
-    const anchor =
-      hit?.closest<HTMLElement>("article, h1, h2, h3, p, li, button, a, input, label") ??
-      (hit as HTMLElement | null);
+    // Use the route's main content container, not a potentially fixed
+    // header/cart control under the viewport centre. A fixed element cannot
+    // be kept at the same visual coordinate by adjusting document scroll.
+    const anchor = document.querySelector<HTMLElement>("main") ?? document.body;
     pendingScrollRestore.current = {
       fallbackY: scrollY,
       anchor,

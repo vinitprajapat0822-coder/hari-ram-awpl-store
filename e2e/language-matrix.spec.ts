@@ -123,13 +123,8 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
       const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
       const target = Math.min(500, max);
       window.scrollTo({ left: 0, top: target, behavior: "instant" });
-      const x = Math.min(Math.max(Math.round(window.innerWidth / 2), 0), Math.max(window.innerWidth - 1, 0));
-      const y = Math.min(Math.max(Math.round(window.innerHeight / 2), 0), Math.max(window.innerHeight - 1, 0));
-      const hit = document.elementFromPoint(x, y);
-      const anchor =
-        hit?.closest<HTMLElement>("article, h1, h2, h3, p, li, button, a, input, label") ??
-        (hit as HTMLElement | null) ??
-        document.body;
+      // Measure the actual route content, excluding fixed chrome.
+      const anchor = document.querySelector<HTMLElement>("main") ?? document.body;
       anchor.setAttribute("data-language-scroll-anchor", "true");
       return Math.round(anchor.getBoundingClientRect().top);
     });
