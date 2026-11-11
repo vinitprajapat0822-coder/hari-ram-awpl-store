@@ -74,7 +74,7 @@ test("search handles a spelling typo and keyboard autocomplete opens the matchin
 
   await search.press("ArrowDown");
   await search.press("Enter");
-  await expect(page).toHaveURL(/\\/product\\/[^/]+\\/?$/);
+  await expect(page).toHaveURL(/\/product\/[^/]+\/?$/);
   await expect(page.getByRole("heading", { name: "TOSHINE DETERGENT POWDER", exact: true })).toBeVisible();
 });
 
@@ -85,7 +85,7 @@ test("wishlist saves products across reloads and supports removal", async ({ pag
   await save.click();
   await expect(save).toHaveAttribute("aria-pressed", "true");
 
-  await page.getByRole("link", { name: /Wishlist \\(1\\)/ }).click();
+  await page.getByRole("link", { name: /Wishlist \(1\)/ }).click();
   await expect(page.getByRole("heading", { name: "Wishlist" })).toBeVisible();
   await expect(page.getByTestId("wishlist-grid").getByRole("group", { name: /TOSHINE DETERGENT POWDER/ })).toBeVisible();
 
