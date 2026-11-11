@@ -6,7 +6,7 @@ import { products } from "@/data/products";
 
 const SITE_URL = "https://vinitprajapat0822-coder.github.io/hari-ram-awpl-store";
 
-type PageProps = { params: { slug: string } };
+type PageProps = { params: Promise<{ slug: string }> };
 
 function getCategory(slug: string) {
   return catalogueCategories.find((category) => category.slug === slug);
@@ -24,12 +24,13 @@ export function generateStaticParams() {
   return catalogueCategories.map((category) => ({ slug: category.slug }));
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const category = getCategory(params.slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const category = getCategory(slug);
   if (!category) return { title: "Category not found | Hari Ram AWPL Store" };
 
-  const coverage = catalogueCollectionCoverage.find((entry) => entry.slug === params.slug);
-  const count = getCategoryProducts(params.slug).length;
+  const coverage = catalogueCollectionCoverage.find((entry) => entry.slug === slug);
+  const count = getCategoryProducts(slug).length;
   const held = coverage?.coverage === "HELD_FOR_REVIEW";
   const description = held
     ? category.name + " products are not currently listed for public ordering while product classification and label details are reviewed."
@@ -44,15 +45,16 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function CategoryPage({ params }: PageProps) {
-  const category = getCategory(params.slug);
+export default async function CategoryPage({ params }: PageProps) {
+  const { slug } = await params;
+  const category = getCategory(slug);
   if (!category) notFound();
 
-  const coverage = catalogueCollectionCoverage.find((entry) => entry.slug === params.slug);
+  const coverage = catalogueCollectionCoverage.find((entry) => entry.slug === slug);
   return (
     <CategoryLandingClient
       categoryName={category.name}
-      products={getCategoryProducts(params.slug)}
+      products={getCategoryProducts(slug)}
       heldForReview={coverage?.coverage === "HELD_FOR_REVIEW"}
     />
   );
