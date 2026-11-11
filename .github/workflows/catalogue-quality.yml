@@ -67,6 +67,13 @@ jobs:
         run: |
           test -f ./public/.nojekyll
           test -f ./out/.nojekyll
+          test -f ./out/category/home-care/index.html
+          test -f ./out/category/agriculture/index.html
+          test -f ./out/sitemap.xml
+          test -f ./out/robots.txt
+          category_pages=$(find ./out/category -mindepth 2 -maxdepth 2 -name index.html | wc -l)
+          echo "Exported category pages: ${category_pages}"
+          test "${category_pages}" -eq 15
           test -d ./out/_next
           grep -R -q '/hari-ram-awpl-store/_next/' ./out/index.html
 

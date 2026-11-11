@@ -193,6 +193,10 @@ export const en = {
   aboutTitle: "About this store",
   legalDisclaimerTitle: "Product information",
 
+  openCategoryPage: "Open category page",
+  categoryPageDescription: "Browse the currently published products in this category. Pack details, listed MRP, availability and delivery must be reconfirmed before an order is accepted.",
+  categoryNoPublicProducts: "No public products are listed here yet.",
+  categoryNoPublicProductsHelp: "Official selector counters are not treated as confirmed product records. Products appear only after their source details and listing data are reviewed.",
   categoryNavigation: "Product categories",
   enterEmailFirst: "Enter your email address first.",
   passwordResetSent: "Password reset link sent. Check your email inbox.",

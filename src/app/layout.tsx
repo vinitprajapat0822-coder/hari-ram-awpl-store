@@ -21,6 +21,8 @@ export const metadataDescriptions = {
 } as const;
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://vinitprajapat0822-coder.github.io/hari-ram-awpl-store/"),
+  alternates: { canonical: "https://vinitprajapat0822-coder.github.io/hari-ram-awpl-store/" },
   title: "Hari Ram AWPL Store | Everyday Essentials",
   description: metadataDescriptions.en,
   applicationName: "Hari Ram AWPL Store",
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
     title: "Hari Ram AWPL Store",
     description: "A clearer, calmer way to explore the AWPL catalogue.",
     type: "website",
+    url: "https://vinitprajapat0822-coder.github.io/hari-ram-awpl-store/",
   },
 };
 

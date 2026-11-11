@@ -20,7 +20,9 @@ The public catalogue is limited to source-matched consumer-product rows. It is n
 
 - Public catalogue browsing; customer login and registration at `/login/`.
 - Supabase email/password authentication, Google OAuth, and password reset (requires the setup in [customer authentication setup](docs/customer-auth-setup.md)).
-- Search and category filtering.
+- Search and category filtering, plus dedicated static landing pages for all 15 catalogue categories.
+- Category-specific product grids with explicit held-for-review states; selector counters are not presented as captured product totals.
+- Static sitemap and robots metadata for public catalogue discovery.
 - SKU-specific cart with MRP totals.
 - Local customer profile.
 - WhatsApp order-enquiry message with each product's exact pack size.
