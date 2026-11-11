@@ -84,7 +84,7 @@ test("wishlist saves products across reloads and supports removal", async ({ pag
   await search.fill("TOSHINE DETERGENT POWDER");
   const product = page.getByRole("group", { name: /TOSHINE DETERGENT POWDER/ });
   await expect(product).toBeVisible();
-  const save = product.getByRole("button", { name: /Save to wishlist/ });
+  const save = product.locator("button[aria-pressed]");
   await save.click();
   await expect(save).toHaveAttribute("aria-pressed", "true");
 

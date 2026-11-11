@@ -118,13 +118,24 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
 
     const startingUrl = page.url();
     const startingCartCount = await storedCartCount(page);
-    const startY = await page.evaluate(() => {
+    const startAnchorTop = await page.evaluate(() => {
       document.documentElement.style.scrollBehavior = "auto";
       const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
       const target = Math.min(500, max);
       window.scrollTo({ left: 0, top: target, behavior: "instant" });
-      return Math.round(window.scrollY);
+      const x = Math.min(Math.max(Math.round(window.innerWidth / 2), 0), Math.max(window.innerWidth - 1, 0));
+      const y = Math.min(Math.max(Math.round(window.innerHeight / 2), 0), Math.max(window.innerHeight - 1, 0));
+      const hit = document.elementFromPoint(x, y);
+      const anchor =
+        hit?.closest<HTMLElement>("article, h1, h2, h3, p, li, button, a, input, label") ??
+        (hit as HTMLElement | null) ??
+        document.body;
+      anchor.setAttribute("data-language-scroll-anchor", "true");
+      return Math.round(anchor.getBoundingClientRect().top);
     });
+    const readAnchorTop = () => page.locator("[data-language-scroll-anchor='true']").evaluate(
+      (element) => Math.round(element.getBoundingClientRect().top)
+    );
     const navigationsBeforeSwitch = mainFrameNavigations;
 
     // Programmatic activation avoids Playwright auto-scrolling the off-screen
@@ -159,10 +170,10 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
       });
       console.log("APPARELS_VISIBLE_TEXT_NODES=" + JSON.stringify(leakNodes));
     }
-    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY)), { timeout: 5000 }).toBe(startY);
+    await expect.poll(readAnchorTop, { timeout: 5000 }).toBe(startAnchorTop);
     await page.waitForTimeout(80);
     const hiBody = await page.locator("body").innerText();
-    const afterHindiY = await page.evaluate(() => window.scrollY);
+    const afterHindiAnchorTop = await readAnchorTop();
     const hindiUrl = page.url();
     const hindiCartCount = await storedCartCount(page);
     const hindiNavCount = mainFrameNavigations;
@@ -175,12 +186,12 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
     });
     await expect.poll(() => page.evaluate(() => Math.round(window.scrollY)), { timeout: 5000 }).toBe(startY);
     await page.waitForTimeout(80);
-    const afterEnglishY = await page.evaluate(() => window.scrollY);
+    const afterEnglishAnchorTop = await readAnchorTop();
     const englishCartCount = await storedCartCount(page);
     const endUrl = page.url();
 
     const noReload = hindiNavCount === navigationsBeforeSwitch && mainFrameNavigations === navigationsBeforeSwitch;
-    const scrollPreserved = Math.abs(afterHindiY - startY) <= 1 && Math.abs(afterEnglishY - startY) <= 1;
+    const scrollPreserved = Math.abs(afterHindiAnchorTop - startAnchorTop) <= 1 && Math.abs(afterEnglishAnchorTop - startAnchorTop) <= 1;
     const cartPreserved = startingCartCount === 1 && hindiCartCount === startingCartCount && englishCartCount === startingCartCount;
     const routePreserved = startingUrl === hindiUrl && hindiUrl === endUrl;
     const consoleClear = browserErrors.length === 0;
@@ -190,7 +201,7 @@ test("route × language matrix: Hindi copy, html lang, SPA toggle, scroll, cart 
       hindi: leaks.length === 0 ? "PASS" : "FAIL",
       htmlLang: "PASS",
       noReload: noReload && routePreserved ? "PASS" : "FAIL",
-      scroll: scrollPreserved ? "PASS" : "FAIL " + startY + "→" + afterHindiY + "→" + afterEnglishY,
+      scroll: scrollPreserved ? "PASS" : "FAIL " + startAnchorTop + "→" + afterHindiAnchorTop + "→" + afterEnglishAnchorTop,
       cart: cartPreserved ? "PASS" : "FAIL " + startingCartCount + "/" + hindiCartCount + "/" + englishCartCount,
       console: consoleClear ? "PASS" : "FAIL: " + browserErrors.join(" | "),
     };

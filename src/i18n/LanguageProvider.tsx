@@ -17,6 +17,8 @@ type LanguageContextValue = {
 };
 export const LanguageContext = createContext<LanguageContextValue | null>(null);
 
+type PendingScrollRestore = { fallbackY: number; anchor: HTMLElement | null; anchorTop: number };
+
 const categoryKeys: Record<string, TranslationKey> = {
   All: "categoryAll", Herbal: "categoryHerbal", "SNISS Herbal": "categoryHerbal",
   Elite: "categoryElite", "SNISS Elite": "categoryElite", "Cooking Oils": "categoryCookingOils",
@@ -33,7 +35,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Language>("en");
   const [ready, setReady] = useState(false);
   const [, startTransition] = useTransition();
-  const pendingScrollRestore = useRef<number | null>(null);
+  const pendingScrollRestore = useRef<PendingScrollRestore | null>(null);
   const pendingOverflowAnchor = useRef<{ root: string; body: string } | null>(null);
   const textState = useRef(new WeakMap<Text, { source: string; rendered: string }>());
   const attributeState = useRef(new WeakMap<Element, Map<string, { source: string; rendered: string }>>());
@@ -46,6 +48,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.style.minHeight = "";
     document.body.style.minHeight = "";
+    const previousAnchor = pendingOverflowAnchor.current;
+    if (previousAnchor) {
+      document.documentElement.style.overflowAnchor = previousAnchor.root;
+      document.body.style.overflowAnchor = previousAnchor.body;
+      pendingOverflowAnchor.current = null;
+    }
     pendingScrollRestore.current = null;
   }, [pathname]);
 
@@ -69,10 +77,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const setLang = useCallback((next: Language) => {
     if (next === lang) return;
     const scrollY = window.scrollY;
-    pendingOverflowAnchor.current = {
-      root: document.documentElement.style.overflowAnchor,
-      body: document.body.style.overflowAnchor,
-    };
+    if (!pendingOverflowAnchor.current) {
+      pendingOverflowAnchor.current = {
+        root: document.documentElement.style.overflowAnchor,
+        body: document.body.style.overflowAnchor,
+      };
+    }
     document.documentElement.style.overflowAnchor = "none";
     document.body.style.overflowAnchor = "none";
     const minimumHeight = Math.ceil(Math.max(
@@ -85,7 +95,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     // on both root and body prevents a shorter translation from clamping scrollY.
     document.documentElement.style.minHeight = minimumHeight + "px";
     document.body.style.minHeight = minimumHeight + "px";
-    pendingScrollRestore.current = scrollY;
+    const anchorX = Math.min(Math.max(Math.round(window.innerWidth / 2), 0), Math.max(window.innerWidth - 1, 0));
+    const anchorY = Math.min(Math.max(Math.round(window.innerHeight / 2), 0), Math.max(window.innerHeight - 1, 0));
+    const hit = document.elementFromPoint(anchorX, anchorY);
+    const anchor =
+      hit?.closest<HTMLElement>("article, h1, h2, h3, p, li, button, a, input, label") ??
+      (hit as HTMLElement | null);
+    pendingScrollRestore.current = {
+      fallbackY: scrollY,
+      anchor,
+      anchorTop: anchor?.getBoundingClientRect().top ?? 0,
+    };
     try { window.localStorage.setItem("lang", next); } catch { /* In-memory language still works. */ }
     startTransition(() => setLangState(next));
   }, [lang, startTransition]);
@@ -105,21 +125,28 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (typeof document === "undefined" || !document.body) return;
 
     const restorePendingScroll = () => {
-      const scrollToRestore = pendingScrollRestore.current;
-      if (scrollToRestore === null) return;
+      const snapshot = pendingScrollRestore.current;
+      if (!snapshot) return;
 
       let frames = 0;
-      const restoreScroll = () => {
-        window.scrollTo({ left: 0, top: scrollToRestore, behavior: "auto" });
-        document.documentElement.scrollTop = scrollToRestore;
-        document.body.scrollTop = scrollToRestore;
+      const restoreVisualAnchor = () => {
+        if (snapshot.anchor?.isConnected) {
+          // The translated document may gain or lose height. Preserve the
+          // element's viewport position rather than forcing the same page Y.
+          const delta = snapshot.anchor.getBoundingClientRect().top - snapshot.anchorTop;
+          if (Math.abs(delta) > 0.5) {
+            window.scrollBy({ left: 0, top: delta, behavior: "auto" });
+          }
+        } else {
+          window.scrollTo({ left: 0, top: snapshot.fallbackY, behavior: "auto" });
+        }
       };
-      const keepScrollStable = () => {
-        if (pendingScrollRestore.current !== scrollToRestore) return;
-        restoreScroll();
+      const keepAnchorStable = () => {
+        if (pendingScrollRestore.current !== snapshot) return;
+        restoreVisualAnchor();
         frames += 1;
         if (frames < 30) {
-          requestAnimationFrame(keepScrollStable);
+          requestAnimationFrame(keepAnchorStable);
           return;
         }
 
@@ -129,13 +156,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
           document.body.style.overflowAnchor = previousAnchor.body;
           pendingOverflowAnchor.current = null;
         }
-        restoreScroll();
-        if (pendingScrollRestore.current === scrollToRestore) pendingScrollRestore.current = null;
+        restoreVisualAnchor();
+        if (pendingScrollRestore.current === snapshot) pendingScrollRestore.current = null;
       };
 
-      // Wait for translated text and font metrics, then stabilise Chromium's
-      // scroll position while the updated layout settles over several frames.
-      void document.fonts.ready.then(() => requestAnimationFrame(keepScrollStable));
+      // Wait for Hindi font metrics, then keep the reading position stable
+      // while translated text and fonts settle over subsequent paint frames.
+      void document.fonts.ready.then(() => requestAnimationFrame(keepAnchorStable));
     };
 
     // The normal English storefront is already rendered from the translation
