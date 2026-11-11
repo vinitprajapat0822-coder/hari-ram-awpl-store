@@ -29,13 +29,14 @@ jobs:
           node-version: 24
           package-manager-cache: false
 
-      - name: Install patched framework and compatible React line
+      - name: Install patched framework, React and ESLint
         run: >
           npm install --save-exact --ignore-scripts --no-audit --no-fund
           next@16.4.6
           react@19.3.1
           react-dom@19.3.1
           eslint-config-next@16.4.6
+          eslint@10.14.0
           @types/react@19.3.0
           @types/react-dom@19.3.0
 
