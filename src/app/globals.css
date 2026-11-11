@@ -15,7 +15,7 @@
 html { min-height: 100%; scroll-behavior: smooth; scroll-padding-top: 6rem; }
 body {
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   color: #f5fbff;
   background:
     radial-gradient(ellipse 70% 42% at 50% -16%, rgba(58,205,190,.16), transparent 72%),

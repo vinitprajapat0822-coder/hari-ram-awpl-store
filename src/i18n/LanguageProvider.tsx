@@ -131,14 +131,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         const delta = snapshot.anchor?.isConnected
           ? snapshot.anchor.getBoundingClientRect().top - snapshot.anchorTop
           : 0;
-        const currentY = window.scrollY;
-        const targetY = Math.max(0, currentY + delta);
-        // Chromium scrolls the document element. Update the window and both
-        // standards/legacy scroll roots so the same correction is applied
-        // even while text mutation changes body and document height.
-        window.scrollTo({ left: 0, top: targetY, behavior: "instant" });
-        document.documentElement.scrollTop = targetY;
-        document.body.scrollTop = targetY;
+        const scrollingElement = document.scrollingElement ?? document.documentElement;
+        const targetY = Math.max(0, scrollingElement.scrollTop + delta);
+        // Write only to the browser's actual document scroll root. Writing to
+        // body as well can create a second scroll offset when body overflow is
+        // auto, which compounds the correction after horizontal clipping.
+        scrollingElement.scrollTop = targetY;
       };
 
       const keepAnchorStable = () => {
